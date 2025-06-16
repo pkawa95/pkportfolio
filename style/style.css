@@ -179,13 +179,13 @@ main {
 /* ===== Scroll Animation ===== */
 .hidden-on-load {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateX(60px); /* z prawej */
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .show-on-scroll {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 /* ===== Mobile Styles ===== */
@@ -244,4 +244,115 @@ main {
     font-size: 0.9rem;
     padding: 0.3rem 0.5rem;
   }
+}
+
+.info-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px; /* zmniejszony odstęp między kaflami */
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* wyśrodkowanie poziome */
+  justify-content: center; /* wyśrodkowanie pionowe */
+  min-height: 240px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.tile.show-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tile-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--accent-color);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.tile h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.tile p {
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.tile:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+.tile-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-bg);
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  padding: 20px 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tile-link:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tile-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.experience-section {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.experience-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.experience-section p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.company-name {
+  color: var(--accent-color);
+  font-size: 0.95rem;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.section-gap {
+  margin-top: 32px;
 }

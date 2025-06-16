@@ -43,11 +43,13 @@ langToggle?.addEventListener("click", () => {
 });
 
 // =======================
-// 🎯 Scroll - Fade-in
+// 🎯 Scroll - Fade-in + delay
 // =======================
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
+      const delay = entry.target.dataset.delay || "0s";
+      entry.target.style.transitionDelay = delay;
       entry.target.classList.add("show-on-scroll");
       observer.unobserve(entry.target);
     }
@@ -84,7 +86,7 @@ dropdownToggle?.addEventListener("click", (e) => {
 
 // Zamknięcie dropdownu i hamburgera przy kliknięciu poza
 document.addEventListener("click", (e) => {
-  if (!dropdownContainer?.contains(e.target)) {
+  if (!dropdownContainer?.contains(e.target) && !dropdownToggle?.contains(e.target)) {
     dropdownContainer?.classList.remove("open");
   }
   if (!menuItems?.contains(e.target) && !menuToggle?.contains(e.target)) {

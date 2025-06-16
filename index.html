@@ -38,27 +38,173 @@
 
 
   <main>
-    <section class="intro hidden-on-load">
-      <h1 data-i18n="intro_h1">Portfolio – Piotr Kawa</h1>
+<section class="intro">
+  <h1 class="hidden-on-load" data-delay="0s" data-i18n="intro_h1">Portfolio – Piotr Kawa</h1>
 
-      <p data-i18n="intro_p1"><strong>Piotr Kawa</strong> – student drugiego roku Informatyki o specjalności <em>Programowanie</em>, ze średnią ocen 5.0. Absolwent technikum informatycznego w specjalizacji <em>sieci komputerowe</em>, z wynikiem 100% z egzaminów zawodowych w części praktycznej.</p>
+  <p class="hidden-on-load" data-delay="0.1s" data-i18n="intro_p1">
+    <strong>Piotr Kawa</strong> – student drugiego roku Informatyki o specjalności <em>Programowanie</em>, ze średnią ocen 5.0. Absolwent technikum informatycznego w specjalizacji <em>sieci komputerowe</em>, z wynikiem 100% z egzaminów zawodowych w części praktycznej.
+  </p>
 
-      <p data-i18n="intro_p2">W pracy technicznej łączone są solidne podstawy akademickie z praktycznymi umiejętnościami wyniesionymi z samodzielnych projektów programistycznych oraz doświadczeniem w zakresie urządzeń elektronicznych i nowoczesnych technologii IT. Zakres zainteresowań obejmuje m.in. inżynierię oprogramowania, systemy IoT, integracje z API, automatyzację procesów, aplikacje desktopowe, systemy WebDAV, a także fotografię i technologię dronów.</p>
+  <p class="hidden-on-load" data-delay="0.2s" data-i18n="intro_p2">
+    W pracy technicznej łączone są solidne podstawy akademickie z praktycznymi umiejętnościami wyniesionymi z samodzielnych projektów programistycznych oraz doświadczeniem w zakresie urządzeń elektronicznych i nowoczesnych technologii IT. Zakres zainteresowań obejmuje m.in. inżynierię oprogramowania, systemy IoT, integracje z API, automatyzację procesów, aplikacje desktopowe, systemy WebDAV, a także fotografię i technologię dronów.
+  </p>
 
-      <p data-i18n="intro_p3">Realizowane projekty obejmują szerokie spektrum środowisk i technologii, w tym:</p>
-      <ul>
-        <li data-i18n="stack_python"><strong>Python</strong> – PyQt6, automatyzacja z Selenium, REST API, obsługa WebDAV, JWT</li>
-        <li data-i18n="stack_csharp"><strong>C#</strong> – aplikacje w .NET i WPF</li>
-        <li data-i18n="stack_pwa"><strong>Progressive Web Apps (PWA)</strong> – aplikacje offline-ready, responsywne, zgodne ze standardami</li>
-        <li data-i18n="stack_frontend"><strong>Frontend/UI</strong> – interfejsy użytkownika, Tailwind CSS, zarządzanie stanem aplikacji</li>
-        <li data-i18n="stack_security"><strong>Bezpieczeństwo i integracja</strong> – szyfrowanie lokalne, OAuth, JWT, API tokeny</li>
-        <li data-i18n="stack_devops"><strong>DevOps / Sieci</strong> – konfiguracja, infrastruktura lokalna, zdalne zarządzanie urządzeniami</li>
-      </ul>
+  <p class="hidden-on-load" data-delay="0.3s" data-i18n="intro_p3">
+    Realizowane projekty obejmują szerokie spektrum środowisk i technologii, w tym:
+  </p>
 
-      <p data-i18n="intro_p4">W portfolio znajdują się m.in. aplikacje desktopowe (Python, C#, WPF), aplikacje progresywne, panele do sterowania inteligentnym oświetleniem, narzędzia CLI oraz rozwiązania działające w trybie WebDAV. Każdy projekt został zaprojektowany z naciskiem na jakość kodu, stabilność działania i estetykę interfejsu użytkownika.</p>
+  <ul class="hidden-on-load" data-delay="0.4s">
+    <li data-i18n="stack_python"><strong>Python</strong> – PyQt6, automatyzacja z Selenium, REST API, obsługa WebDAV, JWT</li>
+    <li data-i18n="stack_csharp"><strong>C#</strong> – aplikacje w .NET i WPF</li>
+    <li data-i18n="stack_pwa"><strong>Progressive Web Apps (PWA)</strong> – aplikacje offline-ready, responsywne, zgodne ze standardami</li>
+    <li data-i18n="stack_frontend"><strong>Frontend/UI</strong> – interfejsy użytkownika, Tailwind CSS, zarządzanie stanem aplikacji</li>
+    <li data-i18n="stack_security"><strong>Bezpieczeństwo i integracja</strong> – szyfrowanie lokalne, OAuth, JWT, API tokeny</li>
+    <li data-i18n="stack_devops"><strong>DevOps / Sieci</strong> – konfiguracja, infrastruktura lokalna, zdalne zarządzanie urządzeniami</li>
+  </ul>
 
-      <p data-i18n="intro_note">Witryna dostępna jest w języku <strong>polskim</strong> i <strong>angielskim</strong> oraz oferuje możliwość przełączenia pomiędzy trybem jasnym i ciemnym.</p>
-    </section>
+  <p class="hidden-on-load" data-delay="0.5s" data-i18n="intro_p4">
+    W portfolio znajdują się m.in. aplikacje desktopowe (Python, C#, WPF), aplikacje progresywne, panele do sterowania inteligentnym oświetleniem, narzędzia CLI oraz rozwiązania działające w trybie WebDAV. Każdy projekt został zaprojektowany z naciskiem na jakość kodu, stabilność działania i estetykę interfejsu użytkownika.
+  </p>
+
+  <p class="hidden-on-load" data-delay="0.6s" data-i18n="intro_note">
+    Witryna dostępna jest w języku <strong>polskim</strong> i <strong>angielskim</strong> oraz oferuje możliwość przełączenia pomiędzy trybem jasnym i ciemnym.
+  </p>
+</section>
+
+<section class="info-tiles">
+  <!-- 🎓 Student -->
+  <div class="tile hidden-on-load">
+    <a href="omnie.html" class="tile-link">
+      <div class="tile-inner">
+        <div class="tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.5"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+            <path d="m22 10-10-5-10 5 10 5 10-5z" />
+            <path d="M6 12v5a9 3 0 0 0 12 0v-5" />
+            <path d="M12 15h.01" />
+          </svg>
+        </div>
+        <h3 data-i18n="tile_student_title">Student informatyki</h3>
+        <p data-i18n="tile_student_text">Ukończyłem 2 rok studiów ze średnią 5.0</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- 💻 Programowanie -->
+  <div class="tile hidden-on-load">
+    <a href="projekty.html" class="tile-link">
+      <div class="tile-inner">
+        <div class="tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.5"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h3 data-i18n="tile_code_title">Specjalność: Programowanie</h3>
+        <p data-i18n="tile_code_text">Rozwijanie projektów na uczelni oraz własnych</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- 🛠️ Absolwent technikum -->
+<div class="tile hidden-on-load">
+  <a href="dokumenty.html" class="tile-link">
+    <div class="tile-inner">
+      <div class="tile-icon">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.5"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+          <path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L2 20l2 2 7.3-7.3a5 5 0 0 0 6.4-6.4l-3.1 3.1-2.1-2.1 3.1-3.1z" />
+        </svg>
+      </div>
+      <h3 data-i18n="tile_tech_title">Absolwent technikum informatycznego</h3>
+      <p data-i18n="tile_tech_text">Zdałem praktyczny egzamin zawodowy z wynikiem 100%</p>
+    </div>
+  </a>
+</div>
+
+  <!-- ✉️ Kontakt -->
+  <div class="tile hidden-on-load">
+    <a href="kontakt.html" class="tile-link">
+      <div class="tile-inner">
+        <div class="tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.5"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
+            <polyline points="3,5 12,13 21,5"/>
+          </svg>
+        </div>
+        <h3 data-i18n="tile_contact_title">Kontakt</h3>
+        <p data-i18n="tile_contact_text">Dane kontaktowe dostępne w sekcji kontakt w menu strony</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="experience-section">
+  <h2 class="hidden-on-load" data-i18n="experience_title" data-delay="0s">
+    Obecne doświadczenie zawodowe
+  </h2>
+
+  <p class="hidden-on-load" data-i18n="experience_text" data-delay="0.2s" style="margin-bottom: 1.5rem;">
+    W trzeciej klasie technikum informatycznego odbyłem <strong>odpłatny staż wakacyjny</strong> zorganizowany przez <strong>ZSP Nowe</strong>, w firmie
+    <strong>GECKONET Sp. z o.o.</strong>. Pracowałem zgodnie z profilem kształcenia w zakresie <strong>sieci komputerowych</strong>, zajmując się:
+    <br><br>
+    – <strong>montażem instalacji internetowych</strong> w technologii radiowej,<br>
+    – <strong>konfiguracją sieci</strong> według procedur firmowych,<br>
+    – <strong>usuwaniem usterek</strong> oraz diagnozą problemów u klientów,<br>
+    – <strong>budową i montażem nowych stacji nadawczych</strong> w celu rozszerzania zasięgu sieci operatora.
+  </p>
+
+  <p class="hidden-on-load" data-i18n="experience_text_2" data-delay="0.4s">
+    W tej samej firmie odbyłem również <strong>praktyki zawodowe</strong>, wymagane w ramach programu technikum informatycznego. W trakcie praktyk
+    dokumentowałem swoje działania w <strong>dzienniku praktyk</strong>, który obejmował wszystkie realizowane zadania, zdobyte umiejętności oraz przebieg
+    pracy w środowisku rzeczywistym.
+  </p>
+</section>
+
+<section class="experience-section">
+  <h2 class="hidden-on-load" data-i18n="experience_other_title" data-delay="0s">
+    Inne doświadczenie zawodowe
+  </h2>
+
+  <p class="hidden-on-load" data-i18n="experience_other_text_1" data-delay="0.2s">
+    <span class="company-name">TERG S.A – Media Expert</span><br>
+    Pracowałem jako <strong>Starszy Specjalista ds. Sprzedaży i Usług</strong> w salonie Media Expert w Nowem. W ciągu 5 lat zdobyłem szeroką wiedzę produktową
+    dzięki licznym szkoleniom oraz doświadczeniu w bezpośredniej obsłudze klienta. Pracowałem na wszystkich działach sprzedaży, w tym przy stanowiskach:
+    <strong>ratalnych, reklamacyjnych oraz serwisowych</strong>. Odpowiadałem za realizację standardów obsługi klienta, sprzedaż sprzętu i akcesoriów, ubezpieczeń
+    oraz usług dodatkowych oferowanych przez firmę.
+  </p>
+
+  <p class="hidden-on-load section-gap" data-i18n="experience_other_text_2" data-delay="0.4s">
+    <span class="company-name">Jeronimo Martins Polska S.A.</span><br>
+    Na stanowisku <strong>Zastępcy Kierownika Sklepu</strong> byłem odpowiedzialny za <strong>koordynowanie zespołu</strong> podczas zmiany,
+    <strong>obsługę klienta</strong> w standardzie firmy, rozwiązywanie sytuacji konfliktowych, egzekwowanie obowiązków pracowników oraz przestrzeganie
+    <strong>zasad BHP i wewnętrznych procedur</strong>.
+  </p>
+</section>
+
+
   </main>
 </body>
 </html>
