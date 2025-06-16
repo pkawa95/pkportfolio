@@ -1,0 +1,209 @@
+/* === Import czcionki Montserrat === */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* === Zmienne kolorów === */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --nav-bg: #f8f8f8;
+  --nav-text: #000000;
+  --link-hover: #0066cc;
+  --accent-color: #0077ff;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --nav-bg: #1e1e1e;
+  --nav-text: #ffffff;
+  --link-hover: #66ccff;
+  --accent-color: #3d9cff;
+}
+
+/* === Resetowanie marginesów === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Styl ogólny === */
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding-top: 70px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* === Nawigacja === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.navbar-left {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar a,
+.navbar button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--nav-text);
+  text-decoration: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar a:hover,
+.navbar button:hover {
+  color: var(--link-hover);
+}
+
+/* === Dropdown menu === */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn::after {
+  content: ' ▼';
+  font-size: 0.75em;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--nav-bg);
+  min-width: 160px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  top: 40px;
+  left: 0;
+  z-index: 10;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  color: var(--nav-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* === Główna sekcja === */
+main {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.intro h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--accent-color);
+}
+
+.intro p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.intro ul {
+  margin: 1rem 0 2rem 1.5rem;
+  list-style-type: disc;
+}
+
+.intro ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* === Przycisk przełącznika języka i trybu === */
+#lang-toggle,
+#theme-toggle {
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--nav-text);
+  background-color: transparent;
+}
+
+#lang-toggle:hover,
+#theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* === Responsywność === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    border: none;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: none;
+  }
+
+  .dropdown-content.show {
+    display: block;
+  }
+}
+
+/* Początkowy stan - ukryty i przesunięty w dół */
+.hidden-on-load {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Aktywowany po scrollu */
+.show-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}

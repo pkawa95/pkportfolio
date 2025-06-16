@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Piotr Kawa - Portfolio</title>
+  <link rel="stylesheet" href="/style/style.css" />
+  <script defer src="/scripts/translations.js"></script>
+  <script defer src="/scripts/script.js"></script>
+  
+</head>
+<body>
+  <header class="navbar sticky">
+    <div class="navbar-left">Piotr Kawa Portfolio</div>
+    <nav class="navbar-right">
+      <a href="index.html" data-i18n="home">Strona główna</a>
+      <div class="dropdown">
+        <button class="dropbtn" data-i18n="projects">Projekty</button>
+        <div class="dropdown-content">
+          <a href="CSharp.html">C#</a>
+          <a href="python.html">Python</a>
+          <a href="PWA.html">PWA</a>
+          <a href="CSharp_Wpf.html">C#+WPF</a>
+        </div>
+      </div>
+      <a href="omnie.html" data-i18n="about">O mnie</a>
+      <a href="dokumenty.html" data-i18n="docs">Dokumenty</a>
+      <a href="kontakt.html" data-i18n="contact">Kontakt</a>
+      <button id="lang-toggle">EN</button>
+      <button id="theme-toggle">🌚/☀️</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro hidden-on-load">
+      <h1 data-i18n="intro_h1">Portfolio – Piotr Kawa</h1>
+
+      <p data-i18n="intro_p1"><strong>Piotr Kawa</strong> – student drugiego roku Informatyki o specjalności <em>Programowanie</em>, ze średnią ocen 5.0. Absolwent technikum informatycznego w specjalizacji <em>sieci komputerowe</em>, z wynikiem 100% z egzaminów zawodowych w części praktycznej.</p>
+
+      <p data-i18n="intro_p2">W pracy technicznej łączone są solidne podstawy akademickie z praktycznymi umiejętnościami wyniesionymi z samodzielnych projektów programistycznych oraz doświadczeniem w zakresie urządzeń elektronicznych i nowoczesnych technologii IT. Zakres zainteresowań obejmuje m.in. inżynierię oprogramowania, systemy IoT, integracje z API, automatyzację procesów, aplikacje desktopowe, systemy WebDAV, a także fotografię i technologię dronów.</p>
+
+      <p data-i18n="intro_p3">Realizowane projekty obejmują szerokie spektrum środowisk i technologii, w tym:</p>
+      <ul>
+        <li data-i18n="stack_python"><strong>Python</strong> – PyQt6, automatyzacja z Selenium, REST API, obsługa WebDAV, JWT</li>
+        <li data-i18n="stack_csharp"><strong>C#</strong> – aplikacje w .NET i WPF</li>
+        <li data-i18n="stack_pwa"><strong>Progressive Web Apps (PWA)</strong> – aplikacje offline-ready, responsywne, zgodne ze standardami</li>
+        <li data-i18n="stack_frontend"><strong>Frontend/UI</strong> – interfejsy użytkownika, Tailwind CSS, zarządzanie stanem aplikacji</li>
+        <li data-i18n="stack_security"><strong>Bezpieczeństwo i integracja</strong> – szyfrowanie lokalne, OAuth, JWT, API tokeny</li>
+        <li data-i18n="stack_devops"><strong>DevOps / Sieci</strong> – konfiguracja, infrastruktura lokalna, zdalne zarządzanie urządzeniami</li>
+      </ul>
+
+      <p data-i18n="intro_p4">W portfolio znajdują się m.in. aplikacje desktopowe (Python, C#, WPF), aplikacje progresywne, panele do sterowania inteligentnym oświetleniem, narzędzia CLI oraz rozwiązania działające w trybie WebDAV. Każdy projekt został zaprojektowany z naciskiem na jakość kodu, stabilność działania i estetykę interfejsu użytkownika.</p>
+
+      <p data-i18n="intro_note">Witryna dostępna jest w języku <strong>polskim</strong> i <strong>angielskim</strong> oraz oferuje możliwość przełączenia pomiędzy trybem jasnym i ciemnym.</p>
+    </section>
+  </main>
+</body>
+</html>
