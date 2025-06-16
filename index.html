@@ -8,31 +8,34 @@
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
   
-</head>
-<body>
-  <header class="navbar sticky">
-    <div class="navbar-left">Piotr Kawa Portfolio</div>
-    <nav class="navbar-right">
-  <button class="menu-toggle" id="menu-toggle">☰</button>
-  <div class="menu-items" id="menu-items">
+  </head>
+<header class="navbar sticky">
+  <div class="navbar-left">Piotr Kawa Portfolio</div>
+  <nav class="navbar-right">
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+
+    <div class="menu-items" id="menu-items">
       <a href="index.html" data-i18n="home">Strona główna</a>
+
       <div class="dropdown">
-  <button class="dropbtn" id="dropdown-toggle" data-i18n="projects">Projekty</button>
-  <div class="dropdown-content" id="dropdown-content">
-    <a href="CSharp.html">C#</a>
-    <a href="python.html">Python</a>
-    <a href="PWA.html">PWA</a>
-    <a href="CSharp_Wpf.html">C#+WPF</a>
-  </div>
-</div>
+        <button class="dropbtn" id="dropdown-toggle" data-i18n="projects">Projekty</button>
+        <div class="dropdown-content" id="dropdown-content">
+          <a href="CSharp.html">C#</a>
+          <a href="python.html">Python</a>
+          <a href="PWA.html">PWA</a>
+          <a href="CSharp_Wpf.html">C#+WPF</a>
+        </div>
       </div>
+
       <a href="omnie.html" data-i18n="about">O mnie</a>
       <a href="dokumenty.html" data-i18n="docs">Dokumenty</a>
       <a href="kontakt.html" data-i18n="contact">Kontakt</a>
       <button id="lang-toggle">EN</button>
       <button id="theme-toggle">🌚/☀️</button>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
+
 
   <main>
     <section class="intro hidden-on-load">
