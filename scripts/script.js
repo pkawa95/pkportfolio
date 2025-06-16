@@ -1,21 +1,20 @@
 // =======================
 // 🌙 Motyw jasny/ciemny
 // =======================
-const themeToggle = document.getElementById("theme-toggle");
-const langToggle = document.getElementById("lang-toggle");
-const body = document.body;
-
 function applyTheme(theme) {
-  body.classList.toggle("dark", theme === "dark");
+  document.body.classList.toggle("dark", theme === "dark");
   localStorage.setItem("theme", theme);
 }
 
-themeToggle?.addEventListener("click", () => {
-  const newTheme = body.classList.contains("dark") ? "light" : "dark";
-  applyTheme(newTheme);
-});
+function initThemeToggle() {
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle?.addEventListener("click", () => {
+    const newTheme = document.body.classList.contains("dark") ? "light" : "dark";
+    applyTheme(newTheme);
+  });
 
-applyTheme(localStorage.getItem("theme") || "light");
+  applyTheme(localStorage.getItem("theme") || "light");
+}
 
 // =======================
 // 🌍 Tłumaczenia PL/EN
@@ -29,67 +28,96 @@ function translate(lang) {
     if (t[key]) el.innerHTML = t[key];
   });
 
-  if (t.title) document.title = t.title;
-  langToggle.textContent = lang === "pl" ? "EN" : "PL";
+  document.title = t.title || document.title;
+
+  const langToggle = document.getElementById("lang-toggle");
+  if (langToggle) {
+    langToggle.textContent = lang === "pl" ? "EN" : "PL";
+    langToggle.addEventListener("click", () => {
+      const newLang = lang === "pl" ? "en" : "pl";
+      translate(newLang);
+      localStorage.setItem("lang", newLang);
+    });
+  }
+
   localStorage.setItem("lang", lang);
 }
 
-let currentLang = localStorage.getItem("lang") || "pl";
-translate(currentLang);
-
-langToggle?.addEventListener("click", () => {
-  currentLang = currentLang === "pl" ? "en" : "pl";
+function initTranslation() {
+  const currentLang = localStorage.getItem("lang") || "pl";
   translate(currentLang);
-});
+}
 
 // =======================
-// 🎯 Scroll - Fade-in + delay
+// 🎯 Scroll - Fade-in + Delay
 // =======================
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const delay = entry.target.dataset.delay || "0s";
-      entry.target.style.transitionDelay = delay;
-      entry.target.classList.add("show-on-scroll");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
+function initScrollObserver() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || "0s";
+        entry.target.style.transitionDelay = delay;
+        entry.target.classList.add("show-on-scroll");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
 
-document.querySelectorAll(".hidden-on-load").forEach((el) => observer.observe(el));
+  document.querySelectorAll(".hidden-on-load").forEach((el) => observer.observe(el));
+}
 
 // =======================
 // 📱 Hamburger + Dropdown
 // =======================
-const menuToggle = document.getElementById("menu-toggle");
-const menuItems = document.getElementById("menu-items");
-const dropdownToggle = document.getElementById("dropdown-toggle");
-const dropdownContainer = dropdownToggle?.parentElement;
+function initMenuScripts() {
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuItems = document.getElementById("menu-items");
+  const dropdownToggle = document.getElementById("dropdown-toggle");
+  const dropdownContainer = dropdownToggle?.parentElement;
 
-// Toggle hamburger
-menuToggle?.addEventListener("click", (e) => {
-  e.stopPropagation();
-  menuItems?.classList.toggle("show");
-});
+  menuToggle?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menuItems?.classList.toggle("show");
+  });
 
-// Auto-close hamburger on link click
-menuItems?.querySelectorAll("a").forEach((link) =>
-  link.addEventListener("click", () => menuItems?.classList.remove("show"))
-);
+  menuItems?.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => menuItems?.classList.remove("show"))
+  );
 
-// Toggle dropdown "Projekty"
-dropdownToggle?.addEventListener("click", (e) => {
-  e.preventDefault();
-  e.stopPropagation(); // zapobiega zamknięciu przez globalny click
-  dropdownContainer?.classList.toggle("open");
-});
+  dropdownToggle?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dropdownContainer?.classList.toggle("open");
+  });
 
-// Zamknięcie dropdownu i hamburgera przy kliknięciu poza
-document.addEventListener("click", (e) => {
-  if (!dropdownContainer?.contains(e.target) && !dropdownToggle?.contains(e.target)) {
-    dropdownContainer?.classList.remove("open");
-  }
-  if (!menuItems?.contains(e.target) && !menuToggle?.contains(e.target)) {
-    menuItems?.classList.remove("show");
-  }
+  document.addEventListener("click", (e) => {
+    if (!dropdownContainer?.contains(e.target) && !dropdownToggle?.contains(e.target)) {
+      dropdownContainer?.classList.remove("open");
+    }
+    if (!menuItems?.contains(e.target) && !menuToggle?.contains(e.target)) {
+      menuItems?.classList.remove("show");
+    }
+  });
+}
+
+// =======================
+// 📥 Dynamiczne menu
+// =======================
+function loadMenuAndInit() {
+  fetch('/menu.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('menu-placeholder').innerHTML = html;
+      initMenuScripts();
+      initThemeToggle();     // potrzebne, bo przycisk wczytywany z menu
+      initTranslation();     // aktualizacja języka po wczytaniu menu
+    });
+}
+
+// =======================
+// ✅ Inicjalizacja
+// =======================
+document.addEventListener("DOMContentLoaded", () => {
+  loadMenuAndInit();
+  initScrollObserver();
 });
