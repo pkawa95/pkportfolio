@@ -40,19 +40,11 @@ body {
 
 /* === Nawigacja === */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--nav-bg);
-  color: var(--nav-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  transition: background-color 0.3s;
+  flex-wrap: wrap; /* pozwala zawijać */
+  padding: 1rem 2rem;
 }
 
 .navbar-left {
@@ -62,9 +54,15 @@ body {
 
 .navbar-right {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navbar-right a,
+.navbar-right button,
+.dropbtn {
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
 }
 
 .navbar a,
@@ -88,7 +86,6 @@ body {
 .dropdown {
   position: relative;
 }
-
 .dropbtn::after {
   content: ' ▼';
   font-size: 0.75em;
@@ -114,12 +111,20 @@ body {
   font-size: 0.95rem;
 }
 
-.dropdown-content a:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  z-index: 10;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: flex;
 }
 
 /* === Główna sekcja === */
@@ -166,35 +171,41 @@ main {
 }
 
 /* === Responsywność === */
+/* RESPONSYWNOŚĆ */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px;
+  .navbar-right {
+    justify-content: center;
+    gap: 0.6rem;
   }
 
-  .navbar-right {
-    flex-direction: column;
-    align-items: flex-start;
+  .navbar-right a,
+  .navbar-right button,
+  .dropbtn {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .navbar-left {
+    font-size: 1rem;
+    text-align: center;
     width: 100%;
-    gap: 6px;
+    margin-bottom: 0.5rem;
   }
 
   .dropdown-content {
     position: static;
     box-shadow: none;
-    border: none;
+    background: transparent;
   }
 
   .dropdown:hover .dropdown-content {
-    display: none;
-  }
-
-  .dropdown-content.show {
     display: block;
   }
-}
 
+  .dropdown-content a {
+    padding: 0.2rem 0;
+  }
+}
 /* Początkowy stan - ukryty i przesunięty w dół */
 .hidden-on-load {
   opacity: 0;
