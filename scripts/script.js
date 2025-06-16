@@ -75,3 +75,11 @@ menu.querySelectorAll("a").forEach(link => {
     menu.classList.remove("show");
   });
 });
+
+// Obsługa dropdown na kliknięcie
+const dropdownToggle = document.getElementById("dropdown-toggle");
+const dropdownContent = document.getElementById("dropdown-content");
+
+dropdownToggle.addEventListener("click", () => {
+  dropdownContent.classList.toggle("show-dropdown");
+});
