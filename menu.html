@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Piotr Kawa - Portfolio</title>
+<header class="navbar sticky">
+  <div class="navbar-left">Piotr Kawa Portfolio</div>
+  <nav class="navbar-right">
+    <button class="menu-toggle" id="menu-toggle">☰</button>
 
-  <!-- STYLE -->
-  <link rel="stylesheet" href="/pkportfolio/style/style.css" />
-
-  <!-- SCRIPTS -->
-  <script defer src="/pkportfolio/scripts/translations.js"></script>
-  <script defer src="/pkportfolio/scripts/script.js"></script>
-</head>
-<body>
-  <!-- 📌 MENU z menu.html -->
-  <div id="menu-placeholder"></div>
-
-  <!-- ✅ GŁÓWNA TREŚĆ -->
-  <main>
-    <section class="intro hidden-on-load">
-      <h1 data-i18n="intro_h1">Portfolio – Piotr Kawa</h1>
-      <p data-i18n="intro_p1">Przykładowy opis…</p>
-    </section>
-  </main>
-</body>
-</html>
+    <div class="menu-items" id="menu-items">
+      <a href="index.html" data-i18n="home">Strona główna</a>
+      <div class="dropdown">
+        <button class="dropbtn" id="dropdown-toggle" data-i18n="projects">Projekty</button>
+        <div class="dropdown-content" id="dropdown-content">
+          <a href="CSharp.html">C#</a>
+          <a href="python.html">Python</a>
+          <a href="PWA.html">PWA</a>
+          <a href="CSharp_Wpf.html">C#+WPF</a>
+        </div>
+      </div>
+      <a href="omnie.html" data-i18n="about">O mnie</a>
+      <a href="dokumenty.html" data-i18n="docs">Dokumenty</a>
+      <a href="kontakt.html" data-i18n="contact">Kontakt</a>
+      <button id="lang-toggle">EN</button>
+      <button id="theme-toggle">🌚/☀️</button>
+    </div>
+  </nav>
+</header>
