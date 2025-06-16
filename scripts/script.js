@@ -61,3 +61,17 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 document.querySelectorAll('.hidden-on-load').forEach(el => observer.observe(el));
+
+const toggleBtn = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu-items");
+
+toggleBtn.addEventListener("click", () => {
+  menu.classList.toggle("show");
+});
+
+// Automatyczne zamknięcie po kliknięciu linku
+menu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
+});
