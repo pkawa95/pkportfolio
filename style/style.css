@@ -2,6 +2,7 @@
 
 /* ===== Global Fix for Sticky ===== */
 html, body {
+  backdrop-filter: none;
   margin: 0;
   padding: 0;
   height: auto;
@@ -49,14 +50,19 @@ body {
   position: fixed;
   top: 0;
   z-index: 9999;
-  background-color: var(--nav-bg);
+  width: 100%;
   min-height: 70px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  width: 100%;
-  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.85); /* jasny domyślny */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 .navbar-left {
@@ -97,6 +103,38 @@ body {
 .navbar button:hover {
   color: var(--link-hover);
 }
+
+body.dark .navbar {
+  background-color: rgba(18, 18, 18, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-items a.active {
+  font-weight: bold;
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.menu-items a {
+  position: relative;
+}
+
+.menu-items a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.menu-items a:hover::after {
+  width: 100%;
+}
+
+
 
 /* ===== Dropdown ===== */
 .dropdown {
@@ -142,6 +180,7 @@ main {
 
 .intro h1 {
   font-size: 2.4rem;
+  text-align: center;
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: var(--accent-color);
@@ -355,4 +394,159 @@ main {
 
 .section-gap {
   margin-top: 32px;
+}
+
+/*LOGO GITHUB */
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--nav-text);
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+}
+
+.github-link:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* === Footer === */
+.site-footer {
+  background-color: var(--nav-bg);
+  color: var(--text-color);
+  padding: 12px 0; /* zmniejszona wysokość */
+  border-top: 1px solid #ccc;
+  text-align: center;
+  font-size: 0.85rem; /* lekko mniejszy tekst */
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Link do GitHub */
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--nav-text);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+}
+
+.github-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* SVG kolorowanie */
+.github-link img {
+  width: 20px;
+  height: 20px;
+  filter: invert(0); /* domyślnie czarne */
+  transition: filter 0.3s;
+}
+
+/* W trybie ciemnym — białe SVG */
+body.dark .github-link img {
+  filter: invert(1);
+}
+
+
+/* === Separator z zanikaniem === */
+.section-separator {
+  height: 2px;
+  width: 0%;
+  margin: 3rem auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-color),
+    transparent
+  );
+  transition: width 0.8s ease-out;
+  opacity: 0.9;
+}
+
+.section-separator.animate {
+  width: 60%;
+}
+
+body.dark .section-separator {
+  opacity: 0.6;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0; left: 0; right: 0; bottom: 0;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+
+/* Ikony projektów w dropdown */
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: invert(0);
+  transition: transform 0.3s ease;
+}
+
+body.dark .project-icon {
+  filter: invert(1);
+}
+
+.dropdown-content a:hover .project-icon {
+  transform: scale(1.15);
 }
