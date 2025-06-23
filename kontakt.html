@@ -13,34 +13,34 @@
   <script defer src="/pkportfolio/scripts/script.js"></script>
 </head>
 <body>
-  <!-- 📌 MENU z menu.html -->
+  <!-- 📌 MENU -->
   <div id="menu-placeholder"></div>
 
-  <!-- ✅ GŁÓWNA TREŚĆ -->
   <main>
-<section class="contact-section">
-  <h2 class="contact-title" data-i18n="contact.title">Kontakt</h2>
-  <div class="section-separator animate"></div>
+    <section class="contact-section hidden-on-load fade-zoom">
+      <h2 class="contact-title" data-i18n="contact_title">Kontakt</h2>
+      <div class="section-separator animate"></div>
 
-  <div class="contact-info">
-    <p><strong>Piotr Kawa</strong></p>
-    <p><span data-i18n="contact.phone">tel.</span> <a href="tel:+48726526154">+48 726 526 154</a></p>
-    <p><span data-i18n="contact.email">e-mail:</span> <a href="mailto:piotrkawa95@gmail.com">piotrkawa95@gmail.com</a></p>
-  </div>
+      <div class="contact-info">
+        <p><strong data-i18n="contact_name">Piotr Kawa</strong></p>
+        <p><span data-i18n="contact_phone">tel. +48 726 526 154</span></p>
+        <p><span data-i18n="contact_email">piotrkawa95@gmail.com</span></p>
+      </div>
 
-  <p class="contact-message" data-i18n="contact.message">
-    Zapraszam do kontaktu w sprawie współpracy lub możliwości zatrudnienia. Z przyjemnością odpowiem na wszelkie pytania oraz przedstawię szczegóły mojego doświadczenia i umiejętności.
-  </p>
+      <p class="contact-message" data-i18n="contact_message">
+        Zapraszam do kontaktu w sprawie współpracy lub możliwości zatrudnienia. Z przyjemnością odpowiem na wszelkie pytania oraz przedstawię szczegóły mojego doświadczenia i umiejętności.
+      </p>
 
-  <form class="contact-form" action="mailto:piotrkawa95@gmail.com" method="POST" enctype="text/plain">
-    <input type="text" name="name" placeholder="Imię i nazwisko" data-i18n-placeholder="contact.placeholder.name" required>
-    <input type="email" name="email" placeholder="Adres e-mail" data-i18n-placeholder="contact.placeholder.email" required>
-    <textarea name="message" rows="5" placeholder="Wiadomość..." data-i18n-placeholder="contact.placeholder.message" required></textarea>
-    <button type="submit" data-i18n="contact.submit">Wyślij</button>
-  </form>
-</section>
-
+      <form class="contact-form" action="mailto:piotrkawa95@gmail.com" method="POST" enctype="text/plain">
+        <input type="text" name="name" placeholder="Imię i nazwisko" data-i18n-placeholder="contact_form_name" required />
+        <input type="email" name="email" placeholder="Adres e-mail" data-i18n-placeholder="contact_form_email" required />
+        <textarea name="message" rows="5" placeholder="Wiadomość..." data-i18n-placeholder="contact_form_message" required></textarea>
+        <button type="submit" data-i18n="contact_form_submit">Wyślij</button>
+      </form>
     </section>
   </main>
+
+  <!-- 📌 STOPKA -->
+  <div id="footer-placeholder"></div>
 </body>
 </html>

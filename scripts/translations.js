@@ -53,6 +53,29 @@ oraz usług dodatkowych oferowanych przez firmę.`,
 Na stanowisku <strong>Zastępcy Kierownika Sklepu</strong> byłem odpowiedzialny za <strong>koordynowanie zespołu</strong> podczas zmiany,
 <strong>obsługę klienta</strong> w standardzie firmy, rozwiązywanie sytuacji konfliktowych, egzekwowanie obowiązków pracowników oraz przestrzeganie
 <strong>zasad BHP i wewnętrznych procedur</strong>.`,
+contact_title: "Kontakt",
+contact_name: "Piotr Kawa",
+contact_phone: "tel. +48 726 526 154",
+contact_email: "piotrkawa95@gmail.com",
+contact_message: "Zapraszam do kontaktu w sprawie współpracy lub zatrudnienia. Z przyjemnością odpowiem na pytania i przedstawię szczegóły projektów.",
+contact_form_name: "Imię i nazwisko",
+contact_form_email: "Adres e-mail",
+contact_form_message: "Wiadomość",
+contact_form_submit: "Wyślij",
+projects_title: "Projekty",
+  projects_intro: "Poniżej znajduje się przegląd wybranych projektów zrealizowanych w ramach nauki, pracy oraz samodzielnych działań. Projekty zostały podzielone według technologii.",
+
+  project_python_title: "Projekty Python",
+  project_python_desc: "Automatyzacje, GUI (PyQt6), integracje z API, WebDAV.",
+
+  project_csharp_title: "Projekty C#",
+  project_csharp_desc: "Aplikacje desktopowe, narzędzia CLI, przetwarzanie danych.",
+
+  project_wpf_title: "Projekty WPF",
+  project_wpf_desc: "Aplikacje z graficznym interfejsem (WPF/.NET).",
+
+  project_pwa_title: "Progressive Web Apps",
+  project_pwa_desc: "Responsywne aplikacje offline, oparte o nowoczesne standardy.",
   },
 
   en: {
@@ -104,5 +127,28 @@ My responsibilities included delivering service standards, selling electronics a
   experience_other_text_2: `<span class="company-name">Jeronimo Martins Polska S.A.</span><br>
 As an <strong>Assistant Store Manager</strong>, I was responsible for <strong>coordinating staff</strong> during shifts, ensuring customer service standards,
 handling conflict situations, enforcing internal procedures, and supervising <strong>occupational health and safety (OHS)</strong> compliance.`,
+contact_title: "Contact",
+contact_name: "Piotr Kawa",
+contact_phone: "Phone: +48 726 526 154",
+contact_email: "piotrkawa95@gmail.com",
+contact_message: "Feel free to reach out regarding potential collaboration or employment. I will be happy to answer your questions and provide details about my projects.",
+contact_form_name: "Full Name",
+contact_form_email: "Email Address",
+contact_form_message: "Message",
+contact_form_submit: "Send",
+projects_title: "Projects",
+  projects_intro: "Below is an overview of selected projects developed during studies, work, and self-learning. Projects are categorized by technology.",
+
+  project_python_title: "Python Projects",
+  project_python_desc: "Automation, GUI (PyQt6), API integration, WebDAV.",
+
+  project_csharp_title: "C# Projects",
+  project_csharp_desc: "Desktop apps, CLI tools, data processing.",
+
+  project_wpf_title: "WPF Projects",
+  project_wpf_desc: "Graphical user interface applications (WPF/.NET).",
+
+  project_pwa_title: "Progressive Web Apps",
+  project_pwa_desc: "Offline-ready, responsive apps using modern standards.",
   },
 };

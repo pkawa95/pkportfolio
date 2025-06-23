@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Piotr Kawa - Portfolio</title>
+  <title data-i18n="projects">Projekty</title>
 
   <!-- STYLE -->
   <link rel="stylesheet" href="/pkportfolio/style/style.css" />
@@ -13,13 +13,68 @@
   <script defer src="/pkportfolio/scripts/script.js"></script>
 </head>
 <body>
-  <!-- 📌 MENU z menu.html -->
+  <!-- 📌 MENU -->
   <div id="menu-placeholder"></div>
 
-  <!-- ✅ GŁÓWNA TREŚĆ -->
   <main>
+    <section class="projects-section hidden-on-load fade-zoom">
+      <h2 class="contact-title" style="text-align: center;" data-i18n="projects_title">Projekty</h2>
+      <div class="section-separator animate"></div>
+      <p class="projects-intro" style="text-align: center;" data-i18n="projects_intro">
+        Poniżej znajduje się przegląd wybranych projektów zrealizowanych w ramach nauki, pracy oraz samodzielnych działań. Projekty zostały podzielone według technologii.
+      </p>
 
+      <div class="info-tiles">
+
+        <!-- PYTHON -->
+        <a href="python.html" class="tile-link">
+          <div class="tile hidden-on-load fade-zoom">
+            <div class="tile-icon">
+              <img src="img/icons/python.png" alt="Python" class="project-icon" style="width: 64px; height: 64px;" />
+            </div>
+            <h3 data-i18n="project_python_title">Projekty Python</h3>
+            <p data-i18n="project_python_desc">Automatyzacje, GUI (PyQt6), integracje z API, WebDAV.</p>
+          </div>
+        </a>
+
+        <!-- C# -->
+        <a href="CSharp.html" class="tile-link">
+          <div class="tile hidden-on-load fade-zoom">
+            <div class="tile-icon">
+              <img src="img/icons/csharp.png" alt="C#" class="project-icon" style="width: 64px; height: 64px;" />
+            </div>
+            <h3 data-i18n="project_csharp_title">Projekty C#</h3>
+            <p data-i18n="project_csharp_desc">Aplikacje desktopowe, narzędzia CLI, przetwarzanie danych.</p>
+          </div>
+        </a>
+
+        <!-- C#+WPF -->
+        <a href="CSharp_Wpf.html" class="tile-link">
+          <div class="tile hidden-on-load fade-zoom">
+            <div class="tile-icon">
+              <img src="img/icons/DotNet.svg" alt="WPF" class="project-icon" style="width: 64px; height: 64px;" />
+            </div>
+            <h3 data-i18n="project_wpf_title">Projekty WPF</h3>
+            <p data-i18n="project_wpf_desc">Aplikacje z graficznym interfejsem (WPF/.NET).</p>
+          </div>
+        </a>
+
+        <!-- PWA -->
+        <a href="PWA.html" class="tile-link">
+          <div class="tile hidden-on-load fade-zoom">
+            <div class="tile-icon">
+              <img src="img/icons/pwa.svg" alt="PWA" class="project-icon" style="width: 64px; height: 64px;" />
+            </div>
+            <h3 data-i18n="project_pwa_title">Progressive Web Apps</h3>
+            <p data-i18n="project_pwa_desc">Responsywne aplikacje offline, oparte o nowoczesne standardy.</p>
+          </div>
+        </a>
+
+      </div>
     </section>
   </main>
+
+  <!-- 📌 STOPKA -->
+  <div id="footer-placeholder"></div>
 </body>
 </html>
