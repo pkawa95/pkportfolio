@@ -550,3 +550,69 @@ body.dark .project-icon {
 .dropdown-content a:hover .project-icon {
   transform: scale(1.15);
 }
+
+
+/*Kontakt*/
+.contact-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2.4rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.contact-info a {
+  color: var(--nav-text);
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  color: var(--link-hover);
+}
+
+.contact-message {
+  margin: 20px 0 30px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.contact-form button {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: var(--link-hover);
+}
