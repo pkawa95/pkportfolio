@@ -3,120 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="piotrflix_page_title">PiotrFlix</title>
+  <title data-i18n="piotrflix_title">PiotrFlix</title>
 
-  <!-- Ścieżki cofnięte o dwa katalogi -->
   <link rel="stylesheet" href="/pkportfolio/style/style.css" />
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
-
-  <style>
-    .logo-levitate {
-      width: 160px;
-      max-width: 90%;
-      margin: 0 auto 30px;
-      display: block;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .piotrflix-section {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .piotrflix-section h2 {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--accent-color);
-      margin-bottom: 20px;
-    }
-
-    .piotrflix-section p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .piotrflix-section code {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.3em 0.6em;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 0.95rem;
-      display: inline-block;
-      margin: 6px 0;
-    }
-
-    body.dark .piotrflix-section code {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .example-code {
-      background: #1e1e1e;
-      color: #eee;
-      text-align: left;
-      font-family: Consolas, monospace;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin-top: 20px;
-    }
-
-    body:not(.dark) .example-code {
-      background: #f3f3f3;
-      color: #222;
-    }
-
-    .section-separator {
-      width: 100px;
-      height: 4px;
-      background: var(--accent-color);
-      margin: 30px auto;
-    }
-  </style>
 </head>
 <body>
-
-  <!-- MENU (importowane dynamicznie) -->
   <div id="menu-placeholder"></div>
 
-  <main>
-    <section class="piotrflix-section hidden-on-load fade-zoom">
-      <!-- Ścieżka do logo cofnięta o dwa katalogi -->
-      <img src="/pkportfolio/img/logo/piotrflixfull.png" alt="PiotrFlix logo" class="logo-levitate" />
-      <div class="section-separator animate"></div>
+  <main class="project-details-page">
 
-      <h2 data-i18n="piotrflix_page_title">PiotrFlix</h2>
+    <!-- Logo aplikacji -->
+        <section class="project-detail hidden-on-load fade-zoom">
+      <img src="/pkportfolio/img/logo/piotrflixfull.png" alt="PiotrFlix Logo" class="app-logo" />
+    <div class="section-separator animate"></div>
 
-      <p data-i18n="piotrflix_page_intro">
-        <strong>PiotrFlix</strong> to w pełni autorska aplikacja desktopowa służąca do katalogowania filmów i seriali. Wykorzystuje <strong>PyQt6</strong>, <strong>SQLite</strong> oraz integrację z <strong>TMDB API</strong>. Aplikacja działa offline i pozwala na pełną personalizację kolekcji multimediów użytkownika. Interfejs użytkownika został zaprojektowany z myślą o prostocie, funkcjonalności i estetyce.
+    <!-- Opis aplikacji -->
+    <section class="project-description hidden-on-load fade-zoom">
+      <p class="project-intro" data-i18n="piotrflix_long_desc">
+        <strong>PiotrFlix</strong> to rozbudowana aplikacja desktopowa pozwalająca na kompleksowe zarządzanie kolekcją filmów i seriali. Wspiera integrację z TMDB API, umożliwia automatyczne pobieranie metadanych i grafik, a także synchronizację z Plex Media Server. Interfejs użytkownika został stworzony z wykorzystaniem PyQt6, oferując intuicyjną i nowoczesną obsługę.
       </p>
-
-      <p data-i18n="piotrflix_page_code_intro">
-        Przykładowy fragment kodu odpowiedzialny za pobieranie danych z TMDB API:
-      </p>
-
-      <div class="example-code">
-<pre><code>import requests
-
-def fetch_tmdb_movie(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    params = {"api_key": "YOUR_API_KEY", "language": "pl-PL"}
-    response = requests.get(url, params=params)
-    return response.json()
-</code></pre>
-      </div>
     </section>
+
+    <div class="section-separator animate"></div>
+
+    <!-- Fragmenty kodu -->
+    <section class="code-snippets hidden-on-load fade-zoom">
+      <h3 data-i18n="piotrflix_code_title">Wybrane fragmenty kodu</h3>
+      <pre><code class="language-python"># Pobieranie danych z TMDB
+response = requests.get(f"https://api.themoviedb.org/3/search/movie?api_key=API_KEY&query={title}")
+data = response.json()
+title = data['results'][0]['title']</code></pre>
+      <p data-i18n="piotrflix_code_desc">Fragment odpowiedzialny za integrację z API TMDB i pobieranie tytułu filmu.</p>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <!-- Galeria screenshotów -->
+    <h3 data-i18n="gallery_title">Zrzuty ekranu</h3>
+      <div class="carousel">
+        <img src="/pkportfolio/img/projects/piotrflix/1.png" alt="Screenshot 1">
+        <img src="/pkportfolio/img/projects/piotrflix/2.png" alt="Screenshot 2">
+        <img src="/pkportfolio/img/projects/piotrflix/3.png" alt="Screenshot 3">
+      </div>
+
+</section>
+
+<!-- Modal powiększenia -->
+<div id="lightbox" class="lightbox">
+  <img id="lightbox-img" src="" alt="Screenshot" />
+</div>
+
+
+    <div class="section-separator animate"></div>
+
+    <!-- Plany na przyszłość -->
+    <section class="future-plans hidden-on-load fade-zoom">
+      <h3 data-i18n="piotrflix_future_title">Plany rozwoju</h3>
+      <ul data-i18n-list="piotrflix_future_list">
+        <li>Dodanie funkcji rozpoznawania folderów Plex i automatycznego przypisywania metadanych</li>
+        <li>Wsparcie dla kont użytkowników i synchronizacji chmurowej</li>
+        <li>Rozszerzenie interfejsu o możliwość odtwarzania treści z poziomu aplikacji</li>
+      </ul>
+    </section>
+
+    <!-- Przycisk GitHub -->
+    <a href="https://github.com/pkawa95/PiotrFlix" target="_blank" class="github-floating-button">
+  <img src="/pkportfolio/img/icons/github.svg" alt="GitHub" />
+  <span>PiotrFlix</span>
+</a>
+
+
   </main>
 
-  <!-- STOPKA -->
   <div id="footer-placeholder"></div>
 </body>
 </html>
