@@ -32,18 +32,36 @@ function translate(lang) {
   const t = translations[lang];
   if (!t) return;
 
-  document.querySelectorAll("[data-i18n]").forEach((el) => {
+  // Teksty
+  document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (t[key]) el.innerHTML = t[key];
   });
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+  // Placeholdery
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
     const key = el.getAttribute("data-i18n-placeholder");
     if (t[key]) el.setAttribute("placeholder", t[key]);
   });
 
+  // Listy dynamiczne
+  document.querySelectorAll("[data-i18n-list]").forEach(ul => {
+    const key = ul.getAttribute("data-i18n-list");
+    const listItems = t[key];
+    if (Array.isArray(listItems)) {
+      ul.innerHTML = "";
+      listItems.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = item;
+        ul.appendChild(li);
+      });
+    }
+  });
+
+  // Tytuł
   document.title = t.title || document.title;
 
+  // Przełącznik języka
   const langToggle = document.getElementById("lang-toggle");
   if (langToggle) {
     langToggle.textContent = lang === "pl" ? "EN" : "PL";
@@ -117,7 +135,7 @@ function loadMenuAndInit() {
     .then(html => {
       document.getElementById("menu-placeholder").innerHTML = html;
       initMenuScripts();
-      initThemeToggle();     // ← teraz działa bezpiecznie
+      initThemeToggle();
       initTranslation();
     });
 }
@@ -126,13 +144,14 @@ function loadMenuAndInit() {
 function loadFooter() {
   const footerPlaceholder = document.getElementById("footer-placeholder");
   if (footerPlaceholder) {
-    fetch("footer.html")
+    fetch("/pkportfolio/footer.html")
       .then(res => res.text())
       .then(html => {
         footerPlaceholder.innerHTML = html;
       });
   }
 }
+
 
 // 🔹 Separator scroll animacja
 function initSeparatorObserver() {

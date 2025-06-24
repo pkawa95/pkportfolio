@@ -3,25 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Piotr Kawa - Portfolio</title>
+  <title data-i18n="project_python_title">Projekty Python</title>
 
-  <!-- STYLE -->
   <link rel="stylesheet" href="/pkportfolio/style/style.css" />
-
-  <!-- SCRIPTS -->
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
 </head>
 <body>
-  <!-- 📌 MENU z menu.html -->
+
   <div id="menu-placeholder"></div>
 
-  <!-- ✅ GŁÓWNA TREŚĆ -->
   <main>
-    <section class="intro hidden-on-load">
-      <h1 data-i18n="intro_h1">Portfolio – Piotr Kawa</h1>
-      <p data-i18n="intro_p1">Przykładowy opis…</p>
+    <section class="projects-section hidden-on-load fade-zoom">
+      <h2 class="contact-title" data-i18n="project_python_title">Projekty Python</h2>
+      <div class="section-separator animate"></div>
+
+      <p class="projects-intro" data-i18n="project_python_intro">
+        Projekty oparte na języku Python, zaprojektowane i stworzone w pełni samodzielnie – od koncepcji po realizację. Skupiają się na praktycznym zastosowaniu technologii: tworzeniu nowoczesnych interfejsów graficznych, integracji z API oraz automatyzacji procesów codziennej pracy.
+      </p>
+
+      <div class="section-separator animate"></div>
+
+      <div class="project-card-container">
+
+        <!-- PiotrFlix -->
+        <a href="projects/python/piotrflix.html" class="project-card-link">
+          <div class="project-card hidden-on-load float-glow">
+            <div class="project-card-logo">
+              <img src="img/logo/piotrflix.png" alt="PiotrFlix logo" />
+            </div>
+            <div class="project-card-content">
+              <h3 data-i18n="piotrflix_title">PiotrFlix</h3>
+              <p data-i18n="piotrflix_desc">
+                <strong>PiotrFlix</strong> to w pełni autorska aplikacja desktopowa, napisana w <strong>Pythonie</strong>, z wykorzystaniem <strong>PyQt6</strong> i integracją z <strong>TMDB API</strong>. Jej celem jest katalogowanie filmów i seriali offline, z uwzględnieniem automatycznego pobierania metadanych, plakatów i opisów. Projekt oferuje:
+              </p>
+              <ul data-i18n-list="piotrflix_list">
+              </ul>
+              <p class="project-tags" data-i18n="piotrflix_tags"><em>#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation</em></p>
+            </div>
+          </div>
+        </a>
+
+      </div>
     </section>
   </main>
+
+  <div id="footer-placeholder"></div>
 </body>
 </html>

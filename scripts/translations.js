@@ -76,6 +76,21 @@ projects_title: "Projekty",
 
   project_pwa_title: "Progressive Web Apps",
   project_pwa_desc: "Responsywne aplikacje offline, oparte o nowoczesne standardy.",
+  project_python_title: "Projekty Python",
+  project_python_title: "Projekty Python",
+    project_python_intro: "Projekty oparte na języku Python, zaprojektowane i stworzone w pełni samodzielnie – od koncepcji po realizację. Skupiają się na praktycznym zastosowaniu technologii: tworzeniu nowoczesnych interfejsów graficznych, integracji z API oraz automatyzacji procesów codziennej pracy.",
+
+    piotrflix_title: "PiotrFlix",
+    piotrflix_desc: "<strong>PiotrFlix</strong> to w pełni autorska aplikacja desktopowa, napisana w <strong>Pythonie</strong>, z wykorzystaniem <strong>PyQt6</strong> i integracją z <strong>TMDB API</strong>. Jej celem jest katalogowanie filmów i seriali offline, z uwzględnieniem automatycznego pobierania metadanych, plakatów i opisów. Projekt oferuje:",
+    piotrflix_list: [
+      "przejrzysty, nowoczesny <strong>interfejs graficzny (GUI)</strong>,",
+      "wyszukiwanie, filtrowanie i oznaczanie postępu oglądania,",
+      "<strong>lokalną bazę danych SQLite</strong> z systemem cache oraz czyszczeniem pozycji nieaktywnych,",
+      "integrację z <strong>Plex Media Server</strong> oraz klientem torrentów (Deluge),",
+      "pełne zarządzanie biblioteką multimediów i automatyczne usuwanie obejrzanych pozycji."
+    ],
+    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation"
+    
   },
 
   en: {
@@ -150,5 +165,19 @@ projects_title: "Projects",
 
   project_pwa_title: "Progressive Web Apps",
   project_pwa_desc: "Offline-ready, responsive apps using modern standards.",
-  },
-};
+  project_python_title: "Python Projects",
+  project_python_title: "Python Projects",
+    project_python_intro: "Projects based on the Python programming language, fully self-designed and developed – from concept to execution. Focused on practical use of technology: building modern graphical interfaces, API integrations, and automating everyday workflows.",
+
+    piotrflix_title: "PiotrFlix",
+    piotrflix_desc: "<strong>PiotrFlix</strong> is a fully custom-built desktop app written in <strong>Python</strong>, using <strong>PyQt6</strong> and integrated with the <strong>TMDB API</strong>. It catalogs movies and TV shows offline, automatically retrieving posters and metadata. The project features:",
+    piotrflix_list: [
+      "a clean and modern <strong>GUI interface</strong>,",
+      "searching, filtering, and watch progress tracking,",
+      "a local <strong>SQLite database</strong> with cache and automatic cleanup,",
+      "integration with <strong>Plex Media Server</strong> and Deluge torrent client,",
+      "full media library management with auto-removal of watched content."
+    ],
+    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation"
+},
+}
