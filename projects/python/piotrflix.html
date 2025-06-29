@@ -7,12 +7,14 @@
 
   <link rel="stylesheet" href="/pkportfolio/style/style.css" />
   <link rel="stylesheet" href="/pkportfolio/style/gallery.css" />
+  <link rel="stylesheet" href="/pkportfolio/style/video.css" />
   <style>
   </style>
 
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
   <script defer src="/pkportfolio/scripts/gallery.js"></script>
+  <script defer src="/pkportfolio/scripts/video.js"></script>
 </head>
 <body>
   <div id="menu-placeholder"></div>
@@ -152,6 +154,16 @@
 
 
     <div class="section-separator animate"></div>
+    <div class="video-player-container">
+  <video controls>
+    <source src="/pkportfolio/videos/projects/PiotrFlix/piotrflixvid1.mp4" type="video/mp4">
+    Twoja przeglądarka nie wspiera tagu wideo.
+  </video>
+  <button class="fullscreen-btn" onclick="toggleFullscreen(this)">Fullscreen</button>
+</div>
+
+    <div class="section-separator animate"></div>
+
 
     <!-- Plany na przyszłość -->
     <section class="future-plans">

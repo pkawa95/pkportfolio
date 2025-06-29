@@ -1,0 +1,47 @@
+.video-player-container {
+  max-width: 400px; /* zmniejsz szerokość np. do 400px */
+  max-width: 200px;
+  margin: 2rem auto;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.video-player-container video {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.fullscreen-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.fullscreen-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Tryb jasny */
+body[data-theme="light"] .video-player-container {
+  background: #f0f0f0;
+}
+
+body[data-theme="light"] .fullscreen-btn {
+  background: rgba(0,0,0,0.1);
+  color: #333;
+}
+
+body[data-theme="light"] .fullscreen-btn:hover {
+  background: rgba(0,0,0,0.3);
+}
