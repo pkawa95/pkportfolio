@@ -76,8 +76,6 @@ projects_title: "Projekty",
 
   project_pwa_title: "Progressive Web Apps",
   project_pwa_desc: "Responsywne aplikacje offline, oparte o nowoczesne standardy.",
-  project_python_title: "Projekty Python",
-  project_python_title: "Projekty Python",
     project_python_intro: "Projekty oparte na języku Python, zaprojektowane i stworzone w pełni samodzielnie – od koncepcji po realizację. Skupiają się na praktycznym zastosowaniu technologii: tworzeniu nowoczesnych interfejsów graficznych, integracji z API oraz automatyzacji procesów codziennej pracy.",
 
     piotrflix_title: "PiotrFlix",
@@ -89,8 +87,51 @@ projects_title: "Projekty",
       "integrację z <strong>Plex Media Server</strong> oraz klientem torrentów (Deluge),",
       "pełne zarządzanie biblioteką multimediów i automatyczne usuwanie obejrzanych pozycji."
     ],
-    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation"
-    
+    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation",
+    piotrflix_long_desc: "PiotrFlix to kompleksowa aplikacja webowa umożliwiająca automatyczne pobieranie filmów i seriali z torrentów, integrację z Plex Media Server, zarządzanie pobraniami oraz automatyczne czyszczenie obejrzanych treści. Wykorzystuje Flask, Deluge API, Selenium i TMDb do zapewnienia pełnej funkcjonalności w Twojej domowej sieci multimedialnej.",
+    piotrflix_long_desc_2: "Projekt powstał, aby zautomatyzować proces wyszukiwania i pobierania treści do Plex, a także zarządzać nimi w prostym panelu webowym dostosowanym do urządzeń mobilnych.",
+
+    piotrflix_backend_title: "Opis backendu i funkcjonalności",
+
+    piotrflix_backend_p1: "Aplikacja posiada rozbudowany backend oparty na Flask. Wyszukuje tytuły filmów i seriali w trzech źródłach:",
+    piotrflix_backend_list: [
+      "🎬 YTS – filmy HD i 4K",
+      "🏴‍☠️ TPB – filmy",
+      "📺 TPB – seriale"
+    ],
+    piotrflix_backend_p2: "Wyszukiwania obsługują tytuły w języku polskim – backend automatycznie tłumaczy je na język angielski przed zapytaniem do zewnętrznych API, co znacząco zwiększa trafność wyników.",
+
+    piotrflix_backend_code_translate: "# Przykład tłumaczenia zapytań\nfrom googletrans import Translator\n\ntranslator = Translator()\ntranslated = translator.translate(query, dest=\"en\").text",
+
+    piotrflix_backend_p3: "Backend zarządza torrentami – po pobraniu są one automatycznie przenoszone do historii i pauzowane, by oszczędzać zasoby serwera.",
+
+    piotrflix_backend_code_pause: "# Pauzowanie torrentów po zakończeniu\nif torrent.progress == 100:\n    client.call(\"core.pause_torrent\", torrent_id)",
+
+    piotrflix_backend_p4: "Aplikacja pobiera okładki oraz opisy filmów i seriali z TMDb API i automatycznie tłumaczy je na język polski, by panel użytkownika był w pełni lokalny.",
+
+    piotrflix_backend_code_desc: "# Tłumaczenie opisów na PL\ndescription_en = data[\"overview\"]\ndescription_pl = translator.translate(description_en, dest=\"pl\").text",
+
+    piotrflix_backend_p5: "PiotrFlix wyposażony jest również w system watchdog, który aktualizuje postęp oglądania filmów i seriali w Plex. Po osiągnięciu 100% automatycznie usuwa obejrzane pozycje z dysku, zwalniając przestrzeń.",
+
+    piotrflix_backend_code_watchdog: "# Watchdog do kasowania obejrzanych\nif view_progress >= 100:\n    os.remove(file_path)",
+
+    piotrflix_backend_p6: "Dla bezpieczeństwa cały backend działa wyłącznie w Twojej lokalnej sieci domowej. Aplikacja wykorzystuje również cache zapytań do API, co znacząco przyspiesza kolejne wyszukiwania tych samych tytułów i zmniejsza obciążenie zewnętrznych serwisów.",
+
+    piotrflix_code_title: "Wybrane fragmenty kodu",
+    piotrflix_code_snippet1: "# Pobieranie plakatu filmu z TMDb\ndef get_tmdb_poster(title, type_=\"movie\"):\n    resp = requests.get(\n        f\"https://api.themoviedb.org/3/search/{type_}\",\n        params={\"api_key\": TMDB_API_KEY, \"query\": title, \"language\": \"pl-PL\"},\n        timeout=5\n    )\n    data = resp.json()\n    poster_path = data[\"results\"][0].get(\"poster_path\")\n    return f\"https://image.tmdb.org/t/p/w342{poster_path}\" if poster_path else \"\"",
+    piotrflix_code_desc: "Funkcja pobierająca plakat filmu lub serialu z API TMDb.",
+
+    piotrflix_code_snippet2: "# Dodawanie torrenta do Deluge\nclient = get_client()\nclient.call(\"core.add_torrent_magnet\", magnet, {\n    b\"download_location\": download_path.encode(\"utf-8\")\n})",
+    piotrflix_code_desc2: "Dodanie torrenta przez API Deluge z określoną ścieżką pobierania.",
+
+    gallery_title: "Zrzuty ekranu",
+
+    piotrflix_future_title: "Plany rozwoju",
+    piotrflix_future_list: [
+      "Dodanie systemu użytkowników z autoryzacją JWT",
+      "Rozszerzenie o odtwarzanie filmów bezpośrednio w aplikacji",
+      "Wdrożenie monitoringu wykorzystania zasobów i powiadomień push"
+    ]
   },
 
   en: {
@@ -165,8 +206,6 @@ projects_title: "Projects",
 
   project_pwa_title: "Progressive Web Apps",
   project_pwa_desc: "Offline-ready, responsive apps using modern standards.",
-  project_python_title: "Python Projects",
-  project_python_title: "Python Projects",
     project_python_intro: "Projects based on the Python programming language, fully self-designed and developed – from concept to execution. Focused on practical use of technology: building modern graphical interfaces, API integrations, and automating everyday workflows.",
 
     piotrflix_title: "PiotrFlix",
@@ -178,6 +217,50 @@ projects_title: "Projects",
       "integration with <strong>Plex Media Server</strong> and Deluge torrent client,",
       "full media library management with auto-removal of watched content."
     ],
-    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation"
-},
+    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation",
+    piotrflix_long_desc: "PiotrFlix is a comprehensive web app that automates downloading movies and series via torrents, integrates with Plex Media Server, manages downloads, and automatically deletes watched content. It uses Flask, Deluge API, Selenium, and TMDb to provide full functionality within your home media network.",
+    piotrflix_long_desc_2: "The project was created to automate searching and downloading content for Plex, as well as managing it in a simple web panel optimized for mobile devices.",
+
+    piotrflix_backend_title: "Backend description and features",
+
+    piotrflix_backend_p1: "The app has an advanced backend built on Flask. It searches for movie and series titles across three sources:",
+    piotrflix_backend_list: [
+      "🎬 YTS – HD and 4K movies",
+      "🏴‍☠️ TPB – movies",
+      "📺 TPB – series"
+    ],
+    piotrflix_backend_p2: "Searches support Polish titles – the backend automatically translates them to English before querying external APIs, significantly improving results.",
+
+    piotrflix_backend_code_translate: "# Example of query translation\nfrom googletrans import Translator\n\ntranslator = Translator()\ntranslated = translator.translate(query, dest=\"en\").text",
+
+    piotrflix_backend_p3: "The backend manages torrents – after download they are automatically moved to history and paused to save server resources.",
+
+    piotrflix_backend_code_pause: "# Pausing torrents after completion\nif torrent.progress == 100:\n    client.call(\"core.pause_torrent\", torrent_id)",
+
+    piotrflix_backend_p4: "The app retrieves posters and descriptions from TMDb API and automatically translates them to Polish for a fully localized UI.",
+
+    piotrflix_backend_code_desc: "# Translating descriptions to PL\ndescription_en = data[\"overview\"]\ndescription_pl = translator.translate(description_en, dest=\"pl\").text",
+
+    piotrflix_backend_p5: "PiotrFlix also has a watchdog system that updates watch progress for movies and series in Plex. When reaching 100%, watched files are automatically deleted to free up space.",
+
+    piotrflix_backend_code_watchdog: "# Watchdog for deleting watched\nif view_progress >= 100:\n    os.remove(file_path)",
+
+    piotrflix_backend_p6: "For security, the entire backend runs only within your local home network. The app also uses API query caching, greatly speeding up repeat searches and reducing load on external services.",
+
+    piotrflix_code_title: "Selected code snippets",
+    piotrflix_code_snippet1: "# Fetching movie poster from TMDb\ndef get_tmdb_poster(title, type_=\"movie\"):\n    resp = requests.get(\n        f\"https://api.themoviedb.org/3/search/{type_}\",\n        params={\"api_key\": TMDB_API_KEY, \"query\": title, \"language\": \"pl-PL\"},\n        timeout=5\n    )\n    data = resp.json()\n    poster_path = data[\"results\"][0].get(\"poster_path\")\n    return f\"https://image.tmdb.org/t/p/w342{poster_path}\" if poster_path else \"\"",
+    piotrflix_code_desc: "Function to fetch movie or series poster from TMDb API.",
+
+    piotrflix_code_snippet2: "# Adding torrent to Deluge\nclient = get_client()\nclient.call(\"core.add_torrent_magnet\", magnet, {\n    b\"download_location\": download_path.encode(\"utf-8\")\n})",
+    piotrflix_code_desc2: "Adding a torrent via Deluge API with a defined download path.",
+
+    gallery_title: "Screenshots",
+
+    piotrflix_future_title: "Development plans",
+    piotrflix_future_list: [
+      "Add user system with JWT authorization",
+      "Extend to allow direct movie playback in app",
+      "Implement resource monitoring and push notifications"
+    ]
+    },
 }

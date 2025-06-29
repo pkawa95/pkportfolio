@@ -6,6 +6,9 @@
   <title data-i18n="piotrflix_title">PiotrFlix</title>
 
   <link rel="stylesheet" href="/pkportfolio/style/style.css" />
+  <style>
+  </style>
+
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
 </head>
@@ -15,68 +18,155 @@
   <main class="project-details-page">
 
     <!-- Logo aplikacji -->
-        <section class="project-detail hidden-on-load fade-zoom">
+    <section class="project-detail hidden-on-load fade-zoom">
       <img src="/pkportfolio/img/logo/piotrflixfull.png" alt="PiotrFlix Logo" class="app-logo" />
-    <div class="section-separator animate"></div>
+      <div class="section-separator animate"></div>
+    </section>
 
     <!-- Opis aplikacji -->
     <section class="project-description hidden-on-load fade-zoom">
-      <p class="project-intro" data-i18n="piotrflix_long_desc">
-        <strong>PiotrFlix</strong> to rozbudowana aplikacja desktopowa pozwalająca na kompleksowe zarządzanie kolekcją filmów i seriali. Wspiera integrację z TMDB API, umożliwia automatyczne pobieranie metadanych i grafik, a także synchronizację z Plex Media Server. Interfejs użytkownika został stworzony z wykorzystaniem PyQt6, oferując intuicyjną i nowoczesną obsługę.
-      </p>
+      <p class="project-intro" data-i18n="piotrflix_long_desc"></p>
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_long_desc_2"></p>
     </section>
 
     <div class="section-separator animate"></div>
 
-    <!-- Fragmenty kodu -->
-    <section class="code-snippets hidden-on-load fade-zoom">
-      <h3 data-i18n="piotrflix_code_title">Wybrane fragmenty kodu</h3>
-      <pre><code class="language-python"># Pobieranie danych z TMDB
-response = requests.get(f"https://api.themoviedb.org/3/search/movie?api_key=API_KEY&query={title}")
-data = response.json()
-title = data['results'][0]['title']</code></pre>
-      <p data-i18n="piotrflix_code_desc">Fragment odpowiedzialny za integrację z API TMDB i pobieranie tytułu filmu.</p>
-    </section>
+    <!-- Backend -->
+    <section class="backend-description">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_title"></h3>
 
-    <div class="section-separator animate"></div>
+      <img src="/pkportfolio/img/screenshots/piotrflix/piotrflixbackend1.png" alt="Backend PiotrFlix" class="screenshot hidden-on-load fade-zoom">
 
-    <!-- Galeria screenshotów -->
-    <h3 data-i18n="gallery_title">Zrzuty ekranu</h3>
-      <div class="carousel">
-        <img src="/pkportfolio/img/projects/piotrflix/1.png" alt="Screenshot 1">
-        <img src="/pkportfolio/img/projects/piotrflix/2.png" alt="Screenshot 2">
-        <img src="/pkportfolio/img/projects/piotrflix/3.png" alt="Screenshot 3">
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p1"></p>
+
+      <ul class="hidden-on-load fade-zoom" data-i18n-list="piotrflix_backend_list"></ul>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p2"></p>
+
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code data-i18n="piotrflix_backend_code_translate"></code>
       </div>
 
-</section>
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p3"></p>
 
-<!-- Modal powiększenia -->
-<div id="lightbox" class="lightbox">
-  <img id="lightbox-img" src="" alt="Screenshot" />
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code data-i18n="piotrflix_backend_code_pause"></code>
+      </div>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p4"></p>
+
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code data-i18n="piotrflix_backend_code_desc"></code>
+      </div>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p5"></p>
+
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code data-i18n="piotrflix_backend_code_watchdog"></code>
+      </div>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p6"></p>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <!-- Frontend Karuzela -->
+    <section class="frontend-description">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_title"></h3>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_p1"></p>
+
+      <div class="carousel-container hidden-on-load fade-zoom">
+  <button class="carousel-button left" onclick="scrollCarousel(-1)">&#10094;</button>
+  <div class="carousel" id="frontend-carousel">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc1.png" alt="Frontend 1" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc2.png" alt="Frontend 2" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc3.png" alt="Frontend 3" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc4.png" alt="Frontend 4" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc5.png" alt="Frontend 5" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc6.png" alt="Frontend 6" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc7.png" alt="Frontend 7" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc8.png" alt="Frontend 8" onclick="openLightbox(this)">
+    <img src="/pkportfolio/img/screenshots/PiotrFlix/frontendpc9.png" alt="Frontend 9" onclick="openLightbox(this)">
+  </div>
+  <button class="carousel-button right" onclick="scrollCarousel(1)">&#10095;</button>
+  <div class="carousel-dots" id="carousel-dots"></div>
 </div>
+
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_p2"></p>
+
+      <div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+  <img id="lightbox-img" src="" alt="Screenshot powiększony" />
+  <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+</div>
+
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_p3"></p>
+    </section>
+
+    <!-- Fragmenty kodu -->
+    <section class="code-snippets">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_code_title"></h3>
+
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code data-i18n="piotrflix_code_snippet1"></code>
+      </div>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_code_desc"></p>
+
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code data-i18n="piotrflix_code_snippet2"></code>
+      </div>
+
+      <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_code_desc2"></p>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <!-- Zrzuty ekranu apka mobilna -->
+<section class="mobile-screenshots">
+  <h3 class="hidden-on-load fade-zoom">Zrzuty ekranu apka mobilna</h3>
+  <div class="carousel-container hidden-on-load fade-zoom">
+    <button class="carousel-button left" onclick="scrollCarouselMobile(-1)">&#10094;</button>
+    <div class="carousel" id="mobile-carousel">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6113.PNG" alt="Apka mobilna 1" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6114.PNG" alt="Apka mobilna 2" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6115.PNG" alt="Apka mobilna 3" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6116.PNG" alt="Apka mobilna 4" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6117.PNG" alt="Apka mobilna 5" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6118.PNG" alt="Apka mobilna 6" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6119.PNG" alt="Apka mobilna 7" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6120.PNG" alt="Apka mobilna 8" onclick="openLightbox(this)">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/IMG_6121.PNG" alt="Apka mobilna 9" onclick="openLightbox(this)">
+    </div>
+    <button class="carousel-button right" onclick="scrollCarouselMobile(1)">&#10095;</button>
+    <div class="carousel-dots" id="mobile-carousel-dots"></div>
+  </div>
+</section>
 
 
     <div class="section-separator animate"></div>
 
     <!-- Plany na przyszłość -->
-    <section class="future-plans hidden-on-load fade-zoom">
-      <h3 data-i18n="piotrflix_future_title">Plany rozwoju</h3>
-      <ul data-i18n-list="piotrflix_future_list">
-        <li>Dodanie funkcji rozpoznawania folderów Plex i automatycznego przypisywania metadanych</li>
-        <li>Wsparcie dla kont użytkowników i synchronizacji chmurowej</li>
-        <li>Rozszerzenie interfejsu o możliwość odtwarzania treści z poziomu aplikacji</li>
-      </ul>
+    <section class="future-plans">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_future_title"></h3>
+      <ul data-i18n-list="piotrflix_future_list" class="hidden-on-load fade-zoom"></ul>
     </section>
 
     <!-- Przycisk GitHub -->
-    <a href="https://github.com/pkawa95/PiotrFlix" target="_blank" class="github-floating-button">
-  <img src="/pkportfolio/img/icons/github.svg" alt="GitHub" />
-  <span>PiotrFlix</span>
-</a>
-
+    <a href="https://github.com/pkawa95/PiotrFlix" target="_blank" class="github-floating-button hidden-on-load fade-zoom">
+      <img src="/pkportfolio/img/icons/github.svg" alt="GitHub" />
+      <span>PiotrFlix</span>
+    </a>
 
   </main>
 
   <div id="footer-placeholder"></div>
+
+  <script>
+  </script>
 </body>
 </html>
