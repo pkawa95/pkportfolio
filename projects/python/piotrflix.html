@@ -6,11 +6,13 @@
   <title data-i18n="piotrflix_title">PiotrFlix</title>
 
   <link rel="stylesheet" href="/pkportfolio/style/style.css" />
+  <link rel="stylesheet" href="/pkportfolio/style/gallery.css" />
   <style>
   </style>
 
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
+  <script defer src="/pkportfolio/scripts/gallery.js"></script>
 </head>
 <body>
   <div id="menu-placeholder"></div>
@@ -96,7 +98,7 @@
 
       <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_p2"></p>
 
-      <div id="lightbox" class="lightbox">
+<div id="lightbox" class="lightbox" style="display: none;">
   <span class="close" onclick="closeLightbox()">&times;</span>
   <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
   <img id="lightbox-img" src="" alt="Screenshot powiększony" />
