@@ -876,3 +876,16 @@ body.dark .code-snippet-box {
   background: #2563eb; /* ciemniejszy niebieski przy hover */
 }
 
+/* Logo projektu */
+.app-logo {
+  width: 220px;
+  max-width: 90%;
+  margin: 0 auto;
+  display: block;
+  animation: floatLogo 5s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
