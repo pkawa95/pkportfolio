@@ -83,11 +83,11 @@ projects_title: "Projekty",
     piotrflix_list: [
       "przejrzysty, nowoczesny <strong>interfejs graficzny (GUI)</strong>,",
       "wyszukiwanie, filtrowanie i oznaczanie postępu oglądania,",
-      "<strong>lokalną bazę danych SQLite</strong> z systemem cache oraz czyszczeniem pozycji nieaktywnych,",
+      "<strong>Cache</strong> w formacie JSON z mechanizmem czyszczenia nieaktywnych pozycji,",
       "integrację z <strong>Plex Media Server</strong> oraz klientem torrentów (Deluge),",
       "pełne zarządzanie biblioteką multimediów i automatyczne usuwanie obejrzanych pozycji."
     ],
-    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation",
+    piotrflix_tags: "#Python #PyQt6 #TMDB #JSON #GUI #Plex #Automation",
     piotrflix_long_desc: "PiotrFlix to kompleksowa aplikacja webowa umożliwiająca automatyczne pobieranie filmów i seriali z torrentów, integrację z Plex Media Server, zarządzanie pobraniami oraz automatyczne czyszczenie obejrzanych treści. Wykorzystuje Flask, Deluge API, Selenium i TMDb do zapewnienia pełnej funkcjonalności w Twojej domowej sieci multimedialnej.",
     piotrflix_long_desc_2: "Projekt powstał, aby zautomatyzować proces wyszukiwania i pobierania treści do Plex, a także zarządzać nimi w prostym panelu webowym dostosowanym do urządzeń mobilnych.",
 
@@ -227,11 +227,11 @@ projects_title: "Projects",
     piotrflix_list: [
       "a clean and modern <strong>GUI interface</strong>,",
       "searching, filtering, and watch progress tracking,",
-      "a local <strong>SQLite database</strong> with cache and automatic cleanup,",
+      "a local <strong>JSON-based</strong> cache with inactive entry cleanup,",
       "integration with <strong>Plex Media Server</strong> and Deluge torrent client,",
       "full media library management with auto-removal of watched content."
     ],
-    piotrflix_tags: "#Python #PyQt6 #TMDB #SQLite #GUI #Plex #Automation",
+    piotrflix_tags: "#Python #PyQt6 #TMDB #JSON #GUI #Plex #Automation",
     piotrflix_long_desc: "PiotrFlix is a comprehensive web app that automates downloading movies and series via torrents, integrates with Plex Media Server, manages downloads, and automatically deletes watched content. It uses Flask, Deluge API, Selenium, and TMDb to provide full functionality within your home media network.",
     piotrflix_long_desc_2: "The project was created to automate searching and downloading content for Plex, as well as managing it in a simple web panel optimized for mobile devices.",
 
