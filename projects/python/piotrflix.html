@@ -9,7 +9,19 @@
   <link rel="stylesheet" href="/pkportfolio/style/gallery.css" />
   <link rel="stylesheet" href="/pkportfolio/style/video.css" />
   <style>
-  </style>
+  .backend-description img.screenshot {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .backend-description img.screenshot {
+      width: 90%;
+    }
+  }
+</style>
 
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
@@ -39,7 +51,7 @@
     <section class="backend-description">
       <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_title"></h3>
 
-      <img src="/pkportfolio/img/screenshots/PiotrFlix/piotrflixbackend1.png"Backend PiotrFlix" class="screenshot hidden-on-load fade-zoom">
+      <img src="/pkportfolio/img/screenshots/PiotrFlix/piotrflixbackend1.png" alt="Backend PiotrFlix" class="screenshot hidden-on-load fade-zoom">
 
       <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_backend_p1"></p>
 
@@ -133,7 +145,7 @@
 
     <!-- Zrzuty ekranu apka mobilna -->
 <section class="mobile-screenshots">
-  <h3 class="hidden-on-load fade-zoom">Zrzuty ekranu apka mobilna</h3>
+  <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_gallery_title">Zrzuty ekranu z aplikacji mobilnej</h3>
   <div class="carousel-container hidden-on-load fade-zoom">
     <button class="carousel-button left" onclick="scrollCarouselMobile(-1)">&#10094;</button>
     <div class="carousel" id="mobile-carousel">

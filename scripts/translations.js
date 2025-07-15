@@ -76,9 +76,12 @@ projects_title: "Projekty",
 
   project_pwa_title: "Progressive Web Apps",
   project_pwa_desc: "Responsywne aplikacje offline, oparte o nowoczesne standardy.",
+  project_hardware_title:"Projekty Hardware",
+  project_hardware_desc: "Własne projekty sprzętowe",
     project_python_intro: "Projekty oparte na języku Python, zaprojektowane i stworzone w pełni samodzielnie – od koncepcji po realizację. Skupiają się na praktycznym zastosowaniu technologii: tworzeniu nowoczesnych interfejsów graficznych, integracji z API oraz automatyzacji procesów codziennej pracy.",
 
     piotrflix_title: "PiotrFlix",
+    piotrflix_frontend_gallery_title : "Zrzuty ekranu z aplikacji mobilnej",
     piotrflix_desc: "<strong>PiotrFlix</strong> to w pełni autorska aplikacja desktopowa, napisana w <strong>Pythonie</strong>, z wykorzystaniem <strong>PyQt6</strong> i integracją z <strong>TMDB API</strong>. Jej celem jest katalogowanie filmów i seriali offline, z uwzględnieniem automatycznego pobierania metadanych, plakatów i opisów. Projekt oferuje:",
     piotrflix_list: [
       "przejrzysty, nowoczesny <strong>interfejs graficzny (GUI)</strong>,",
@@ -233,6 +236,10 @@ projects_title: "Projects",
 
   project_pwa_title: "Progressive Web Apps",
   project_pwa_desc: "Offline-ready, responsive apps using modern standards.",
+
+  project_hardware_title: "Hardware Projects",
+  project_hardware_desc: "Proprietary hardware designs",
+
     project_python_intro: "Projects based on the Python programming language, fully self-designed and developed – from concept to execution. Focused on practical use of technology: building modern graphical interfaces, API integrations, and automating everyday workflows.",
 
     piotrflix_title: "PiotrFlix",
@@ -262,6 +269,7 @@ projects_title: "Projects",
     piotrflix_long_desc_2: "The project was created to automate searching and downloading content for Plex, as well as managing it in a simple web panel optimized for mobile devices.",
 
     piotrflix_backend_title: "Backend description and features",
+    piotrflix_frontend_gallery_title : "Mobile app screenshots",
 
     piotrflix_backend_p1: "The app has an advanced backend built on Flask. It searches for movie and series titles across three sources:",
     piotrflix_backend_list: [
