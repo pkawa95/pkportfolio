@@ -688,11 +688,6 @@ body.dark .project-icon {
 
 
 /* Python Projekty */
-.project-card-link {
-  text-decoration: none;
-  color: inherit;
-}
-
 .project-card {
   display: flex;
   gap: 20px;
@@ -702,7 +697,7 @@ body.dark .project-icon {
   border-radius: 14px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: levitate 6s ease-in-out infinite;
+  will-change: transform, box-shadow;
 }
 
 body.dark .project-card {
@@ -712,13 +707,9 @@ body.dark .project-card {
 }
 
 .project-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
-}
-
-@keyframes levitate {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  z-index: 2;
 }
 
 .project-card-logo img {
@@ -749,15 +740,17 @@ body.dark .project-card {
   color: #666;
 }
 
-.project-card:hover {
-  transform: translateY(-8px) scale(1.05); /* ← tu dodany zoom (z 1.02 → 1.05) */
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
 body.dark .project-card {
   background-color: #1a1a1a;
 }
+
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin-bottom: 2rem;
+}
+
 
 
 /* Ukryj rozszerzony opis i listę na mobilu */

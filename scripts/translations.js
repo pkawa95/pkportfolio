@@ -88,6 +88,19 @@ projects_title: "Projekty",
       "pełne zarządzanie biblioteką multimediów i automatyczne usuwanie obejrzanych pozycji."
     ],
     piotrflix_tags: "#Python #PyQt6 #TMDB #JSON #GUI #Plex #Automation",
+    // Philips
+    philips_title: "Philips Hue",
+    philips_desc: "<strong>Philips Hue</strong> to w pełni autorska aplikacja desktopowa, napisana w <strong>Pythonie</strong> z wykorzystaniem <strong>PyQt6</strong>, zintegrowana z <strong>Philips Hue API</strong>. Jej celem jest sterowanie inteligentnym oświetleniem marki Philips za pomocą API i mostka. Projekt oferuje:",
+    philips_list: [
+    "przejrzysty, nowoczesny <strong>interfejs graficzny (GUI)</strong>,",
+    "kafle odpowiadające pokojom zmieniają gradient w zależności od ustawionego światła,",
+    "<strong>Cache</strong> w formacie JSON — zapis klucza API i tokena,",
+    "możliwość osobnego <strong>sterowania</strong> całymi pomieszczeniami i pojedynczymi żarówkami,",
+    "sprawdzanie <strong>statusu czujników ruchu</strong>."
+  ],
+philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
+
+
     piotrflix_long_desc: "PiotrFlix to kompleksowa aplikacja webowa umożliwiająca automatyczne pobieranie filmów i seriali z torrentów, integrację z Plex Media Server, zarządzanie pobraniami oraz automatyczne czyszczenie obejrzanych treści. Wykorzystuje Flask, Deluge API, Selenium i TMDb do zapewnienia pełnej funkcjonalności w Twojej domowej sieci multimedialnej.",
     piotrflix_long_desc_2: "Projekt powstał, aby zautomatyzować proces wyszukiwania i pobierania treści do Plex, a także zarządzać nimi w prostym panelu webowym dostosowanym do urządzeń mobilnych.",
 
@@ -231,6 +244,19 @@ projects_title: "Projects",
       "integration with <strong>Plex Media Server</strong> and Deluge torrent client,",
       "full media library management with auto-removal of watched content."
     ],
+
+    // Philips
+    philips_title: "Philips Hue",
+    philips_desc: "<strong>Philips Hue</strong> is a fully custom desktop application developed in <strong>Python</strong> using <strong>PyQt6</strong>, integrated with the <strong>Philips Hue API</strong>. Its purpose is to control Philips smart lighting via the API and bridge. The project features:",
+    philips_list: [
+    "a clean, modern <strong>graphical user interface (GUI)</strong>,",
+    "room tiles dynamically changing gradient based on the selected light color,",
+    "JSON-based <strong>cache</strong> for storing API keys and tokens,",
+    "individual <strong>control</strong> of entire rooms and single bulbs,",
+    "monitoring the <strong>status of motion sensors</strong>."
+    ],
+    philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
+
     piotrflix_tags: "#Python #PyQt6 #TMDB #JSON #GUI #Plex #Automation",
     piotrflix_long_desc: "PiotrFlix is a comprehensive web app that automates downloading movies and series via torrents, integrates with Plex Media Server, manages downloads, and automatically deletes watched content. It uses Flask, Deluge API, Selenium, and TMDb to provide full functionality within your home media network.",
     piotrflix_long_desc_2: "The project was created to automate searching and downloading content for Plex, as well as managing it in a simple web panel optimized for mobile devices.",
