@@ -890,37 +890,34 @@ body.dark .code-snippet-box {
   50% { transform: translateY(-6px); }
 }
 
-/* === Responsywność sekcji Dokumenty === */
+/* Lepsze układanie przycisków w sekcji Dokumenty na mobile */
 @media (max-width: 768px) {
-  .download-btn {
-    display: block;
-    width: 80%;
-    margin: 0.5rem auto;
-    text-align: center;
+  .projects-section .download-btn {
+    display: inline-block;
+    width: auto;
+    margin: 0.5rem 0.5rem;
+  }
+
+  .projects-section div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .projects-section iframe {
     width: 100% !important;
     height: 400px !important;
   }
-
-  .projects-section h2.contact-title {
-    font-size: 1.8rem;
-  }
-
-  .section-separator {
-    width: 80%;
-  }
 }
 
-/* Dla jeszcze mniejszych ekranów */
+/* Dla bardzo małych ekranów */
 @media (max-width: 480px) {
-  .projects-section iframe {
-    height: 300px !important;
+  .projects-section .download-btn {
+    width: 100%;
+    margin: 0.5rem 0;
   }
 
-  .download-btn {
-    width: 100%;
-    font-size: 0.95rem;
+  .projects-section iframe {
+    height: 300px !important;
   }
 }
