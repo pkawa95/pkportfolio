@@ -11,27 +11,107 @@
   <!-- SCRIPTS -->
   <script defer src="/pkportfolio/scripts/translations.js"></script>
   <script defer src="/pkportfolio/scripts/script.js"></script>
+
+  <script>
+    function togglePdf(id) {
+      const viewer = document.getElementById(id);
+      if (viewer.style.display === 'none' || viewer.style.display === '') {
+        viewer.style.display = 'block';
+      } else {
+        viewer.style.display = 'none';
+      }
+    }
+  </script>
 </head>
 <body>
   <!-- 📌 MENU -->
   <div id="menu-placeholder"></div>
 
   <main>
+
+    <!-- CV -->
     <section class="projects-section hidden-on-load fade-zoom">
       <h2 class="contact-title" style="text-align: center;" data-i18n="documents_title">Curriculum Vitae</h2>
       <div class="section-separator animate"></div>
+      <div style="text-align: center; margin: 2rem 0; font-size: 0.9rem; color: #555;">
+  <p data-i18n="privacy_note2">
+    Dane adresowe zostały zamazane ze względów bezpieczeństwa.
+  </p>
+</div>
 
-      <!-- Przycisk pobrania CV -->
+
       <div style="text-align: center; margin-top: 2rem;">
-        <a href="documents/Piotr Kawa - CV.pdf" download class="download-btn" data-i18n="download_cv">
-          Pobierz CV
-        </a>
+        <a href="documents/Piotr Kawa - CV.pdf" download class="download-btn" data-i18n="download_cv">Pobierz CV</a>
+        <a href="javascript:void(0);" onclick="togglePdf('cv-viewer')" class="download-btn" style="margin-left: 1rem;" data-i18n="read_doc">Przeczytaj</a>
       </div>
 
+      <div id="cv-viewer" style="display: none; text-align: center; margin-top: 2rem;">
+        <iframe src="documents/Piotr Kawa - CV.pdf" width="80%" height="600px"></iframe>
+      </div>
+    </section>
+
+    <!-- Wyniki Egzaminu -->
+     
+    <section class="projects-section hidden-on-load fade-zoom">
+      <h2 class="contact-title" style="text-align: center; margin-top: 6rem;" data-i18n="documents2_title">Wyniki egzaminu zawodowego</h2>
+      <div class="section-separator animate"></div>
+      <div style="text-align: center; margin: 4rem 0; font-size: 0.9rem; color: #555;">
+  <p data-i18n="privacy_note">
+    Dane osobowe, takie jak numer PESEL, data i miejsce urodzenia, zostały usunięte ze względów bezpieczeństwa.
+  </p>
+</div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="documents/Piotr Kawa - Wyniki Egzaminu Zawodowego.pdf" download class="download-btn" data-i18n="download_doc1">Pobierz wyniki egzaminu zawodowego</a>
+        <a href="javascript:void(0);" onclick="togglePdf('wyniki-viewer')" class="download-btn" style="margin-left: 1rem;" data-i18n="read_doc">Przeczytaj</a>
+      </div>
+
+      <div id="wyniki-viewer" style="display: none; text-align: center; margin-top: 2rem;">
+        <iframe src="documents/Piotr Kawa - Wyniki Egzaminu Zawodowego.pdf" width="80%" height="600px"></iframe>
+      </div>
+    </section>
+
+    <!-- Suplement do Dyplomu -->
+    <section class="projects-section hidden-on-load fade-zoom">
+      <h2 class="contact-title" style="text-align: center; margin-top: 6rem;" data-i18n="documents3_title">Suplement do dyplomu</h2>
+      <div class="section-separator animate"></div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="documents/Suplement Dyplomu - Piotr Kawa - PL.pdf" download class="download-btn" data-i18n="download_doc2">Pobierz Suplement dyplomu - PL</a>
+        <a href="javascript:void(0);" onclick="togglePdf('suplement-pl-viewer')" class="download-btn" style="margin-left: 1rem;" data-i18n="read_doc">Przeczytaj</a>
+      </div>
+
+      <div id="suplement-pl-viewer" style="display: none; text-align: center; margin-top: 2rem;">
+        <iframe src="documents/Suplement Dyplomu - Piotr Kawa - PL.pdf" width="80%" height="600px"></iframe>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="documents/Suplement Dyplomu - Piotr Kawa - EN.pdf" download class="download-btn" data-i18n="download_doc3">Pobierz Suplement dyplomu - EN</a>
+        <a href="javascript:void(0);" onclick="togglePdf('suplement-en-viewer')" class="download-btn" style="margin-left: 1rem;" data-i18n="read_doc">Przeczytaj</a>
+      </div>
+
+      <div id="suplement-en-viewer" style="display: none; text-align: center; margin-top: 2rem;">
+        <iframe src="documents/Suplement Dyplomu - Piotr Kawa - EN.pdf" width="80%" height="600px"></iframe>
+      </div>
+    </section>
+
+    <!-- Certyfikat ECDL -->
+    <section class="projects-section hidden-on-load fade-zoom">
+      <h2 class="contact-title" style="text-align: center; margin-top: 6rem;" data-i18n="documents4_title">Certyfikat ECDL</h2>
+      <div class="section-separator animate"></div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="documents/Certyfikat ECDL.pdf" download class="download-btn" data-i18n="download_doc4">Pobierz Certyfikat ECDL</a>
+        <a href="javascript:void(0);" onclick="togglePdf('ecdl-viewer')" class="download-btn" style="margin-left: 1rem;" data-i18n="read_doc">Przeczytaj</a>
+      </div>
+
+      <div id="ecdl-viewer" style="display: none; text-align: center; margin-top: 2rem;">
+        <iframe src="documents/Certyfikat ECDL.pdf" width="80%" height="600px"></iframe>
+      </div>
     </section>
   </main>
 
   <!-- 📌 STOPKA -->
   <div id="footer-placeholder"></div>
+
 </body>
 </html>

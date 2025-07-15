@@ -125,6 +125,20 @@ projects_title: "Projekty",
     piotrflix_code_desc2: "Dodanie torrenta przez API Deluge z określoną ścieżką pobierania.",
 
     gallery_title: "Zrzuty ekranu",
+    documents_title: "Curriculum Vitae",
+    download_cv: "Pobierz CV",
+    documents2_title: "Wyniki Egzaminu Zawodowego",
+    download_doc1: "Pobierz Wyniki Egzaminu Zawodowego",
+    documents3_title: "Suplement do dyplomu",
+    download_doc2: "Pobierz Suplement do dyplomu - PL",
+    download_doc3: "Pobierz Suplement do dyplomu - EN",
+    documents4_title: "Certyfikat ECDL",
+    download_doc4: "Pobierz Certyfikat ECDL",
+    read_doc: "Obejrzyj dokument",
+    privacy_note: "Dane osobowe, takie jak numer PESEL, data i miejsce urodzenia, zostały usunięte ze względów bezpieczeństwa.",
+    privacy_note2: "Dane adresowe zostały zamazane ze względów bezpieczeństwa.",
+
+
 
     piotrflix_future_title: "Plany rozwoju",
     piotrflix_future_list: [
@@ -255,6 +269,20 @@ projects_title: "Projects",
     piotrflix_code_desc2: "Adding a torrent via Deluge API with a defined download path.",
 
     gallery_title: "Screenshots",
+    download_cv: "Download CV",
+    documents2_title: "Vocational Exam Results",
+    download_doc1: "Download Vocational Exam Results",
+    documents3_title: "Diploma Supplement",
+    download_doc2: "Download Diploma Supplement - PL",
+    download_doc3: "Download Diploma Supplement - EN",
+    documents4_title: "ECDL Certificate",
+    download_doc4: "Download ECDL Certificate",
+    read_doc: "View Document",
+    privacy_note: "Personal data such as PESEL number, date and place of birth have been removed for security reasons.",
+    privacy_note2: "Address details have been blurred for security reasons.",
+
+
+
 
     piotrflix_future_title: "Development plans",
     piotrflix_future_list: [
