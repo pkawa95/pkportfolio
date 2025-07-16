@@ -21,7 +21,7 @@
 .hardware-hero {
   width: 100vw;
   height: 340px;
-  background: url('../img/hardware/IMG_0597.JPG') center top -100px / cover no-repeat;
+  background: url('/pkportfolio/img/hardware/IMG_0597.JPG') center top -100px / cover no-repeat;
   position: relative;
   overflow: hidden;
   display: flex;
