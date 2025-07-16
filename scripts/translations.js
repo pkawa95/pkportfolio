@@ -160,7 +160,10 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     hardware_project1_desc: "Na początku 2020 roku, zbudowałem własną stację roboczą, która miała posłużyć mi jako stacja do obróbki zdjęć oraz filmów i dodatkowo sprostać wymaganiom najnowszych gier",
     hardware_github_button: "Moje Projekty",
     hardware_intro2_text : "Prezentowane projekty są w pełni autorskie i zostały zrealizowane dzięki wiedzy zdobytej w technikum, na studiach oraz podczas pracy w <strong>Media Expert</strong>. Po premierze <strong>NVIDIA GEFORCE RTX 3080</strong> zrealizowałem swój wymarzony projekt, wykorzystując doświadczenie zarówno zawodowe, jak i pasję do nowych technologii.",
-
+    hardware_project3_desc: "W 2025 roku przygotowałem prezentację w ramach zajęć z inżynierii systemów i analizy systemowej. Naszym celem było zaprojektowanie stacji roboczych dla pracowników firmy, którzy mieli korzystać z oprogramowania <strong>Blender</strong> oraz <strong>Autocad</strong>. Projekt zakładał również możliwość wykorzystania stacji w przyszłości jako koparek kryptowalut. W trakcie realizacji łączyliśmy wiedzę zdobytą na studiach z nowoczesnymi rozwiązaniami oraz wsparciem sztucznej inteligencji.",
+    hardware_studia_title: "Projekt ze studiów",
+    hardware_download_presentation: "Pobierz prezentację",
+    
 
 
     piotrflix_future_title: "Plany rozwoju",
@@ -327,6 +330,9 @@ projects_title: "Projects",
     hardware_project1_title: "Personal Workstation Project",
     hardware_project1_desc: "In early 2020, I built my own workstation designed for photo and video editing, while also meeting the demands of the latest games",
     hardware_github_button: "My Projects",
+    hardware_project3_desc: "In 2025, I prepared a presentation as part of the Systems Engineering and System Analysis course. Our goal was to design workstation PCs for company employees who would use software such as <strong>Blender</strong> and <strong>AutoCAD</strong>. The project also included the possibility of repurposing these stations as cryptocurrency mining rigs in the future. During the project, we combined knowledge acquired at university with modern solutions and AI-driven support.",
+    hardware_studia_title: "University Project",
+    hardware_download_presentation: "Download presentation",
     
 
 
