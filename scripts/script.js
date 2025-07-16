@@ -32,6 +32,10 @@ function translate(lang) {
   const t = translations[lang];
   if (!t) return;
 
+  window.currentLang = lang;
+  
+  
+
   // Teksty
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -71,6 +75,12 @@ function translate(lang) {
       localStorage.setItem("lang", newLang);
     };
   }
+    // ✅ Aktualizacja przycisku "Przeczytaj szczegóły"
+  const detailsBtn = document.querySelector('.details-btn');
+  if (detailsBtn && window.translations[lang]) {
+    detailsBtn.textContent = window.translations[lang].read_more_button;
+  }
+  
 
   localStorage.setItem("lang", lang);
 }
@@ -192,4 +202,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initSeparatorObserver();
   highlightActiveNavLink();
 });
+
+function initTranslation() {
+  const currentLang = localStorage.getItem("lang") || "pl";
+  window.currentLang = currentLang;  // Ustawiamy globalnie!
+  translate(currentLang);
+}
 
