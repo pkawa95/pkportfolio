@@ -157,12 +157,15 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     hardware_hero_title: "Hardware",
     hardware_intro_text: "Przegląd moich projektów hardware'owych — budowa własnych projektów do użytku prywatnego oraz projekty na studia",
     hardware_project1_title: "Projekt własnej stacji",
-    hardware_project1_desc: "Na początku 2020 roku, zbudowałem własną stację roboczą, która miała posłużyć mi jako stacja do obróbki zdjęć oraz filmów i dodatkowo sprostać wymaganiom najnowszych gier",
+    hardware_project1_desc: "Na początku 2020 roku zbudowałem własną stację roboczą — zaprojektowaną do profesjonalnej obróbki zdjęć, montażu filmów oraz płynnej obsługi najnowszych gier.  Po starannym zaplanowaniu budżetu, skompletowałem zestaw podzespołów najwyższej jakości, idealnie dopasowanych do moich potrzeb.  W tej sekcji prezentuję szczegóły projektu, który na co dzień wspiera mnie zarówno w pracy, jak i w rozrywce.",
+
     hardware_github_button: "Moje Projekty",
     hardware_intro2_text : "Prezentowane projekty są w pełni autorskie i zostały zrealizowane dzięki wiedzy zdobytej w technikum, na studiach oraz podczas pracy w <strong>Media Expert</strong>. Po premierze <strong>NVIDIA GEFORCE RTX 3080</strong> zrealizowałem swój wymarzony projekt, wykorzystując doświadczenie zarówno zawodowe, jak i pasję do nowych technologii.",
     hardware_project3_desc: "W 2025 roku przygotowałem prezentację w ramach zajęć z inżynierii systemów i analizy systemowej. Naszym celem było zaprojektowanie stacji roboczych dla pracowników firmy, którzy mieli korzystać z oprogramowania <strong>Blender</strong> oraz <strong>Autocad</strong>. Projekt zakładał również możliwość wykorzystania stacji w przyszłości jako koparek kryptowalut. W trakcie realizacji łączyliśmy wiedzę zdobytą na studiach z nowoczesnymi rozwiązaniami oraz wsparciem sztucznej inteligencji.",
     hardware_studia_title: "Projekt ze studiów",
     hardware_download_presentation: "Pobierz prezentację",
+    hardware_project4_title : "Pełna realizacja projektu — od pomysłu po gotową stację",
+    hardware_project4_desc: "Projekt mojej stacji roboczej zrealizowałem samodzielnie — począwszy od dokładnej analizy rynku i wyboru odpowiednich komponentów, przez ich zakup, aż po samodzielny montaż oraz sukcesywne rozbudowywanie zestawu. Każda decyzja była świadoma i przemyślana — nie kierowałem się chwilowymi trendami, lecz długofalową niezawodnością oraz uniwersalnością zestawu. Zainwestowałem w podzespoły najwyższej klasy, chcąc stworzyć maszynę, która przez lata sprosta zarówno wymagającej pracy, jak i celom edukacyjnym czy rozrywkowym. Dodatkowo, komputer został zoptymalizowany pod kątem profesjonalnej pracy w pakiecie Adobe, co pozwala mi na efektywną obróbkę zdjęć, montaż filmów i realizację zaawansowanych projektów multimedialnych.",
     
 
 
@@ -328,11 +331,14 @@ projects_title: "Projects",
     hardware_hero_title: "Hardware",
     hardware_intro_text: "An overview of my hardware projects — personal builds for private use and university assignments",
     hardware_project1_title: "Personal Workstation Project",
-    hardware_project1_desc: "In early 2020, I built my own workstation designed for photo and video editing, while also meeting the demands of the latest games",
+    hardware_project1_desc: "At the beginning of 2020, I built my own workstation — designed for professional photo editing, video production, and smooth operation of the latest games.  After carefully planning the budget, I selected high-quality components perfectly suited to my needs.  In this section, I present the details of a project that supports me daily in both work and entertainment.",
+
     hardware_github_button: "My Projects",
     hardware_project3_desc: "In 2025, I prepared a presentation as part of the Systems Engineering and System Analysis course. Our goal was to design workstation PCs for company employees who would use software such as <strong>Blender</strong> and <strong>AutoCAD</strong>. The project also included the possibility of repurposing these stations as cryptocurrency mining rigs in the future. During the project, we combined knowledge acquired at university with modern solutions and AI-driven support.",
     hardware_studia_title: "University Project",
     hardware_download_presentation: "Download presentation",
+    hardware_project4_title : "Complete Project Execution — from Idea to Fully Built Workstation",
+    hardware_project4_desc: "I carried out the entire workstation project on my own — starting with a thorough market analysis and careful selection of components, through purchase, assembly, and ongoing upgrades of the setup. Every decision was deliberate and well thought out — driven not by trends, but by long-term reliability and versatility. I invested in top-quality components to build a machine capable of meeting both demanding professional tasks and personal, educational, or entertainment needs for years to come. Additionally, the workstation was optimized for advanced workflows in the Adobe Creative Suite, allowing me to efficiently edit photos, produce videos, and complete complex multimedia projects.",
     
 
 
