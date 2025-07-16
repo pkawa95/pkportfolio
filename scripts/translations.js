@@ -153,6 +153,13 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     read_doc: "Obejrzyj dokument",
     privacy_note: "Dane osobowe, takie jak numer PESEL, data i miejsce urodzenia, zostały usunięte ze względów bezpieczeństwa.",
     privacy_note2: "Dane adresowe zostały zamazane ze względów bezpieczeństwa.",
+    hardware_page_title: "Hardware | Portfolio",
+    hardware_hero_title: "Hardware",
+    hardware_intro_text: "Przegląd moich projektów hardware'owych — budowa własnych projektów do użytku prywatnego oraz projekty na studia",
+    hardware_project1_title: "Projekt własnej stacji",
+    hardware_project1_desc: "Na początku 2020 roku, zbudowałem własną stację roboczą, która miała posłużyć mi jako stacja do obróbki zdjęć oraz filmów i dodatkowo sprostać wymaganiom najnowszych gier",
+    hardware_github_button: "Moje Projekty",
+    hardware_intro2_text : "Prezentowane projekty są w pełni autorskie i zostały zrealizowane dzięki wiedzy zdobytej w technikum, na studiach oraz podczas pracy w <strong>Media Expert</strong>. Po premierze <strong>NVIDIA GEFORCE RTX 3080</strong> zrealizowałem swój wymarzony projekt, wykorzystując doświadczenie zarówno zawodowe, jak i pasję do nowych technologii.",
 
 
 
@@ -239,7 +246,7 @@ projects_title: "Projects",
 
   project_hardware_title: "Hardware Projects",
   project_hardware_desc: "Proprietary hardware designs",
-
+  hardware_intro2_text : "The showcased projects are entirely self-developed, based on knowledge acquired in technical school, university, and during my work at <strong>Media Expert</strong>. Following the launch of the <strong>NVIDIA GEFORCE RTX 3080</strong>, I completed my dream project — combining professional experience with a passion for new technologies.",
     project_python_intro: "Projects based on the Python programming language, fully self-designed and developed – from concept to execution. Focused on practical use of technology: building modern graphical interfaces, API integrations, and automating everyday workflows.",
 
     piotrflix_title: "PiotrFlix",
@@ -314,6 +321,13 @@ projects_title: "Projects",
     read_doc: "View Document",
     privacy_note: "Personal data such as PESEL number, date and place of birth have been removed for security reasons.",
     privacy_note2: "Address details have been blurred for security reasons.",
+    hardware_page_title: "Hardware | Portfolio",
+    hardware_hero_title: "Hardware",
+    hardware_intro_text: "An overview of my hardware projects — personal builds for private use and university assignments",
+    hardware_project1_title: "Personal Workstation Project",
+    hardware_project1_desc: "In early 2020, I built my own workstation designed for photo and video editing, while also meeting the demands of the latest games",
+    hardware_github_button: "My Projects",
+    
 
 
 

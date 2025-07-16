@@ -1,0 +1,197 @@
+.project-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.project-description_2 {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.project-description2 {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.hardware-hero {
+  width: 100vw;
+  height: 340px;
+  background: url('/pkportfolio/img/hardware/IMG_0597.JPG') center top -100px / cover no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.hardware-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  text-shadow: 0 0 2px black, 0 0 2px black;
+}
+
+.angled-section {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  margin: 40px 0;
+}
+
+.text-box {
+  background-color: var(--nav-bg);
+  color: var(--text-color);
+  padding: 40px;
+  width: 50%;
+  position: relative;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+}
+
+.image-box {
+  width: 50%;
+  overflow: hidden;
+  margin-left: -3rem;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+  display: block;
+}
+
+.angled-section {
+  display: flex;
+  width: 100%;
+  margin: 40px 0;
+  align-items: stretch;
+}
+
+.text-box {
+  background-color: var(--nav-bg);
+  color: var(--text-color);
+  padding: 40px;
+  width: 50%;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skew-left {
+  background-color: var(--nav-bg);
+  color: var(--text-color);
+  padding: 40px;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.skew-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  display: block;
+}
+
+@media (max-width: 768px) {
+
+  .angled-section {
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .text-box {
+    width: 97.6%;
+    padding: 20px;
+    background-color: var(--nav-bg);
+    color: var(--text-color);
+    clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .image-box {
+    width: 100vw;
+    height: 100vw;
+    overflow: hidden;
+    margin-top: -0.7rem;
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .image-box img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    display: block;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .hardware-hero {
+    height: 200px;
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: -6rem;
+  }
+
+  .hardware-hero h1 {
+    font-size: 2rem;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+  }
+  
+  .project-description_2 {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: -10rem;
+}
+
+}
+
+/* Startowy stan ukrycia */
+.hidden-on-load {
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+/* Animacja z lewej */
+.slide-in-left.show-on-scroll {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-left {
+  transform: translateX(-80px);
+}
+
+/* Animacja z prawej */
+.slide-in-right.show-on-scroll {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-in-right {
+  transform: translateX(80px);
+}
+
