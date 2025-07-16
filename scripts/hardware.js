@@ -1,12 +1,11 @@
 document.addEventListener('scroll', () => {
-  const hero = document.querySelector('.hardware-hero');
-  if (window.innerWidth > 768) {
-    const offset = window.scrollY;
-    hero.style.backgroundPositionY = `${-300 + offset * 0.5}px`;
-  } else {
-    hero.style.backgroundPositionY = `center center`;
+  const scrollY = window.scrollY;
+  const img = document.querySelector('.parallax-img');
+  if (img) {
+    img.style.transform = `translateY(${scrollY * 0.3}px)`;
   }
 });
+
 
 function handleScrollAnimations() {
   const elements = document.querySelectorAll('.hidden-on-load');
