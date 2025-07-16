@@ -140,7 +140,7 @@ function initMenuScripts() {
 
 // 📥 Dynamiczne menu
 function loadMenuAndInit() {
-  fetch("/pkportfolio/menu.html")
+  fetch("/menu.html")
     .then(res => res.text())
     .then(html => {
       document.getElementById("menu-placeholder").innerHTML = html;
@@ -154,7 +154,7 @@ function loadMenuAndInit() {
 function loadFooter() {
   const footerPlaceholder = document.getElementById("footer-placeholder");
   if (footerPlaceholder) {
-    fetch("/pkportfolio/footer.html")
+    fetch("/footer.html")
       .then(res => res.text())
       .then(html => {
         footerPlaceholder.innerHTML = html;
