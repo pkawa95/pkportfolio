@@ -396,7 +396,7 @@ main {
   margin-top: 32px;
 }
 
-/*LOGO GITHUB */
+/* === LOGO GITHUB === */
 .github-link {
   display: flex;
   align-items: center;
@@ -414,20 +414,26 @@ main {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.github-icon {
+.github-link img {
   width: 20px;
   height: 20px;
+  filter: invert(0);
+  transition: filter 0.3s;
 }
 
+/* W trybie ciemnym — biała ikona */
+body.dark .github-link img {
+  filter: invert(1);
+}
 
-/* === Footer === */
+/* === FOOTER === */
 .site-footer {
   background-color: var(--nav-bg);
   color: var(--text-color);
-  padding: 12px 0; /* zmniejszona wysokość */
+  padding: 12px 0;
   border-top: 1px solid #ccc;
   text-align: center;
-  font-size: 0.85rem; /* lekko mniejszy tekst */
+  font-size: 0.85rem;
   margin-top: 40px;
 }
 
@@ -438,37 +444,7 @@ main {
   gap: 8px;
 }
 
-/* Link do GitHub */
-.github-link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--nav-text);
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
-}
-
-.github-link:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* SVG kolorowanie */
-.github-link img {
-  width: 20px;
-  height: 20px;
-  filter: invert(0); /* domyślnie czarne */
-  transition: filter 0.3s;
-}
-
-/* W trybie ciemnym — białe SVG */
-body.dark .github-link img {
-  filter: invert(1);
-}
-
-
-/* === Separator z zanikaniem === */
+/* === SEPARATOR Z ZANIKANIEM === */
 .section-separator {
   height: 2px;
   width: 0%;
@@ -491,38 +467,48 @@ body.dark .section-separator {
   opacity: 0.6;
 }
 
-
+/* === SWITCH / TOGGLE === */
 .switch {
   position: relative;
   display: inline-block;
   width: 46px;
   height: 24px;
 }
+
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .slider {
   position: absolute;
   cursor: pointer;
   background-color: #ccc;
   border-radius: 24px;
-  top: 0; left: 0; right: 0; bottom: 0;
-  transition: .4s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
 }
+
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px; width: 18px;
-  left: 3px; bottom: 3px;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
+
 input:checked + .slider {
   background-color: var(--accent-color);
 }
+
 input:checked + .slider:before {
   transform: translateX(22px);
 }

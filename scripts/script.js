@@ -194,37 +194,6 @@ function highlightActiveNavLink() {
   });
 }
 
-// ✅ Inicjalizacja główna
-document.addEventListener("DOMContentLoaded", () => {
-  loadMenuAndInit();
-  loadFooter();
-  initScrollObserver();
-  initSeparatorObserver();
-  highlightActiveNavLink();
-});
-
-function initTranslation() {
-  const currentLang = localStorage.getItem("lang") || "pl";
-  window.currentLang = currentLang;  // Ustawiamy globalnie!
-  translate(currentLang);
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  let pathPrefix = '';
-
-  if (location.pathname.includes('/projects/')) {
-    pathPrefix = '../../';
-  }
-
-  fetch(pathPrefix + 'menu.html')
-    .then(response => response.text())
-    .then(data => document.getElementById('menu-placeholder').innerHTML = data);
-
-  fetch(pathPrefix + 'footer.html')
-    .then(response => response.text())
-    .then(data => document.getElementById('footer-placeholder').innerHTML = data);
-});
-
 document.addEventListener("DOMContentLoaded", function () {
   let pathPrefix = '';
 
@@ -234,19 +203,17 @@ document.addEventListener("DOMContentLoaded", function () {
     pathPrefix = './';
   }
 
-  // Ładowanie MENU + aktualizacja linków + ikon + init skryptów
+  // ✅ Ładowanie MENU + linki + ikony + inicjalizacja
   fetch(pathPrefix + 'menu.html')
     .then(response => response.text())
     .then(html => {
       document.getElementById('menu-placeholder').innerHTML = html;
 
-      // Poprawianie linków menu z data-target
       document.querySelectorAll('#menu-placeholder a[data-target]').forEach(link => {
         const target = link.getAttribute('data-target');
         if (target) link.setAttribute('href', pathPrefix + target);
       });
 
-      // Poprawianie ścieżek ikon z data-img
       document.querySelectorAll('#menu-placeholder img[data-img]').forEach(img => {
         const imgPath = img.getAttribute('data-img');
         if (imgPath) img.setAttribute('src', pathPrefix + imgPath);
@@ -257,18 +224,32 @@ document.addEventListener("DOMContentLoaded", function () {
       initTranslation();
     });
 
-  // Ładowanie FOOTER
+  // ✅ Ładowanie FOOTER + poprawka ikon
   fetch(pathPrefix + 'footer.html')
     .then(response => response.text())
     .then(html => {
       document.getElementById('footer-placeholder').innerHTML = html;
+
+      document.querySelectorAll('#footer-placeholder img[data-img]').forEach(img => {
+        const imgPath = img.getAttribute('data-img');
+        if (imgPath) img.setAttribute('src', pathPrefix + imgPath);
+      });
     });
 
-  // Inicjalizacja dodatkowych skryptów
+  // ✅ Inicjalizacje ogólne
   initScrollObserver();
   initSeparatorObserver();
   highlightActiveNavLink();
 });
+
+// ✅ Tłumaczenia
+function initTranslation() {
+  const currentLang = localStorage.getItem("lang") || "pl";
+  window.currentLang = currentLang;
+  translate(currentLang);
+}
+
+
 
 
 
