@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://pkportfolio.pl/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/projekty.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/omnie.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/dokumenty.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/kontakt.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/PWA.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/python.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/CSharp.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/CSharp_Wpf.html</loc>
+  </url>
+
+  <!-- Podstrony projektów -->
+  <url>
+    <loc>https://pkportfolio.pl/projects/hardware/hardware.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/projects/python/philipshue.html</loc>
+  </url>
+
+  <url>
+    <loc>https://pkportfolio.pl/projects/python/piotriflix.html</loc>
+  </url>
+
+</urlset>
