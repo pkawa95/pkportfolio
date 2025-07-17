@@ -264,31 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  let pathPrefix = '';
-
-  if (location.pathname.includes('/projects/')) {
-    pathPrefix = '../../';
-  } else if (location.pathname !== '/index.html' && location.pathname !== '/') {
-    pathPrefix = './';
-  }
-
-  document.querySelectorAll('.details-icon').forEach(icon => {
-    icon.style.backgroundImage = `url('${pathPrefix}img/icons/dropdown.svg')`;
-  });
-});
-
-
-document.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-
-  const progressBar = document.querySelector('.scroll-progress');
-  if (progressBar) {
-    progressBar.style.width = `${scrollPercent}%`;
-  }
-});
 
 
 
