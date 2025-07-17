@@ -5,15 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="title">Piotr Kawa - Portfolio</title>
 
-  <!-- STYLE -->
   <link rel="stylesheet" href="style/style.css" />
-
-  <!-- SCRIPTS -->
   <script defer src="scripts/translations.js"></script>
   <script defer src="scripts/script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init('IosHMidg0Tm5mVG2K');  // Twój PUBLIC KEY
+
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm('service_tkda1ew', 'template_po3d9ev', this)
+        .then(function () {
+          alert('Wiadomość została wysłana!');
+          document.getElementById('contact-form').reset();
+        }, function (error) {
+          alert('Błąd podczas wysyłania wiadomości: ' + JSON.stringify(error));
+        });
+    });
+  });
+</script>
 </head>
+
 <body>
-  <!-- 📌 MENU -->
   <div id="menu-placeholder"></div>
 
   <main>
@@ -28,19 +44,39 @@
       </div>
 
       <p class="contact-message" data-i18n="contact_message">
-        Zapraszam do kontaktu w sprawie współpracy lub możliwości zatrudnienia. Z przyjemnością odpowiem na wszelkie pytania oraz przedstawię szczegóły mojego doświadczenia i umiejętności.
+        Zapraszam do kontaktu w sprawie współpracy lub możliwości zatrudnienia...
       </p>
 
-      <form class="contact-form" action="mailto:piotrkawa95@gmail.com" method="POST" enctype="text/plain">
-        <input type="text" name="name" placeholder="Imię i nazwisko" data-i18n-placeholder="contact_form_name" required />
-        <input type="email" name="email" placeholder="Adres e-mail" data-i18n-placeholder="contact_form_email" required />
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="from_name" placeholder="Imię i nazwisko" data-i18n-placeholder="contact_form_name" required />
+        <input type="email" name="reply_to" placeholder="Adres e-mail" data-i18n-placeholder="contact_form_email" required />
         <textarea name="message" rows="5" placeholder="Wiadomość..." data-i18n-placeholder="contact_form_message" required></textarea>
         <button type="submit" data-i18n="contact_form_submit">Wyślij</button>
       </form>
     </section>
   </main>
 
-  <!-- 📌 STOPKA -->
   <div id="footer-placeholder"></div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      emailjs.init('IosHMidg0Tm5mVG2K'); // Twój PUBLIC KEY
+
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_tkda1ew', 'template_po3d9ev', this)
+          .then(function () {
+            alert('Wiadomość została wysłana!');
+            e.target.reset();
+          }, function (error) {
+            alert('Błąd podczas wysyłania wiadomości: ' + JSON.stringify(error));
+          });
+      });
+    });
+  </script>
 </body>
+
 </html>
