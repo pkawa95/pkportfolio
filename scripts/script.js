@@ -249,6 +249,21 @@ function initTranslation() {
   translate(currentLang);
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  let pathPrefix = '';
+
+  if (location.pathname.includes('/projects/')) {
+    pathPrefix = '../../';
+  } else if (location.pathname !== '/index.html' && location.pathname !== '/') {
+    pathPrefix = './';
+  }
+
+  // ✅ Popraw ścieżkę do ikony w floating button
+  document.querySelectorAll('.github-floating-button img').forEach(img => {
+    img.setAttribute('src', pathPrefix + 'img/icons/github.svg');
+  });
+});
+
 
 
 
