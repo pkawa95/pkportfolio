@@ -228,22 +228,28 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function () {
   let pathPrefix = '';
 
-  // Ustalenie prefixu zależnie od ścieżki
   if (location.pathname.includes('/projects/')) {
     pathPrefix = '../../';
   } else if (location.pathname !== '/index.html' && location.pathname !== '/') {
     pathPrefix = './';
   }
 
-  // Ładowanie MENU + aktualizacja linków + init skryptów
+  // Ładowanie MENU + aktualizacja linków + ikon + init skryptów
   fetch(pathPrefix + 'menu.html')
     .then(response => response.text())
     .then(html => {
       document.getElementById('menu-placeholder').innerHTML = html;
 
+      // Poprawianie linków menu z data-target
       document.querySelectorAll('#menu-placeholder a[data-target]').forEach(link => {
         const target = link.getAttribute('data-target');
         if (target) link.setAttribute('href', pathPrefix + target);
+      });
+
+      // Poprawianie ścieżek ikon z data-img
+      document.querySelectorAll('#menu-placeholder img[data-img]').forEach(img => {
+        const imgPath = img.getAttribute('data-img');
+        if (imgPath) img.setAttribute('src', pathPrefix + imgPath);
       });
 
       initMenuScripts();
@@ -258,9 +264,12 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('footer-placeholder').innerHTML = html;
     });
 
-  // Pozostałe init
+  // Inicjalizacja dodatkowych skryptów
   initScrollObserver();
   initSeparatorObserver();
   highlightActiveNavLink();
 });
+
+
+
 
