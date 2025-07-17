@@ -226,34 +226,41 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Sprawdzenie lokalizacji pliku
   let pathPrefix = '';
 
+  // Ustalenie prefixu zależnie od ścieżki
   if (location.pathname.includes('/projects/')) {
     pathPrefix = '../../';
-  } else if (location.pathname !== '/index.html' && location.pathname !== '/' ) {
+  } else if (location.pathname !== '/index.html' && location.pathname !== '/') {
     pathPrefix = './';
   }
 
-  // Ładowanie menu
+  // Ładowanie MENU + aktualizacja linków + init skryptów
   fetch(pathPrefix + 'menu.html')
     .then(response => response.text())
-    .then(data => {
-      document.getElementById('menu-placeholder').innerHTML = data;
+    .then(html => {
+      document.getElementById('menu-placeholder').innerHTML = html;
 
-      // Po załadowaniu menu — poprawiamy linki
-      document.querySelectorAll('#menu-placeholder a').forEach(link => {
+      document.querySelectorAll('#menu-placeholder a[data-target]').forEach(link => {
         const target = link.getAttribute('data-target');
-        if (target) {
-          link.setAttribute('href', pathPrefix + target);
-        }
+        if (target) link.setAttribute('href', pathPrefix + target);
       });
+
+      initMenuScripts();
+      initThemeToggle();
+      initTranslation();
     });
 
-  // Ładowanie stopki
+  // Ładowanie FOOTER
   fetch(pathPrefix + 'footer.html')
     .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-placeholder').innerHTML = data;
+    .then(html => {
+      document.getElementById('footer-placeholder').innerHTML = html;
     });
+
+  // Pozostałe init
+  initScrollObserver();
+  initSeparatorObserver();
+  highlightActiveNavLink();
 });
+
