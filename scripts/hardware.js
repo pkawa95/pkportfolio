@@ -19,41 +19,72 @@ function handleScrollAnimations() {
 document.addEventListener('scroll', handleScrollAnimations);
 window.addEventListener('load', handleScrollAnimations);
 
-function initDetailsButton() {
-  const btn = document.querySelector('.details-btn');
-  const content = document.querySelector('.details-content');
 
-  if (!btn || !content || !window.translations || !window.currentLang) return;
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleBtn = document.querySelector('.details-btn');
+  const detailsContent = document.querySelector('.details-content');
+  const specRows = document.querySelectorAll('.spec-row');
+  const duration = 500;
 
   function updateButtonText() {
-    const isExpanded = btn.classList.contains('expanded');
-    btn.textContent = window.translations[window.currentLang][
+    if (!window.translations || !window.currentLang) return;
+    const isExpanded = toggleBtn.classList.contains('expanded');
+    toggleBtn.textContent = window.translations[window.currentLang][
       isExpanded ? 'read_less_button' : 'read_more_button'
     ];
   }
 
-  if (!btn.hasAttribute('data-listener-added')) {
-    btn.addEventListener('click', function () {
-      btn.classList.toggle('expanded');
-      content.style.display = btn.classList.contains('expanded') ? 'block' : 'none';
+  toggleBtn.addEventListener('click', () => {
+    const isExpanded = toggleBtn.classList.contains('expanded');
+
+    if (!isExpanded) {
+      toggleBtn.classList.add('expanded');
+      detailsContent.classList.add('expanded');
+      detailsContent.style.maxHeight = detailsContent.scrollHeight + 'px';
       updateButtonText();
-    });
 
-    btn.setAttribute('data-listener-added', 'true');
-  }
+      specRows.forEach((row, index) => {
+        const left = row.querySelector('.spec-left');
+        const right = row.querySelector('.spec-right');
+        left.classList.remove('show-left');
+        right.classList.remove('show-right');
+        void left.offsetWidth;
+        void right.offsetWidth;
+        setTimeout(() => {
+          left.classList.add('show-left');
+          right.classList.add('show-right');
+        }, index * 150);
+      });
 
-  // ✅ Aktualizacja tekstu na każdą zmianę języka
+    } else {
+      detailsContent.style.maxHeight = detailsContent.scrollHeight + 'px';
+      void detailsContent.offsetHeight;
+      detailsContent.style.maxHeight = '0px';
+      toggleBtn.classList.remove('expanded');
+      updateButtonText();
+
+      setTimeout(() => {
+        detailsContent.classList.remove('expanded');
+        detailsContent.style.maxHeight = '';
+
+        specRows.forEach((row) => {
+          row.querySelector('.spec-left').classList.remove('show-left');
+          row.querySelector('.spec-right').classList.remove('show-right');
+        });
+      }, duration);
+    }
+  });
+
+  // Aktualizacja tekstu po zmianie języka
   document.addEventListener('languageChanged', updateButtonText);
 
-  updateButtonText();  // Ustaw na start
-}
+  // Aktualizacja tekstu na start
+  updateButtonText();
 
-// ✅ Odpal inicjalizację
-const interval = setInterval(() => {
-  if (window.translations && window.currentLang && document.querySelector('.details-btn') && document.querySelector('.details-content')) {
-    initDetailsButton();
-    clearInterval(interval);
-  }
-}, 100);
-
-
+  // Dostosuj wysokość przy zmianie rozmiaru okna
+  window.addEventListener('resize', () => {
+    if (detailsContent.classList.contains('expanded')) {
+      detailsContent.style.maxHeight = detailsContent.scrollHeight + 'px';
+    }
+  });
+});

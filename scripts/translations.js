@@ -166,7 +166,17 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     hardware_download_presentation: "Pobierz prezentację",
     hardware_project4_title : "Pełna realizacja projektu — od pomysłu po gotową stację",
     hardware_project4_desc: "Projekt mojej stacji roboczej zrealizowałem samodzielnie — począwszy od dokładnej analizy rynku i wyboru odpowiednich komponentów, przez ich zakup, aż po samodzielny montaż oraz sukcesywne rozbudowywanie zestawu. Każda decyzja była świadoma i przemyślana — nie kierowałem się chwilowymi trendami, lecz długofalową niezawodnością oraz uniwersalnością zestawu. Zainwestowałem w podzespoły najwyższej klasy, chcąc stworzyć maszynę, która przez lata sprosta zarówno wymagającej pracy, jak i celom edukacyjnym czy rozrywkowym. Dodatkowo, komputer został zoptymalizowany pod kątem profesjonalnej pracy w pakiecie Adobe, co pozwala mi na efektywną obróbkę zdjęć, montaż filmów i realizację zaawansowanych projektów multimedialnych.",
-
+    spec_processor: "Procesor",
+    spec_gpu: "Karta Graficzna",
+    spec_ram: "Pamięć RAM",
+    spec_ssd: "Dysk SSD",
+    spec_hdd: "Dysk HDD",
+    spec_mobo: "Płyta Główna",
+    spec_psu: "Zasilacz",
+    spec_case: "Obudowa",
+    spec_cpu_cooling: "Chłodzenie procesora",
+    spec_additional_cooling: "Dodatkowe chłodzenie",
+    
 
 
     piotrflix_future_title: "Plany rozwoju",
@@ -339,7 +349,16 @@ projects_title: "Projects",
     hardware_download_presentation: "Download presentation",
     hardware_project4_title : "Complete Project Execution — from Idea to Fully Built Workstation",
     hardware_project4_desc: "I carried out the entire workstation project on my own — starting with a thorough market analysis and careful selection of components, through purchase, assembly, and ongoing upgrades of the setup. Every decision was deliberate and well thought out — driven not by trends, but by long-term reliability and versatility. I invested in top-quality components to build a machine capable of meeting both demanding professional tasks and personal, educational, or entertainment needs for years to come. Additionally, the workstation was optimized for advanced workflows in the Adobe Creative Suite, allowing me to efficiently edit photos, produce videos, and complete complex multimedia projects.",
-
+    spec_processor: "Processor",
+    spec_gpu: "Graphics Card",
+    spec_ram: "RAM Memory",
+    spec_ssd: "SSD Drive",
+    spec_hdd: "HDD Drive",
+    spec_mobo: "Motherboard",
+    spec_psu: "Power Supply",
+    spec_case: "Case",
+    spec_cpu_cooling: "CPU Cooling",
+    spec_additional_cooling: "Additional Cooling",
 
 
 
