@@ -140,7 +140,7 @@ function initMenuScripts() {
 
 // 📥 Dynamiczne menu
 function loadMenuAndInit() {
-  fetch("menu.html")
+  fetch("../../menu.html")
     .then(res => res.text())
     .then(html => {
       document.getElementById("menu-placeholder").innerHTML = html;
@@ -154,7 +154,7 @@ function loadMenuAndInit() {
 function loadFooter() {
   const footerPlaceholder = document.getElementById("footer-placeholder");
   if (footerPlaceholder) {
-    fetch("footer.html")
+    fetch("../../footer.html")
       .then(res => res.text())
       .then(html => {
         footerPlaceholder.innerHTML = html;
@@ -209,3 +209,51 @@ function initTranslation() {
   translate(currentLang);
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  let pathPrefix = '';
+
+  if (location.pathname.includes('/projects/')) {
+    pathPrefix = '../../';
+  }
+
+  fetch(pathPrefix + 'menu.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('menu-placeholder').innerHTML = data);
+
+  fetch(pathPrefix + 'footer.html')
+    .then(response => response.text())
+    .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Sprawdzenie lokalizacji pliku
+  let pathPrefix = '';
+
+  if (location.pathname.includes('/projects/')) {
+    pathPrefix = '../../';
+  } else if (location.pathname !== '/index.html' && location.pathname !== '/' ) {
+    pathPrefix = './';
+  }
+
+  // Ładowanie menu
+  fetch(pathPrefix + 'menu.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('menu-placeholder').innerHTML = data;
+
+      // Po załadowaniu menu — poprawiamy linki
+      document.querySelectorAll('#menu-placeholder a').forEach(link => {
+        const target = link.getAttribute('data-target');
+        if (target) {
+          link.setAttribute('href', pathPrefix + target);
+        }
+      });
+    });
+
+  // Ładowanie stopki
+  fetch(pathPrefix + 'footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+});
