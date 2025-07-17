@@ -88,3 +88,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.download-btn');
+  if (btn) {
+    const img = document.createElement('img');
+    img.src = '../../img/icons/download.svg';
+    img.alt = 'Download Icon';
+    img.classList.add('download-icon');
+    btn.appendChild(img);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.details-btn');
+
+  buttons.forEach(button => {
+    const icon = button.querySelector('.details-icon');
+    if (!icon) {
+      const newIcon = document.createElement('span');
+      newIcon.classList.add('details-icon');
+      button.appendChild(newIcon);
+    }
+  });
+});

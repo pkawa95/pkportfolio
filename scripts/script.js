@@ -264,6 +264,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  let pathPrefix = '';
+
+  if (location.pathname.includes('/projects/')) {
+    pathPrefix = '../../';
+  } else if (location.pathname !== '/index.html' && location.pathname !== '/') {
+    pathPrefix = './';
+  }
+
+  document.querySelectorAll('.details-icon').forEach(icon => {
+    icon.style.backgroundImage = `url('${pathPrefix}img/icons/dropdown.svg')`;
+  });
+});
+
+
 
 
 
