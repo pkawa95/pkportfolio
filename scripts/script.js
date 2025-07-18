@@ -265,69 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-const display = document.getElementById('timeDisplay');
-const errorMessage = document.getElementById('errorMessage');
-
-// Funkcja animująca czas
-function animateTimeCounter(totalSeconds) {
-    let currentSeconds = 0;
-    const duration = 2000; // ms
-    const intervalTime = 50; // co 50ms
-    const increment = totalSeconds / (duration / intervalTime);
-
-    const interval = setInterval(() => {
-        currentSeconds += increment;
-        if (currentSeconds >= totalSeconds) {
-            currentSeconds = totalSeconds;
-            clearInterval(interval);
-        }
-        const total = Math.floor(currentSeconds);
-        const hrs = Math.floor(total / 3600);
-        const mins = Math.floor((total % 3600) / 60);
-        const secs = total % 60;
-
-        display.textContent = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    }, intervalTime);
-}
-
-// Pobierz JSON z pliku
-fetch('../../addons/projects_data.json')
-    .then(response => {
-        if (!response.ok) throw new Error('Błąd wczytywania pliku JSON');
-        return response.json();
-    })
-    .then(data => {
-        const project = data.projects.find(p => p.name === 'portfolio');
-        if (project) {
-            animateTimeCounter(project.seconds);
-        } else {
-            errorMessage.style.display = 'block';
-        }
-    })
-    .catch(error => {
-        console.error('Błąd:', error);
-        errorMessage.textContent = 'Błąd ładowania danych projektu.';
-        errorMessage.style.display = 'block';
-    });
 
 
-// ✅ Ładowanie danych projektów + animacja czasu
-fetch(pathPrefix + 'addons/projects_data.json')
-  .then(response => response.json())
-  .then(data => {
-    const project = data.projects.find(p => p.name === 'portfolio');
-    if (project) {
-      animateTimeCounter(project.seconds);
-    } else {
-      const errorMessage = document.getElementById('errorMessage');
-      if (errorMessage) errorMessage.style.display = 'block';
-    }
-  })
-  .catch(error => {
-    console.error('Błąd ładowania JSON:', error);
-    const errorMessage = document.getElementById('errorMessage');
-    if (errorMessage) {
-      errorMessage.textContent = 'Błąd ładowania danych projektu.';
-      errorMessage.style.display = 'block';
-    }
-  });
+
+
