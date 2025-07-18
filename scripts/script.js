@@ -267,5 +267,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('./addons/projects_data.json')
+    .then(response => response.json())
+    .then(data => {
+      const portfolio = data.projects.find(p => p.name === "portfolio");
+      if (!portfolio) return;
 
+      const container = document.getElementById('projects-timers');
+      const tile = document.createElement('div');
+      tile.className = 'tile show-on-scroll';
+
+      tile.innerHTML = `
+        <h3>CZAS PRACY NAD PROJEKTEM PORTFOLIO</h3>
+        <div class="timer-wrapper">
+          <div><span class="timer-value portfolio-hours">0</span><span class="timer-label">h</span></div>
+          <div><span class="timer-value portfolio-minutes">0</span><span class="timer-label">min</span></div>
+        </div>
+      `;
+      container.appendChild(tile);
+
+      animateCounter('.portfolio-hours', portfolio.hours);
+      animateCounter('.portfolio-minutes', portfolio.minutes);
+    });
+
+  function animateCounter(selector, targetValue) {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    let current = 0;
+    const increment = targetValue / 100;
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= targetValue) {
+        current = targetValue;
+        clearInterval(interval);
+      }
+      el.textContent = Number.isInteger(targetValue) ? Math.floor(current) : current.toFixed(2);
+    }, 20);
+  }
+});
 

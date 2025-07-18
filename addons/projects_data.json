@@ -3,9 +3,9 @@
         {
             "name": "portfolio",
             "class": "pk_portfolio_timer",
-            "minutes": 30,
-            "hours": 0.5,
-            "seconds": 1801
+            "minutes": 44,
+            "hours": 0.74,
+            "seconds": 2663
         },
         {
             "name": "test",
