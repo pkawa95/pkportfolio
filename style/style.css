@@ -926,3 +926,12 @@ body.dark .code-snippet-box {
   background: var(--accent-color);
   transition: width 0.1s linear;
 }
+
+
+.number {
+  font-size: 4rem;
+  color: var(--accent-color);
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+}

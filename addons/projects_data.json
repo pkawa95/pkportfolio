@@ -1,0 +1,18 @@
+{
+    "projects": [
+        {
+            "name": "portfolio",
+            "class": "pk_portfolio_timer",
+            "minutes": 22,
+            "hours": 0.37,
+            "seconds": 1321
+        },
+        {
+            "name": "test",
+            "class": "test",
+            "minutes": 0,
+            "hours": 0.01,
+            "seconds": 35
+        }
+    ]
+}
