@@ -264,59 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    let pathPrefix = '';
-
-    if (location.pathname.includes('/projects/')) {
-        pathPrefix = '../../';
-    } else if (location.pathname !== '/index.html' && location.pathname !== '/') {
-        pathPrefix = './';
-    }
-
-    const display = document.getElementById('timeDisplay');
-    const errorMessage = document.getElementById('errorMessage');
-
-    function animateTimeCounter(totalSeconds) {
-        let currentSeconds = 0;
-        const duration = 2000;
-        const intervalTime = 50;
-        const increment = totalSeconds / (duration / intervalTime);
-
-        const interval = setInterval(() => {
-            currentSeconds += increment;
-            if (currentSeconds >= totalSeconds) {
-                currentSeconds = totalSeconds;
-                clearInterval(interval);
-            }
-            const total = Math.floor(currentSeconds);
-            const hrs = Math.floor(total / 3600);
-            const mins = Math.floor((total % 3600) / 60);
-            const secs = total % 60;
-
-            display.textContent = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        }, intervalTime);
-    }
-
-    // Finalna ścieżka JSON - założenie: JSON jest obok index.html lub z pathPrefix
-    fetch(pathPrefix + 'projects_data.json')
-        .then(response => {
-            if (!response.ok) throw new Error('Błąd wczytywania JSON');
-            return response.json();
-        })
-        .then(data => {
-            const project = data.projects.find(p => p.name === 'portfolio');
-            if (project) {
-                animateTimeCounter(project.seconds);
-            } else {
-                errorMessage.style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error('Błąd:', error);
-            errorMessage.textContent = 'Błąd ładowania danych projektu.';
-            errorMessage.style.display = 'block';
-        });
-});
 
 
 
