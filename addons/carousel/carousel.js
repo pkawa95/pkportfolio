@@ -20,19 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentPath = window.location.pathname;
 
-    console.log('Current page path:', currentPath);
-
     items.forEach(item => {
       const link = item.querySelector('a');
       if (link) {
         const href = link.getAttribute('href');
-        // Tworzymy pełny URL absolutny na bazie href
         const absoluteHref = new URL(href, window.location.origin).pathname;
-
-        console.log('Checking item link:', absoluteHref);
-
         if (currentPath === absoluteHref) {
-          console.log('Removing carousel item with link:', absoluteHref);
           item.remove();
         }
       }
@@ -40,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     items = Array.from(track.children);
     if (items.length === 0) {
-      console.log('No carousel items left — removing carousel');
       carousel.remove();
       return;
     }
@@ -65,14 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    function updateCarousel() {
-      const itemWidth = items[0].getBoundingClientRect().width;
-      track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-
-      navDots.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
-      });
-    }
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+  navDots.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
+    dot.classList.toggle('active', idx === currentIndex);
+  });
+}
 
     function nextSlide() {
       currentIndex = (currentIndex + 1) % items.length;
@@ -99,13 +89,26 @@ document.addEventListener('DOMContentLoaded', () => {
       autoplayInterval = setInterval(nextSlide, 5000);
     }
 
-    function setItemWidths() {
-      const containerWidth = carousel.getBoundingClientRect().width;
-      items.forEach(item => item.style.minWidth = `${containerWidth}px`);
-      updateCarousel();
-    }
+function setItemWidths() {
+  updateCarousel(); // tylko odświeżenie pozycji
+}
 
     setItemWidths();
     window.addEventListener('resize', setItemWidths);
+
+    // ✅ ANIMATION OBSERVER — wstawiamy tutaj:
+    const heading = document.querySelector('.carousel-heading');
+    const observerOptions = { threshold: 0.3 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (heading) observer.observe(heading);
+    observer.observe(carousel);
   }
 });

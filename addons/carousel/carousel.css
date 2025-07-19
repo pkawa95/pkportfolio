@@ -16,7 +16,7 @@
 .carousel-item {
   min-width: 100%;
   height: 400px;
-  position: relative; /* To jest KLUCZOWE! */
+  position: relative;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -30,12 +30,10 @@
   transition: transform 0.3s ease;
 }
 
-/* Hover effect for image */
 .carousel-item:hover img {
   transform: scale(1.05);
 }
 
-/* Hidden overlay content */
 .carousel-item-content {
   position: absolute;
   bottom: 0;
@@ -81,7 +79,6 @@
   background-color: var(--link-hover);
 }
 
-/* Navigation buttons */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -108,7 +105,6 @@
   right: 10px;
 }
 
-/* Dots navigation */
 .carousel-dots {
   display: flex;
   justify-content: center;
@@ -130,7 +126,6 @@
   background-color: var(--accent-color);
 }
 
-/* Badge styles */
 .carousel-badge {
   position: absolute;
   top: 10px;
@@ -150,46 +145,79 @@
   transform: scale(1.05);
 }
 
-/* Kategorie kolorów */
-.category-hardware {
-  background-color: #007bff;
-}
-
-.category-web {
-  background-color: #28a745;
-}
-
-.category-desktop {
-  background-color: #6f42c1;
-}
-
-.category-pwa {
-  background-color: #e83e8c;
-}
-
-.category-python {
-  background-color: #fd7e14;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .carousel-item-content h3 {
-    font-size: 1.1rem;
-  }
-
-  .carousel-item-content p {
-    font-size: 0.9rem;
-  }
-
-  .carousel-btn {
-    padding: 8px 12px;
-  }
-}
-
 .carousel-heading {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
   color: var(--accent-color);
   font-weight: 700;
+}
+
+.category-hardware { background-color: #007bff; }
+.category-web { background-color: #28a745; }
+.category-desktop { background-color: #6f42c1; }
+.category-pwa { background-color: #e83e8c; }
+.category-python { background-color: #fd7e14; }
+
+@keyframes zoomInFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.carousel-heading,
+.my-carousel {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.animate-visible {
+  animation: zoomInFade 0.8s ease forwards;
+}
+
+.my-carousel.animate-visible {
+  animation-delay: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .carousel-item-content h3 {
+    font-size: 1rem;
+  }
+
+  .carousel-heading {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .carousel-item-content p {
+    font-size: 0.85rem;
+  }
+
+  .carousel-btn {
+    padding: 6px 10px;
+  }
+
+  .carousel-item {
+    flex: 0 0 70%;
+    height: 200px;
+  }
+
+  .carousel-item img {
+    height: 200px;
+  }
+
+  .my-carousel {
+    max-width: 90%;
+  }
+
+  .carousel-heading,
+  .my-carousel {
+    animation-duration: 1s;
+  }
 }
