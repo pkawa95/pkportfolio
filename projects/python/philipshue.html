@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="huecontroller_title">Hue Controller</title>
+
+  <link rel="stylesheet" href="../../style/style.css" />
+  <link rel="stylesheet" href="../../style/gallery.css" />
+  <link rel="stylesheet" href="../../style/video.css" />
+
+  <style>
+    .backend-description img.screenshot {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .backend-description img.screenshot {
+        width: 90%;
+      }
+    }
+    ul.hidden-on-load li {
+      padding-left: 1.5em;
+      text-indent: -1.5em;
+    }
+    .list-indented {
+      margin-left: 2em;
+    }
+    .lightbox {
+      position: fixed;
+      display: none;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      display: block;
+      margin: 0 auto;
+    }
+    .lightbox .close, .lightbox-prev, .lightbox-next {
+      position: absolute;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .lightbox .close {
+      top: 10px;
+      right: 20px;
+    }
+    .lightbox-prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .lightbox-next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+
+  <script defer src="../../scripts/translations.js"></script>
+  <script defer src="../../scripts/script.js"></script>
+  <script defer src="../../scripts/gallery.js"></script>
+  <script defer src="../../scripts/video.js"></script>
+</head>
+
+<body>
+  <div id="menu-placeholder"></div>
+
+  <main class="project-details-page">
+    <section class="project-detail hidden-on-load fade-zoom">
+      <img src="../../img/icons/philipshue.png" alt="Hue Controller Logo" class="app-logo" />
+      <div class="section-separator animate"></div>
+    </section>
+
+    <section class="project-description hidden-on-load fade-zoom">
+      <p class="project-intro" data-i18n="huecontroller_intro"></p>
+      <p class="hidden-on-load fade-zoom" data-i18n="huecontroller_desc2"></p>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <section class="backend-description">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="backend_title"></h3>
+      <p class="hidden-on-load fade-zoom" data-i18n="backend_desc"></p>
+      <ul class="hidden-on-load fade-zoom list-indented">
+        <li><strong data-i18n="backend_list_1"></strong></li>
+        <li><strong data-i18n="backend_list_2"></strong></li>
+        <li><strong data-i18n="backend_list_3"></strong></li>
+        <li><strong data-i18n="backend_list_4"></strong></li>
+        <li><strong data-i18n="backend_list_5"></strong></li>
+        <li><strong data-i18n="backend_list_6"></strong></li>
+        <li><strong data-i18n="backend_list_7"></strong></li>
+        <li><strong data-i18n="backend_list_8"></strong></li>
+        <li><strong data-i18n="backend_list_9"></strong></li>
+        <li><strong data-i18n="backend_list_10"></strong></li>
+      </ul>
+      <p class="hidden-on-load fade-zoom" data-i18n="backend_call_example"></p>
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code>PUT http://{bridge_ip}/api/{token}/lights/{light_id}/state {"bri": 200}</code>
+      </div>
+      <p class="hidden-on-load fade-zoom" data-i18n="backend_update_mechanism"></p>
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code>QTimer(timeout=1000ms) → fetch lights & sensors</code>
+      </div>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <section class="frontend-description">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="frontend_title"></h3>
+      <p class="hidden-on-load fade-zoom" data-i18n="frontend_desc1"></p>
+      <ul class="hidden-on-load fade-zoom list-indented">
+        <li><strong data-i18n="frontend_list_1"></strong></li>
+        <li><strong data-i18n="frontend_list_2"></strong></li>
+        <li><strong data-i18n="frontend_list_3"></strong></li>
+        <li><strong data-i18n="frontend_list_4"></strong></li>
+        <li><strong data-i18n="frontend_list_5"></strong></li>
+      </ul>
+      <div class="carousel-container hidden-on-load fade-zoom">
+        <button class="carousel-button left" onclick="scrollCarousel(-1)">&#10094;</button>
+        <div class="carousel" id="frontend-carousel">
+          <img src="../../img/screenshots/PhilipsHue/screenshot1.png" alt="Zrzut ekranu 1" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/PhilipsHue/screenshot2.png" alt="Zrzut ekranu 2" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/PhilipsHue/screenshot3.png" alt="Zrzut ekranu 3" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/PhilipsHue/screenshot4.png" alt="Zrzut ekranu 4" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/PhilipsHue/screenshot5.png" alt="Zrzut ekranu 5" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/PhilipsHue/screenshot6.png" alt="Zrzut ekranu 6" onclick="openLightbox(this)">
+        </div>
+        <button class="carousel-button right" onclick="scrollCarousel(1)">&#10095;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+      <p class="hidden-on-load fade-zoom" data-i18n="frontend_desc2"></p>
+    </section>
+
+    <section class="code-snippets">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="code_title"></h3>
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code>def connect_fully_automatic(self, callback_on_found): ...</code>
+      </div>
+      <p class="hidden-on-load fade-zoom" data-i18n="code_desc1"></p>
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code>def update_group_widgets(self): ...</code>
+      </div>
+      <p class="hidden-on-load fade-zoom" data-i18n="code_desc2"></p>
+      <div class="code-snippet-box hidden-on-load fade-zoom">
+        <code>def fetch_groups_with_callback(self, callback=None): ...</code>
+      </div>
+      <p class="hidden-on-load fade-zoom" data-i18n="code_desc3"></p>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <section class="future-plans">
+      <h3 class="hidden-on-load fade-zoom" data-i18n="future_title"></h3>
+      <ul class="hidden-on-load fade-zoom">
+        <li data-i18n="future_1"></li>
+        <li data-i18n="future_2"></li>
+        <li data-i18n="future_3"></li>
+        <li data-i18n="future_4"></li>
+        <li data-i18n="future_5"></li>
+        <li data-i18n="future_6"></li>
+        <li data-i18n="future_7"></li>
+      </ul>
+    </section>
+
+    <a href="https://github.com/pkawa95/projektywlasnepython" target="_blank" class="github-floating-button hidden-on-load fade-zoom">
+      <img src="../../img/icons/github.svg" alt="GitHub" />
+      <span data-i18n="github_button"></span>
+    </a>
+
+  </main>
+
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+    <img id="lightbox-img" src="" alt="Screenshot powiększony" />
+    <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+    <div id="lightbox-counter" class="lightbox-counter"></div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+</body>
+</html>

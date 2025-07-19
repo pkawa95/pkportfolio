@@ -1,18 +1,58 @@
 {
     "projects": [
         {
-            "name": "portfolio",
-            "class": "pk_portfolio_timer",
-            "minutes": 44,
-            "hours": 0.74,
-            "seconds": 2663
+            "key": "pkportfolio",
+            "minutes": 6421,
+            "hours": 107.02,
+            "seconds": 385262
         },
         {
-            "name": "test",
-            "class": "test",
+            "key": "splash",
+            "minutes": 0,
+            "hours": 0.0,
+            "seconds": 4
+        },
+        {
+            "key": "main.py",
+            "minutes": 0,
+            "hours": 0.0,
+            "seconds": 1
+        },
+        {
+            "key": "Work Timer",
+            "minutes": 0,
+            "hours": 0.0,
+            "seconds": 16
+        },
+        {
+            "key": "Open Project",
+            "minutes": 0,
+            "hours": 0.0,
+            "seconds": 2
+        },
+        {
+            "key": "WD MycloudHome",
             "minutes": 0,
             "hours": 0.01,
-            "seconds": 35
+            "seconds": 25
+        },
+        {
+            "key": "Confirm Exit",
+            "minutes": 0,
+            "hours": 0.0,
+            "seconds": 1
+        },
+        {
+            "key": "Portfolio",
+            "minutes": 0,
+            "hours": 0.01,
+            "seconds": 24
+        },
+        {
+            "key": "Philips Hue",
+            "minutes": 7518,
+            "hours": 125.3,
+            "seconds": 451083
         }
     ]
 }
