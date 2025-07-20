@@ -326,3 +326,5 @@ document.addEventListener('scroll', () => {
   const scrolled = (scrollTop / docHeight) * 100;
   scrollProgress.style.width = `${scrolled}%`;
 });
+
+
