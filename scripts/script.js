@@ -317,3 +317,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 20);
   }
 });
+
+
+document.addEventListener('scroll', () => {
+  const scrollProgress = document.querySelector('.scroll-progress');
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const scrolled = (scrollTop / docHeight) * 100;
+  scrollProgress.style.width = `${scrolled}%`;
+});

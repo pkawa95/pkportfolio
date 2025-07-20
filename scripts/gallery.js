@@ -52,7 +52,6 @@ function initCarousel(carouselId, dotsContainerId, itemsPerPage = 3, autoScrollI
     goToPage(currentPage);
   }, autoScrollInterval);
 
-  // Pause on hover/touch
   carousel.addEventListener('mouseover', () => clearInterval(autoScroll));
   carousel.addEventListener('mouseout', () => {
     autoScroll = setInterval(() => {
@@ -65,7 +64,7 @@ function initCarousel(carouselId, dotsContainerId, itemsPerPage = 3, autoScrollI
 }
 
 // ================================
-// 🖼️ Lightbox z animacją slide fade
+// 🖼️ Lightbox z płynną animacją slide/fade
 // ================================
 let currentLightboxIndex = 0;
 let currentLightboxImages = [];
@@ -76,11 +75,11 @@ function openLightbox(img) {
 
   currentLightboxImages = Array.from(carousel.querySelectorAll('img'));
   currentLightboxIndex = currentLightboxImages.indexOf(img);
-  updateLightbox();
 
   const lightbox = document.getElementById("lightbox");
   if (!lightbox) return;
 
+  updateLightbox();
   lightbox.style.display = "flex";
   lightbox.style.zIndex = "999999";
 
@@ -94,35 +93,30 @@ function closeLightbox() {
 }
 
 function updateLightbox(direction = null) {
-  const img = currentLightboxImages[currentLightboxIndex];
-  const lightboxImg = document.getElementById("lightbox-img");
+  const container = document.getElementById("lightbox");
   const counter = document.getElementById("lightbox-counter");
+  if (!container || !currentLightboxImages[currentLightboxIndex]) return;
 
-  if (!lightboxImg || !img) return;
+  let lightboxImg = container.querySelector('#lightbox-img');
 
-  // Slide fade animacja
-  const clone = lightboxImg.cloneNode();
-  clone.src = img.src;
-  clone.style.opacity = 0;
-  lightboxImg.parentNode.insertBefore(clone, lightboxImg.nextSibling);
-
-  if (direction === 'left') {
-    clone.classList.add('slideInLeft');
-    lightboxImg.classList.add('slideOutRight');
-  } else if (direction === 'right') {
-    clone.classList.add('slideInRight');
-    lightboxImg.classList.add('slideOutLeft');
+  if (!lightboxImg) {
+    lightboxImg = document.createElement('img');
+    lightboxImg.id = 'lightbox-img';
+    container.appendChild(lightboxImg);
   }
 
-  // Po animacji usuń stare zdjęcie i przypisz nowe
-  setTimeout(() => {
-    if (lightboxImg.parentNode) {
-      lightboxImg.parentNode.removeChild(lightboxImg);
-    }
-    clone.style.opacity = 1;
-    clone.classList.remove('slideInLeft', 'slideInRight');
-    clone.id = "lightbox-img";
-  }, 400);
+  // Ustaw nowy src + początkowe style
+  lightboxImg.style.opacity = 0;
+  lightboxImg.src = currentLightboxImages[currentLightboxIndex].src;
+
+  if (direction === 'left') lightboxImg.className = 'show-left';
+  else if (direction === 'right') lightboxImg.className = 'show-right';
+  else lightboxImg.className = 'show-center';
+
+  requestAnimationFrame(() => {
+    lightboxImg.className = 'show-center';
+    lightboxImg.style.opacity = 1;
+  });
 
   if (counter) {
     counter.textContent = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
@@ -141,7 +135,7 @@ function nextImage() {
 }
 
 // ================================
-// ✅ Inicjalizacja karuzel po DOMContentLoaded
+// ✅ Inicjalizacja po DOMContentLoaded
 // ================================
 document.addEventListener("DOMContentLoaded", () => {
   const frontend = initCarousel('frontend-carousel', 'carousel-dots');

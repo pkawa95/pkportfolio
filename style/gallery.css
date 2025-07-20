@@ -6,13 +6,11 @@
   margin-top: 40px;
 }
 
-/* Kontener karuzeli */
 .carousel-container {
   position: relative;
   overflow: hidden;
 }
 
-/* Karuzela */
 .carousel {
   display: flex;
   justify-content: center;
@@ -36,7 +34,6 @@
   transform: scale(1.05);
 }
 
-/* Przyciski karuzeli */
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -54,7 +51,6 @@
 .carousel-button.left { left: 10px; }
 .carousel-button.right { right: 10px; }
 
-/* Kropki karuzeli */
 .carousel-dots {
   text-align: center;
   margin-top: 10px;
@@ -100,45 +96,23 @@
   display: block;
   margin: 0 auto;
   opacity: 0;
+  transform: translateX(0);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Animacje slide fade */
-@keyframes slideOutLeft {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(-100%); opacity: 0; }
+.lightbox img.show-left {
+  opacity: 1;
+  transform: translateX(-20px);
 }
 
-@keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+.lightbox img.show-right {
+  opacity: 1;
+  transform: translateX(20px);
 }
 
-@keyframes slideOutRight {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(100%); opacity: 0; }
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-/* Klasy animacji */
-.lightbox img.slideOutLeft {
-  animation: slideOutLeft 0.4s forwards;
-}
-
-.lightbox img.slideInRight {
-  animation: slideInRight 0.4s forwards;
-}
-
-.lightbox img.slideOutRight {
-  animation: slideOutRight 0.4s forwards;
-}
-
-.lightbox img.slideInLeft {
-  animation: slideInLeft 0.4s forwards;
+.lightbox img.show-center {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Tryb jasny */
@@ -182,7 +156,6 @@ body[data-theme="light"] .lightbox img {
   background: rgba(0, 0, 0, 0.8);
 }
 
-/* Strzałki w trybie jasnym */
 body[data-theme="light"] .lightbox .lightbox-prev,
 body[data-theme="light"] .lightbox .lightbox-next,
 body[data-theme="light"] .lightbox-arrow {
