@@ -1,11 +1,10 @@
 {
     "projects": [
         {
-<<<<<<< Updated upstream
             "key": "pkportfolio",
-            "minutes": 6421,
-            "hours": 107.02,
-            "seconds": 385262
+            "minutes": 6425,
+            "hours": 107.09,
+            "seconds": 385538
         },
         {
             "key": "splash",
@@ -36,42 +35,6 @@
             "minutes": 0,
             "hours": 0.01,
             "seconds": 25
-=======
-            "key": "Work Timer",
-            "minutes": 2,
-            "hours": 0.04,
-            "seconds": 133
-        },
-        {
-            "key": "Portfolio",
-            "minutes": 3,
-            "hours": 0.06,
-            "seconds": 228
-        },
-        {
-            "key": "splash",
-            "minutes": 0,
-            "hours": 0.0,
-            "seconds": 1
-        },
-        {
-            "key": "main.py",
-            "minutes": 0,
-            "hours": 0.0,
-            "seconds": 1
-        },
-        {
-            "key": "Open Project",
-            "minutes": 0,
-            "hours": 0.0,
-            "seconds": 4
-        },
-        {
-            "key": "Delugeapp",
-            "minutes": 0,
-            "hours": 0.0,
-            "seconds": 12
->>>>>>> Stashed changes
         },
         {
             "key": "Confirm Exit",
@@ -80,7 +43,6 @@
             "seconds": 1
         },
         {
-<<<<<<< Updated upstream
             "key": "Portfolio",
             "minutes": 0,
             "hours": 0.01,
@@ -91,12 +53,12 @@
             "minutes": 7518,
             "hours": 125.3,
             "seconds": 451083
-=======
-            "key": "pkportfolio",
-            "minutes": 4,
-            "hours": 0.07,
-            "seconds": 259
->>>>>>> Stashed changes
+        },
+        {
+            "key": "projects_data.json",
+            "minutes": 0,
+            "hours": 0.0,
+            "seconds": 15
         }
     ]
 }
