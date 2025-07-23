@@ -269,8 +269,41 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch('../../addons/projects_data.json')
     .then(response => response.json())
     .then(data => {
+<<<<<<< Updated upstream
       setupTimerObserver(data, 'pkportfolio', 'portfolio-timers', 'Czas pracy nad projektem PORTFOLIO', 'portfolio-hours');
       setupTimerObserver(data, 'Philips Hue', 'philips-timers', 'Czas pracy nad projektem PHILIPS HUE', 'project-hours');
+=======
+      const portfolio = data.projects.find(p => p.key === "pkportfolio");
+      if (!portfolio) return;
+
+      const container = document.getElementById('projects-timers');
+      if (!container) return;
+
+      const tile = document.createElement('div');
+      tile.className = 'tile hidden-on-load';
+
+      tile.innerHTML = `
+        <h3>CZAS PRACY NAD PROJEKTEM PORTFOLIO</h3>
+        <div class="timer-wrapper">
+          <div><span class="timer-value portfolio-hours">0</span><span class="timer-label">h</span></div>
+          <div><span class="timer-value portfolio-minutes">0</span><span class="timer-label">min</span></div>
+        </div>
+      `;
+      container.appendChild(tile);
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tile.classList.add('show-on-scroll');
+            animateCounter('.portfolio-hours', portfolio.hours);
+            animateCounter('.portfolio-minutes', portfolio.minutes);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      observer.observe(tile);
+>>>>>>> Stashed changes
     });
 
   function setupTimerObserver(data, key, containerId, title, className) {
@@ -319,6 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+<<<<<<< Updated upstream
 document.addEventListener('scroll', () => {
   const scrollProgress = document.querySelector('.scroll-progress');
   const scrollTop = window.scrollY;
@@ -328,3 +362,5 @@ document.addEventListener('scroll', () => {
 });
 
 
+=======
+>>>>>>> Stashed changes

@@ -241,7 +241,19 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
       "Dodanie systemu użytkowników z autoryzacją JWT",
       "Rozszerzenie o odtwarzanie filmów bezpośrednio w aplikacji",
       "Wdrożenie monitoringu wykorzystania zasobów i powiadomień push"
-    ]
+    ],
+
+    wd_title : "WD MYCLOUD APP",
+    wd_desc : "<strong>WD MYCLOUD APP</strong> to w pełni autorska aplikacja desktopowa, napisana w <strong>Pythonie</strong> z wykorzystaniem <strong>PyQt6</strong>, zintegrowana z <strong> WD MYCLOUD API</strong>. Jej celem jest zarządzanie plikami w obszarze chmury domowej, aplikacja oferuje :",
+    wd_list: [
+    "przejrzysty, nowoczesny <strong>interfejs graficzny (GUI)</strong>,",
+    "podział gui na przeglądanie plików i folderów,",
+    "<strong>Upload i download</strong> plików oraz <strong> udostępnianie i tworzenie linku</strong>,",
+    "<strong>automatyczne logowanie</strong> z wykorzystanem selenium w tle,",
+    "automatyczne<strong>pobieranie informacji o chmurze</strong>.",
+    "tworzenie serwera <strong>WebDav</strong> w celu zmapowania chmury jako dysku sieciowego.",	
+  ],
+    wd_tags : "#Python, #PyQt6, #Selenium, #Automatyzacja, #Token, #zarządzanieplikami, #WEBDAVSERVER.", 
   },
 
   en: {
@@ -406,6 +418,19 @@ projects_title: "Projects",
     hardware_download_presentation: "Download presentation",
     hardware_project4_title : "Complete Project Execution — from Idea to Fully Built Workstation",
     hardware_project4_desc: "I carried out the entire workstation project on my own — starting with a thorough market analysis and careful selection of components, through purchase, assembly, and ongoing upgrades of the setup. Every decision was deliberate and well thought out — driven not by trends, but by long-term reliability and versatility. I invested in top-quality components to build a machine capable of meeting both demanding professional tasks and personal, educational, or entertainment needs for years to come. Additionally, the workstation was optimized for advanced workflows in the Adobe Creative Suite, allowing me to efficiently edit photos, produce videos, and complete complex multimedia projects.",
+    
+    wd_title: "WD MYCLOUD APP",
+    wd_desc: "<strong>WD MYCLOUD APP</strong> is a fully custom desktop application written in <strong>Python</strong> using <strong>PyQt6</strong>, integrated with the <strong>WD MYCLOUD API</strong>. Its purpose is to manage files within the home cloud environment. The application offers:",
+    wd_list: [
+    "a clear, modern <strong>graphical user interface (GUI)</strong>,",
+    "GUI split into file and folder browsing,",
+    "<strong>File upload and download</strong>, as well as <strong>sharing and link creation</strong>,",
+    "<strong>Automatic login</strong> using Selenium in the background,",
+    "automatic <strong>retrieval of cloud information</strong>,",
+    "creation of a <strong>WebDAV server</strong> to map the cloud as a network drive."
+  ],
+  
+  wd_tags: "#Python, #PyQt6, #Selenium, #Automation, #Token, #FileManagement, #WEBDAVSERVER.",
     spec_processor: "Processor",
     spec_gpu: "Graphics Card",
     spec_ram: "RAM Memory",
@@ -416,6 +441,7 @@ projects_title: "Projects",
     spec_case: "Case",
     spec_cpu_cooling: "CPU Cooling",
     spec_additional_cooling: "Additional Cooling",
+<<<<<<< Updated upstream
     huecontroller_title: "Hue Controller",
     huecontroller_intro: "Hue Controller — a desktop application for managing Philips Hue lighting, providing full control over lights, groups, and sensors via a modern interface.",
     huecontroller_desc2: "Supports dynamic brightness, color changes, and automatic bridge discovery on the local network.",
@@ -477,6 +503,8 @@ projects_title: "Projects",
 
 
 
+=======
+>>>>>>> Stashed changes
     piotrflix_future_title: "Development plans",
     piotrflix_future_list: [
       "Add user system with JWT authorization",
@@ -485,6 +513,9 @@ projects_title: "Projects",
     ]
     },
 }
+
+
+
 
 window.translations = {
   pl: {
