@@ -158,6 +158,7 @@
 .category-desktop { background-color: #6f42c1; }
 .category-pwa { background-color: #e83e8c; }
 .category-python { background-color: #fd7e14; }
+.category-wpf { background-color: #a200ff; }
 
 @keyframes zoomInFade {
   0% {

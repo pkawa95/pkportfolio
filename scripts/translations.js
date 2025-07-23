@@ -234,7 +234,8 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     carousel_project_philipshue_desc: "Aplikacja do sterowania inteligentnym oświetleniem marki Philips.",
     carousel_check_details: "Sprawdź szczegóły",
 
-      wdcloud_title: "WD Cloud Dashboard – Zaawansowana Platforma WebDAV",
+    wdcloud_title: "WD Cloud Dashboard – Zaawansowana Platforma WebDAV",
+    carousel_project_WD_desc : "Aplikacja do zarządzania chmurą WD MyCloud z obsługą WebDAV.",
   menu_logo: "PK Portfolio",
   menu_home: "Strona główna",
   menu_projects: "Projekty",
@@ -555,6 +556,7 @@ projects_title: "Projects",
       "Implement resource monitoring and push notifications",
     ],
 
+  carousel_project_WD_desc: "An application for managing WD MyCloud cloud storage with WebDAV support.",
     // TITLE & MENU
   wdcloud_title: "WD Cloud Dashboard – Advanced WebDAV Integration Platform",
   menu_logo: "PK Portfolio",
