@@ -358,3 +358,10 @@ document.addEventListener('scroll', () => {
 });
 
 
+(function setFavicon() {
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png'; // lub 'image/x-icon' jeśli .ico
+  link.href = 'img/icons/favicon.png'; // ścieżka do pliku favicon
+  document.head.appendChild(link);
+})();
