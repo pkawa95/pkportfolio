@@ -985,3 +985,18 @@ body.dark .code-snippet-box {
     padding: 1rem 0.5rem;
   }
 }
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px 12px;
+  }
+
+  h1, h2, h3 {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+  }
+
+  p, li {
+    font-size: 0.95rem;
+  }
+}
+
