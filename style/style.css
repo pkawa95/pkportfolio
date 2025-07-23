@@ -979,3 +979,9 @@ body.dark .code-snippet-box {
     max-width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .frontend-description {
+    padding: 1rem 0.5rem;
+  }
+}
