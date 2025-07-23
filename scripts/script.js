@@ -269,10 +269,8 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch('../../addons/projects_data.json')
     .then(response => response.json())
     .then(data => {
-<<<<<<< Updated upstream
       setupTimerObserver(data, 'pkportfolio', 'portfolio-timers', 'Czas pracy nad projektem PORTFOLIO', 'portfolio-hours');
       setupTimerObserver(data, 'Philips Hue', 'philips-timers', 'Czas pracy nad projektem PHILIPS HUE', 'project-hours');
-=======
       const portfolio = data.projects.find(p => p.key === "pkportfolio");
       if (!portfolio) return;
 
@@ -303,7 +301,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }, { threshold: 0.4 });
 
       observer.observe(tile);
->>>>>>> Stashed changes
     });
 
   function setupTimerObserver(data, key, containerId, title, className) {
@@ -352,7 +349,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-<<<<<<< Updated upstream
 document.addEventListener('scroll', () => {
   const scrollProgress = document.querySelector('.scroll-progress');
   const scrollTop = window.scrollY;
@@ -362,5 +358,3 @@ document.addEventListener('scroll', () => {
 });
 
 
-=======
->>>>>>> Stashed changes

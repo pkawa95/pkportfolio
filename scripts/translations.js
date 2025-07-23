@@ -441,7 +441,6 @@ projects_title: "Projects",
     spec_case: "Case",
     spec_cpu_cooling: "CPU Cooling",
     spec_additional_cooling: "Additional Cooling",
-<<<<<<< Updated upstream
     huecontroller_title: "Hue Controller",
     huecontroller_intro: "Hue Controller — a desktop application for managing Philips Hue lighting, providing full control over lights, groups, and sensors via a modern interface.",
     huecontroller_desc2: "Supports dynamic brightness, color changes, and automatic bridge discovery on the local network.",
@@ -499,12 +498,6 @@ projects_title: "Projects",
     future_7: "OTA update support for dedicated devices",
 
     github_button: "Source Code on GitHub",
-
-
-
-
-=======
->>>>>>> Stashed changes
     piotrflix_future_title: "Development plans",
     piotrflix_future_list: [
       "Add user system with JWT authorization",
