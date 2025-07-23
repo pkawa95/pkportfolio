@@ -233,8 +233,56 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     carousel_see_project: "Zobacz projekt",
     carousel_project_philipshue_desc: "Aplikacja do sterowania inteligentnym oświetleniem marki Philips.",
     carousel_check_details: "Sprawdź szczegóły",
-    
 
+      wdcloud_title: "WD Cloud Dashboard – Zaawansowana Platforma WebDAV",
+  menu_logo: "PK Portfolio",
+  menu_home: "Strona główna",
+  menu_projects: "Projekty",
+  menu_about: "O mnie",
+  menu_contact: "Kontakt",
+
+  // Nagłówek i opis projektu
+  wdcloud_heading: "WD Cloud Dashboard – Pełna Integracja z WebDAV i API chmurowym",
+  wdcloud_desc1: "Zaawansowana aplikacja desktopowa pozwalająca użytkownikom na logowanie do kont WD MyCloud, zarządzanie plikami i montowanie WebDAV.",
+  wdcloud_desc2: "Dzięki wykorzystaniu PyQt, Selenium, Auth0 i WebDAV, użytkownik ma dostęp do prywatnej chmury w prostym i bezpiecznym środowisku graficznym.",
+
+  // Backend
+  wdcloud_backend_title: "Backend – Architektura i Technologie",
+  wdcloud_backend_list: [
+    "Autoryzacja OAuth2 z wykorzystaniem Auth0 i Selenium",
+    "Dynamiczne pobieranie tokenów i ID urządzeń",
+    "Obsługa protokołu WebDAV przez WsgiDAV",
+    "Zarządzanie plikami – pobieranie, przesyłanie, usuwanie",
+    "Bezpośrednia komunikacja z API MyCloud przez HTTPS",
+    "Bezpieczne szyfrowanie danych logowania lokalnie (base64)",
+  ],
+  wdcloud_backend_code1_title: "Fragment kodu: automatyczne pobieranie tokenu OAuth",
+  wdcloud_backend_code1: `code = current_url.split("code=")[1].split("&")[0]
+access_token = requests.post(...).json()["access_token"]`,
+
+  wdcloud_backend_code2_title: "Fragment kodu: inicjacja WebDAV przez WsgiDAV",
+  wdcloud_backend_code2: `provider = WDProvider(token, device_url)
+app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
+
+  // Frontend
+  wdcloud_frontend_title: "Frontend – Nowoczesny Interfejs Użytkownika",
+  wdcloud_frontend_p1: "Aplikacja desktopowa została zaprojektowana z użyciem PyQt6 – nowoczesnego frameworka GUI. Umożliwia intuicyjne logowanie, eksplorację folderów oraz zarządzanie plikami w chmurze WD.",
+  wdcloud_frontend_p2: "Responsywny interfejs graficzny z paskiem postępu, automatycznym zapisem sesji, wyborem profili i integracją z profilem użytkownika. Obsługa drag & drop, lightbox i podglądu zawartości.",
+
+  // Wideo
+  wdcloud_video_title: "Demo wideo – pełny przebieg logowania i montowania dysku",
+  wdcloud_video_fallback: "Twoja przeglądarka nie wspiera tagu wideo.",
+
+  // Przyszłość
+  wdcloud_future_title: "Plany rozwoju",
+  wdcloud_future_list: [
+    "Wersja mobilna z natywnym WebDAV",
+    "Tryb offline (cache plików lokalnie)",
+    "Dwuskładnikowe logowanie (2FA)",
+    "Synchronizacja folderów z systemem plików",
+    "Zdalne zarządzanie użytkownikami urządzenia",
+    "Motywy interfejsu (ciemny/jasny)",
+  ],
 
     piotrflix_future_title: "Plany rozwoju",
     piotrflix_future_list: [
@@ -254,6 +302,8 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     "tworzenie serwera <strong>WebDav</strong> w celu zmapowania chmury jako dysku sieciowego.",	
   ],
     wd_tags : "#Python, #PyQt6, #Selenium, #Automatyzacja, #Token, #zarządzanieplikami, #WEBDAVSERVER.", 
+
+    
   },
 
   en: {
@@ -502,10 +552,62 @@ projects_title: "Projects",
     piotrflix_future_list: [
       "Add user system with JWT authorization",
       "Extend to allow direct movie playback in app",
-      "Implement resource monitoring and push notifications"
-    ]
-    },
-}
+      "Implement resource monitoring and push notifications",
+    ],
+
+    // TITLE & MENU
+  wdcloud_title: "WD Cloud Dashboard – Advanced WebDAV Integration Platform",
+  menu_logo: "PK Portfolio",
+  menu_home: "Home",
+  menu_projects: "Projects",
+  menu_about: "About Me",
+  menu_contact: "Contact",
+
+  // HEADER & INTRO
+  wdcloud_heading: "WD Cloud Dashboard – Full Integration with WebDAV and Cloud API",
+  wdcloud_desc1: "An advanced desktop application allowing users to log into their WD MyCloud account, manage files, and mount them via WebDAV.",
+  wdcloud_desc2: "Thanks to the use of PyQt, Selenium, Auth0, and WebDAV, users get secure and intuitive access to their private cloud.",
+
+  // BACKEND SECTION
+  wdcloud_backend_title: "Backend – Architecture & Technologies",
+  wdcloud_backend_list: [
+    "OAuth2 authorization using Auth0 and Selenium",
+    "Dynamic access token and device ID acquisition",
+    "WebDAV protocol handling with WsgiDAV",
+    "File operations – upload, download, delete",
+    "Direct API communication with MyCloud over HTTPS",
+    "Secure local credential encryption (base64)"
+  ],
+  wdcloud_backend_code1_title: "Code Sample: Automatic OAuth Token Fetch",
+  wdcloud_backend_code1: `code = current_url.split("code=")[1].split("&")[0]
+access_token = requests.post(...).json()["access_token"]`,
+
+  wdcloud_backend_code2_title: "Code Sample: Starting WebDAV via WsgiDAV",
+  wdcloud_backend_code2: `provider = WDProvider(token, device_url)
+app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
+
+  // FRONTEND SECTION
+  wdcloud_frontend_title: "Frontend – Modern User Interface",
+  wdcloud_frontend_p1: "The desktop application was built with PyQt6 – a modern GUI framework. It enables login, folder exploration, and file management in the WD cloud.",
+  wdcloud_frontend_p2: "The interface includes progress bars, session memory, profile support, drag & drop, and lightbox previews – all in a responsive and polished design.",
+
+  // VIDEO DEMO
+  wdcloud_video_title: "Video Demo – Full Flow of Login and Drive Mounting",
+  wdcloud_video_fallback: "Your browser does not support the video tag.",
+
+  // FUTURE PLANS
+  wdcloud_future_title: "Future Plans",
+  wdcloud_future_list: [
+    "Mobile app version with native WebDAV",
+    "Offline mode with local file caching",
+    "Two-factor authentication (2FA)",
+    "File system folder synchronization",
+    "Remote user/device management",
+    "Light/Dark UI themes toggle",
+      ],
+    }
+  }
+
 
 
 

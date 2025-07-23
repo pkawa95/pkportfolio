@@ -951,3 +951,31 @@ body.dark .code-snippet-box {
   margin-top: 10px;
 }
 
+.backend-description .screenshot {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+
+.backend-description h2 {
+  text-align: center;
+}
+
+.video-demo video {
+  width: 100%;
+  max-width: 960px; /* maksymalna szerokość */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px; /* opcjonalnie, dla wyglądu */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* cień, opcjonalnie */
+}
+
+@media (max-width: 768px) {
+  .video-demo video {
+    max-width: 100%;
+  }
+}

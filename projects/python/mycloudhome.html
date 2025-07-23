@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="wdcloud_title">WD Cloud Dashboard – Zaawansowana Platforma WebDAV</title>
+
+  <link rel="stylesheet" href="../../style/style.css" />
+  <link rel="stylesheet" href="../../style/gallery.css" />
+  <link rel="stylesheet" href="../../style/video.css" />
+  <link rel="stylesheet" href="../../addons/carousel/carousel.css"/>
+
+  <script defer src="../../scripts/translations.js"></script>
+  <script defer src="../../scripts/script.js"></script>
+  <script defer src="../../scripts/gallery.js"></script>
+  <script defer src="../../scripts/video.js"></script>
+  <script defer src="../../addons/carousel/carousel.js"></script>
+    <style>
+    .backend-description img.screenshot {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .backend-description img.screenshot {
+        width: 90%;
+      }
+    }
+    ul.hidden-on-load li {
+      padding-left: 1.5em;
+      text-indent: -1.5em;
+    }
+    .list-indented {
+      margin-left: 2em;
+    }
+    .lightbox {
+      position: fixed;
+      display: none;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      display: block;
+      margin: 0 auto;
+    }
+    .lightbox .close, .lightbox-prev, .lightbox-next {
+      position: absolute;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .lightbox .close {
+      top: 10px;
+      right: 20px;
+    }
+    .lightbox-prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .lightbox-next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <!-- MENU -->
+  <header>
+<div id="menu-placeholder"></div>
+  </header>
+
+  <main class="project-details-page">
+    <section class="project-detail hidden-on-load fade-zoom">
+      <img src="../../img/icons/mycloud.jpg" alt="WD Cloud Dashboard Logo" class="app-logo" />
+      <div class="section-separator animate"></div>
+    </section>
+
+    <section class="project-description hidden-on-load fade-zoom">
+      <h1 data-i18n="wdcloud_heading">WD Cloud Dashboard – Pełna Integracja z WebDAV i API chmurowym</h1>
+      <p data-i18n="wdcloud_desc1" class="hidden-on-load fade-up"></p>
+      <p data-i18n="wdcloud_desc2" class="hidden-on-load fade-up" data-delay="0.1s"></p>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <section class="backend-description hidden-on-load fade-up">
+      <h2 data-i18n="wdcloud_backend_title">Backend – Architektura i Technologie</h2>
+      <img src="../../img/screenshots/WD/login.png" alt="Schemat backendu" class="screenshot"/>
+
+      <ul data-i18n-list="wdcloud_backend_list"></ul>
+
+      <h3 data-i18n="wdcloud_backend_code1_title">Fragment kodu: automatyczne pobieranie tokenu OAuth</h3>
+      <div class="code-snippet-box hidden-on-load fade-up">
+        <code data-i18n="wdcloud_backend_code1"></code>
+      </div>
+
+      <h3 data-i18n="wdcloud_backend_code2_title">Fragment kodu: inicjacja WebDAV przez WsgiDAV</h3>
+      <div class="code-snippet-box hidden-on-load fade-up" data-delay="0.2s">
+        <code data-i18n="wdcloud_backend_code2"></code>
+      </div>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <section class="frontend-description hidden-on-load fade-zoom">
+      <h2 data-i18n="wdcloud_frontend_title">Frontend – Nowoczesny Interfejs Użytkownika</h2>
+      <p data-i18n="wdcloud_frontend_p1"></p>
+
+      <div class="carousel-container hidden-on-load fade-up">
+        <button class="carousel-button left" onclick="scrollCarousel(-1)">&#10094;</button>
+        <div class="carousel" id="frontend-carousel">
+          <img src="../../img/screenshots/WD/ui1.png" alt="UI 1" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/WD/ui2.png" alt="UI 2" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/WD/ui3.png" alt="UI 3" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/WD/ui4.png" alt="UI 4" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/WD/ui5.png" alt="UI 4" onclick="openLightbox(this)">
+          <img src="../../img/screenshots/WD/ui6.png" alt="UI 4" onclick="openLightbox(this)">
+        </div>
+        <button class="carousel-button right" onclick="scrollCarousel(1)">&#10095;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+
+      <p data-i18n="wdcloud_frontend_p2" class="hidden-on-load fade-up" data-delay="0.1s"></p>
+    </section>
+<div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+  <img id="lightbox-img" src="" alt="Powiększony obraz">
+  <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+  <div id="lightbox-counter" class="lightbox-counter">1 / 6</div>
+</div>
+
+
+    <div class="section-separator animate"></div>
+
+<section class="video-demo hidden-on-load fade-zoom">
+  <h2 data-i18n="wdcloud_video_title">Demo wideo – pełny przebieg logowania i montowania dysku</h2>
+  <video controls>
+    <source src="../../videos/projects/WD/wdvideo.mp4" type="video/mp4">
+    <span data-i18n="wdcloud_video_fallback">Twoja przeglądarka nie wspiera tagu wideo.</span>
+  </video>
+</section>
+
+
+    <div class="section-separator animate"></div>
+
+    <section class="future-plans hidden-on-load fade-up">
+      <h2 data-i18n="wdcloud_future_title">Plany rozwoju</h2>
+      <ul data-i18n-list="wdcloud_future_list"></ul>
+    </section>
+
+    <div class="section-separator animate"></div>
+
+    <a href="https://github.com/pkawa95/WDCloudDashboard" target="_blank" class="github-floating-button hidden-on-load fade-zoom">
+      <img src="../../img/icons/github.svg" alt="GitHub" />
+      <span data-i18n="wdcloud_github_btn">WD Cloud Dashboard</span>
+    </a>
+  </main>
+  <link rel="stylesheet" href="/addons/carousel/carousel.css">
+<script src="/addons/carousel/carousel.js" defer></script>
+<div id="carousel-placeholder"></div>
+
+  <!-- FOOTER -->
+<div id="footer-placeholder"></div>
+</body>
+</html>
