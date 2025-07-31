@@ -234,6 +234,11 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     carousel_project_philipshue_desc: "Aplikacja do sterowania inteligentnym oświetleniem marki Philips.",
     carousel_check_details: "Sprawdź szczegóły",
 
+    comingsoon_title: "Zawartość w przygotowaniu - Piotr Kawa",
+    comingsoon_h1: "🔧 Zawartość w trakcie przygotowania",
+    comingsoon_p: "Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>Zapraszam do odwiedzin w najbliższym czasie!",
+    comingsoon_back: "← Powrót do strony głównej",
+
     wdcloud_title: "WD Cloud Dashboard – Zaawansowana Platforma WebDAV",
     carousel_project_WD_desc : "Aplikacja do zarządzania chmurą WD MyCloud z obsługą WebDAV.",
   menu_logo: "PK Portfolio",
@@ -303,8 +308,10 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     "tworzenie serwera <strong>WebDav</strong> w celu zmapowania chmury jako dysku sieciowego.",	
   ],
     wd_tags : "#Python, #PyQt6, #Selenium, #Automatyzacja, #Token, #zarządzanieplikami, #WEBDAVSERVER.", 
-
-    
+    comingsoon_title: "Zawartość w przygotowaniu - Piotr Kawa",
+    comingsoon_h1: "🔧 Zawartość w trakcie przygotowania",
+    comingsoon_p: "Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>Zapraszam do odwiedzin w najbliższym czasie!",
+    comingsoon_back: "← Powrót do strony głównej"
   },
 
   en: {
@@ -530,6 +537,11 @@ projects_title: "Projects",
     carousel_project_philipshue_desc: "App for controlling Philips smart lighting",
     carousel_check_details: "Check details",
 
+    comingsoon_title: "Content Under Construction - Piotr Kawa",
+    comingsoon_h1: "🔧 Content Under Preparation",
+    comingsoon_p: "This section is still under construction. New content will be available here soon.<br>Please check back again soon!",
+    comingsoon_back: "← Back to Home Page",
+
     code_title: "Code Snippets",
     code_desc1: "Automatic bridge detection and connection initialization.",
     code_desc2: "Updating group tiles after sync with the bridge.",
@@ -608,6 +620,7 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     "Light/Dark UI themes toggle",
       ],
     }
+    
   }
 
 

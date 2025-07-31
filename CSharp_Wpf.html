@@ -3,25 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Piotr Kawa - Portfolio</title>
-
-  <!-- STYLE -->
+  <title data-i18n="comingsoon_title">Zawartość w przygotowaniu - Piotr Kawa</title>
   <link rel="stylesheet" href="style/style.css" />
-
-  <!-- SCRIPTS -->
   <script defer src="scripts/translations.js"></script>
   <script defer src="scripts/script.js"></script>
+  <style>
+    .coming-soon {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .coming-soon h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      animation: bounceWrench 2s ease-in-out infinite;
+    }
+    @keyframes bounceWrench {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .coming-soon p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+  </style>
 </head>
 <body>
-  <!-- 📌 MENU z menu.html -->
-  <div id="menu-placeholder"></div>
+  <header>
+    <div id="menu-placeholder"></div>
+  </header>
 
-  <!-- ✅ GŁÓWNA TREŚĆ -->
   <main>
-    <section class="intro hidden-on-load">
-      <h1 data-i18n="intro_h1">Portfolio – Piotr Kawa</h1>
-      <p data-i18n="intro_p1">Przykładowy opis…</p>
+    <section class="coming-soon">
+      <h1 data-i18n="comingsoon_h1">🔧 Zawartość w trakcie przygotowania</h1>
+      <p data-i18n="comingsoon_p">
+        Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>
+        Zapraszam do odwiedzin w najbliższym czasie!
+      </p>
+      <a href="index.html" class="download-btn" data-i18n="comingsoon_back">
+        ← Powrót do strony głównej
+      </a>
     </section>
   </main>
+
+  <footer>
+    <div id="footer-placeholder"></div>
+  </footer>
+
+  <script defer src="scripts/script.js"></script>
 </body>
 </html>
