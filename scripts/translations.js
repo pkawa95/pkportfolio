@@ -246,6 +246,7 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
   menu_projects: "Projekty",
   menu_about: "O mnie",
   menu_contact: "Kontakt",
+  last_update: "Ostatnia aktualizacja - 31.07.2025",
 
   // Nagłówek i opis projektu
   wdcloud_heading: "WD Cloud Dashboard – Pełna Integracja z WebDAV i API chmurowym",
@@ -321,6 +322,7 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     about: "About",
     docs: "Documents",
     contact: "Contact",
+    last_update: "Last update - 31.07.2025",
     intro_h1: "Portfolio – Piotr Kawa",
     intro_p1:
       "<strong>Piotr Kawa</strong> – a second-year Computer Science student specializing in Software Development, with a GPA of 5.0. A graduate of a technical high school in computer networking, having achieved 100% in the practical part of the vocational exam.",

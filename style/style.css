@@ -1008,3 +1008,24 @@ body.dark .code-snippet-box {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
 }
+
+
+
+
+.navbar-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* żeby trzymało się lewej strony */
+}
+
+.site-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.last-update {
+  font-size: 0.75rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-top: 2px;
+}
