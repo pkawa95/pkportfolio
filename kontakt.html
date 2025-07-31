@@ -9,24 +9,8 @@
   <script defer src="scripts/translations.js"></script>
   <script defer src="scripts/script.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init('IosHMidg0Tm5mVG2K');  // Twój PUBLIC KEY
-
-    document.getElementById('contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      emailjs.sendForm('service_tkda1ew', 'template_po3d9ev', this)
-        .then(function () {
-          alert('Wiadomość została wysłana!');
-          document.getElementById('contact-form').reset();
-        }, function (error) {
-          alert('Błąd podczas wysyłania wiadomości: ' + JSON.stringify(error));
-        });
-    });
-  });
-</script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -47,37 +31,47 @@
         Zapraszam do kontaktu w sprawie współpracy lub możliwości zatrudnienia...
       </p>
 
+      <!-- Formularz kontaktowy -->
       <form id="contact-form" class="contact-form">
         <input type="text" name="from_name" placeholder="Imię i nazwisko" data-i18n-placeholder="contact_form_name" required />
         <input type="email" name="reply_to" placeholder="Adres e-mail" data-i18n-placeholder="contact_form_email" required />
         <textarea name="message" rows="5" placeholder="Wiadomość..." data-i18n-placeholder="contact_form_message" required></textarea>
         <button type="submit" data-i18n="contact_form_submit">Wyślij</button>
       </form>
+
+      <!-- Miejsce na komunikat -->
+      <p id="form-status" style="margin-top:15px; font-weight:600;"></p>
     </section>
   </main>
-  <a data-target="kontakt.html" data-i18n="contact">Kontakt</a>
 
   <div id="footer-placeholder"></div>
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- Obsługa EmailJS -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       emailjs.init('IosHMidg0Tm5mVG2K'); // Twój PUBLIC KEY
 
-      document.getElementById('contact-form').addEventListener('submit', function (e) {
+      const form = document.getElementById('contact-form');
+      const statusMsg = document.getElementById('form-status');
+
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        statusMsg.textContent = "Wysyłanie wiadomości...";
+        statusMsg.style.color = "var(--accent-color)";
 
         emailjs.sendForm('service_tkda1ew', 'template_po3d9ev', this)
           .then(function () {
-            alert('Wiadomość została wysłana!');
-            e.target.reset();
+            statusMsg.textContent = "✅ Wiadomość została wysłana!";
+            statusMsg.style.color = "green";
+            form.reset();
           }, function (error) {
-            alert('Błąd podczas wysyłania wiadomości: ' + JSON.stringify(error));
+            statusMsg.textContent = "❌ Błąd podczas wysyłania wiadomości. Spróbuj ponownie.";
+            statusMsg.style.color = "red";
+            console.error("EmailJS error:", error);
           });
       });
     });
   </script>
 </body>
-
 </html>
