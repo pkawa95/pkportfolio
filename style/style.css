@@ -1029,3 +1029,23 @@ body.dark .code-snippet-box {
   opacity: 0.7;
   margin-top: 2px;
 }
+
+[data-i18n="about_story"] p {
+  text-indent: 2em; /* szerokość wcięcia, np. 2em ≈ 2 znaki M */
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.map-container {
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.lightwidget-widget {
+  width: 100%;
+  height: 800px; /* dopasuj */
+  border: 0;
+  overflow: hidden;
+}
+
