@@ -365,3 +365,39 @@ document.addEventListener('scroll', () => {
   link.href = 'img/icons/favicon.png'; // ścieżka do pliku favicon
   document.head.appendChild(link);
 })();
+
+function formatParagraphs(text) {
+  return text
+    .trim()
+    .split(/\n\s*\n/) // puste linie jako separator akapitów
+    .map(p => `<p>${p.trim()}</p>`)
+    .join('');
+}
+
+// === Tabelowe taby „Zainteresowania” ===
+function initInterestTableTabs() {
+  const bar = document.getElementById('interest-tabs-table');
+  if (!bar) return;
+
+  const tabs   = bar.querySelectorAll('.tab-cell');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  function activate(name) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === name));
+  }
+
+  tabs.forEach(t => {
+    t.addEventListener('click', () => activate(t.dataset.tab));
+  });
+
+  // start: aktywny z HTML lub pierwszy
+  const initial = bar.querySelector('.tab-cell.active')?.dataset.tab || tabs[0]?.dataset.tab;
+  if (initial) activate(initial);
+}
+
+// podłącz do Twoich hooków
+document.addEventListener('DOMContentLoaded', initInterestTableTabs);
+document.addEventListener('languageChanged', () => {
+  // same teksty – aktywny tab pozostaje bez zmian
+});

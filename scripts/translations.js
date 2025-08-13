@@ -246,7 +246,7 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
   menu_projects: "Projekty",
   menu_about: "O mnie",
   menu_contact: "Kontakt",
-  last_update: "Ostatnia aktualizacja - 31.07.2025",
+  last_update: "Ostatnia aktualizacja - 14.08.2025",
 
   // Nagłówek i opis projektu
   wdcloud_heading: "WD Cloud Dashboard – Pełna Integracja z WebDAV i API chmurowym",
@@ -270,6 +270,75 @@ access_token = requests.post(...).json()["access_token"]`,
   wdcloud_backend_code2_title: "Fragment kodu: inicjacja WebDAV przez WsgiDAV",
   wdcloud_backend_code2: `provider = WDProvider(token, device_url)
 app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
+
+    //O MNIE
+    about_title_page: "O mnie - Piotr Kawa",  
+    about_name : "Piotr Kawa",
+about_story: `
+<p>Pochodzę z niewielkiej miejscowości <strong>Nowe (86-170)</strong> w <strong>województwie kujawsko-pomorskim</strong>.  
+Ukończyłem <strong>Technikum Informatyczne w ZSP Nowe (2011–2015)</strong>, osiągając <strong>100% z egzaminu praktycznego</strong>.  
+Pasja do informatyki towarzyszy mi od czasów, gdy w moim mieście pojawiły się pierwsze kafejki internetowe.  
+Z informatyką łączą mnie nie tylko studia, ale i zamiłowanie do ciągłego poszerzania wiedzy – od <strong>projektów programistycznych</strong> po <strong>hardware</strong>.</p>
+
+<p>Ze względu na ograniczony rynek IT w małej miejscowości, początkowo rozwijałem karierę w innych branżach.  
+Przez <strong>5 lat</strong> pracowałem w <strong>Media Expert</strong>, gdzie wykorzystywałem swoją wiedzę techniczną w sprzedaży sprzętu i poszerzałem ją o <strong>urządzenia smart home</strong> i <strong>IoT</strong>.  
+Następnie <strong>3 lata</strong> w <strong>Jeronimo Martins (Biedronka)</strong> pełniłem funkcję <strong>Zastępcy Kierownika Sklepu</strong>, koordynując pracę ponad <strong>25-osobowego zespołu</strong>, obsługując <strong>system SAP</strong>, kasy fiskalne i samoobsługowe, oraz odpowiadając za stany magazynowe, zamówienia i zwroty.</p>
+
+<p>Ukończyłem <strong>2. rok studiów informatycznych</strong> na specjalności <strong>Programowanie</strong>, ze średnią <strong>5.0</strong>, otrzymując <strong>stypendium rektora</strong>.  
+Posiadam również doświadczenie praktyczne z <strong>płatnego stażu wakacyjnego</strong> w firmie <strong>GECKONET</strong>, gdzie zajmowałem się <strong>montażem instalacji radiowych</strong>, <strong>usuwaniem usterek</strong>, <strong>konfiguracją sprzętu</strong> oraz <strong>rozbudową infrastruktury</strong>.</p>
+
+<p>Jestem osobą <strong>komunikatywną</strong>, <strong>rzetelną</strong>, potrafię działać pod <strong>presją czasu</strong> i organizować pracę samodzielnie.  
+<strong>8 lat w branży handlowej</strong> nauczyło mnie <strong>cierpliwości</strong>, <strong>empatii</strong> i <strong>skutecznej komunikacji z klientem</strong>.  
+Od <strong>maja 2024 roku</strong> mieszkam oraz kontynuuję <strong>studia w Gdyni</strong>, rozwijając swoje kompetencje w środowisku dynamicznego rynku IT.  
+Obecnie <strong>poszukuję pracy w wyuczonym zawodzie</strong>, aby w pełni wykorzystać zdobyte umiejętności i wiedzę.</p>
+`,
+about_story2: `
+<p>&emsp;Posiadam <strong>prawo jazdy kat. B</strong> oraz własny <strong>samochód</strong>, co czyni mnie w pełni <strong>mobilnym</strong> i gotowym do pracy w różnych lokalizacjach.</p>
+`,
+
+
+
+
+about_interests_title : "Zainteresowania",
+about_interests_text : `
+Moje zainteresowania obejmują inżynierię oprogramowania, automatyzację procesów, 
+technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozwiązania sprzętowe.
+`,
+
+  about_interests_title: "Zainteresowania",
+
+  // etykiety kart
+  interests_tab_photo:  "Fotografia",
+  interests_tab_drone:  "Dron",
+  interests_tab_prog:   "Programowanie",
+  interests_tab_iot:    "IoT",
+  interests_tab_travel: "Podróże",
+  interests_tab_social: "UrbanExploring",
+
+  // panele
+  interests_photo_title: "Fotografia & Film",
+  interests_photo_text:
+    "Fotografuję i montuję filmy — postprodukcja w <strong>Adobe Photoshop</strong>, <strong>Lightroom</strong>, <strong>Premiere Pro</strong> i <strong>After Effects</strong>.",
+
+  interests_drone_title: "Zdjęcia i filmowanie dronem",
+  interests_drone_text:
+    "Ujęcia lotnicze, timelapse’y oraz krótkie filmy podróżnicze z naciskiem na stabilizację i kompozycję.",
+
+  interests_prog_title: "Programowanie",
+  interests_prog_text:
+    "<strong>Python</strong> + start w <strong>.NET</strong>; integracje <strong>API</strong>, projekty <strong>IoT</strong>, aplikacje <strong>PWA</strong> i rozwiązania w <strong>chmurze</strong>.",
+
+  interests_iot_title: "Smart Home i IoT",
+  interests_iot_text:
+    "Konfiguruję inteligentne oświetlenie, automatyzacje i integracje urządzeń. Łączę część sprzętową z aplikacjami i panelami sterującymi.",
+
+  interests_travel_title: "Podróże",
+  interests_travel_text:
+    "Łączę podróżowanie z <em>urban exploringiem</em> i fotografią dokumentalną; planuję osadzanie klipów z YouTube oraz galerie.",
+
+  interests_social_title: "UrbanExproing",
+  interests_social_text:
+    "Profil z urbexem i podróżami; tutaj mogę osadzić feed (np. LightWidget) w formie siatki lub lightboxa.",
 
   // Frontend
   wdcloud_frontend_title: "Frontend – Nowoczesny Interfejs Użytkownika",
@@ -312,7 +381,7 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     comingsoon_title: "Zawartość w przygotowaniu - Piotr Kawa",
     comingsoon_h1: "🔧 Zawartość w trakcie przygotowania",
     comingsoon_p: "Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>Zapraszam do odwiedzin w najbliższym czasie!",
-    comingsoon_back: "← Powrót do strony głównej"
+    comingsoon_back: "← Powrót do strony głównej",
   },
 
   en: {
@@ -322,7 +391,7 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     about: "About",
     docs: "Documents",
     contact: "Contact",
-    last_update: "Last update - 31.07.2025",
+    last_update: "Last update - 14.08.2025",
     intro_h1: "Portfolio – Piotr Kawa",
     intro_p1:
       "<strong>Piotr Kawa</strong> – a second-year Computer Science student specializing in Software Development, with a GPA of 5.0. A graduate of a technical high school in computer networking, having achieved 100% in the practical part of the vocational exam.",
@@ -404,6 +473,73 @@ projects_title: "Projects",
       "full media library management with auto-removal of watched content."
     ],
 
+        about_title_page : "About Me - Piotr Kawa",
+    about_name : "Piotr Kawa",
+about_story: `
+<p>I come from the small town of <strong>Nowe (86-170)</strong> in the <strong>Kuyavian-Pomeranian Voivodeship</strong>.  
+I graduated from the <strong>IT Technical School at ZSP Nowe (2011–2015)</strong>, achieving a <strong>100% score in the practical exam</strong>.  
+My passion for IT has been with me since the time the first internet cafés appeared in my town.  
+For me, IT is not only about studies but also a passion for constantly expanding my knowledge — from <strong>programming projects</strong> to <strong>hardware</strong>.</p>
+
+<p>Due to the limited IT job market in a small town, I initially developed my career in other industries.  
+For <strong>5 years</strong>, I worked at <strong>Media Expert</strong>, where I used my technical knowledge in sales and expanded it to <strong>smart home</strong> and <strong>IoT</strong> devices.  
+Later, for <strong>3 years</strong> at <strong>Jeronimo Martins (Biedronka)</strong>, I served as <strong>Deputy Store Manager</strong>, coordinating a team of over <strong>25 people</strong>, operating the <strong>SAP system</strong>, cash registers and self-checkouts, and managing stock levels, orders, and returns.</p>
+
+<p>I completed my <strong>2nd year of IT studies</strong> in the <strong>Programming</strong> specialization with a GPA of <strong>5.0</strong>, receiving the <strong>rector’s scholarship</strong>.  
+I also have hands-on experience from a <strong>paid summer internship</strong> at <strong>GECKONET</strong>, where I was responsible for <strong>installing radio networks</strong>, <strong>troubleshooting</strong>, <strong>configuring equipment</strong>, and <strong>expanding infrastructure</strong>.</p>
+
+<p>I am a <strong>communicative</strong> and <strong>reliable</strong> person, able to work under <strong>time pressure</strong> and organize tasks independently.  
+<strong>8 years in the retail industry</strong> have taught me <strong>patience</strong>, <strong>empathy</strong>, and <strong>effective customer communication</strong>.  
+Since <strong>May 2024</strong>, I have been living and continuing my <strong>studies in Gdynia</strong>, developing my skills in the dynamic IT market environment.  
+I am currently <strong>seeking a job in my trained profession</strong> to fully utilize my skills and knowledge.</p>
+`,
+about_story2: `
+<p>&emsp;I hold a <strong>category B driving licence</strong> and own a <strong>car</strong>, which makes me fully <strong>mobile</strong> and ready to work in various locations.</p>
+`,
+
+
+
+
+
+  about_interests_title : "Interests",
+  about_interests_text : `
+My interests include software engineering, process automation, 
+IoT technologies, API integrations, as well as photography, drones, and modern hardware solutions.
+`,
+about_interests_title: "Interests",
+
+  // tab labels
+  interests_tab_photo:  "Photo",
+  interests_tab_drone:  "Drone",
+  interests_tab_prog:   "Programming",
+  interests_tab_iot:    "IoT",
+  interests_tab_travel: "Travel",
+  interests_tab_social: "UrbanExploring",
+
+  // panels
+  interests_photo_title: "Photography & Video",
+  interests_photo_text:
+    "I shoot and edit — post-production in <strong>Adobe Photoshop</strong>, <strong>Lightroom</strong>, <strong>Premiere Pro</strong> and <strong>After Effects</strong>.",
+
+  interests_drone_title: "Aerial photos & filming",
+  interests_drone_text:
+    "Aerial shots, time-lapses and short travel films with a focus on stabilization and composition.",
+
+  interests_prog_title: "Programming",
+  interests_prog_text:
+    "<strong>Python</strong> with a shift to <strong>.NET</strong>; <strong>API</strong> integrations, <strong>IoT</strong> projects, <strong>PWA</strong> apps and <strong>cloud</strong> solutions.",
+
+  interests_iot_title: "Smart Home & IoT",
+  interests_iot_text:
+    "I configure smart lighting, automations and device integrations — bridging hardware with apps and control panels.",
+
+  interests_travel_title: "Travel / Urbex",
+  interests_travel_text:
+    "Combining travel with <em>urban exploring</em> and documentary photography; planning embedded YouTube clips and galleries.",
+
+  interests_social_title: "UrbanExporing",
+  interests_social_text:
+    "A feed with urbex and travel content; this section can embed a grid/lightbox (e.g., LightWidget).",
     // Philips
     philips_title: "Philips Hue",
     philips_desc: "<strong>Philips Hue</strong> is a fully custom desktop application developed in <strong>Python</strong> using <strong>PyQt6</strong>, integrated with the <strong>Philips Hue API</strong>. Its purpose is to control Philips smart lighting via the API and bridge. The project features:",
@@ -621,8 +757,7 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     "Remote user/device management",
     "Light/Dark UI themes toggle",
       ],
-    }
-    
+    } 
   }
 
 
@@ -642,3 +777,5 @@ window.translations = {
 
 const langChangeEvent = new Event('languageChanged');
 document.dispatchEvent(langChangeEvent);
+
+

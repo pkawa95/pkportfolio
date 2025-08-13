@@ -1049,3 +1049,82 @@ body.dark .code-snippet-box {
   overflow: hidden;
 }
 
+/* Pasek tabów – wygląd jak nagłówek tabeli, bez ramki wokół */
+.tabs-bar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  background: transparent; /* brak tła */
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.tab-cell {
+  text-align: center;
+  font-weight: 700;
+  padding: 14px 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s ease, color .2s ease;
+  color: var(--text-color);
+}
+
+.tab-cell:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.tab-cell.active {
+  color: var(--accent-color);
+  background: rgba(0, 119, 255, 0.08);
+}
+
+.tab-cell.active::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background: var(--accent-color);
+  margin-top: 8px;
+}
+
+/* Panele jak zwykły content */
+.tab-panels {
+  padding: 0;
+  margin-top: 20px;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn .3s ease;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+    .about-flow { overflow: hidden; } /* clearfix dla float */
+
+    .about-photo {
+      float: left;
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      margin: 0 20px 20px 0; /* odstępy od tekstu */
+    }
+
+    /* Na mobile wyłączamy float i centrowanie */
+    @media (max-width: 768px) {
+      .about-photo {
+        float: none;
+        display: block;
+        margin: 0 auto 16px auto;
+        max-width: 420px;
+      }
+    }
