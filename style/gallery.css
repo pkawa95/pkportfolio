@@ -1,211 +1,217 @@
 /* ================================
-   GALERIA I KARUZELA ZDJĘĆ
+   KARUZELA – WYGLĄD I PŁYNNOŚĆ (STABLE)
    ================================ */
 
-.project-gallery {
-  margin-top: 40px;
+/* ================================
+   Zmienne – dark default + LIGHT override
+   ================================ */
+:root {
+  --carousel-gap: 16px;
+  --thumb-h: 180px;
+
+  --dot-bg: #cfcfcf;
+  --dot-active: #f9f9f9; /* jasna aktywna w ciemnym trybie */
+
+  --btn-bg: rgba(17, 17, 17, 0.55);
+  --btn-bg-hover: rgba(17, 17, 17, 0.75);
+  --btn-fg: #ffffff;
+
+  --lb-bg: rgba(0, 0, 0, 0.92);
+  --lb-fg: #ffffff;
+  --lb-chip-bg: rgba(0, 0, 0, 0.5);
 }
 
+/* Tryb jasny — zadziała gdy data-theme="light" jest na html/body/root */
+:root[data-theme="light"],
+html[data-theme="light"],
+body[data-theme="light"] {
+  --dot-bg: #d6d6d6;
+  --dot-active: #000000; /* pełna czerń w jasnym trybie */
+  --btn-bg: rgba(255, 255, 255, 0.55);
+  --btn-bg-hover: rgba(255, 255, 255, 0.8);
+  --btn-fg: #333333;
+  --lb-bg: rgba(255, 255, 255, 0.92);
+  --lb-fg: #333333;
+  --lb-chip-bg: rgba(255, 255, 255, 0.7);
+}
+
+
+
+
+/* Kontener – nie tniemy w pionie; miejsce na kropki */
 .carousel-container {
   position: relative;
-  overflow: hidden;
-}
-
-.carousel {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  padding: 1rem 0;
+  overflow-y: visible;          /* <<< kluczowe: nic nie ucina pionowo */
+  padding-bottom: 42px;         /* strefa na kropki */
 }
 
+/* Karuzela – grid + snap; ukryty pasek przewijania */
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--carousel-gap);
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* bez CSS smooth – płynność robi JS rAF */
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-inline: contain;
+  padding: 8px 0;
+
+  /* wymuś wysokość, by nic się nie ścinało */
+  min-height: var(--thumb-h);
+
+  /* ukryj scrollbary */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar { width: 0; height: 0; }
+
+/* Anti-stutter przy przewijaniu programowym */
+.carousel.is-programmatic { scroll-snap-type: none; }
+
+/* 1 / 2 / 3 kolumny */
+@media (min-width: 640px)  { .carousel { grid-auto-columns: calc((100% - var(--carousel-gap)) / 2); } }
+@media (min-width: 1024px) { .carousel { grid-auto-columns: calc((100% - var(--carousel-gap) * 2) / 3); } }
+
+/* Kafle */
 .carousel img {
-  flex: 0 0 calc(30% - 1rem);
-  width: 250px;
-  height: 150px;
-  border-radius: 8px;
+  position: relative;
+  z-index: 1;                   /* nad tłem/pseudoelementami */
+  display: block;
+  width: 100%;
+  height: var(--thumb-h);
+  border-radius: 12px;
   object-fit: cover;
   cursor: pointer;
-  transition: transform 0.3s ease;
-}
+  user-select: none;
+  -webkit-user-drag: none;
+  scroll-snap-align: start;
+  transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
 
-.carousel img:hover {
-  transform: scale(1.05);
+  /* (opcjonalnie) performance – zostawiamy DOMyślnie wyłączone,
+     bo niektóre przeglądarki robią artefakty */
+  /* content-visibility: auto;
+     contain-intrinsic-size: var(--thumb-h) 96px; */
 }
+.carousel img:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
 
+/* Strzałki */
 .carousel-button {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: #fff;
-  font-size: 2rem;
+  top: 50%; transform: translateY(-50%);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 0;
+  font-size: 1.6rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 50%;
-  z-index: 1;
+  padding: .45rem .8rem;
+  border-radius: 999px;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+  transition: background .2s ease, transform .2s ease, opacity .2s ease;
+  opacity: .95;
 }
+.carousel-button.left  { left: 16px; }
+.carousel-button.right { right: 16px; }
+.carousel-button:hover { background: var(--btn-bg-hover); transform: translateY(-50%) scale(1.04); }
+.carousel-button:active{ transform: translateY(-50%) scale(0.98); }
 
-.carousel-button.left { left: 10px; }
-.carousel-button.right { right: 10px; }
-
+/* Kropki – trzymamy poza flow karuzeli */
 .carousel-dots {
-  text-align: center;
-  margin-top: 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
 }
-
-.carousel-dots span {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin: 0 5px;
-  background: #ccc;
-  border-radius: 50%;
+.carousel-dot {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--dot-bg);
+  background-clip: padding-box;
+  border: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: background 0.3s;
+  opacity: .95;
+  transition: width .25s ease, background-color .25s ease, background .25s ease,
+              opacity .25s ease, transform .25s ease, box-shadow .25s ease;
+  box-shadow: none;
 }
 
-.carousel-dots span.active {
-  background: #555;
+.carousel-dot.active {
+  width: 22px;
+  background: var(--dot-active) !important;    /* << wymuszenie koloru */
+  background-color: var(--dot-active) !important;
+  opacity: 1;
 }
 
 /* ================================
    LIGHTBOX
    ================================ */
-
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+#lightbox {
+  position: fixed; inset: 0;
+  display: none; align-items: center; justify-content: center;
+  background: var(--lb-bg);
+  backdrop-filter: blur(2px);
   z-index: 999999;
-  background-color: rgba(0, 0, 0, 0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
 }
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateX(0);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+#lightbox #lightbox-img {
+  max-width: 92vw; max-height: 92vh;
+  border-radius: 12px;
+  display: block; margin: 0 auto;
+  opacity: 0; transform: translateX(0);
+  transition: opacity .25s ease, transform .35s ease, box-shadow .25s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
+#lightbox #lightbox-img.show-left   { opacity: 1; transform: translateX(-16px); }
+#lightbox #lightbox-img.show-right  { opacity: 1; transform: translateX(16px); }
+#lightbox #lightbox-img.show-center { opacity: 1; transform: translateX(0); }
 
-.lightbox img.show-left {
-  opacity: 1;
-  transform: translateX(-20px);
+#lightbox .lightbox-prev,
+#lightbox .lightbox-next,
+.lightbox-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: var(--btn-bg); color: var(--btn-fg);
+  border: 0; border-radius: 999px;
+  padding: .45rem .8rem; font-size: 1.8rem;
+  cursor: pointer; z-index: 1001;
+  backdrop-filter: blur(4px);
+  transition: background .2s ease, transform .2s ease;
 }
+#lightbox .lightbox-prev, .lightbox-arrow.left  { left: 20px; }
+#lightbox .lightbox-next, .lightbox-arrow.right { right: 20px; }
+#lightbox .lightbox-prev:hover,
+#lightbox .lightbox-next:hover,
+.lightbox-arrow:hover { background: var(--btn-bg-hover); transform: translateY(-50%) scale(1.04); }
 
-.lightbox img.show-right {
-  opacity: 1;
-  transform: translateX(20px);
+#lightbox .close {
+  position: fixed; top: 20px; right: 40px;
+  color: var(--lb-fg); font-size: 38px; font-weight: 700;
+  cursor: pointer; z-index: 1002 !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,.5);
 }
-
-.lightbox img.show-center {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Tryb jasny */
-body[data-theme="light"] .lightbox {
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-body[data-theme="light"] .lightbox img {
-  filter: brightness(0.9) contrast(1.1);
-}
-
-/* ================================
-   LIGHTBOX STRZAŁKI
-   ================================ */
-
-.lightbox-arrow,
-.lightbox .lightbox-prev,
-.lightbox .lightbox-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 50%;
-  z-index: 1001;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  border: none;
-}
-
-.lightbox .lightbox-prev,
-.lightbox-arrow.left { left: 20px; }
-
-.lightbox .lightbox-next,
-.lightbox-arrow.right { right: 20px; }
-
-.lightbox-arrow:hover,
-.lightbox .lightbox-prev:hover,
-.lightbox .lightbox-next:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-body[data-theme="light"] .lightbox .lightbox-prev,
-body[data-theme="light"] .lightbox .lightbox-next,
-body[data-theme="light"] .lightbox-arrow {
-  background: rgba(255, 255, 255, 0.5);
-  color: #333;
-}
-
-body[data-theme="light"] .lightbox .lightbox-prev:hover,
-body[data-theme="light"] .lightbox .lightbox-next:hover,
-body[data-theme="light"] .lightbox-arrow:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-/* ================================
-   LIGHTBOX CLOSE BUTTON
-   ================================ */
-
-.lightbox .close {
-  position: fixed;
-  top: 20px;
-  right: 40px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1002 !important;
-}
-
-body[data-theme="light"] .lightbox .close {
-  color: #333;
-}
-
-/* ================================
-   LIGHTBOX COUNTER
-   ================================ */
 
 #lightbox-counter {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
+  position: absolute; bottom: 30px; left: 50%;
   transform: translateX(-50%);
-  color: #fff;
-  font-size: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 4px 12px;
-  border-radius: 6px;
-  z-index: 1002;
+  color: var(--lb-fg); font-size: .95rem;
+  background: var(--lb-chip-bg);
+  padding: 4px 12px; border-radius: 8px;
+  z-index: 1002; letter-spacing: .3px;
 }
 
-body[data-theme="light"] #lightbox-counter {
-  background: rgba(255, 255, 255, 0.7);
-  color: #333;
+/* A11y */
+@media (prefers-reduced-motion: reduce) {
+  .carousel img, #lightbox #lightbox-img { transition: none; }
 }

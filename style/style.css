@@ -1128,3 +1128,17 @@ body.dark .code-snippet-box {
         max-width: 420px;
       }
     }
+
+    .insta-logo {
+      display: block;
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto 20px auto;
+      filter: none; /* domyślnie brak filtra */
+    }
+
+    /* W trybie ciemnym: tylko jasna poświata pod spodem */
+    body.dark .insta-logo {
+      filter: drop-shadow(0 0 10px #fff);
+    }

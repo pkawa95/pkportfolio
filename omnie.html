@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="style/style.css" />
   <link rel="stylesheet" href="style/timeline.css" />
   <link rel="stylesheet" href="style/interests.css" />
+  <link rel="stylesheet" href="style/gallery.css" />
 
   <!-- i18n + główny skrypt -->
   <script defer src="scripts/translations.js"></script>
   <script defer src="scripts/script.js"></script>
   <script defer src="scripts/interests.js"></script>
+  <script defer src="scripts/gallery.js"></script>
 
 
   <style>
@@ -64,7 +66,7 @@
 <section class="experience-section interests-section fade-zoom section-gap">
   <h2 class="hidden-on-load" data-i18n="about_interests_title">Zainteresowania</h2>
         <div class="section-separator hidden-separator"></div>
-        <!-- 
+
   <div class="interests-tabs hidden-on-load" data-delay="0.1s">
     <input type="radio" name="interests" id="tab-photo" checked>
     <input type="radio" name="interests" id="tab-drone">
@@ -73,10 +75,10 @@
     <input type="radio" name="interests" id="tab-travel">
     <input type="radio" name="interests" id="tab-social">
     <ul class="tabs-bar">
-      <li><label class="tab-label" for="tab-photo"  data-i18n="interests_tab_photo">Foto &amp; Film</label></li>
+      <!-- <li><label class="tab-label" for="tab-photo"  data-i18n="interests_tab_photo">Foto &amp; Film</label></li>
       <li><label class="tab-label" for="tab-drone"  data-i18n="interests_tab_drone">Dron</label></li>
       <li><label class="tab-label" for="tab-prog"   data-i18n="interests_tab_prog">Programowanie</label></li>
-      <li><label class="tab-label" for="tab-iot"    data-i18n="interests_tab_iot">Smart&nbsp;Home / IoT</label></li>
+      <li><label class="tab-label" for="tab-iot"    data-i18n="interests_tab_iot">Smart&nbsp;Home / IoT</label></li> -->
       <li><label class="tab-label" for="tab-travel" data-i18n="interests_tab_travel">Podróże</label></li>
       <li><label class="tab-label" for="tab-social" data-i18n="interests_tab_social">Instagram</label></li>
     </ul>
@@ -87,6 +89,16 @@
         <p  data-i18n="interests_photo_text">
           Fotografuję i montuję filmy — postprodukcja w <strong>Adobe Photoshop</strong>, <strong>Lightroom</strong>, <strong>Premiere Pro</strong> i <strong>After Effects</strong>.
         </p>
+            <section class="coming-soon">
+      <h1 data-i18n="comingsoon_h1">🔧 Zawartość w trakcie przygotowania</h1>
+      <p data-i18n="comingsoon_p">
+        Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>
+        Zapraszam do odwiedzin w najbliższym czasie!
+      </p>
+      <a href="index.html" class="download-btn" data-i18n="comingsoon_back">
+        ← Powrót do strony głównej
+      </a>
+    </section>
       </article>
 
       <article class="tab-panel" data-panel="drone">
@@ -115,32 +127,93 @@
         <p  data-i18n="interests_travel_text">
           Łączę podróżowanie z <em>urban exploringiem</em> i fotografią dokumentalną; planuję osadzanie klipów z YouTube oraz galerie.
         </p>
+                    <section class="coming-soon">
+      <h1 data-i18n="comingsoon_h1">🔧 Zawartość w trakcie przygotowania</h1>
+      <p data-i18n="comingsoon_p">
+        Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>
+        Zapraszam do odwiedzin w najbliższym czasie!
+      </p>
+      <a href="index.html" class="download-btn" data-i18n="comingsoon_back">
+        ← Powrót do strony głównej
+      </a>
+    </section>
       </article>
 
 <article class="tab-panel" data-panel="social">
   <h3 data-i18n="interests_social_title">Instagram</h3>
+
   <p data-i18n="interests_social_text">
     Profil z urbexem i podróżami; tutaj mogę osadzić feed (np. LightWidget) w formie siatki lub lightboxa.
   </p>
 
+<!-- Karuzela (osobny blok, nie wewnątrz <p>) -->
+<div class="carousel-container hidden-on-load fade-zoom" data-carousel>
+  <!-- strzałka w lewo -->
+  <button class="carousel-button left" type="button" aria-label="Poprzednie zdjęcia" data-carousel-prev>
+    &#10094;
+  </button>
+
+  <!-- lista slajdów -->
+  <div class="carousel" id="frontend-carousel">
+    <img src="img/intrests/urbex/IMG_3582.webp" alt="Urbex – kadr 1" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3485.webp" alt="Urbex – kadr 2" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3508.webp" alt="Urbex – kadr 3" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3242.webp" alt="Urbex – kadr 4" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_5355.webp" alt="Urbex – kadr 5" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3424.webp" alt="Urbex – kadr 6" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3584.webp" alt="Urbex – kadr 7" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3589.webp" alt="Urbex – kadr 8" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3597.webp" alt="Urbex – kadr 9" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_3542.webp" alt="Urbex – kadr 10" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_4689.webp" alt="Urbex – kadr 11" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_4709.webp" alt="Urbex – kadr 12" onclick="openLightbox(this)">
+    <img src="img/intrests/urbex/IMG_4691.webp" alt="Urbex – kadr 13" onclick="openLightbox(this)">
+  </div>
+
+  <!-- strzałka w prawo -->
+  <button class="carousel-button right" type="button" aria-label="Następne zdjęcia" data-carousel-next>
+    &#10095;
+  </button>
+
+  <!-- kropki -->
+  <div class="carousel-dots" id="carousel-dots" aria-label="Paginacja karuzeli"></div>
+</div>
+      
+
+<img class="insta-logo" src="img/icons/insta.png" alt="Piotr Kawa" />
+  <!-- LightWidget (osobny blok) -->
+  <!-- Uwaga: skrypt ładuj tylko raz na stronie, jeśli masz więcej niż jeden widget -->
   <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
   <iframe
     src="//lightwidget.com/widgets/1334005fcb305e13bb882382ed08964d.html"
     scrolling="no"
     allowtransparency="true"
     class="lightwidget-widget"
-    style="width:100%;border:0;overflow:hidden;">
-  </iframe>
+    style="width:100%; border:0; overflow:hidden; margin-top:12px;"
+  ></iframe>
 </article>
+
 
     </div>
   </div>
 </section>
--->
+
 </main>
+  <!-- Lightbox z nawigacją -->
+  <div id="lightbox" class="lightbox" style="display:none;">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+    <img id="lightbox-img" src="" alt="Screenshot powiększony" />
+    <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+    <div id="lightbox-counter" class="lightbox-counter"></div>
+  </div>
+  <!-- STOPKA -->
+  <div id="footer-placeholder"></div>
 
 
-  <style>
+  <script>
+  </script>
+    <style>
     .coming-soon {
       min-height: calc(100vh - 140px);
       display: flex;
@@ -167,22 +240,5 @@
       max-width: 700px;
     }
   </style>
-    <section class="coming-soon">
-      <h1 data-i18n="comingsoon_h1">🔧 Zawartość w trakcie przygotowania</h1>
-      <p data-i18n="comingsoon_p">
-        Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>
-        Zapraszam do odwiedzin w najbliższym czasie!
-      </p>
-      <a href="index.html" class="download-btn" data-i18n="comingsoon_back">
-        ← Powrót do strony głównej
-      </a>
-    </section>
-
-  <!-- STOPKA -->
-  <div id="footer-placeholder"></div>
-
-
-  <script>
-  </script>
 </body>
 </html>

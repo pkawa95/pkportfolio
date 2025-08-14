@@ -129,9 +129,15 @@
         <li><strong data-i18n="frontend_list_4"></strong></li>
         <li><strong data-i18n="frontend_list_5"></strong></li>
       </ul>
-      <div class="carousel-container hidden-on-load fade-zoom">
-        <button class="carousel-button left" onclick="scrollCarousel(-1)">&#10094;</button>
-        <div class="carousel" id="frontend-carousel">
+<!-- Karuzela (osobny blok, nie wewnątrz <p>) -->
+<div class="carousel-container hidden-on-load fade-zoom" data-carousel>
+  <!-- strzałka w lewo -->
+  <button class="carousel-button left" type="button" aria-label="Poprzednie zdjęcia" data-carousel-prev>
+    &#10094;
+  </button>
+
+  <!-- lista slajdów -->
+  <div class="carousel" id="frontend-carousel">
           <img src="../../img/screenshots/PhilipsHue/screenshot1.png" alt="Zrzut ekranu 1" onclick="openLightbox(this)">
           <img src="../../img/screenshots/PhilipsHue/screenshot2.png" alt="Zrzut ekranu 2" onclick="openLightbox(this)">
           <img src="../../img/screenshots/PhilipsHue/screenshot3.png" alt="Zrzut ekranu 3" onclick="openLightbox(this)">
@@ -139,9 +145,15 @@
           <img src="../../img/screenshots/PhilipsHue/screenshot5.png" alt="Zrzut ekranu 5" onclick="openLightbox(this)">
           <img src="../../img/screenshots/PhilipsHue/screenshot6.png" alt="Zrzut ekranu 6" onclick="openLightbox(this)">
         </div>
-        <button class="carousel-button right" onclick="scrollCarousel(1)">&#10095;</button>
-        <div class="carousel-dots" id="carousel-dots"></div>
-      </div>
+  <!-- strzałka w prawo -->
+  <button class="carousel-button right" type="button" aria-label="Następne zdjęcia" data-carousel-next>
+    &#10095;
+  </button>
+
+  <!-- kropki -->
+  <div class="carousel-dots" id="carousel-dots" aria-label="Paginacja karuzeli"></div>
+</div>
+      
       <p class="hidden-on-load fade-zoom" data-i18n="frontend_desc2"></p>
     </section>
 

@@ -117,9 +117,15 @@
       <h2 data-i18n="wdcloud_frontend_title">Frontend – Nowoczesny Interfejs Użytkownika</h2>
       <p data-i18n="wdcloud_frontend_p1"></p>
 
-      <div class="carousel-container hidden-on-load fade-up">
-        <button class="carousel-button left" onclick="scrollCarousel(-1)">&#10094;</button>
-        <div class="carousel" id="frontend-carousel">
+<!-- Karuzela (osobny blok, nie wewnątrz <p>) -->
+<div class="carousel-container hidden-on-load fade-zoom" data-carousel>
+  <!-- strzałka w lewo -->
+  <button class="carousel-button left" type="button" aria-label="Poprzednie zdjęcia" data-carousel-prev>
+    &#10094;
+  </button>
+
+  <!-- lista slajdów -->
+  <div class="carousel" id="frontend-carousel">
           <img src="../../img/screenshots/WD/ui1.png" alt="UI 1" onclick="openLightbox(this)">
           <img src="../../img/screenshots/WD/ui2.png" alt="UI 2" onclick="openLightbox(this)">
           <img src="../../img/screenshots/WD/ui3.png" alt="UI 3" onclick="openLightbox(this)">
@@ -127,10 +133,15 @@
           <img src="../../img/screenshots/WD/ui5.png" alt="UI 4" onclick="openLightbox(this)">
           <img src="../../img/screenshots/WD/ui6.png" alt="UI 4" onclick="openLightbox(this)">
         </div>
-        <button class="carousel-button right" onclick="scrollCarousel(1)">&#10095;</button>
-        <div class="carousel-dots" id="carousel-dots"></div>
-      </div>
+  <!-- strzałka w prawo -->
+  <button class="carousel-button right" type="button" aria-label="Następne zdjęcia" data-carousel-next>
+    &#10095;
+  </button>
 
+  <!-- kropki -->
+  <div class="carousel-dots" id="carousel-dots" aria-label="Paginacja karuzeli"></div>
+</div>
+      
       <p data-i18n="wdcloud_frontend_p2" class="hidden-on-load fade-up" data-delay="0.1s"></p>
     </section>
 <div id="lightbox" class="lightbox">

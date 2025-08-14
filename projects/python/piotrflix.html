@@ -94,8 +94,14 @@
 
       <p class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_p1"></p>
 
-      <div class="carousel-container hidden-on-load fade-zoom">
-  <button class="carousel-button left" onclick="scrollCarousel(-1)">&#10094;</button>
+<!-- Karuzela (osobny blok, nie wewnątrz <p>) -->
+<div class="carousel-container hidden-on-load fade-zoom" data-carousel>
+  <!-- strzałka w lewo -->
+  <button class="carousel-button left" type="button" aria-label="Poprzednie zdjęcia" data-carousel-prev>
+    &#10094;
+  </button>
+
+  <!-- lista slajdów -->
   <div class="carousel" id="frontend-carousel">
     <img src="../../img/screenshots/PiotrFlix/frontendpc1.png" alt="Frontend 1" onclick="openLightbox(this)">
     <img src="../../img/screenshots/PiotrFlix/frontendpc2.png" alt="Frontend 2" onclick="openLightbox(this)">
@@ -107,8 +113,13 @@
     <img src="../../img/screenshots/PiotrFlix/frontendpc8.png" alt="Frontend 8" onclick="openLightbox(this)">
     <img src="../../img/screenshots/PiotrFlix/frontendpc9.png" alt="Frontend 9" onclick="openLightbox(this)">
   </div>
-  <button class="carousel-button right" onclick="scrollCarousel(1)">&#10095;</button>
-  <div class="carousel-dots" id="carousel-dots"></div>
+  <!-- strzałka w prawo -->
+  <button class="carousel-button right" type="button" aria-label="Następne zdjęcia" data-carousel-next>
+    &#10095;
+  </button>
+
+  <!-- kropki -->
+  <div class="carousel-dots" id="carousel-dots" aria-label="Paginacja karuzeli"></div>
 </div>
 
 
@@ -148,9 +159,15 @@
     <!-- Zrzuty ekranu apka mobilna -->
 <section class="mobile-screenshots">
   <h3 class="hidden-on-load fade-zoom" data-i18n="piotrflix_frontend_gallery_title">Zrzuty ekranu z aplikacji mobilnej</h3>
-  <div class="carousel-container hidden-on-load fade-zoom">
-    <button class="carousel-button left" onclick="scrollCarouselMobile(-1)">&#10094;</button>
-    <div class="carousel" id="mobile-carousel">
+<!-- Karuzela (osobny blok, nie wewnątrz <p>) -->
+<div class="carousel-container hidden-on-load fade-zoom" data-carousel>
+  <!-- strzałka w lewo -->
+  <button class="carousel-button left" type="button" aria-label="Poprzednie zdjęcia" data-carousel-prev>
+    &#10094;
+  </button>
+
+  <!-- lista slajdów -->
+  <div class="carousel" id="frontend-carousel">
       <img src="../../img/screenshots/PiotrFlix/IMG_6113.PNG" alt="Apka mobilna 1" onclick="openLightbox(this)">
       <img src="../../img/screenshots/PiotrFlix/IMG_6114.PNG" alt="Apka mobilna 2" onclick="openLightbox(this)">
       <img src="../../img/screenshots/PiotrFlix/IMG_6115.PNG" alt="Apka mobilna 3" onclick="openLightbox(this)">
@@ -161,9 +178,14 @@
       <img src="../../img/screenshots/PiotrFlix/IMG_6120.PNG" alt="Apka mobilna 8" onclick="openLightbox(this)">
       <img src="../../img/screenshots/PiotrFlix/IMG_6121.PNG" alt="Apka mobilna 9" onclick="openLightbox(this)">
     </div>
-    <button class="carousel-button right" onclick="scrollCarouselMobile(1)">&#10095;</button>
-    <div class="carousel-dots" id="mobile-carousel-dots"></div>
-  </div>
+  <!-- strzałka w prawo -->
+  <button class="carousel-button right" type="button" aria-label="Następne zdjęcia" data-carousel-next>
+    &#10095;
+  </button>
+
+  <!-- kropki -->
+  <div class="carousel-dots" id="carousel-dots" aria-label="Paginacja karuzeli"></div>
+</div>
 </section>
 
 
