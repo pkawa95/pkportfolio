@@ -401,3 +401,79 @@ document.addEventListener('DOMContentLoaded', initInterestTableTabs);
 document.addEventListener('languageChanged', () => {
   // same teksty – aktywny tab pozostaje bez zmian
 });
+
+(function(){
+  // --- Guard: nie uruchamiaj drugi raz na tej stronie
+  if (window.__changelogLoaded) return;
+  window.__changelogLoaded = true;
+
+  // Pomocnik: czekaj na element w DOM (bez spamowania)
+  function waitFor(selector, timeout = 10000) {
+    return new Promise((resolve, reject) => {
+      const el = document.querySelector(selector);
+      if (el) return resolve(el);
+
+      const obs = new MutationObserver(() => {
+        const e = document.querySelector(selector);
+        if (e) { obs.disconnect(); resolve(e); }
+      });
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+
+      setTimeout(() => { obs.disconnect(); reject(new Error("Timeout: " + selector)); }, timeout);
+    });
+  }
+
+  // Wstrzykuje HTML i uruchamia skrypty z fragmentu
+  function injectWithScripts(target, html) {
+    target.innerHTML = html;
+    const scripts = target.querySelectorAll("script");
+    scripts.forEach(old => {
+      const s = document.createElement("script");
+      if (old.type) s.type = old.type;
+      if (old.src) {
+        s.src = new URL(old.getAttribute("src"), document.baseURI).toString();
+        s.defer = true;
+      } else {
+        s.textContent = old.textContent;
+      }
+      document.body.appendChild(s);
+      old.remove();
+    });
+  }
+
+  async function init() {
+    try {
+      // poczekaj aż menu (a w nim placeholder) pojawi się w DOM
+      const placeholder = await waitFor("#changelog-placeholder");
+
+      const src = placeholder.getAttribute("data-src") || "/addons/changelog/changelog.html";
+      const url = new URL(src, document.baseURI);
+
+      // Guard: nie rób ponownie, jeśli ktoś już wypełnił placeholder
+      if (placeholder.dataset.filled === "1") return;
+      placeholder.dataset.filled = "1";
+
+      const res = await fetch(url.toString(), { credentials: "same-origin", cache: "no-cache" });
+      if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
+
+      const html = await res.text();
+      injectWithScripts(placeholder, html);
+    } catch (e) {
+      console.warn("[Changelog] Wczytanie nieudane:", e.message);
+      const ph = document.getElementById("changelog-placeholder");
+      if (ph) ph.textContent = "Changelog niedostępny.";
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+
+  // Jeśli masz własny loader menu (fetch do #menu-placeholder),
+  // po jego zakończeniu możesz wywołać:
+  // document.dispatchEvent(new Event('menu:loaded'));
+  // i tutaj dodać jeszcze:
+  document.addEventListener("menu:loaded", init, { once: true });
+})();

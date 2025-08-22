@@ -1142,3 +1142,36 @@ body.dark .code-snippet-box {
     body.dark .insta-logo {
       filter: drop-shadow(0 0 10px #fff);
     }
+
+    .changelog-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--nav-text);
+  background: none;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+.changelog-header { display: flex; align-items: center; gap: 6px; }
+.changelog-header strong { color: var(--accent-color); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-color); }
+
+.changelog-bar {
+  width: 100%;
+  background: var(--nav-bg);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 4px 16px;
+  text-align: center;
+  overflow: hidden;
+}
+
+body.dark .changelog-bar {
+  border-color: rgba(255,255,255,0.1);
+}
+

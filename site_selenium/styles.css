@@ -1,0 +1,42 @@
+/* ==== IG gallery (pełny kadr + sztywne kafelki) ==== */
+:root { --gap:16px; --radius:14px; --shadow:0 6px 24px rgba(0,0,0,.12); }
+.igx-wrap { max-width:1120px; margin:0 auto; padding:16px; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+.igx-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.igx-title { margin:0; font-size: clamp(1.2rem,1rem + 1vw,1.8rem); }
+.igx-link { opacity:.8; font-size:.95rem; text-decoration:none; }
+.igx-link:hover { text-decoration:underline; }
+
+/* Karuzela */
+.igx-carousel { position:relative; overflow:hidden; }
+.igx-track {
+  display:grid; grid-auto-flow:column; grid-auto-columns: clamp(240px, 28vw, 360px);
+  gap:var(--gap); overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; scroll-behavior:smooth;
+}
+.igx-item {
+  scroll-snap-align:start; position:relative; border-radius:var(--radius); overflow:hidden;
+  background:#111; box-shadow:var(--shadow); transform:translateZ(0); transition:transform .25s ease, box-shadow .25s ease;
+}
+.igx-item:hover { transform:scale(1.03); box-shadow:0 10px 32px rgba(0,0,0,.18); }
+
+.igx-frame { width:100%; aspect-ratio:1/1; display:grid; place-items:center; background:#000; }
+.igx-img { width:100%; height:100%; object-fit:contain; object-position:center center; display:block; }
+
+.igx-overlay {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:18px;
+  background:rgba(0,0,0,0); color:#fff; opacity:0; transition:opacity .25s ease, background .25s ease;
+}
+.igx-item:hover .igx-overlay { opacity:1; background:rgba(0,0,0,.35); }
+.igx-badge { display:flex; align-items:center; gap:8px; font-weight:600; }
+.igx-btn { appearance:none; border:0; padding:10px 14px; border-radius:999px; background:#fff; color:#111; font-weight:600; cursor:pointer; text-decoration:none; }
+.igx-btn:hover { filter:brightness(.95); }
+
+/* Strzałki + kropki */
+.igx-nav { position:absolute; inset:0; pointer-events:none; }
+.igx-nav button { pointer-events:auto; position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,.5); color:#fff; border:0; width:40px; height:40px; border-radius:50%; cursor:pointer; }
+.igx-prev{left:8px;} .igx-next{right:8px;}
+.igx-nav button:hover{ background:rgba(0,0,0,.7); }
+.igx-dots{ display:flex; gap:6px; justify-content:center; margin-top:10px; }
+.igx-dot{ width:8px; height:8px; border-radius:50%; background:#ccc; } .igx-dot.is-active{ background:#333; }
+
+@media (max-width: 600px){ .igx-track{ grid-auto-columns: clamp(260px, 70vw, 340px); } }
+

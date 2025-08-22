@@ -246,7 +246,14 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
   menu_projects: "Projekty",
   menu_about: "O mnie",
   menu_contact: "Kontakt",
-  last_update: "Ostatnia aktualizacja - 14.08.2025",
+    changelog: {
+      label: "Ostatnie aktualizacje",
+      lines: [
+    "📅 [2025-08-22] 🆕 Dodano pasek aktualizacji pod menu.",
+    "📅 [2025-08-14] 👤 Dodano sekcję 'O mnie' z informacjami o mnie.",
+    "📅 [2025-08-14] 🤖 Rozpoczęto pracę nad 'scraperem Instagrama' do sekcji o mnie (Python)."
+      ]
+    },
 
   // Nagłówek i opis projektu
   wdcloud_heading: "WD Cloud Dashboard – Pełna Integracja z WebDAV i API chmurowym",
@@ -388,7 +395,15 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
     about: "About",
     docs: "Documents",
     contact: "Contact",
-    last_update: "Last update - 14.08.2025",
+    changelog: {
+      label: "Recent updates",
+      lines: [
+    "📅 [2025-08-22] 🆕 Added an update bar below the menu.",
+    "📅 [2025-08-14] 👤 Added the 'About Me' section with personal information.",
+    "📅 [2025-08-14] 🤖 Started working on an 'Instagram scraper' for the About Me section (Python)."
+
+      ]
+    },
     intro_h1: "Portfolio – Piotr Kawa",
     intro_p1:
       "<strong>Piotr Kawa</strong> – a second-year Computer Science student specializing in Software Development, with a GPA of 5.0. A graduate of a technical high school in computer networking, having achieved 100% in the practical part of the vocational exam.",
