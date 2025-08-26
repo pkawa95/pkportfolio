@@ -30,176 +30,322 @@
   <meta name="twitter:image" content="https://pkportfolio.pl/img/icons/favicon.png" />
   <link rel="canonical" href="https://pkportfolio.pl/addons/changelog/updates.html" />
 
-  <!-- ====== ODJECHANY STYL: neon + glass + akordeon ====== -->
-  <style>
-    .visually-hidden {
-      position:absolute!important; clip:rect(1px,1px,1px,1px);
-      padding:0!important; border:0!important; height:1px!important; width:1px!important;
-      overflow:hidden; white-space:nowrap;
-    }
+<!-- ====== NEON + GLASS + AKORDEON (FIX: DARK MODE + LISTY + FIOLET GLOW + CLICK SAFETY) ====== -->
+<style>
+  .visually-hidden {
+    position:absolute!important; clip:rect(1px,1px,1px,1px);
+    padding:0!important; border:0!important; height:1px!important; width:1px!important;
+    overflow:hidden; white-space:nowrap;
+  }
 
-    /* Scena i tło */
-    .updates-stage { position: relative; isolation: isolate; }
-    .updates-grid {
-      position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: .06;
-      background:
-        linear-gradient(transparent 39px, currentColor 40px),
-        linear-gradient(90deg, transparent 39px, currentColor 40px);
-      background-size: 40px 40px; color: var(--text-color); mix-blend-mode: luminosity;
-    }
-    .updates-stage::before,
-    .updates-stage::after {
-      content: ""; position: fixed; inset: auto auto 0 -10%;
-      width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(60px); opacity: .25;
-      background: radial-gradient(closest-side,
-        color-mix(in oklab, var(--accent-color), transparent 55%) 0%, transparent 70%);
-      z-index: -2; pointer-events: none; animation: blobMove 22s linear infinite;
-    }
-    .updates-stage::after { left:auto; right:-10%; bottom:12%; animation-duration: 28s; animation-direction: reverse; }
-    @keyframes blobMove {
-      0% { transform: translate3d(0,0,0) rotate(0deg); }
-      50%{ transform: translate3d(0,-6%,0) rotate(180deg); }
-      100%{ transform: translate3d(0,0,0) rotate(360deg); }
-    }
+  /* Scena i tło */
+  .updates-stage { position: relative; isolation: isolate; }
+  .updates-grid {
+    position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: .06;
+    background:
+      linear-gradient(transparent 39px, currentColor 40px),
+      linear-gradient(90deg, transparent 39px, currentColor 40px);
+    background-size: 40px 40px; color: var(--text-color); mix-blend-mode: luminosity;
+  }
+  .updates-stage::before,
+  .updates-stage::after {
+    content: ""; position: fixed; inset: auto auto 0 -10%;
+    width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(60px); opacity: .25;
+    background: radial-gradient(closest-side,
+      color-mix(in oklab, var(--accent-color), transparent 55%) 0%, transparent 70%);
+    z-index: -2; pointer-events: none; animation: blobMove 22s linear infinite;
+  }
+  .updates-stage::after { left:auto; right:-10%; bottom:12%; animation-duration: 28s; animation-direction: reverse; }
 
-    /* Hero */
-    .intro h1 {
-      letter-spacing: .3px;
-      text-align:center;
-      text-shadow:
-        0 0 6px color-mix(in oklab, var(--accent-color), transparent 35%),
-        0 0 14px color-mix(in oklab, var(--accent-color), transparent 55%);
-    }
-    .intro p { max-width: 70ch; margin-inline: auto; text-align: center; opacity: .95; }
+  /* 💜 Fioletowy glow przy sekcji planów */
+  body.has-roadmap-glow .updates-stage::before,
+  body.has-roadmap-glow .updates-stage::after{
+    background: radial-gradient(closest-side,
+      color-mix(in oklab, #9d4edd, transparent 50%) 0%, transparent 70%);
+    opacity: .30;
+  }
 
-    /* Separator z iskrą */
-    .section-separator.animate {
-      position: relative; overflow: hidden; width: min(820px, 72%); margin-inline:auto;
-    }
-    .section-separator.animate::after{
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(90deg, transparent,
-        color-mix(in oklab, var(--accent-color), white 12%), transparent);
-      width: 25%; height: 100%; filter: blur(2px);
-      transform: translateX(-120%); animation: sweep 2.4s ease-in-out infinite;
-    }
-    @keyframes sweep { 0%{transform:translateX(-120%);opacity:0} 20%{opacity:.65} 100%{transform:translateX(420%);opacity:0} }
+  @keyframes blobMove {
+    0% { transform: translate3d(0,0,0) rotate(0deg); }
+    50%{ transform: translate3d(0,-6%,0) rotate(180deg); }
+    100%{ transform: translate3d(0,0,0) rotate(360deg); }
+  }
 
-    /* Wrap akordeonu */
-    .updates-wrap { max-width: 1100px; margin: 0 auto 4rem; padding: 0 20px; position: relative; }
+  /* Hero */
+  .intro h1 {
+    letter-spacing: .3px;
+    text-align:center;
+    text-shadow:
+      0 0 6px color-mix(in oklab, var(--accent-color), transparent 35%),
+      0 0 14px color-mix(in oklab, var(--accent-color), transparent 55%);
+  }
+  .intro p { max-width: 70ch; margin-inline: auto; text-align: center; opacity: .95; }
 
-    /* Lista akordeonów */
-    .updates-list {
-      display: grid; gap: clamp(12px, 2.2vw, 18px);
-      list-style: none; margin: 1.25rem auto 0; padding: 0;
-    }
+  /* Separator z iskrą */
+  .section-separator.animate {
+    position: relative; overflow: hidden; width: min(820px, 72%); margin-inline:auto;
+  }
+  .section-separator.animate::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(90deg, transparent,
+      color-mix(in oklab, var(--accent-color), white 12%), transparent);
+    width: 25%; height: 100%; filter: blur(2px);
+    transform: translateX(-120%); animation: sweep 2.4s ease-in-out infinite;
+  }
+  @keyframes sweep { 0%{transform:translateX(-120%);opacity:0} 20%{opacity:.65} 100%{transform:translateX(420%);opacity:0} }
 
-    /* Karta (nagłówek jako button) */
+  /* Wrap */
+  .updates-wrap { max-width: 1100px; margin: 0 auto 4rem; padding: 0 20px; position: relative; }
+
+  /* Lista akordeonów */
+  .updates-list {
+    display: grid; gap: clamp(12px, 2.2vw, 18px);
+    list-style: none; margin: 1.25rem auto 0; padding: 0;
+  }
+
+  /* Karta */
+  .update {
+    position: relative; z-index: 0;
+    border-radius: 16px; overflow: hidden;
+    background-color: var(--nav-bg);
+    -webkit-backdrop-filter: blur(8px) saturate(1.1); backdrop-filter: blur(8px) saturate(1.1);
+    box-shadow: 0 10px 24px rgba(0,0,0,.08), inset 0 0 0 1px rgba(0,0,0,.06);
+    transition: box-shadow .35s ease, transform .35s ease;
+  }
+  @supports (background: color-mix(in oklab, black, white)) {
     .update {
-      border-radius: 16px; overflow: clip; position: relative;
-      background: color-mix(in oklab, var(--bg-color), transparent 0%);
-      -webkit-backdrop-filter: blur(8px) saturate(1.1); backdrop-filter: blur(8px) saturate(1.1);
-      box-shadow:
-        0 10px 24px rgba(0,0,0,.08),
-        inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 88%);
-      transition: box-shadow .35s ease, transform .35s ease;
+      background: color-mix(in oklab, var(--nav-bg), transparent 0%);
+      box-shadow: 0 10px 24px rgba(0,0,0,.08),
+                  inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 88%);
     }
-    .update::before {
-      content:""; position:absolute; inset:-1px; border-radius:18px; padding:1px;
-      background: linear-gradient(120deg,
-        color-mix(in oklab, var(--accent-color), transparent 0%),
-        color-mix(in oklab, var(--accent-color), white 16%),
-        color-mix(in oklab, var(--accent-color), transparent 12%));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; opacity:.75; pointer-events:none;
-      transition: opacity .35s ease;
-    }
-    .update:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(0,0,0,.18), inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 86%); }
-    .update:hover::before { opacity: 1; }
+  }
+  .update::before {
+    content:""; position:absolute; inset:-1px; border-radius:18px; padding:1px;
+    pointer-events: none; /* 👈 nie blokuj klików */
+    background: linear-gradient(120deg,
+      color-mix(in oklab, var(--accent-color), transparent 0%),
+      color-mix(in oklab, var(--accent-color), white 16%),
+      color-mix(in oklab, var(--accent-color), transparent 12%));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity:.75; transition: opacity .35s ease;
+  }
+  .update:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(0,0,0,.18), inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 86%); }
+  .update:hover::before { opacity: 1; }
 
-    /* Nagłówek (klikany) */
-    .update-header {
-      --ripple-x: 50%; --ripple-y: 50%;
-      display: grid; grid-template-columns: auto 1fr auto;
-      align-items: center; gap: 12px; width: 100%;
-      padding: 16px 18px; background: transparent; border: 0; text-align: left;
-      cursor: pointer; color: inherit; font: inherit; position: relative; overflow: hidden;
-    }
-    .update-header:focus-visible { outline: 2px solid color-mix(in oklab, var(--accent-color), white 10%); outline-offset: 2px; border-radius: 12px; }
-    .update-header::after{
-      content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition: opacity .35s;
-      background:
-        radial-gradient(220px 220px at var(--ripple-x) var(--ripple-y),
-          color-mix(in oklab, var(--accent-color), transparent 75%), transparent 70%);
-      mix-blend-mode: screen;
-    }
-    .update-header.rippling::after{ opacity:.7; animation: rippleFade .6s ease-out both; }
-    @keyframes rippleFade { from{opacity:.8} to{opacity:0} }
+  /* Nagłówek (klikany) */
+  .update-header {
+    --ripple-x: 50%; --ripple-y: 50%;
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 12px; width: 100%;
+    padding: 16px 18px; background: transparent; border: 0; text-align: left;
+    cursor: pointer; color: inherit; font: inherit; position: relative; overflow: hidden;
+    z-index: 1; /* 👈 zawsze nad dekoracjami */
+  }
+  /* click safety */
+  .update-header, .update-header * { pointer-events: auto; }
 
-    .update-date {
-      font-weight: 800; letter-spacing: .2px; white-space: nowrap;
-      padding: 6px 10px; border-radius: 999px;
-      background: color-mix(in oklab, var(--accent-color), transparent 85%);
-      box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent-color), transparent 50%);
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .update-date::before { content: "📅"; font-size: 1.05em; transform: translateY(-1px); }
-    .update-title { font-weight: 700; opacity: .98; line-height: 1.4; }
-    .update-chev {
-      width: 22px; height: 22px; border-radius: 50%;
-      display: grid; place-items: center; translate: 0 0; transition: transform .3s ease;
-    }
-    .update[aria-expanded="true"] .update-chev { transform: rotate(180deg); }
+  .update-header:focus-visible { outline: 2px solid color-mix(in oklab, var(--accent-color), white 10%); outline-offset: 2px; border-radius: 12px; }
+  .update-header::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition: opacity .35s;
+    background:
+      radial-gradient(220px 220px at var(--ripple-x) var(--ripple-y),
+        color-mix(in oklab, var(--accent-color), transparent 75%), transparent 70%);
+    mix-blend-mode: screen;
+  }
+  .update-header.rippling::after{ opacity:.7; animation: rippleFade .6s ease-out both; }
+  @keyframes rippleFade { from{opacity:.8} to{opacity:0} }
 
-    /* Panel (rozwijany) — animacja wysokości + lekki 3D fold */
-    .update-panel-wrap { perspective: 1200px; }
-    .update-panel {
-      display: grid; grid-template-rows: 0fr; transition: grid-template-rows .42s ease;
-    }
-    .update[aria-expanded="true"] .update-panel { grid-template-rows: 1fr; }
-    .update-panel-inner {
-      overflow: hidden; transform-origin: top; transform: rotateX(-6deg);
-      transition: transform .42s ease, opacity .42s ease;
-      opacity: 0; padding: 0 18px 16px;
-    }
-    .update[aria-expanded="true"] .update-panel-inner { transform: rotateX(0); opacity: 1; }
+  .update-date {
+    font-weight: 800; letter-spacing: .2px; white-space: nowrap;
+    padding: 6px 10px; border-radius: 999px;
+    background: color-mix(in oklab, var(--accent-color), transparent 85%);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent-color), transparent 50%);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .update-date::before { content: "📅"; font-size: 1.05em; transform: translateY(-1px); }
+  .update-title { font-weight: 700; opacity: .98; line-height: 1.4; }
+  .update-chev { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; translate: 0 0; transition: transform .3s ease; }
+  .update[aria-expanded="true"] .update-chev { transform: rotate(180deg); }
 
-    /* Treść panelu */
+  /* Panel (rozwijany) */
+  .update-panel-wrap { perspective: 1200px; }
+  .update-panel {
+    display: grid; grid-template-rows: 0fr; transition: grid-template-rows .42s ease;
+    overflow: hidden; /* 👈 bezpieczeństwo */
+  }
+  /* działa i przez aria-expanded na LI, i przez data-open=true na panelu */
+  .update[aria-expanded="true"] .update-panel,
+  .update-panel[data-open="true"] { grid-template-rows: 1fr; }
+
+  .update-panel-inner {
+    overflow: hidden; transform-origin: top; transform: rotateX(-6deg);
+    transition: transform .42s ease, opacity .42s ease;
+    opacity: 0; padding: 0 18px 16px;
+  }
+  .update[aria-expanded="true"] .update-panel-inner,
+  .update-panel[data-open="true"] .update-panel-inner { transform: rotateX(0); opacity: 1; }
+
+  /* Treść panelu */
+  .update-details {
+    display: grid; gap: 10px; margin-top: 6px;
+    background-color: var(--nav-bg);
+    border-radius: 12px; padding: 12px 12px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+  }
+  @supports (background: color-mix(in oklab, black, white)) {
     .update-details {
-      display: grid; gap: 10px; margin-top: 6px;
-      background: color-mix(in oklab, var(--bg-color), transparent 6%);
-      border-radius: 12px; padding: 12px 12px;
+      background: color-mix(in oklab, var(--nav-bg), transparent 0%);
       box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 90%);
     }
-    .update-details h4 { margin: 0; font-size: 1.05rem; color: var(--accent-color); }
-    .update-details p { margin: 0; opacity: .95; }
-    .update-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .chip {
-      font-size: .82rem; padding: 4px 8px; border-radius: 999px;
-      background: color-mix(in oklab, var(--accent-color), transparent 85%);
-      border: 1px solid color-mix(in oklab, var(--accent-color), transparent 55%);
-    }
+  }
+  .update-details h4 { margin: 0; font-size: 1.05rem; color: var(--accent-color); }
+  .update-details p { margin: 0; color: var(--text-color); opacity: .95; }
 
-    /* Dark tuning */
-    body.dark .update {
-      background: linear-gradient(180deg, color-mix(in oklab, #0b0b0b, transparent 0%), color-mix(in oklab, #0b0b0b, transparent 28%));
-      box-shadow: 0 10px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06);
-    }
-    body.dark .update::before {
-      background: linear-gradient(120deg,
-        color-mix(in oklab, var(--accent-color), black 10%),
-        color-mix(in oklab, var(--accent-color), white 14%),
-        color-mix(in oklab, var(--accent-color), black 15%));
-      opacity: .55;
-    }
+  /* Ładne listy */
+  .update-details ul, .update-details ol { margin: .25rem 0 0 1.2rem; padding: 0; color: var(--text-color); }
+  .update-details ul.bullets { list-style: none; margin-left: 0; }
+  .update-details ul.bullets li {
+    position: relative; padding-left: 1.15rem; margin: .4rem 0; line-height: 1.6;
+  }
+  .update-details ul.bullets li::before {
+    content:""; position:absolute; left: 0; top: .55em; width: .55rem; height: .55rem; border-radius: 50%;
+    background: linear-gradient(180deg, var(--accent-color), color-mix(in oklab, var(--accent-color), black 12%));
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent-color), transparent 82%);
+  }
+  .update-details li strong { color: var(--text-color); font-weight: 800; }
+  .update-details a { color: var(--accent-color); text-underline-offset: 3px; }
+  .update-details code {
+    padding: .1rem .35rem; border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: rgba(127,127,127,.12); border: 1px solid rgba(127,127,127,.18);
+  }
 
-    @media (prefers-reduced-motion: reduce) {
-      .updates-stage::before, .updates-stage::after, .update-header::after, .section-separator.animate::after { display:none !important; }
-      .update, .update-panel, .update-panel-inner { transition: none !important; }
-      .update:hover { transform:none !important; }
+  .update-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .chip { font-size: .82rem; padding: 4px 8px; border-radius: 999px;
+    background: color-mix(in oklab, var(--accent-color), transparent 85%);
+    border: 1px solid color-mix(in oklab, var(--accent-color), transparent 55%);
+    color: var(--text-color);
+  }
+
+  /* Dark tuning */
+  body.dark .update { background-color: #121212; box-shadow: 0 10px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06); }
+  @supports (background: color-mix(in oklab, black, white)) {
+    body.dark .update { background: linear-gradient(180deg, color-mix(in oklab, #0b0b0b, transparent 0%), color-mix(in oklab, #0b0b0b, transparent 28%)); }
+  }
+  body.dark .update::before {
+    background: linear-gradient(120deg,
+      color-mix(in oklab, var(--accent-color), black 10%),
+      color-mix(in oklab, var(--accent-color), white 14%),
+      color-mix(in oklab, var(--accent-color), black 15%));
+    opacity: .55;
+  }
+  body.dark .update-details { background-color: #171717; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+  @supports (background: color-mix(in oklab, black, white)) {
+    body.dark .update-details { background: color-mix(in oklab, #0e0e0e, white 6%); }
+  }
+  body.dark .update-details code { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .updates-stage::before, .updates-stage::after, .update-header::after, .section-separator.animate::after { display:none !important; }
+    .update, .update-panel, .update-panel-inner { transition: none !important; }
+    .update:hover { transform:none !important; }
+  }
+
+  /* ===== Roadmap / Future Updates ===== */
+  .roadmap-wrap{ max-width:1100px; margin: 0 auto 4rem; padding: 0 20px; position:relative; }
+  .roadmap-title{
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800; text-align: center; line-height: 1.1; margin: 0 auto 1rem; letter-spacing: .3px;
+    color: transparent;
+    background: radial-gradient(120% 120% at 30% 0%, #9d4edd 0%,
+                color-mix(in oklab, var(--accent-color), #9d4edd 45%) 40%,
+                color-mix(in oklab, var(--accent-color), #9d4edd 10%) 85%);
+    -webkit-background-clip: text; background-clip: text;
+    filter: drop-shadow(0 6px 18px color-mix(in oklab, #9d4edd, transparent 82%));
+  }
+  body.dark .roadmap-title{
+    background: radial-gradient(120% 120% at 30% 0%, #b388ff 0%, #9d4edd 36%,
+                color-mix(in oklab, var(--accent-color), #9d4edd 35%) 72%);
+    -webkit-background-clip: text; background-clip: text;
+  }
+
+  .section-separator.roadmap-sep{
+    background: linear-gradient(90deg, transparent,
+      color-mix(in oklab, var(--accent-color), #9d4edd 32%), transparent);
+  }
+
+  .roadmap-list{
+    list-style: none; margin: 1.25rem auto 0; padding: 0;
+    display: grid; gap: clamp(12px, 2.2vw, 18px);
+  }
+
+  .update.plan{
+    position: relative; border-radius: 16px; overflow: hidden;
+    background-color: var(--nav-bg);
+    -webkit-backdrop-filter: blur(8px) saturate(1.08); backdrop-filter: blur(8px) saturate(1.08);
+    box-shadow: 0 10px 24px rgba(0,0,0,.08), inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 88%);
+  }
+  @supports (background: color-mix(in oklab, black, white)){
+    .update.plan{
+      background: linear-gradient(180deg,
+        color-mix(in oklab, var(--nav-bg), #9d4edd 6%),
+        color-mix(in oklab, var(--nav-bg), #9d4edd 0%));
     }
-  </style>
+  }
+  .update.plan::before{
+    content:""; position:absolute; inset:-1px; border-radius:18px; padding:1px;
+    background: linear-gradient(120deg,
+      color-mix(in oklab, #9d4edd, var(--accent-color) 45%),
+      color-mix(in oklab, var(--accent-color), white 18%),
+      color-mix(in oklab, #9d4edd, transparent 10%));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity:.7; transition: opacity .35s ease; pointer-events:none;
+  }
+  .update.plan:hover{ transform: translateY(-2px); box-shadow: 0 16px 44px rgba(0,0,0,.18), inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 86%); }
+  .update.plan:hover::before{ opacity: 1; }
+
+  .update.plan .update-header{ padding: 16px 18px; }
+  .update.plan .update-date{ background: color-mix(in oklab, #9d4edd, transparent 80%); box-shadow: inset 0 0 0 1px color-mix(in oklab, #9d4edd, transparent 48%); }
+  .update.plan .update-chev{ box-shadow: inset 0 0 0 1px color-mix(in oklab, #9d4edd, transparent 70%); }
+
+  .update.plan .update-panel-inner{ padding: 0 18px 16px; }
+  .update.plan .update-details{
+    background-color: var(--nav-bg); border-radius: 12px; padding: 12px 12px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+  }
+  @supports (background: color-mix(in oklab, black, white)){
+    .update.plan .update-details{
+      background: linear-gradient(180deg,
+        color-mix(in oklab, var(--nav-bg), #9d4edd 5%),
+        color-mix(in oklab, var(--nav-bg), transparent 0%));
+      box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 90%);
+    }
+  }
+  .update.plan .update-details h4{ color: color-mix(in oklab, var(--accent-color), #9d4edd 28%); }
+
+  .update.plan .chip{
+    background: color-mix(in oklab, #9d4edd, transparent 85%);
+    border: 1px solid color-mix(in oklab, #9d4edd, transparent 55%);
+    color: var(--text-color);
+  }
+
+  body.dark .update.plan{ background-color:#121212; box-shadow: 0 10px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06); }
+  @supports (background: color-mix(in oklab, black, white)){
+    body.dark .update.plan{
+      background: linear-gradient(180deg, color-mix(in oklab, #0d0d10, #9d4edd 3%),
+                 color-mix(in oklab, #0d0d10, transparent 0%));
+    }
+  }
+  body.dark .update.plan .update-details{ background-color:#171717; }
+  @supports (background: color-mix(in oklab, black, white)){
+    body.dark .update.plan .update-details{ background: color-mix(in oklab, #0f0f12, white 5%); }
+  }
+</style>
+
+
+
+
 </head>
 <body>
   <header><div id="menu-placeholder"></div></header>
@@ -219,6 +365,47 @@
       <h2 id="updates-list-title" class="visually-hidden" data-i18n="updates_list_title">Lista aktualizacji</h2>
 
       <ul class="updates-list">
+        <!-- 2025-08-26 (UI refresh + CSS refactor) -->
+<li class="update hidden-on-load fade-zoom" data-delay="0.2s" aria-expanded="false">
+  <button class="update-header" type="button" aria-controls="u-2025-08-26c" aria-expanded="false">
+    <span class="update-date" data-i18n="updates_item_2025_08_26c_date">2025-08-26</span>
+    <span class="update-title" data-i18n="updates_item_2025_08_26c_text">
+      Odświeżenie warstwy wizualnej, pełny dark mode, usprawnienia CSS.
+    </span>
+    <span class="update-chev" aria-hidden="true">▾</span>
+  </button>
+  <div id="u-2025-08-26c" class="update-panel-wrap">
+    <div class="update-panel"><div class="update-panel-inner">
+      <div class="update-details">
+        <h4 data-i18n="updates_item_2025_08_26c_title">Aurora / Glass Theme v2 + refaktor CSS</h4>
+        <p data-i18n="updates_item_2025_08_26c_desc">
+          Zaktualizowano wizualną część portfolio: nowy motyw Aurora/Glass z neonowymi
+          akcentami i lepszą głębią, przy zachowaniu dotychczasowego układu treści na stronie głównej.
+          Ciemny motyw został dopracowany w 100% – tła, treści, ikonografia i nawigacja są
+          spójne i czytelne.
+        </p>
+        <ul class="bullets" data-i18n-list="updates_item_2025_08_26c_bullets">
+          <li><strong>Dark mode:</strong> biała typografia w treści, jasny pasek „Ostatnie aktualizacje”, białe ikony GitHub w menu i stopce.</li>
+          <li><strong>Nawigacja (mobile):</strong> dropdown/hamburger ma nieprzezroczyste szkło — koniec z „zlewaniem” tekstu.</li>
+          <li><strong>Formularze:</strong> pole wiadomości bez ręcznego skalowania (<code>resize: none</code>), lepsze focus-ringi.</li>
+          <li><strong>Kafelki i karty:</strong> delikatne szkło, gradientowe obramowania, spójne cienie i hover.</li>
+          <li><strong>Tokeny kolorów:</strong> zmienne CSS dla jasnego/ciemnego motywu, mniej duplikacji stylów.</li>
+          <li><strong>Wydajność & a11y:</strong> wsparcie <code>prefers-reduced-motion</code>, wyższy kontrast, poprawione <code>:focus-visible</code>.</li>
+        </ul>
+        <div class="update-tags">
+          <span class="chip">UI</span>
+          <span class="chip">CSS</span>
+          <span class="chip">Dark Mode</span>
+          <span class="chip">A11y</span>
+          <span class="chip">Performance</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</li>
+
+
+
       <!-- 2025-08-26 (strona updates.html) -->
 <li class="update hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
   <button class="update-header" type="button" aria-controls="u-2025-08-26b" aria-expanded="false">
@@ -343,56 +530,246 @@
         </li>
       </ul>
     </section>
+
+  <section class="roadmap-wrap updates-stage">
+  <h2 class="roadmap-title hidden-on-load" data-i18n="roadmap_h2">Przyszłe aktualizacje</h2>
+  <div class="section-separator roadmap-sep hidden-separator"></div>
+
+  <ul class="roadmap-list">
+
+    <!-- IG Scraper (Python) -->
+    <li class="update plan hidden-on-load fade-zoom" data-delay="0.05s" aria-expanded="false">
+      <button class="update-header" type="button" aria-controls="p-ig-scraper" aria-expanded="false">
+        <span class="update-date" data-i18n="roadmap_item_ig_eta">wrzesień 2025</span>
+        <span class="update-title" data-i18n="roadmap_item_ig_text">
+          Dodanie scrapera Instagrama (Python) do automatycznego ładowania postów.
+        </span>
+        <span class="update-chev" aria-hidden="true">▾</span>
+      </button>
+      <div id="p-ig-scraper" class="update-panel-wrap">
+        <div class="update-panel"><div class="update-panel-inner">
+          <div class="update-details">
+            <h4 data-i18n="roadmap_item_ig_title">Scraper Instagram (Python)</h4>
+            <p data-i18n="roadmap_item_ig_desc">
+              Własne narzędzie do pobierania i cache’owania najnowszych postów, z walidacją, harmonogramem i mechanizmem awaryjnym. 
+              Zasilanie mini-galerii w sekcji „O mnie”.
+            </p>
+            <ul class="bullets">
+              <li data-i18n="roadmap_item_ig_b1"><strong>Technologie:</strong> Python, requests/HTTPX, harmonogram (cron), cache.</li>
+              <li data-i18n="roadmap_item_ig_b2"><strong>Funkcje:</strong> walidacja odpowiedzi, fallback, limit zapytań.</li>
+              <li data-i18n="roadmap_item_ig_b3"><strong>Cel:</strong> automatyczna, świeża zawartość bez ręcznej ingerencji.</li>
+            </ul>
+            <div class="update-tags">
+              <span class="chip" data-i18n="chip_plan">Plan</span>
+              <span class="chip" data-i18n="chip_python">Python</span>
+              <span class="chip" data-i18n="chip_automation">Automatyzacja</span>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </li>
+
+    <!-- Globalne animacje + sekcje projektów -->
+    <li class="update plan hidden-on-load fade-zoom" data-delay="0.1s" aria-expanded="false">
+      <button class="update-header" type="button" aria-controls="p-animations" aria-expanded="false">
+        <span class="update-date" data-i18n="roadmap_item_anim_eta">wrzesień 2025</span>
+        <span class="update-title" data-i18n="roadmap_item_anim_text">
+          Ulepszenie animacji globalnych oraz rozwinięcie sekcji projektów.
+        </span>
+        <span class="update-chev" aria-hidden="true">▾</span>
+      </button>
+      <div id="p-animations" class="update-panel-wrap">
+        <div class="update-panel"><div class="update-panel-inner">
+          <div class="update-details">
+            <h4 data-i18n="roadmap_item_anim_title">Animacje i sekcje projektów</h4>
+            <p data-i18n="roadmap_item_anim_desc">
+              Dalsza praca nad płynnością wejść/wyjść, harmonogramem opóźnień i scenami „aurora”.
+              Rozbudowa kart projektów o dodatkowe metadane, filtry i sortowanie.
+            </p>
+            <ul class="bullets">
+              <li data-i18n="roadmap_item_anim_b1"><strong>Ruch:</strong> fine-tuning, obsługa <code>prefers-reduced-motion</code>.</li>
+              <li data-i18n="roadmap_item_anim_b2"><strong>Kartoteka:</strong> tagi, filtry, małe KPI (gwiazdki, stack, status).</li>
+              <li data-i18n="roadmap_item_anim_b3"><strong>Cel:</strong> szybsza nawigacja po projektach i lepszy UX.</li>
+            </ul>
+            <div class="update-tags">
+              <span class="chip" data-i18n="chip_plan">Plan</span>
+              <span class="chip" data-i18n="chip_ui">UI</span>
+              <span class="chip" data-i18n="chip_animation">Animacje</span>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </li>
+
+    <!-- Zewnętrzne API do kontaktu -->
+    <li class="update plan hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
+      <button class="update-header" type="button" aria-controls="p-apis" aria-expanded="false">
+        <span class="update-date" data-i18n="roadmap_item_api_eta">wrzesień 2025</span>
+        <span class="update-title" data-i18n="roadmap_item_api_text">
+          Podłączenie zewnętrznych API do natychmiastowego kontaktu.
+        </span>
+        <span class="update-chev" aria-hidden="true">▾</span>
+      </button>
+      <div id="p-apis" class="update-panel-wrap">
+        <div class="update-panel"><div class="update-panel-inner">
+          <div class="update-details">
+            <h4 data-i18n="roadmap_item_api_title">Integracje kontaktowe</h4>
+            <p data-i18n="roadmap_item_api_desc">
+              Integracja prostych endpointów do natychmiastowego kontaktu (np. webhooki, e-mail gateway).
+              Nacisk na bezpieczeństwo i rate limiting.
+            </p>
+            <ul class="bullets">
+              <li data-i18n="roadmap_item_api_b1"><strong>Bezpieczeństwo:</strong> tokeny, limity, logowanie zdarzeń.</li>
+              <li data-i18n="roadmap_item_api_b2"><strong>Wygoda:</strong> kontakt „1-klik” z fallbackiem.</li>
+              <li data-i18n="roadmap_item_api_b3"><strong>Cel:</strong> szybsza komunikacja i mniejsza ilość kroków.</li>
+            </ul>
+            <div class="update-tags">
+              <span class="chip" data-i18n="chip_plan">Plan</span>
+              <span class="chip" data-i18n="chip_api">API</span>
+              <span class="chip" data-i18n="chip_security">Security</span>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </li>
+
+    <!-- Polityka cookies -->
+    <li class="update plan hidden-on-load fade-zoom" data-delay="0.2s" aria-expanded="false">
+      <button class="update-header" type="button" aria-controls="p-cookies" aria-expanded="false">
+        <span class="update-date" data-i18n="roadmap_item_cookies_eta">wrzesień 2025</span>
+        <span class="update-title" data-i18n="roadmap_item_cookies_text">
+          Wprowadzenie polityki cookies.
+        </span>
+        <span class="update-chev" aria-hidden="true">▾</span>
+      </button>
+      <div id="p-cookies" class="update-panel-wrap">
+        <div class="update-panel"><div class="update-panel-inner">
+          <div class="update-details">
+            <h4 data-i18n="roadmap_item_cookies_title">Polityka cookies</h4>
+            <p data-i18n="roadmap_item_cookies_desc">
+              Dodanie klarownej polityki cookies i banera zgód zgodnego z RODO. 
+              Precyzyjne kategorie, pamiętanie wyboru i łatwa zmiana preferencji.
+            </p>
+            <ul class="bullets">
+              <li data-i18n="roadmap_item_cookies_b1"><strong>Transparentność:</strong> jasny opis, cele i retencja.</li>
+              <li data-i18n="roadmap_item_cookies_b2"><strong>Kontrola:</strong> granularne zgody, opt-in zamiast opt-out.</li>
+              <li data-i18n="roadmap_item_cookies_b3"><strong>Cel:</strong> zgodność prawna i lepsze doświadczenie użytkownika.</li>
+            </ul>
+            <div class="update-tags">
+              <span class="chip" data-i18n="chip_plan">Plan</span>
+              <span class="chip" data-i18n="chip_compliance">Compliance</span>
+              <span class="chip" data-i18n="chip_privacy">Prywatność</span>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </li>
+
+  </ul>
+</section>
   </main>
 
   <div id="footer-placeholder"></div>
 
-  <!-- ====== JS: akordeon + ripple + a11y ====== -->
-  <script>
-    (function(){
-      // Delegacja klików + ripple
-      const list = document.querySelector('.updates-list');
-      if(!list) return;
+<script>
+(function(){
+  function setExpanded(li, expanded){
+    const btn   = li.querySelector('.update-header');
+    const panel = li.querySelector('.update-panel');
+    const val   = String(!!expanded);
+    li.setAttribute('aria-expanded', val);
+    if (btn)   btn.setAttribute('aria-expanded', val);
+    if (panel) panel.setAttribute('data-open', val);
+    if (expanded) {
+      const sibs = li.parentElement?.querySelectorAll(':scope > li.update[aria-expanded="true"]') || [];
+      sibs.forEach(s => { if (s !== li) setExpanded(s, false); });
+    }
+  }
 
-      function setRipple(e, btn){
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left, y = e.clientY - rect.top;
-        btn.style.setProperty('--ripple-x', x + 'px');
-        btn.style.setProperty('--ripple-y', y + 'px');
-        btn.classList.remove('rippling');
-        // force reflow
-        void btn.offsetWidth;
-        btn.classList.add('rippling');
-        setTimeout(()=>btn.classList.remove('rippling'), 650);
-      }
+  function toggleFrom(el){
+    const li = el.closest('li.update');
+    if (!li) return;
+    const next = li.getAttribute('aria-expanded') !== 'true';
+    setExpanded(li, next);
+  }
 
-      function toggleItem(updateEl, btn){
-        const expanded = updateEl.getAttribute('aria-expanded') === 'true';
-        updateEl.setAttribute('aria-expanded', String(!expanded));
-        btn.setAttribute('aria-expanded', String(!expanded));
-      }
+  function prepOne(li){
+    if (!li.hasAttribute('aria-expanded')) li.setAttribute('aria-expanded', 'false');
+    const btn = li.querySelector('.update-header');
+    const pnl = li.querySelector('.update-panel');
+    if (btn) {
+      if (!btn.hasAttribute('aria-expanded')) btn.setAttribute('aria-expanded', 'false');
+      if (btn.tagName === 'BUTTON' && !btn.getAttribute('type')) btn.setAttribute('type','button');
+    }
+    if (pnl && !pnl.id && btn) {
+      const id = 'u-' + Math.random().toString(36).slice(2,9);
+      pnl.id = id; btn.setAttribute('aria-controls', id);
+    }
+  }
 
-      list.addEventListener('click', (e)=>{
-        const btn = e.target.closest('.update-header');
-        if(!btn) return;
-        const updateEl = btn.closest('.update');
-        if(!updateEl) return;
-        setRipple(e, btn);
-        toggleItem(updateEl, btn);
-      });
+  function mount(root=document){
+    root.querySelectorAll('li.update').forEach(prepOne);
+  }
 
-      // Klawiatura: Enter/Space
-      list.addEventListener('keydown', (e)=>{
-        if(e.key !== 'Enter' && e.key !== ' ') return;
-        const btn = e.target.closest('.update-header');
-        if(!btn) return;
-        e.preventDefault();
-        const updateEl = btn.closest('.update');
-        toggleItem(updateEl, btn);
-      });
+  // Klik w header lub w całą kartę
+  function onClick(e){
+    const header = e.target.closest('.update-header');
+    if (header) { e.preventDefault(); toggleFrom(header); return; }
+    const card = e.target.closest('li.update');
+    if (!card) return;
+    // blokujemy kliknięcia w linki/elementy interaktywne, żeby nie psuć nawigacji
+    if (e.target.closest('a, button, input, textarea, select, label')) return;
+    e.preventDefault(); toggleFrom(card);
+  }
 
-      // A11y: inicjalne aria-controls/expanded są w HTML
-    })();
-  </script>
+  // Klawiatura
+  function onKey(e){
+    const header = e.target.closest?.('.update-header');
+    if (!header) return;
+    const li = header.closest('li.update');
+    const list = li?.parentElement;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFrom(header); }
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && list) {
+      e.preventDefault();
+      const all = [...list.querySelectorAll(':scope > li.update .update-header')];
+      const i = all.indexOf(header);
+      (e.key === 'ArrowDown' ? all[i+1] : all[i-1])?.focus();
+    }
+    if ((e.key === 'Home' || e.key === 'End') && list) {
+      e.preventDefault();
+      const all = [...list.querySelectorAll(':scope > li.update .update-header')];
+      (e.key === 'Home' ? all[0] : all[all.length-1])?.focus();
+    }
+  }
+
+  // Capture, żeby przebić się przez ewentualne stopPropagation w innym kodzie
+  document.addEventListener('click', onClick, true);
+  document.addEventListener('keydown', onKey);
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', () => mount(), { once:true });
+  } else {
+    mount();
+  }
+
+  // Gdy coś dogrywasz dynamicznie
+  document.addEventListener('updates:mounted', () => mount());
+
+  // Ripple (opcjonalka, ale ładnie wygląda)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.update-header');
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    btn.style.setProperty('--ripple-x', (e.clientX - r.left) + 'px');
+    btn.style.setProperty('--ripple-y', (e.clientY - r.top) + 'px');
+    btn.classList.add('rippling');
+    clearTimeout(btn.__ripTim);
+    btn.__ripTim = setTimeout(() => btn.classList.remove('rippling'), 650);
+  }, true);
+})();
+</script>
+
+
+
 </body>
 </html>

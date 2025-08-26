@@ -11,6 +11,21 @@ const translationsUpdates = {
     updates_twitter_title: "Ostatnie aktualizacje — Piotr Kawa",
     updates_twitter_description: "Lista najnowszych zmian i poprawek na stronie.",
 
+    // 2025-08-26c (UI refresh + CSS refactor)
+    updates_item_2025_08_26c_date: "2025-08-26",
+    updates_item_2025_08_26c_text: "Odświeżenie warstwy wizualnej, pełny dark mode, usprawnienia CSS.",
+    updates_item_2025_08_26c_title: "Aurora / Glass Theme v2 + refaktor CSS",
+    updates_item_2025_08_26c_desc:
+      "Zaktualizowano wizualną część portfolio: nowy motyw Aurora/Glass z neonowymi akcentami i lepszą głębią, przy zachowaniu dotychczasowego układu treści na stronie głównej. Ciemny motyw został dopracowany w 100% – tła, treści, ikonografia i nawigacja są spójne i czytelne.",
+    updates_item_2025_08_26c_bullets: [
+      "<strong>Dark mode:</strong> biała typografia w treści, jasny pasek „Ostatnie aktualizacje”, białe ikony GitHub w menu i stopce.",
+      "<strong>Nawigacja (mobile):</strong> dropdown/hamburger ma nieprzezroczyste szkło — koniec z „zlewaniem” tekstu.",
+      "<strong>Formularze:</strong> pole wiadomości bez ręcznego skalowania (<code>resize: none</code>), lepsze focus-ringi.",
+      "<strong>Kafelki i karty:</strong> delikatne szkło, gradientowe obramowania, spójne cienie i hover.",
+      "<strong>Tokeny kolorów:</strong> zmienne CSS dla jasnego/ciemnego motywu, mniej duplikacji stylów.",
+      "<strong>Wydajność & a11y:</strong> wsparcie <code>prefers-reduced-motion</code>, wyższy kontrast, poprawione <code>:focus-visible</code>."
+    ],
+
     // 2025-08-26b
     updates_item_2025_08_26b_date: "2025-08-26",
     updates_item_2025_08_26b_text: "Dodano stronę z listą aktualizacji (updates.html).",
@@ -50,15 +65,69 @@ const translationsUpdates = {
     read_more_button: "Przeczytaj szczegóły",
     read_less_button: "Zwiń szczegóły",
 
+    roadmap_h2: "Przyszłe aktualizacje",
+
+    // IG Scraper
+    roadmap_item_ig_eta: "wrzesień 2025",
+    roadmap_item_ig_text: "Dodanie scrapera Instagrama (Python) do automatycznego ładowania postów.",
+    roadmap_item_ig_title: "Scraper Instagram (Python)",
+    roadmap_item_ig_desc:
+      "Własne narzędzie do pobierania i cache’owania najnowszych postów, z walidacją, harmonogramem i mechanizmem awaryjnym. Zasilanie mini-galerii w sekcji „O mnie”.",
+    roadmap_item_ig_b1: "<strong>Technologie:</strong> Python, requests/HTTPX, harmonogram (cron), cache.",
+    roadmap_item_ig_b2: "<strong>Funkcje:</strong> walidacja odpowiedzi, fallback, limit zapytań.",
+    roadmap_item_ig_b3: "<strong>Cel:</strong> automatyczna, świeża zawartość bez ręcznej ingerencji.",
+
+    // Animacje + sekcje projektów
+    roadmap_item_anim_eta: "wrzesień 2025",
+    roadmap_item_anim_text: "Ulepszenie animacji globalnych oraz rozwinięcie sekcji projektów.",
+    roadmap_item_anim_title: "Animacje i sekcje projektów",
+    roadmap_item_anim_desc:
+      "Dalsza praca nad płynnością wejść/wyjść, harmonogramem opóźnień i scenami „aurora”. Rozbudowa kart projektów o dodatkowe metadane, filtry i sortowanie.",
+    roadmap_item_anim_b1: "<strong>Ruch:</strong> fine-tuning, obsługa <code>prefers-reduced-motion</code>.",
+    roadmap_item_anim_b2: "<strong>Kartoteka:</strong> tagi, filtry, małe KPI (gwiazdki, stack, status).",
+    roadmap_item_anim_b3: "<strong>Cel:</strong> szybsza nawigacja po projektach i lepszy UX.",
+
+    // Zewnętrzne API do kontaktu
+    roadmap_item_api_eta: "wrzesień 2025",
+    roadmap_item_api_text: "Podłączenie zewnętrznych API do natychmiastowego kontaktu.",
+    roadmap_item_api_title: "Integracje kontaktowe",
+    roadmap_item_api_desc:
+      "Integracja prostych endpointów do natychmiastowego kontaktu (np. webhooki, e-mail gateway). Nacisk na bezpieczeństwo i rate limiting.",
+    roadmap_item_api_b1: "<strong>Bezpieczeństwo:</strong> tokeny, limity, logowanie zdarzeń.",
+    roadmap_item_api_b2: "<strong>Wygoda:</strong> kontakt „1-klik” z fallbackiem.",
+    roadmap_item_api_b3: "<strong>Cel:</strong> szybsza komunikacja i mniejsza ilość kroków.",
+
+    // Cookies policy
+    roadmap_item_cookies_eta: "wrzesień 2025",
+    roadmap_item_cookies_text: "Wprowadzenie polityki cookies.",
+    roadmap_item_cookies_title: "Polityka cookies",
+    roadmap_item_cookies_desc:
+      "Dodanie klarownej polityki cookies i banera zgód zgodnego z RODO. Precyzyjne kategorie, pamiętanie wyboru i łatwa zmiana preferencji.",
+    roadmap_item_cookies_b1: "<strong>Transparentność:</strong> jasny opis, cele i retencja.",
+    roadmap_item_cookies_b2: "<strong>Kontrola:</strong> granularne zgody, opt-in zamiast opt-out.",
+    roadmap_item_cookies_b3: "<strong>Cel:</strong> zgodność prawna i lepsze doświadczenie użytkownika.",
+
+    /* Chips */
+    chip_plan: "Plan",
+    chip_python: "Python",
+    chip_automation: "Automatyzacja",
+    chip_ui: "UI",
+    chip_animation: "Animacje",
+    chip_api: "API",
+    chip_security: "Security",
+    chip_compliance: "Compliance",
+    chip_privacy: "Prywatność",
+
     changelog: {
       label: "Ostatnie aktualizacje",
       lines: [
-    "📅 [2025-08-26] 👀 Poprawiono widoczność i animacje paska aktualizacji.",
-    "📅 [2025-08-22] 🆕 Dodano pasek aktualizacji pod menu.",
-    "📅 [2025-08-14] 👤 Dodano sekcję 'O mnie' z informacjami o mnie.",
-    "📅 [2025-08-14] 🤖 Rozpoczęto pracę nad 'scraperem Instagrama' do sekcji o mnie (Python)."
+        "📅 [2025-08-26] ✨ Odświeżenie UI (Aurora/Glass), pełny dark mode i refaktor CSS.",
+        "📅 [2025-08-26] 👀 Poprawiono widoczność i animacje paska aktualizacji.",
+        "📅 [2025-08-22] 🆕 Dodano pasek aktualizacji pod menu.",
+        "📅 [2025-08-14] 👤 Dodano sekcję 'O mnie' z informacjami o mnie.",
+        "📅 [2025-08-14] 🤖 Rozpoczęto pracę nad 'scraperem Instagrama' do sekcji o mnie (Python)."
       ]
-    },
+    }
   },
 
   en: {
@@ -72,6 +141,21 @@ const translationsUpdates = {
     updates_og_description: "See what’s new on the site — full list of changes and improvements.",
     updates_twitter_title: "Latest updates — Piotr Kawa",
     updates_twitter_description: "List of the most recent changes and fixes on the site.",
+
+    // 2025-08-26c (UI refresh + CSS refactor)
+    updates_item_2025_08_26c_date: "2025-08-26",
+    updates_item_2025_08_26c_text: "Visual refresh, full dark mode, CSS improvements.",
+    updates_item_2025_08_26c_title: "Aurora / Glass Theme v2 + CSS refactor",
+    updates_item_2025_08_26c_desc:
+      "Refreshed the visual layer: a new Aurora/Glass theme with neon accents and more depth while preserving the existing content layout on the home page. Dark mode is now 100% complete — backgrounds, copy, iconography and navigation are consistent and readable.",
+    updates_item_2025_08_26c_bullets: [
+      "<strong>Dark mode:</strong> white typography for content, a light “Recent updates” bar, white GitHub icons in the header and footer.",
+      "<strong>Navigation (mobile):</strong> dropdown/hamburger uses non-transparent glass — no more blended text.",
+      "<strong>Forms:</strong> message textarea can’t be manually resized (<code>resize: none</code>), improved focus rings.",
+      "<strong>Tiles & cards:</strong> subtle glass, gradient borders, consistent shadows and hover.",
+      "<strong>Color tokens:</strong> CSS variables for light/dark themes, less duplicated styles.",
+      "<strong>Performance & a11y:</strong> <code>prefers-reduced-motion</code> support, higher contrast, improved <code>:focus-visible</code>."
+    ],
 
     // 2025-08-26b
     updates_item_2025_08_26b_date: "2025-08-26",
@@ -112,21 +196,72 @@ const translationsUpdates = {
     read_more_button: "Read more",
     read_less_button: "Hide details",
 
+        roadmap_h2: "Future updates",
+
+    // IG Scraper
+    roadmap_item_ig_eta: "September 2025",
+    roadmap_item_ig_text: "Add an Instagram scraper (Python) for automatic post loading.",
+    roadmap_item_ig_title: "Instagram Scraper (Python)",
+    roadmap_item_ig_desc:
+      "A custom tool to fetch and cache the latest posts with validation, scheduling and failover. It will power the mini-gallery in the About section.",
+    roadmap_item_ig_b1: "<strong>Tech:</strong> Python, requests/HTTPX, scheduler (cron), cache.",
+    roadmap_item_ig_b2: "<strong>Features:</strong> response validation, fallback, request limits.",
+    roadmap_item_ig_b3: "<strong>Goal:</strong> automatic, fresh content without manual steps.",
+
+    // Animations + projects
+    roadmap_item_anim_eta: "September 2025",
+    roadmap_item_anim_text: "Improve global animations and expand project sections.",
+    roadmap_item_anim_title: "Animations & project sections",
+    roadmap_item_anim_desc:
+      "More polish for entrances/exits, delay choreography and aurora scenes. Expand project cards with metadata, filters and sorting.",
+    roadmap_item_anim_b1: "<strong>Motion:</strong> fine-tuning, <code>prefers-reduced-motion</code> support.",
+    roadmap_item_anim_b2: "<strong>Library:</strong> tags, filters, small KPIs (stars, stack, status).",
+    roadmap_item_anim_b3: "<strong>Goal:</strong> faster project navigation and better UX.",
+
+    // External contact APIs
+    roadmap_item_api_eta: "September 2025",
+    roadmap_item_api_text: "Hook external APIs for instant contact.",
+    roadmap_item_api_title: "Contact integrations",
+    roadmap_item_api_desc:
+      "Wire simple endpoints for instant contact (e.g., webhooks, email gateway). Focus on security and rate limiting.",
+    roadmap_item_api_b1: "<strong>Security:</strong> tokens, limits, event logging.",
+    roadmap_item_api_b2: "<strong>Convenience:</strong> one-click contact with fallback.",
+    roadmap_item_api_b3: "<strong>Goal:</strong> shorter path to reach out and fewer steps.",
+
+    // Cookies policy
+    roadmap_item_cookies_eta: "September 2025",
+    roadmap_item_cookies_text: "Introduce a cookies policy.",
+    roadmap_item_cookies_title: "Cookies policy",
+    roadmap_item_cookies_desc:
+      "Add a clear cookies policy and GDPR-compliant consent banner. Precise categories, remembered choice and easy preference changes.",
+    roadmap_item_cookies_b1: "<strong>Transparency:</strong> clear purpose and retention.",
+    roadmap_item_cookies_b2: "<strong>Control:</strong> granular consents, opt-in over opt-out.",
+    roadmap_item_cookies_b3: "<strong>Goal:</strong> legal compliance and better user experience.",
+
+    /* Chips */
+    chip_plan: "Plan",
+    chip_python: "Python",
+    chip_automation: "Automation",
+    chip_ui: "UI",
+    chip_animation: "Animations",
+    chip_api: "API",
+    chip_security: "Security",
+    chip_compliance: "Compliance",
+    chip_privacy: "Privacy",
+
     changelog: {
       label: "Recent updates",
       lines: [
-    "📅 [2025-08-26] 👀 Adjusted recent updates visibility and animation",
-    "📅 [2025-08-22] 🆕 Added an update bar below the menu.",
-    "📅 [2025-08-14] 👤 Added the 'About Me' section with personal information.",
-    "📅 [2025-08-14] 🤖 Started working on an 'Instagram scraper' for the About Me section (Python)."
-
+        "📅 [2025-08-26] ✨ Visual refresh (Aurora/Glass), full dark mode and CSS refactor.",
+        "📅 [2025-08-26] 👀 Adjusted recent updates visibility and animation.",
+        "📅 [2025-08-22] 🆕 Added an update bar below the menu.",
+        "📅 [2025-08-14] 👤 Added the 'About Me' section with personal information.",
+        "📅 [2025-08-14] 🤖 Started working on an 'Instagram scraper' for the About Me section (Python)."
       ]
-    },
-  },
+    }
+  }
 };
 
-// Rejestracja do globalnego translations
+// Merge with global translations and notify i18n system
 window.translations = Object.assign({}, window.translations, translationsUpdates);
-
-// Trigger eventu dla systemu i18n
 document.dispatchEvent(new Event("languageChanged"));

@@ -8,69 +8,114 @@
 </div>
 
 <style>
-.changelog-bar-outer{
-display: flex;
-justify-content: center;
-margin: 0 auto;
+/* ===========================
+   CHANGELOG BAR – GOTOWIEC
+   – kompatybilny z Twoimi zmiennymi (--nav-bg, --text-color, --accent-color)
+   – w dark mode: biała czcionka (hotfix)
+   =========================== */
+
+/* (opcjonalnie) pełna belka – tło + obramowanie jak w Twoim theme */
+.changelog-bar{
+  width: 100%;
+  background: var(--nav-bg);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  color: var(--text-color);
 }
+body.dark .changelog-bar{
+  background: var(--nav-bg);
+  border-bottom-color: rgba(255,255,255,.14);
+}
+
+/* kontener wyśrodkowujący */
+.changelog-bar-outer{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 4px 8px;
+}
+
 /* --- Layout & typography --- */
 .changelog-bar-inner{
---gap: 4px;
---font-size: 0.8rem;
---stage-height: 1.4em;
---marquee-px-per-sec: 60;
-padding: 2px 6px;
-display: flex;
-align-items: center;
-gap: var(--gap);
-font-weight: 600;
-font-size: var(--font-size);
-color: var(--text-color);
-text-align: center;
+  --gap: 4px;
+  --font-size: 0.8rem;
+  --stage-height: 1.4em;
+  --marquee-px-per-sec: 60;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  font-weight: 600;
+  font-size: var(--font-size);
+  color: var(--text-color);
+  text-align: center;
 }
+
+/* etykieta "Ostatnie aktualizacje" */
 .changelog-label{
-flex: 0 0 auto;
-color: var(--accent-color);
-font-weight: 700;
-white-space: nowrap;
-text-align: center;
-margin-right: 2px;
+  flex: 0 0 auto;
+  color: var(--accent-color);
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center;
+  margin-right: 2px;
 }
 .changelog-label::after{ content: ":"; margin-left: 4px; }
 
-
+/* scena z rolującymi liniami */
 .changelog-stage{
-position: relative;
-flex: 1 1 auto;
-min-height: var(--stage-height);
-line-height: var(--stage-height);
-overflow: hidden;
-text-align: center;
+  position: relative;
+  flex: 1 1 auto;
+  min-height: var(--stage-height);
+  line-height: var(--stage-height);
+  overflow: hidden;
+  text-align: center;
 }
+
+/* pojedyncza linia */
 .vline{
-position: absolute; inset: 0 auto 0 0; right: 0;
-white-space: nowrap; overflow: hidden; text-overflow: clip;
-opacity: 0; will-change: transform, opacity; text-align: center;
+  position: absolute; inset: 0 auto 0 0; right: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+  opacity: 0; will-change: transform, opacity; text-align: center;
 }
 
-
+/* wejście/wyjście (stackowane komunikaty) */
 .slide-in{ animation: slideUpIn var(--changelog-dur,.38s) ease-out forwards; }
 .slide-out{ animation: slideUpOut var(--changelog-dur,.38s) ease-in forwards; }
 @keyframes slideUpIn { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
 @keyframes slideUpOut { from{transform:translateY(0);opacity:1} to{transform:translateY(-100%);opacity:0} }
 
-
+/* marquee dla długich linii */
 .vline.is-marquee{ display:block; opacity:1 !important; }
-.vline.is-marquee > .marquee-track{ display:inline-flex; align-items:center; white-space:nowrap; will-change:transform; animation: marqueeRL var(--marquee-duration, 10s) linear 1 forwards; }
+.vline.is-marquee > .marquee-track{
+  display:inline-flex; align-items:center; white-space:nowrap;
+  will-change:transform;
+  /* Ustawiane inline w JS: --marquee-duration i --marquee-to */
+  animation: marqueeRL var(--marquee-duration, 10s) linear 1 forwards;
+}
 @keyframes marqueeRL{ from{ transform: translateX(100%); } to{ transform: translateX(var(--marquee-to,-100%)); } }
 
-
+/* RWD + preferencje dostępności */
 @media (max-width: 640px){ .changelog-label{display:none;} }
 @media (prefers-reduced-motion: reduce){
-.slide-in,.slide-out{animation:none!important;}
-.vline.is-marquee > .marquee-track{ animation: none !important; }
+  .slide-in,.slide-out{animation:none!important;}
+  .vline.is-marquee > .marquee-track{ animation: none !important; }
 }
+
+/* ===========================
+   DARK MODE HOTFIX: biała czcionka
+   =========================== */
+/*
+   body.dark .changelog-bar-inner,
+body.dark .changelog-bar-inner *{
+  color: #fff !important;
+
+}*/
+
+   body.dark .changelog-bar-inner{ color:#fff }
+   body.dark .changelog-label{ color:var(--accent-color) }
+
 </style>
+
 
 <script>
 (function(){
