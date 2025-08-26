@@ -1,62 +1,91 @@
-<!-- addons/changelog/changelog.html -->
+<!-- addons/changelog/changelog.html (centered, small font, one-shot R→L marquee advancing to next) -->
 <div class="changelog-bar-inner" role="status" aria-live="polite">
   <div class="changelog-label" id="changelog-label"></div>
   <div class="changelog-stage" aria-hidden="true">
-    <span class="vline vline-a"></span>
-    <span class="vline vline-b"></span>
+    <span class="vline vline-a" aria-hidden="true"></span>
+    <span class="vline vline-b" aria-hidden="true"></span>
   </div>
 </div>
 
 <style>
-  .changelog-bar-inner{
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 4px 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 600;
-    font-size: .8rem;
-    color: var(--text-color);
-  }
-  .changelog-label{
-    flex: 0 0 auto;
-    color: var(--accent-color);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .changelog-stage{
-    position: relative;
-    flex: 1 1 auto;
-    height: 1.6em; line-height: 1.6em;
-    overflow: hidden; text-align: center; padding: 0 .25rem;
-  }
-  .vline{
-    position: absolute; left: 0; right: 0; top: 0; height: 100%;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    opacity: 0;
-  }
-  .slide-in{  animation: slideUpIn var(--changelog-dur,.38s) ease-out forwards; }
-  .slide-out{ animation: slideUpOut var(--changelog-dur,.38s) ease-in  forwards; }
-  @keyframes slideUpIn  { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
-  @keyframes slideUpOut { from{transform:translateY(0);opacity:1}   to{transform:translateY(-100%);opacity:0} }
-  @media (max-width:640px){ .changelog-label{display:none;} }
-  @media (prefers-reduced-motion:reduce){ .slide-in,.slide-out{animation:none!important;} }
+.changelog-bar-outer{
+display: flex;
+justify-content: center;
+margin: 0 auto;
+}
+/* --- Layout & typography --- */
+.changelog-bar-inner{
+--gap: 4px;
+--font-size: 0.8rem;
+--stage-height: 1.4em;
+--marquee-px-per-sec: 60;
+padding: 2px 6px;
+display: flex;
+align-items: center;
+gap: var(--gap);
+font-weight: 600;
+font-size: var(--font-size);
+color: var(--text-color);
+text-align: center;
+}
+.changelog-label{
+flex: 0 0 auto;
+color: var(--accent-color);
+font-weight: 700;
+white-space: nowrap;
+text-align: center;
+margin-right: 2px;
+}
+.changelog-label::after{ content: ":"; margin-left: 4px; }
+
+
+.changelog-stage{
+position: relative;
+flex: 1 1 auto;
+min-height: var(--stage-height);
+line-height: var(--stage-height);
+overflow: hidden;
+text-align: center;
+}
+.vline{
+position: absolute; inset: 0 auto 0 0; right: 0;
+white-space: nowrap; overflow: hidden; text-overflow: clip;
+opacity: 0; will-change: transform, opacity; text-align: center;
+}
+
+
+.slide-in{ animation: slideUpIn var(--changelog-dur,.38s) ease-out forwards; }
+.slide-out{ animation: slideUpOut var(--changelog-dur,.38s) ease-in forwards; }
+@keyframes slideUpIn { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
+@keyframes slideUpOut { from{transform:translateY(0);opacity:1} to{transform:translateY(-100%);opacity:0} }
+
+
+.vline.is-marquee{ display:block; opacity:1 !important; }
+.vline.is-marquee > .marquee-track{ display:inline-flex; align-items:center; white-space:nowrap; will-change:transform; animation: marqueeRL var(--marquee-duration, 10s) linear 1 forwards; }
+@keyframes marqueeRL{ from{ transform: translateX(100%); } to{ transform: translateX(var(--marquee-to,-100%)); } }
+
+
+@media (max-width: 640px){ .changelog-label{display:none;} }
+@media (prefers-reduced-motion: reduce){
+.slide-in,.slide-out{animation:none!important;}
+.vline.is-marquee > .marquee-track{ animation: none !important; }
+}
 </style>
 
 <script>
 (function(){
-  // ---- konfiguracja animacji
-  const INTERVAL = typeof window.CHANGELOG_INTERVAL === 'number' ? window.CHANGELOG_INTERVAL : 4000;
+  const INTERVAL = typeof window.CHANGELOG_INTERVAL === 'number' ? window.CHANGELOG_INTERVAL : 5000;
   const DURATION = typeof window.CHANGELOG_DURATION === 'number' ? window.CHANGELOG_DURATION : 380;
+  const MARQUEE_MIN_WIDTH_TO_ENABLE = 0;
+  const MARQUEE_SPEED_PX_PER_SEC = typeof window.CHANGELOG_MARQUEE_SPEED === 'number' ? window.CHANGELOG_MARQUEE_SPEED : 60;
   document.documentElement.style.setProperty('--changelog-dur', (DURATION/1000)+'s');
 
-  // ---- fallbacki treści
   const DEFAULTS = {
     pl:{ label:"Ostatnie aktualizacje", lines:[
-      "[2025-08-22] Dodano pasek aktualizacji pod menu].",
-      "[2025-08-14] Dodano sekcję 'Omnie' z informacjami o mnie.",
-      "[2025-08-14] Rozpocząłem pracę nad 'scraperem instagrama' do sekcji o mnie w języku Python."
+      "📅 [2025-08-26] 👀 Poprawiono widoczność i animacje paska aktualizacji.",
+      "📅 [2025-08-22] 🆕 Dodano pasek aktualizacji pod menu.",
+      "📅 [2025-08-14] 👤 Dodano sekcję 'O mnie' z informacjami o mnie.",
+      "📅 [2025-08-14] 🤖 Rozpoczęto pracę nad 'scraperem Instagrama' do sekcji o mnie (Python)."
     ]},
     en:{ label:"Recent updates", lines:[
       "📦 New homepage layout.",
@@ -65,148 +94,142 @@
     ]}
   };
 
-  // ---- helpers
   function getConstTranslations(){ try{ return translations; }catch{ return undefined; } }
-  function fromDict(dict, lang){
-    try{
-      const node = dict?.[lang]?.changelog;
-      const label = node?.label;
-      const lines = Array.isArray(node?.lines) ? node.lines : null;
-      if (label && lines) return {label, lines};
-    }catch{}
-    return null;
-  }
-  function detectLang(){
-    const forced = (window.CHANGELOG_LANG || '').toLowerCase();
-    if (forced==='pl'||forced==='en') return forced;
-    const g1 = (window.currentLang || window.APP_LANG || '').toLowerCase();
-    if (g1==='pl'||g1==='en') return g1;
-    const htmlLang = (document.documentElement.getAttribute('lang')||'').toLowerCase();
-    return htmlLang.startsWith('en') ? 'en' : 'pl';
-  }
-  function loadTexts(lang){
-    const c = getConstTranslations();
-    return (
-      fromDict(c, lang) ||
-      fromDict(window.translations, lang) ||
-      fromDict(window.TRANSLATIONS, lang) ||
-      fromDict(window.I18N, lang) ||
-      DEFAULTS[lang] || DEFAULTS.pl
-    );
-  }
-  function waitForTranslations(timeoutMs=8000){
-    const t0 = performance.now();
-    return new Promise(resolve=>{
-      (function tick(){
-        const c = getConstTranslations();
-        if (fromDict(c,'pl')||fromDict(c,'en')||
-            fromDict(window.translations,'pl')||fromDict(window.translations,'en')||
-            fromDict(window.TRANSLATIONS,'pl')||fromDict(window.TRANSLATIONS,'en')||
-            fromDict(window.I18N,'pl')||fromDict(window.I18N,'en')){
-          resolve(true); return;
-        }
-        if (performance.now()-t0 > timeoutMs){ resolve(false); return; }
-        setTimeout(tick, 100);
-      })();
+  function fromDict(dict, lang){ try{ const node = dict?.[lang]?.changelog; if(node?.label && Array.isArray(node?.lines)) return {label:node.label, lines:node.lines}; }catch{} return null; }
+  function detectLang(){ const forced=(window.CHANGELOG_LANG||'').toLowerCase(); if(['pl','en'].includes(forced)) return forced; const g1=(window.currentLang||window.APP_LANG||'').toLowerCase(); if(['pl','en'].includes(g1)) return g1; const htmlLang=(document.documentElement.getAttribute('lang')||'').toLowerCase(); return htmlLang.startsWith('en')?'en':'pl'; }
+  function loadTexts(lang){ const c=getConstTranslations(); return fromDict(c,lang)||fromDict(window.translations,lang)||fromDict(window.TRANSLATIONS,lang)||fromDict(window.I18N,lang)||DEFAULTS[lang]||DEFAULTS.pl; }
+  function waitForTranslations(timeoutMs=8000){ const t0=performance.now(); return new Promise(resolve=>{(function tick(){ const c=getConstTranslations(); if(fromDict(c,'pl')||fromDict(c,'en')||fromDict(window.translations,'pl')||fromDict(window.translations,'en')||fromDict(window.TRANSLATIONS,'pl')||fromDict(window.TRANSLATIONS,'en')||fromDict(window.I18N,'pl')||fromDict(window.I18N,'en')){resolve(true);return;} if(performance.now()-t0>timeoutMs){resolve(false);return;} setTimeout(tick,100);})();}); }
+
+  const labelEl=document.getElementById("changelog-label");
+  const stage=document.querySelector(".changelog-stage");
+  const a=stage&&stage.querySelector(".vline-a");
+  const b=stage&&stage.querySelector(".vline-b");
+  if(!labelEl||!stage||!a||!b) return;
+
+  let LINES=[], LABEL="", idx=0, showingA=true, paused=false, timer=null;
+
+  function clearIntervalIfAny(){ if(timer){clearInterval(timer);timer=null;} }
+  function startTimer(){ clearIntervalIfAny(); timer=setInterval(()=>{ if(!paused) next(); },INTERVAL); }
+  function clearMarquee(node){ node.classList.remove('is-marquee'); const track=node.querySelector('.marquee-track'); if(track) node.textContent=track.textContent.trim(); }
+
+  function applyOverflowMode(node){
+    clearMarquee(node);
+    const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced){ node.style.whiteSpace='normal'; node.style.position='relative'; node.style.lineHeight='1.4'; stage.style.minHeight='auto'; return false; }
+
+    node.style.whiteSpace='nowrap';
+    stage.style.minHeight=getComputedStyle(document.querySelector('.changelog-bar-inner')).getPropertyValue('--stage-height');
+    const needsMarquee=node.scrollWidth>stage.clientWidth+MARQUEE_MIN_WIDTH_TO_ENABLE;
+    if(!needsMarquee) return false;
+
+    const text=node.textContent; node.textContent=''; node.classList.add('is-marquee');
+    const track=document.createElement('span'); track.className='marquee-track';
+    const contentSpan=document.createElement('span'); contentSpan.textContent=text;
+    track.appendChild(contentSpan); node.appendChild(track);
+
+    requestAnimationFrame(()=>{
+      const contentW=contentSpan.getBoundingClientRect().width; const stageW=stage.getBoundingClientRect().width;
+      const distance=Math.ceil(contentW+stageW);
+      const durationSec=Math.max(6,Math.round(distance/MARQUEE_SPEED_PX_PER_SEC));
+      track.style.setProperty('--marquee-to', `${-distance}px`);
+      track.style.setProperty('--marquee-duration', `${durationSec}s`);
+      track.addEventListener('animationend', ()=>{ if(!paused) next(); }, {once:true});
     });
-  }
 
-  // ---- elementy
-  const labelEl = document.getElementById("changelog-label");
-  const stage   = document.querySelector(".changelog-stage");
-  const a       = stage && stage.querySelector(".vline-a");
-  const b       = stage && stage.querySelector(".vline-b");
-  if (!labelEl || !stage || !a || !b) return;
-
-  // ---- stan
-  let LINES = [];
-  let LABEL = "";
-  let idx = 0;
-  let showingA = true;
-  let paused = false;
-  let timer = null;
-
-  function startTimer(){
-    if (timer) clearInterval(timer);
-    timer = setInterval(()=>{ if(!paused) next(); }, INTERVAL);
+    return true;
   }
 
   function applyTexts(lang){
-    const tr = loadTexts(lang);
-    LABEL = tr.label;
-    LINES = tr.lines.slice();
-    if (!LINES.length) LINES = [ lang==='en' ? "No updates yet." : "Brak aktualizacji." ];
-
-    labelEl.textContent = LABEL;
-    idx = 0; showingA = true;
-
-    a.textContent = LINES[0]; a.style.opacity = '1'; a.className = 'vline vline-a';
-    b.textContent = '';       b.style.opacity = '0'; b.className = 'vline vline-b';
-
-    startTimer();
+    const tr=loadTexts(lang); LABEL=tr.label; LINES=tr.lines.slice();
+    if(!LINES.length) LINES=[lang==='en'?"No updates yet.":"Brak aktualizacji."];
+    labelEl.textContent=LABEL; idx=0; showingA=true;
+    a.className='vline vline-a'; b.className='vline vline-b'; a.style.opacity='1'; b.style.opacity='0'; a.textContent=LINES[0]; b.textContent='';
+    const marquee=applyOverflowMode(a); if(marquee){clearIntervalIfAny();} else {startTimer();}
   }
 
-  function next(){
-    if (!LINES.length) return;
-    const nextIdx = (idx + 1) % LINES.length;
+  function next(){ if(!LINES.length) return; const nextIdx=(idx+1)%LINES.length;
+    a.className='vline vline-a'; b.className='vline vline-b';
+    const current=showingA?a:b; const incoming=showingA?b:a;
+    incoming.textContent=LINES[nextIdx];
+    const marquee=applyOverflowMode(incoming);
+    const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(marquee||prefersReduced){ current.style.opacity='0'; incoming.style.opacity='1'; if(!marquee) startTimer(); else clearIntervalIfAny(); }
+    else{ void incoming.offsetWidth; incoming.classList.add('slide-in'); current.classList.add('slide-out'); setTimeout(()=>{ incoming.style.opacity='1'; current.style.opacity='0'; },DURATION); startTimer(); }
+    showingA=!showingA; idx=nextIdx; }
 
-    // reset klas animacyjnych
-    a.className = 'vline vline-a';
-    b.className = 'vline vline-b';
+  function setPaused(p){ paused=p; const track=stage.querySelector('.is-marquee .marquee-track'); if(track) track.style.animationPlayState=p?'paused':'running'; }
+  stage.addEventListener('mouseenter', ()=>setPaused(true)); stage.addEventListener('mouseleave', ()=>setPaused(false)); stage.addEventListener('focusin', ()=>setPaused(true)); stage.addEventListener('focusout', ()=>setPaused(false));
 
-    if (showingA){
-      b.textContent = LINES[nextIdx];
-      void b.offsetWidth;
-      b.classList.add('slide-in');
-      a.classList.add('slide-out');
-      setTimeout(()=>{ b.style.opacity='1'; a.style.opacity='0'; }, DURATION);
-    } else {
-      a.textContent = LINES[nextIdx];
-      void a.offsetWidth;
-      a.classList.add('slide-in');
-      b.classList.add('slide-out');
-      setTimeout(()=>{ a.style.opacity='1'; b.style.opacity='0'; }, DURATION);
-    }
-    showingA = !showingA;
-    idx = nextIdx;
-  }
-
-  // pauza na hover (czytelność)
-  stage.addEventListener('mouseenter', ()=> paused = true);
-  stage.addEventListener('mouseleave', ()=> paused = false);
-
-  // reaguj na zmianę języka
   function reapply(){ applyTexts(detectLang()); }
-
-  // 1) Twój event z translations.js
   document.addEventListener('languageChanged', reapply);
+  const mo=new MutationObserver(ms=>{ for(const m of ms){ if(m.type==='attributes'&&m.attributeName==='lang'){ reapply(); break; } } });
+  mo.observe(document.documentElement,{attributes:true});
+  document.addEventListener('click', e=>{ const btn=e.target.closest('#lang-toggle'); if(btn) setTimeout(reapply,0); });
 
-  // 2) Zmiana atrybutu lang na <html>
-  const mo = new MutationObserver(ms=>{
-    for (const m of ms){
-      if (m.type==='attributes' && m.attributeName==='lang'){ reapply(); break; }
+  (async function init(){ await waitForTranslations(); applyTexts(detectLang()); })();
+
+  window.addUpdate=line=>{ if(typeof line==='string'&&line.trim()) LINES.push(line.trim()); };
+  window.setUpdates=arr=>{ if(Array.isArray(arr)&&arr.length){ LINES=arr.slice(); reapply(); } };
+})();
+
+// Cały pasek klikalny w JS, bez zmiany DOM (bez <a>)
+(function(){
+  const URL = 'updates.html';
+  const TARGET = (window.CHANGELOG_TARGET === '_self') ? '_self' : '_blank';
+
+  // Delikatne: nie otwieraj, gdy ktoś zaznacza tekst albo kliknie w prawdziwy <a> w środku
+  function shouldIgnore(e){
+    if (e.target && e.target.closest('a')) return true;
+    const sel = (window.getSelection && window.getSelection().toString()) || '';
+    if (sel.trim().length) return true;
+    return false;
+  }
+
+  // Obsługa kliknięcia + klawiatury
+  function openUpdates(e){
+    if (shouldIgnore(e)) return;
+    // w tej samej karcie? ustaw window.CHANGELOG_TARGET = '_self'
+    if (TARGET === '_self') location.href = URL;
+    else window.open(URL, TARGET);
+  }
+
+  // Delegacja zdarzeń: zadziała nawet, jeśli pasek pojawi się później
+  document.addEventListener('click', (e)=>{
+    const hit = e.target.closest('.changelog-bar-outer, .changelog-bar-inner, .changelog-stage');
+    if (hit) openUpdates(e);
+  });
+
+  // Enter/Spacja dla dostępności
+  document.addEventListener('keydown', (e)=>{
+    if (!(e.key === 'Enter' || e.key === ' ')) return;
+    const active = document.activeElement;
+    if (active && (active.matches('.changelog-bar-outer, .changelog-bar-inner, .changelog-stage'))) {
+      e.preventDefault();
+      openUpdates(e);
     }
   });
-  mo.observe(document.documentElement, { attributes:true });
 
-  // 3) Klik na #lang-toggle (jeżeli istnieje)
-  document.addEventListener('click', (e)=>{
-    const btn = e.target.closest('#lang-toggle');
-    if (btn) setTimeout(reapply, 0); // po Twojej logice przełączenia
-  });
+  // Ustaw wskaźnik kursora, gdy element jest w DOM
+  function setPointer(){
+    const el = document.querySelector('.changelog-bar-outer, .changelog-bar-inner, .changelog-stage');
+    if (el) {
+      el.style.cursor = 'pointer';
+      el.setAttribute('role','link');
+      el.setAttribute('tabindex','0');
+      el.setAttribute('aria-label','Otwórz listę aktualizacji');
+    }
+  }
 
-  // start po upewnieniu się, że translations są (o ile są używane)
-  (async function init(){
-    await waitForTranslations(); // nie blokuje jeśli nie używasz translations
-    applyTexts(detectLang());
-  })();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setPointer);
+  } else {
+    setPointer();
+  }
 
-  // API opcjonalne
-  window.addUpdate = function(line){
-    if (typeof line === 'string' && line.trim()) LINES.push(line.trim());
-  };
-  window.setUpdates = function(arr){
-    if (Array.isArray(arr) && arr.length){ LINES = arr.slice(); reapply(); }
-  };
+  // Na wypadek podmian DOM przez inne skrypty – spróbuj ponownie
+  const mo = new MutationObserver(()=> setPointer());
+  mo.observe(document.documentElement, { childList:true, subtree:true });
 })();
+
+
 </script>

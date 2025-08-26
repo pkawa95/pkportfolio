@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="updates_title">Ostatnie aktualizacje — Piotr Kawa</title>
+
+  <!-- Root-relative assets -->
+  <link rel="stylesheet" href="/style/style.css" />
+  <link rel="stylesheet" href="/style/timeline.css" />
+  <link rel="stylesheet" href="/addons/carousel/carousel.css" />
+  <script defer src="/scripts/translations2.js"></script>
+  
+  <script defer src="/scripts/script.js"></script>
+  <script defer src="/scripts/timeline.js"></script>
+  <script src="/addons/carousel/carousel.js"></script>
+
+  <!-- SEO (bez zmian) -->
+  <meta name="description" content="Lista ostatnich aktualizacji strony i portfolio Piotra Kawy." data-i18n-attr="content:updates_meta_description" />
+  <meta name="keywords" content="Piotr Kawa, aktualizacje, changelog, portfolio" />
+  <meta name="author" content="Piotr Kawa" />
+  <meta property="og:title" content="Ostatnie aktualizacje — Piotr Kawa" data-i18n-attr="content:updates_og_title" />
+  <meta property="og:description" content="Zobacz co nowego na stronie — lista zmian i usprawnień." data-i18n-attr="content:updates_og_description" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pkportfolio.pl/addons/changelog/updates.html" />
+  <meta property="og:image" content="https://pkportfolio.pl/img/icons/favicon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ostatnie aktualizacje — Piotr Kawa" data-i18n-attr="content:updates_twitter_title" />
+  <meta name="twitter:description" content="Lista najnowszych zmian i poprawek na stronie." data-i18n-attr="content:updates_twitter_description" />
+  <meta name="twitter:image" content="https://pkportfolio.pl/img/icons/favicon.png" />
+  <link rel="canonical" href="https://pkportfolio.pl/addons/changelog/updates.html" />
+
+  <!-- ====== ODJECHANY STYL: neon + glass + akordeon ====== -->
+  <style>
+    .visually-hidden {
+      position:absolute!important; clip:rect(1px,1px,1px,1px);
+      padding:0!important; border:0!important; height:1px!important; width:1px!important;
+      overflow:hidden; white-space:nowrap;
+    }
+
+    /* Scena i tło */
+    .updates-stage { position: relative; isolation: isolate; }
+    .updates-grid {
+      position: fixed; inset: 0; z-index: -3; pointer-events: none; opacity: .06;
+      background:
+        linear-gradient(transparent 39px, currentColor 40px),
+        linear-gradient(90deg, transparent 39px, currentColor 40px);
+      background-size: 40px 40px; color: var(--text-color); mix-blend-mode: luminosity;
+    }
+    .updates-stage::before,
+    .updates-stage::after {
+      content: ""; position: fixed; inset: auto auto 0 -10%;
+      width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(60px); opacity: .25;
+      background: radial-gradient(closest-side,
+        color-mix(in oklab, var(--accent-color), transparent 55%) 0%, transparent 70%);
+      z-index: -2; pointer-events: none; animation: blobMove 22s linear infinite;
+    }
+    .updates-stage::after { left:auto; right:-10%; bottom:12%; animation-duration: 28s; animation-direction: reverse; }
+    @keyframes blobMove {
+      0% { transform: translate3d(0,0,0) rotate(0deg); }
+      50%{ transform: translate3d(0,-6%,0) rotate(180deg); }
+      100%{ transform: translate3d(0,0,0) rotate(360deg); }
+    }
+
+    /* Hero */
+    .intro h1 {
+      letter-spacing: .3px;
+      text-align:center;
+      text-shadow:
+        0 0 6px color-mix(in oklab, var(--accent-color), transparent 35%),
+        0 0 14px color-mix(in oklab, var(--accent-color), transparent 55%);
+    }
+    .intro p { max-width: 70ch; margin-inline: auto; text-align: center; opacity: .95; }
+
+    /* Separator z iskrą */
+    .section-separator.animate {
+      position: relative; overflow: hidden; width: min(820px, 72%); margin-inline:auto;
+    }
+    .section-separator.animate::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(90deg, transparent,
+        color-mix(in oklab, var(--accent-color), white 12%), transparent);
+      width: 25%; height: 100%; filter: blur(2px);
+      transform: translateX(-120%); animation: sweep 2.4s ease-in-out infinite;
+    }
+    @keyframes sweep { 0%{transform:translateX(-120%);opacity:0} 20%{opacity:.65} 100%{transform:translateX(420%);opacity:0} }
+
+    /* Wrap akordeonu */
+    .updates-wrap { max-width: 1100px; margin: 0 auto 4rem; padding: 0 20px; position: relative; }
+
+    /* Lista akordeonów */
+    .updates-list {
+      display: grid; gap: clamp(12px, 2.2vw, 18px);
+      list-style: none; margin: 1.25rem auto 0; padding: 0;
+    }
+
+    /* Karta (nagłówek jako button) */
+    .update {
+      border-radius: 16px; overflow: clip; position: relative;
+      background: color-mix(in oklab, var(--bg-color), transparent 0%);
+      -webkit-backdrop-filter: blur(8px) saturate(1.1); backdrop-filter: blur(8px) saturate(1.1);
+      box-shadow:
+        0 10px 24px rgba(0,0,0,.08),
+        inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 88%);
+      transition: box-shadow .35s ease, transform .35s ease;
+    }
+    .update::before {
+      content:""; position:absolute; inset:-1px; border-radius:18px; padding:1px;
+      background: linear-gradient(120deg,
+        color-mix(in oklab, var(--accent-color), transparent 0%),
+        color-mix(in oklab, var(--accent-color), white 16%),
+        color-mix(in oklab, var(--accent-color), transparent 12%));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; opacity:.75; pointer-events:none;
+      transition: opacity .35s ease;
+    }
+    .update:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(0,0,0,.18), inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 86%); }
+    .update:hover::before { opacity: 1; }
+
+    /* Nagłówek (klikany) */
+    .update-header {
+      --ripple-x: 50%; --ripple-y: 50%;
+      display: grid; grid-template-columns: auto 1fr auto;
+      align-items: center; gap: 12px; width: 100%;
+      padding: 16px 18px; background: transparent; border: 0; text-align: left;
+      cursor: pointer; color: inherit; font: inherit; position: relative; overflow: hidden;
+    }
+    .update-header:focus-visible { outline: 2px solid color-mix(in oklab, var(--accent-color), white 10%); outline-offset: 2px; border-radius: 12px; }
+    .update-header::after{
+      content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition: opacity .35s;
+      background:
+        radial-gradient(220px 220px at var(--ripple-x) var(--ripple-y),
+          color-mix(in oklab, var(--accent-color), transparent 75%), transparent 70%);
+      mix-blend-mode: screen;
+    }
+    .update-header.rippling::after{ opacity:.7; animation: rippleFade .6s ease-out both; }
+    @keyframes rippleFade { from{opacity:.8} to{opacity:0} }
+
+    .update-date {
+      font-weight: 800; letter-spacing: .2px; white-space: nowrap;
+      padding: 6px 10px; border-radius: 999px;
+      background: color-mix(in oklab, var(--accent-color), transparent 85%);
+      box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent-color), transparent 50%);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .update-date::before { content: "📅"; font-size: 1.05em; transform: translateY(-1px); }
+    .update-title { font-weight: 700; opacity: .98; line-height: 1.4; }
+    .update-chev {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: grid; place-items: center; translate: 0 0; transition: transform .3s ease;
+    }
+    .update[aria-expanded="true"] .update-chev { transform: rotate(180deg); }
+
+    /* Panel (rozwijany) — animacja wysokości + lekki 3D fold */
+    .update-panel-wrap { perspective: 1200px; }
+    .update-panel {
+      display: grid; grid-template-rows: 0fr; transition: grid-template-rows .42s ease;
+    }
+    .update[aria-expanded="true"] .update-panel { grid-template-rows: 1fr; }
+    .update-panel-inner {
+      overflow: hidden; transform-origin: top; transform: rotateX(-6deg);
+      transition: transform .42s ease, opacity .42s ease;
+      opacity: 0; padding: 0 18px 16px;
+    }
+    .update[aria-expanded="true"] .update-panel-inner { transform: rotateX(0); opacity: 1; }
+
+    /* Treść panelu */
+    .update-details {
+      display: grid; gap: 10px; margin-top: 6px;
+      background: color-mix(in oklab, var(--bg-color), transparent 6%);
+      border-radius: 12px; padding: 12px 12px;
+      box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--text-color), transparent 90%);
+    }
+    .update-details h4 { margin: 0; font-size: 1.05rem; color: var(--accent-color); }
+    .update-details p { margin: 0; opacity: .95; }
+    .update-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .chip {
+      font-size: .82rem; padding: 4px 8px; border-radius: 999px;
+      background: color-mix(in oklab, var(--accent-color), transparent 85%);
+      border: 1px solid color-mix(in oklab, var(--accent-color), transparent 55%);
+    }
+
+    /* Dark tuning */
+    body.dark .update {
+      background: linear-gradient(180deg, color-mix(in oklab, #0b0b0b, transparent 0%), color-mix(in oklab, #0b0b0b, transparent 28%));
+      box-shadow: 0 10px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+    body.dark .update::before {
+      background: linear-gradient(120deg,
+        color-mix(in oklab, var(--accent-color), black 10%),
+        color-mix(in oklab, var(--accent-color), white 14%),
+        color-mix(in oklab, var(--accent-color), black 15%));
+      opacity: .55;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .updates-stage::before, .updates-stage::after, .update-header::after, .section-separator.animate::after { display:none !important; }
+      .update, .update-panel, .update-panel-inner { transition: none !important; }
+      .update:hover { transform:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header><div id="menu-placeholder"></div></header>
+
+  <main class="updates-stage">
+    <div class="updates-grid" aria-hidden="true"></div>
+
+    <section class="intro">
+      <h1 class="hidden-on-load fade-zoom" data-delay="0s" data-i18n="updates_h1">Ostatnie aktualizacje</h1>
+      <div class="section-separator animate hidden-separator"></div>
+      <p class="hidden-on-load fade-zoom" data-delay="0.1s" data-i18n="updates_lead">
+        Najświeższe zmiany i poprawki wdrożone na stronie.
+      </p>
+    </section>
+
+    <section class="updates-wrap" aria-labelledby="updates-list-title">
+      <h2 id="updates-list-title" class="visually-hidden" data-i18n="updates_list_title">Lista aktualizacji</h2>
+
+      <ul class="updates-list">
+      <!-- 2025-08-26 (strona updates.html) -->
+<li class="update hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
+  <button class="update-header" type="button" aria-controls="u-2025-08-26b" aria-expanded="false">
+    <span class="update-date" data-i18n="updates_item_2025_08_26b_date">2025-08-26</span>
+    <span class="update-title" data-i18n="updates_item_2025_08_26b_text">
+      Dodano stronę z listą aktualizacji (updates.html).
+    </span>
+    <span class="update-chev" aria-hidden="true">▾</span>
+  </button>
+  <div id="u-2025-08-26b" class="update-panel-wrap">
+    <div class="update-panel"><div class="update-panel-inner">
+      <div class="update-details">
+        <h4 data-i18n="updates_item_2025_08_26b_title">Nowa strona „Aktualizacje”</h4>
+        <p data-i18n="updates_item_2025_08_26b_desc">
+          Stworzyłem dedykowaną podstronę <code>updates.html</code>, która w przejrzysty sposób wyświetla
+          historię zmian i nowości na stronie. Każda zmiana ma teraz swój opis, datę oraz szczegóły ukryte
+          w rozwijanych kartach akordeonu. Dzięki temu odwiedzający mogą szybko sprawdzić, co zostało dodane
+          i kiedy, a całość jest spójna z resztą portfolio (menu, stopka, styl dark/light).
+        </p>
+        <div class="update-tags">
+          <span class="chip">New Page</span>
+          <span class="chip">Changelog</span>
+          <span class="chip">UX</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</li>
+
+        <!-- 2025-08-26 -->
+        <li class="update hidden-on-load fade-zoom" data-delay="0.2s" aria-expanded="false">
+          <button class="update-header" type="button" aria-controls="u-2025-08-26" aria-expanded="false">
+            <span class="update-date" data-i18n="updates_item_2025_08_26_date">2025-08-26</span>
+            <span class="update-title" data-i18n="updates_item_2025_08_26_text">Dostosowano widoczność i animację paska aktualizacji.</span>
+            <span class="update-chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="u-2025-08-26" class="update-panel-wrap">
+            <div class="update-panel"><div class="update-panel-inner">
+              <div class="update-details">
+                <h4 data-i18n="updates_item_2025_08_26_title">Poprawki UX paska aktualizacji</h4>
+                <p data-i18n="updates_item_2025_08_26_desc">
+                  Wyostrzone kontrasty, płynniejsze wejścia/wyjścia, lepsze standardy ARIA oraz pauzowanie animacji przy najechaniu kursorem.
+                </p>
+                <div class="update-tags">
+                  <span class="chip">UX</span>
+                  <span class="chip">ARIA</span>
+                  <span class="chip">Animations</span>
+                </div>
+              </div>
+            </div></div>
+          </div>
+        </li>
+
+        <!-- 2025-08-22 -->
+        <li class="update hidden-on-load fade-zoom" data-delay="0.25s" aria-expanded="false">
+          <button class="update-header" type="button" aria-controls="u-2025-08-22" aria-expanded="false">
+            <span class="update-date" data-i18n="updates_item_2025_08_22_date">2025-08-22</span>
+            <span class="update-title" data-i18n="updates_item_2025_08_22_text">Dodano pasek aktualizacji pod menu.</span>
+            <span class="update-chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="u-2025-08-22" class="update-panel-wrap">
+            <div class="update-panel"><div class="update-panel-inner">
+              <div class="update-details">
+                <h4 data-i18n="updates_item_2025_08_22_title">Nowy pasek aktualizacji</h4>
+                <p data-i18n="updates_item_2025_08_22_desc">
+                  Krótki komunikat nad sekcjami, z automatycznym przewijaniem przy długich tekstach (marquee) i wsparciem dla języków PL/EN.
+                </p>
+                <div class="update-tags">
+                  <span class="chip">Changelog</span>
+                  <span class="chip">i18n</span>
+                </div>
+              </div>
+            </div></div>
+          </div>
+        </li>
+
+        <!-- 2025-08-14 a -->
+        <li class="update hidden-on-load fade-zoom" data-delay="0.3s" aria-expanded="false">
+          <button class="update-header" type="button" aria-controls="u-2025-08-14a" aria-expanded="false">
+            <span class="update-date" data-i18n="updates_item_2025_08_14a_date">2025-08-14</span>
+            <span class="update-title" data-i18n="updates_item_2025_08_14a_text">Dodano sekcję „O mnie” z informacjami osobistymi.</span>
+            <span class="update-chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="u-2025-08-14a" class="update-panel-wrap">
+            <div class="update-panel"><div class="update-panel-inner">
+              <div class="update-details">
+                <h4 data-i18n="updates_item_2025_08_14a_title">Nowa sekcja „O mnie”</h4>
+                <p data-i18n="updates_item_2025_08_14a_desc">
+                  Zawiera skrót doświadczenia, zainteresowania, zdjęcie oraz szybkie linki. Zoptymalizowana pod mobile i tryb ciemny.
+                </p>
+                <div class="update-tags">
+                  <span class="chip">About</span>
+                  <span class="chip">Responsive</span>
+                </div>
+              </div>
+            </div></div>
+          </div>
+        </li>
+
+        <!-- 2025-08-14 b -->
+        <li class="update hidden-on-load fade-zoom" data-delay="0.35s" aria-expanded="false">
+          <button class="update-header" type="button" aria-controls="u-2025-08-14b" aria-expanded="false">
+            <span class="update-date" data-i18n="updates_item_2025_08_14b_date">2025-08-14</span>
+            <span class="update-title" data-i18n="updates_item_2025_08_14b_text">Rozpoczęto prace nad „skraperem Instagrama” do sekcji „O mnie” (Python).</span>
+            <span class="update-chev" aria-hidden="true">▾</span>
+          </button>
+          <div id="u-2025-08-14b" class="update-panel-wrap">
+            <div class="update-panel"><div class="update-panel-inner">
+              <div class="update-details">
+                <h4 data-i18n="updates_item_2025_08_14b_title">Automatyczne zaciąganie treści</h4>
+                <p data-i18n="updates_item_2025_08_14b_desc">
+                  Prototyp scrapera w Pythonie z walidacją, cache i harmonogramem pobierania. Docelowo mini-galeria z najnowszymi zdjęciami.
+                </p>
+                <div class="update-tags">
+                  <span class="chip">Python</span>
+                  <span class="chip">Automation</span>
+                  <span class="chip">Content</span>
+                </div>
+              </div>
+            </div></div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- ====== JS: akordeon + ripple + a11y ====== -->
+  <script>
+    (function(){
+      // Delegacja klików + ripple
+      const list = document.querySelector('.updates-list');
+      if(!list) return;
+
+      function setRipple(e, btn){
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        btn.style.setProperty('--ripple-x', x + 'px');
+        btn.style.setProperty('--ripple-y', y + 'px');
+        btn.classList.remove('rippling');
+        // force reflow
+        void btn.offsetWidth;
+        btn.classList.add('rippling');
+        setTimeout(()=>btn.classList.remove('rippling'), 650);
+      }
+
+      function toggleItem(updateEl, btn){
+        const expanded = updateEl.getAttribute('aria-expanded') === 'true';
+        updateEl.setAttribute('aria-expanded', String(!expanded));
+        btn.setAttribute('aria-expanded', String(!expanded));
+      }
+
+      list.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.update-header');
+        if(!btn) return;
+        const updateEl = btn.closest('.update');
+        if(!updateEl) return;
+        setRipple(e, btn);
+        toggleItem(updateEl, btn);
+      });
+
+      // Klawiatura: Enter/Space
+      list.addEventListener('keydown', (e)=>{
+        if(e.key !== 'Enter' && e.key !== ' ') return;
+        const btn = e.target.closest('.update-header');
+        if(!btn) return;
+        e.preventDefault();
+        const updateEl = btn.closest('.update');
+        toggleItem(updateEl, btn);
+      });
+
+      // A11y: inicjalne aria-controls/expanded są w HTML
+    })();
+  </script>
+</body>
+</html>
