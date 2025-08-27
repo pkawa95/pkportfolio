@@ -11,6 +11,23 @@ const translationsUpdates = {
     updates_twitter_title: "Ostatnie aktualizacje — Piotr Kawa",
     updates_twitter_description: "Lista najnowszych zmian i poprawek na stronie.",
 
+     // 2025-09-01a — przebudowa nawigacji
+    updates_item_2025_09_01a_date: "wrzesień 2025",
+    updates_item_2025_09_01a_text: "Przebudowa menu (desktop/mobile), boczny panel i aktywne linki",
+    updates_item_2025_09_01a_title: "Przebudowa nawigacji + boczny panel (drawer)",
+    updates_item_2025_09_01a_desc:
+      "Zmodernizowałem nawigację na desktopie i mobile: menu przeniosłem do bocznego, wysuwanego panelu z podświetlaniem aktywnych linków. Usunąłem zbędny CSS i scaliłem logikę w jeden lekki plik menu (HTML+JS+CSS). Animacje są płynniejsze, mniej obciążają przeglądarkę i respektują prefers-reduced-motion.",
+    updates_item_2025_09_01a_b1:
+      "<strong>Menu:</strong> boczny panel (drawer) na desktop/mobile z <em>focus-trap</em>, zamykaniem <kbd>ESC</kbd> i poprawnym ARIA.",
+    updates_item_2025_09_01a_b2:
+      "<strong>Aktywne linki:</strong> automatyczne podświetlanie wg trasy i <em>scrollspy</em> sekcji.",
+    updates_item_2025_09_01a_b3:
+      "<strong>CSS:</strong> purge nieużywanych reguł, mniej duplikacji, porządek w tokenach kolorów.",
+    updates_item_2025_09_01a_b4:
+      "<strong>Bundle:</strong> jeden plik menu (HTML+JS+CSS) z <em>lazy-load</em> tam, gdzie ma sens.",
+    updates_item_2025_09_01a_b5:
+      "<strong>Animacje:</strong> lżejsze, stabilne 60&nbsp;fps; krótsze krzywe i mniejszy <em>repaint</em>.",
+
     //2025-08-27b (TIDIO)
      updates_item_2025_08_27b_date: "2025-08-27",
   updates_item_2025_08_27b_text: "Dodano obsługę Tidio chat na całości strony",
@@ -177,7 +194,26 @@ const translationsUpdates = {
   updates_item_2025_08_27c_b2: "<strong>Media:</strong> optimized photo + proper <code>alt</code>.",
   updates_item_2025_08_27c_b3: "<strong>UX:</strong> clear CTAs and links to social profiles.",
   chip_content: "Content",
-    //2025-08-27b (TIDIO)
+  
+  // 2025-09-01a — navigation overhaul
+    updates_item_2025_09_01a_date: "September 2025",
+    updates_item_2025_09_01a_text: "Navigation rebuild (desktop/mobile), side drawer & active links",
+    updates_item_2025_09_01a_title: "Navigation overhaul + side drawer",
+    updates_item_2025_09_01a_desc:
+      "I modernized navigation across desktop and mobile: moved the menu into a side, slide-out drawer with active-link highlighting. Purged unused CSS and merged logic into a single lightweight menu file (HTML+JS+CSS). Animations are smoother, lighter on the browser and respect prefers-reduced-motion.",
+    updates_item_2025_09_01a_b1:
+      "<strong>Menu:</strong> side drawer on desktop/mobile with a <em>focus trap</em>, <kbd>ESC</kbd> to close and proper ARIA.",
+    updates_item_2025_09_01a_b2:
+      "<strong>Active links:</strong> automatic highlighting based on route and section <em>scrollspy</em>.",
+    updates_item_2025_09_01a_b3:
+      "<strong>CSS:</strong> purge of unused rules, less duplication, tidy color tokens.",
+    updates_item_2025_09_01a_b4:
+      "<strong>Bundle:</strong> a single menu file (HTML+JS+CSS) with <em>lazy-load</em> where it makes sense.",
+    updates_item_2025_09_01a_b5:
+      "<strong>Animations:</strong> lighter, stable 60&nbsp;fps; shorter easing and reduced repaint.",
+
+  
+  //2025-08-27b (TIDIO)
     updates_item_2025_08_27b_date: "2025-08-27",
   updates_item_2025_08_27b_text: "Added Tidio chat support across the entire site",
   updates_item_2025_08_27b_title: "Site-wide Tidio integration",

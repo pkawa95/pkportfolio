@@ -715,6 +715,44 @@
   <div class="section-separator roadmap-sep hidden-separator"></div>
 
   <ul class="roadmap-list">
+    <!-- Przebudowa nawigacji / wrzesień 2025 -->
+<li class="update plan hidden-on-load fade-zoom" data-delay="0.1s" aria-expanded="false">
+  <button class="update-header" type="button" aria-controls="u-nav-rebuild" aria-expanded="false">
+    <span class="update-date" data-i18n="updates_item_2025_09_01a_date">wrzesień 2025</span>
+    <span class="update-title" data-i18n="updates_item_2025_09_01a_text">
+      Przebudowa menu (desktop/mobile), boczny panel i aktywne linki
+    </span>
+    <span class="update-chev" aria-hidden="true">▾</span>
+  </button>
+  <div id="u-nav-rebuild" class="update-panel-wrap">
+    <div class="update-panel"><div class="update-panel-inner">
+      <div class="update-details">
+        <h4 data-i18n="updates_item_2025_09_01a_title">Przebudowa nawigacji + boczny panel (drawer)</h4>
+        <p data-i18n="updates_item_2025_09_01a_desc">
+          Zmodernizowałem nawigację na desktopie i mobile: menu przeniosłem do bocznego, wysuwanego panelu
+          z podświetlaniem aktywnych linków. Usunąłem zbędny CSS i scaliłem logikę w jeden lekki plik menu
+          (HTML+JS+CSS). Animacje są płynniejsze, mniej obciążają przeglądarkę i respektują
+          <code>prefers-reduced-motion</code>.
+        </p>
+        <ul class="bullets">
+          <li data-i18n="updates_item_2025_09_01a_b1"><strong>Menu:</strong> boczny panel (drawer) na desktop/mobile z <em>focus-trap</em>, zamykaniem <kbd>ESC</kbd> i poprawnym ARIA.</li>
+          <li data-i18n="updates_item_2025_09_01a_b2"><strong>Aktywne linki:</strong> automatyczne podświetlanie wg trasy i <em>scrollspy</em> sekcji.</li>
+          <li data-i18n="updates_item_2025_09_01a_b3"><strong>CSS:</strong> purge nieużywanych reguł, mniej duplikacji, porządek w tokenach kolorów.</li>
+          <li data-i18n="updates_item_2025_09_01a_b4"><strong>Bundle:</strong> jeden plik menu (HTML+JS+CSS) z <em>lazy-load</em> tam, gdzie ma sens.</li>
+          <li data-i18n="updates_item_2025_09_01a_b5"><strong>Animacje:</strong> lżejsze, stabilne 60&nbsp;fps; krótsze krzywe i mniejszy <em>repaint</em>.</li>
+        </ul>
+        <div class="update-tags">
+          <span class="chip" data-i18n="chip_ui">UI</span>
+          <span class="chip" data-i18n="chip_animation">Animacje</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</li>
+
+
+
+
 
 <!-- Ukończenie sekcji O mnie -->
 <li class="update plan hidden-on-load fade-zoom" data-delay="0.1s" aria-expanded="false">
