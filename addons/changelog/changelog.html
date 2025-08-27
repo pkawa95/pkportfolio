@@ -114,6 +114,24 @@ body.dark .changelog-bar-inner *{
    body.dark .changelog-bar-inner{ color:#fff }
    body.dark .changelog-label{ color:var(--accent-color) }
 
+/* --- DODAJ to do CSS --- */
+.changelog-stage{ position: relative; }
+.vline{
+  position: absolute; inset: 0 auto 0 0; right: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+  opacity: 0; will-change: transform, opacity; text-align: center;
+  z-index: 0;            /* nowość */
+  pointer-events: none;  /* bezpieczeństwo klików */
+}
+
+.vline.is-current{ z-index: 1; } /* wierzchnia linia */
+/* ukryj etykietę (już masz) i twardo ukryj nie-bieżące linie */
+@media (max-width: 640px){
+  .changelog-label{ display:none; }
+  .changelog-stage .vline{ opacity:0 !important; }
+  .changelog-stage .vline.is-current{ opacity:1 !important; }
+}
+
 </style>
 
 
@@ -184,23 +202,61 @@ body.dark .changelog-bar-inner *{
     return true;
   }
 
-  function applyTexts(lang){
-    const tr=loadTexts(lang); LABEL=tr.label; LINES=tr.lines.slice();
-    if(!LINES.length) LINES=[lang==='en'?"No updates yet.":"Brak aktualizacji."];
-    labelEl.textContent=LABEL; idx=0; showingA=true;
-    a.className='vline vline-a'; b.className='vline vline-b'; a.style.opacity='1'; b.style.opacity='0'; a.textContent=LINES[0]; b.textContent='';
-    const marquee=applyOverflowMode(a); if(marquee){clearIntervalIfAny();} else {startTimer();}
+function applyTexts(lang){
+  const tr = loadTexts(lang); LABEL = tr.label; LINES = tr.lines.slice();
+  if(!LINES.length) LINES = [lang==='en' ? "No updates yet." : "Brak aktualizacji."];
+
+  labelEl.textContent = LABEL;
+  idx = 0; showingA = true;
+
+  a.className = 'vline vline-a is-current';   // <— tu
+  b.className = 'vline vline-b';
+  a.style.opacity = '1'; b.style.opacity = '0';
+  a.textContent = LINES[0]; b.textContent = '';
+
+  const marquee = applyOverflowMode(a);
+  if(marquee){ clearIntervalIfAny(); } else { startTimer(); }
+}
+
+
+  function next(){
+  if(!LINES.length) return;
+  const nextIdx = (idx+1) % LINES.length;
+
+  a.className = 'vline vline-a' + (showingA ? ' is-current' : '');
+  b.className = 'vline vline-b' + (!showingA ? ' is-current' : '');
+
+  const current  = showingA ? a : b;
+  const incoming = showingA ? b : a;
+
+  incoming.textContent = LINES[nextIdx];
+
+  // oznacz bieżącą
+  current.classList.remove('is-current');
+  incoming.classList.add('is-current');
+
+  const marquee = applyOverflowMode(incoming);
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(marquee || prefersReduced){
+    current.style.opacity = '0';
+    incoming.style.opacity = '1';
+    if(!marquee) startTimer(); else clearIntervalIfAny();
+  }else{
+    void incoming.offsetWidth;
+    incoming.classList.add('slide-in');
+    current.classList.add('slide-out');
+    setTimeout(()=>{
+      incoming.style.opacity = '1';
+      current.style.opacity  = '0';
+    }, DURATION);
+    startTimer();
   }
 
-  function next(){ if(!LINES.length) return; const nextIdx=(idx+1)%LINES.length;
-    a.className='vline vline-a'; b.className='vline vline-b';
-    const current=showingA?a:b; const incoming=showingA?b:a;
-    incoming.textContent=LINES[nextIdx];
-    const marquee=applyOverflowMode(incoming);
-    const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(marquee||prefersReduced){ current.style.opacity='0'; incoming.style.opacity='1'; if(!marquee) startTimer(); else clearIntervalIfAny(); }
-    else{ void incoming.offsetWidth; incoming.classList.add('slide-in'); current.classList.add('slide-out'); setTimeout(()=>{ incoming.style.opacity='1'; current.style.opacity='0'; },DURATION); startTimer(); }
-    showingA=!showingA; idx=nextIdx; }
+  showingA = !showingA;
+  idx = nextIdx;
+}
+
 
   function setPaused(p){ paused=p; const track=stage.querySelector('.is-marquee .marquee-track'); if(track) track.style.animationPlayState=p?'paused':'running'; }
   stage.addEventListener('mouseenter', ()=>setPaused(true)); stage.addEventListener('mouseleave', ()=>setPaused(false)); stage.addEventListener('focusin', ()=>setPaused(true)); stage.addEventListener('focusout', ()=>setPaused(false));

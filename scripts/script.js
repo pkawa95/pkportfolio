@@ -113,6 +113,19 @@ function initMenuScripts() {
   const dropdownToggle = document.getElementById("dropdown-toggle");
   const dropdownContainer = dropdownToggle?.parentElement;
 
+    menuItems?.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      menuItems.querySelectorAll("a.active").forEach(x => {
+        x.classList.remove("active");
+        x.querySelector(".spark")?.remove();
+      });
+      a.classList.add("active");
+      const s = document.createElement("span");
+      s.className = "spark";
+      a.appendChild(s);
+    });
+  });
+
   menuToggle?.addEventListener("click", (e) => {
     e.stopPropagation();
     menuItems?.classList.toggle("show");
@@ -186,12 +199,18 @@ function highlightActiveNavLink() {
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll(".menu-items a");
 
-  navLinks.forEach(link => {
-    const href = link.getAttribute("href");
-    if (href && href === currentPath) {
-      link.classList.add("active");
+
+    navLinks.forEach(a => {
+    const href = a.getAttribute("href") || a.getAttribute("data-target");
+    if (isSamePage(href)) {
+      a.classList.add("active");
+      ensureSparkStyle();
+      const s = document.createElement("span");
+      s.className = "spark";
+      a.appendChild(s);
     }
   });
+
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -242,12 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
   highlightActiveNavLink();
 });
 
-// ✅ Tłumaczenia
-function initTranslation() {
-  const currentLang = localStorage.getItem("lang") || "pl";
-  window.currentLang = currentLang;
-  translate(currentLang);
-}
+
 
 document.addEventListener("DOMContentLoaded", function () {
   let pathPrefix = '';
@@ -477,3 +491,29 @@ document.addEventListener('languageChanged', () => {
   // i tutaj dodać jeszcze:
   document.addEventListener("menu:loaded", init, { once: true });
 })();
+
+
+// ✨ Jednorazowy styl iskierki
+function ensureSparkStyle() {
+  if (document.getElementById("pk-spark-style")) return;
+  const st = document.createElement("style");
+  st.id = "pk-spark-style";
+  st.textContent = `
+    @media (hover:hover){
+      .menu-items a .spark{
+        position:absolute; bottom:-9px; width:10px; height:10px; border-radius:50%; pointer-events:none;
+        background:radial-gradient(circle at 50% 50%, hsl(var(--accent)) 0%, transparent 60%);
+        box-shadow:0 0 8px hsl(var(--accent)/.9), 0 0 16px hsl(var(--accent)/.55), 0 0 24px hsl(var(--accent)/.35);
+        opacity:.9; animation:pk-spark-move 1.8s linear infinite;
+      }
+      @keyframes pk-spark-move{
+        0%{left:6px;opacity:.25}
+        8%{opacity:.95}
+        50%{opacity:.8}
+        100%{left:calc(100% - 14px);opacity:.25}
+      }
+    }
+    @media (max-width:768px){ .menu-items a .spark{ display:none!important; } }
+  `;
+  document.head.appendChild(st);
+}
