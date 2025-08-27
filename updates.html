@@ -14,6 +14,7 @@
   <script defer src="/scripts/script.js"></script>
   <script defer src="/scripts/timeline.js"></script>
   <script src="/addons/carousel/carousel.js"></script>
+  <script src="//code.tidio.co/as3qkvljrw6zqaaciv6exaofcqrwgjgi.js" async></script>
 
   <!-- SEO (bez zmian) -->
   <meta name="description" content="Lista ostatnich aktualizacji strony i portfolio Piotra Kawy." data-i18n-attr="content:updates_meta_description" />
@@ -453,6 +454,96 @@
       <h2 id="updates-list-title" class="visually-hidden" data-i18n="updates_list_title">Lista aktualizacji</h2>
 
       <ul class="updates-list">
+
+      <!-- 2025-08-27 dodanie chatu Tido -->
+<li class="update hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
+  <button class="update-header" type="button" aria-controls="u-2025-08-27b" aria-expanded="false">
+    <span class="update-date" data-i18n="updates_item_2025_08_27b_date">2025-08-27</span>
+    <span class="update-title" data-i18n="updates_item_2025_08_27b_text">
+      Dodano obsługę Tidio chat na całości strony
+    </span>
+    <span class="update-chev" aria-hidden="true">▾</span>
+  </button>
+  <div id="u-2025-08-27b" class="update-panel-wrap">
+    <div class="update-panel"><div class="update-panel-inner">
+      <div class="update-details">
+        <h4 data-i18n="updates_item_2025_08_27b_title">Integracja Tidio na całej stronie</h4>
+        <p data-i18n="updates_item_2025_08_27b_desc">
+          Wdrożyłem lekki widget Tidio na wszystkich podstronach, aby ułatwić szybki kontakt.
+          Skrypt ładuje się asynchronicznie i nie blokuje renderowania, a widget respektuje motyw
+          jasny/ciemny i może być zwinięty w dowolnym momencie. Dzięki temu odwiedzający mogą
+          napisać bez przełączania zakładek, a odpowiedź trafia do nich szybciej.
+        </p>
+        <div class="update-tags">
+          <span class="chip">Chat</span>
+          <span class="chip">Integration</span>
+          <span class="chip">Support</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</li>
+
+
+      <!-- 2025-08-27 aktualizacja menu i fix -->
+<li class="update hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
+  <button class="update-header" type="button" aria-controls="u-2025-08-27a" aria-expanded="false">
+    <span class="update-date" data-i18n="updates_item_2025_08_27a_date">2025-08-27</span>
+    <span class="update-title" data-i18n="updates_item_2025_08_27a_text">
+      Aktualizacja menu, naprawa wyświetlania paska aktualizacji na wersji mobilnej
+    </span>
+    <span class="update-chev" aria-hidden="true">▾</span>
+  </button>
+  <div id="u-2025-08-27a" class="update-panel-wrap">
+    <div class="update-panel"><div class="update-panel-inner">
+      <div class="update-details">
+        <h4 data-i18n="updates_item_2025_08_27a_title">Usprawnienia nawigacji i pasek aktualizacji (mobile)</h4>
+        <p data-i18n="updates_item_2025_08_27a_desc">
+          Dopracowano zachowanie mobilnego menu (lepsza widoczność, spójne stany rozwinięcia) oraz
+          naprawiono rendering paska aktualizacji na małych ekranach. Efekt: bardziej przewidywalna
+          nawigacja i czytelny changelog w trybie mobilnym.
+        </p>
+        <div class="update-tags">
+          <span class="chip">UI</span>
+          <span class="chip">Fix</span>
+          <span class="chip">Mobile</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</li>
+
+
+
+        <!-- 2025-08-26 (strona updates.html) -->
+<li class="update hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
+  <button class="update-header" type="button" aria-controls="u-2025-08-26b" aria-expanded="false">
+    <span class="update-date" data-i18n="updates_item_2025_08_26b_date">2025-08-26</span>
+    <span class="update-title" data-i18n="updates_item_2025_08_26b_text">
+      Dodano stronę z listą aktualizacji (updates.html).
+    </span>
+    <span class="update-chev" aria-hidden="true">▾</span>
+  </button>
+  <div id="u-2025-08-26b" class="update-panel-wrap">
+    <div class="update-panel"><div class="update-panel-inner">
+      <div class="update-details">
+        <h4 data-i18n="updates_item_2025_08_26b_title">Nowa strona „Aktualizacje”</h4>
+        <p data-i18n="updates_item_2025_08_26b_desc">
+          Stworzyłem dedykowaną podstronę <code>updates.html</code>, która w przejrzysty sposób wyświetla
+          historię zmian i nowości na stronie. Każda zmiana ma teraz swój opis, datę oraz szczegóły ukryte
+          w rozwijanych kartach akordeonu. Dzięki temu odwiedzający mogą szybko sprawdzić, co zostało dodane
+          i kiedy, a całość jest spójna z resztą portfolio (menu, stopka, styl dark/light).
+        </p>
+        <div class="update-tags">
+          <span class="chip">New Page</span>
+          <span class="chip">Changelog</span>
+          <span class="chip">UX</span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</li>
+
         <!-- 2025-08-26 (UI refresh + CSS refactor) -->
 <li class="update hidden-on-load fade-zoom" data-delay="0.2s" aria-expanded="false">
   <button class="update-header" type="button" aria-controls="u-2025-08-26c" aria-expanded="false">
@@ -689,37 +780,7 @@
       </div>
     </li>
 
-    <!-- Zewnętrzne API do kontaktu -->
-    <li class="update plan hidden-on-load fade-zoom" data-delay="0.15s" aria-expanded="false">
-      <button class="update-header" type="button" aria-controls="p-apis" aria-expanded="false">
-        <span class="update-date" data-i18n="roadmap_item_api_eta">wrzesień 2025</span>
-        <span class="update-title" data-i18n="roadmap_item_api_text">
-          Podłączenie zewnętrznych API do natychmiastowego kontaktu.
-        </span>
-        <span class="update-chev" aria-hidden="true">▾</span>
-      </button>
-      <div id="p-apis" class="update-panel-wrap">
-        <div class="update-panel"><div class="update-panel-inner">
-          <div class="update-details">
-            <h4 data-i18n="roadmap_item_api_title">Integracje kontaktowe</h4>
-            <p data-i18n="roadmap_item_api_desc">
-              Integracja prostych endpointów do natychmiastowego kontaktu (np. webhooki, e-mail gateway).
-              Nacisk na bezpieczeństwo i rate limiting.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="roadmap_item_api_b1"><strong>Bezpieczeństwo:</strong> tokeny, limity, logowanie zdarzeń.</li>
-              <li data-i18n="roadmap_item_api_b2"><strong>Wygoda:</strong> kontakt „1-klik” z fallbackiem.</li>
-              <li data-i18n="roadmap_item_api_b3"><strong>Cel:</strong> szybsza komunikacja i mniejsza ilość kroków.</li>
-            </ul>
-            <div class="update-tags">
-              <span class="chip" data-i18n="chip_plan">Plan</span>
-              <span class="chip" data-i18n="chip_api">API</span>
-              <span class="chip" data-i18n="chip_security">Security</span>
-            </div>
-          </div>
-        </div></div>
-      </div>
-    </li>
+  
 
     <!-- Polityka cookies -->
     <li class="update plan hidden-on-load fade-zoom" data-delay="0.2s" aria-expanded="false">

@@ -2,12 +2,13 @@
   <div class="navbar-left">
     <div class="site-title">Piotr Kawa Portfolio</div>
   </div>
-  
+
   <nav class="navbar-right">
-    <button class="menu-toggle" id="menu-toggle">☰</button>
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-items">☰</button>
+
     <div class="menu-items" id="menu-items">
       <!-- GitHub -->
-      <a href="https://github.com/pkawa95" class="github-link" target="_blank">
+      <a href="https://github.com/pkawa95" class="github-link" target="_blank" rel="noopener noreferrer">
         <img data-img="img/icons/github.svg" alt="GitHub" class="github-icon" />
         GitHub
       </a>
@@ -17,20 +18,294 @@
       <a data-target="omnie.html" data-i18n="about">O mnie</a>
       <a data-target="dokumenty.html" data-i18n="docs">Dokumenty</a>
       <a data-target="kontakt.html" data-i18n="contact">Kontakt</a>
+      <a data-target="updates.html" class="has-badge">
+  <span class="link-label" data-i18n="menu_update">Aktualizacje
+    <img data-img="img/icons/badge-new.svg" alt="" aria-hidden="true" class="badge-new">
+  </span>
+</a>
 
-      <!-- Język -->
-      <button id="lang-toggle">EN</button>
+      <!-- ——— USTAWIENIA — z i18n ——— -->
+      <hr class="settings-divider" aria-hidden="true">
 
-      <!-- Tryb jasny/ciemny -->
-      <label class="switch">
-        <input type="checkbox" id="theme-toggle">
-        <span class="slider round"></span>
-      </label>
+      <div class="menu-settings" role="group">
+        <!-- podpis jako element (tłumaczalny) -->
+        <div class="settings-caption" data-i18n="settings_caption">Ustawienia</div>
+
+        <!-- Język (chip) -->
+        <button id="lang-toggle"
+                class="btn-setting"
+                type="button"
+                aria-pressed="false"
+                data-lang="pl"
+                data-i18n-attr="aria-label"
+                aria-label="Zmień język">
+          <span class="icon" aria-hidden="true">🌐</span>
+          <span class="label" data-i18n="language_label">Język</span>
+          <span class="lang-badge">PL</span>
+        </button>
+
+        <!-- Tryb jasny/ciemny (opisany switch) -->
+        <div class="setting-switch">
+          <span class="icon" aria-hidden="true">🌓</span>
+          <span class="label" data-i18n="theme_label">Tryb</span>
+          <label class="switch" data-i18n-attr="aria-label" aria-label="Przełącz motyw">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+          </label>
+          <!-- Uwaga: bez data-i18n, JS ustawi tu 'co się stanie po kliknięciu' -->
+          <span id="theme-state" class="state">
+  <!-- Gdy TERAZ jest jasny -> pokaż co będzie po kliknięciu: "Ciemny" -->
+  <span class="next-if-light" data-i18n="theme_state_dark">Ciemny</span>
+  <!-- Gdy TERAZ jest ciemny -> pokaż co będzie po kliknięciu: "Jasny" -->
+  <span class="next-if-dark"  data-i18n="theme_state_light">Jasny</span>
+</span>
+        </div>
+      </div>
     </div>
   </nav>
+
   <div class="scroll-progress"></div>
 </header>
 
 <!-- Nowy pasek changeloga -->
 <div class="changelog-bar" id="changelog-placeholder" data-src="/addons/changelog/changelog.html"></div>
+
+<!-- ===== Uzupełniające style tylko dla sekcji Ustawienia (kompakt + i18n caption) ===== -->
+<style>
+  .navbar .settings-divider{
+    border:0; height:1px; margin:4px 0 6px;
+    background:linear-gradient(90deg, transparent, hsl(var(--accent)/.45), transparent);
+    opacity:.7;
+  }
+
+  .navbar .menu-settings{
+    display:grid; grid-template-columns:1fr auto; gap:8px;
+    padding:6px 8px; border-radius:10px;
+    background:hsl(var(--glass));
+    -webkit-backdrop-filter:blur(8px) saturate(1.05);
+    backdrop-filter:blur(8px) saturate(1.05);
+    border:1px solid hsl(var(--border));
+    box-shadow:0 4px 10px hsl(var(--shadow-1));
+    position:relative; isolation:isolate;
+  }
+
+  /* tłumaczalny caption zamiast ::before */
+  .navbar .settings-caption{
+    position:absolute; top:-8px; left:10px;
+    font-size:.68rem; font-weight:700;
+    padding:1px 6px; border-radius:999px; color:#fff;
+    background:linear-gradient(120deg, hsl(var(--accent)), hsl(var(--accent-300)));
+    box-shadow:0 3px 8px hsl(var(--accent)/.25);
+  }
+
+  .navbar .btn-setting{
+    display:flex; align-items:center; justify-content:space-between; gap:6px;
+    width:100%; padding:8px 10px; border-radius:10px;
+    border:1px solid hsl(var(--border));
+    background:hsl(var(--surface));
+    box-shadow:0 2px 6px hsl(var(--shadow-1));
+    font-weight:700; font-size:.88rem;
+    cursor:pointer; color:hsl(var(--fg));
+    transition:transform .15s, box-shadow .15s, border-color .15s, background .15s;
+  }
+  .navbar .btn-setting .icon{ font-size:.95rem; }
+  .navbar .btn-setting .label{ opacity:.85; }
+  .navbar .lang-badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:28px; height:20px; padding:0 6px;
+    border-radius:999px; font-size:.7rem; font-weight:800;
+    background:linear-gradient(145deg, hsl(var(--accent-300)), hsl(var(--accent)));
+    color:#fff;
+  }
+  .navbar .btn-setting:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 14px hsl(var(--shadow-2));
+    border-color:hsl(var(--accent)/.4);
+  }
+  .navbar .btn-setting:focus-visible{
+    outline:2px solid hsl(var(--ring)); outline-offset:2px;
+  }
+
+  .navbar .setting-switch{
+    display:flex; align-items:center; gap:6px;
+    padding:6px 8px; border-radius:10px;
+    border:1px solid hsl(var(--border));
+    background:hsl(var(--surface));
+    box-shadow:0 2px 6px hsl(var(--shadow-1));
+    font-size:.88rem;
+    cursor:pointer; /* pozwala kliknąć w cały blok */
+  }
+  .navbar .setting-switch .icon{ font-size:.95rem; }
+  .navbar .setting-switch .label{ font-weight:700; opacity:.85; font-size:.86rem; }
+  .navbar .setting-switch .state{
+    font-size:.75rem; font-weight:700;
+    padding:1px 6px; border-radius:999px; margin-left:4px;
+    background:hsl(var(--accent)/.12); color:hsl(var(--fg));
+  }
+
+  @media (max-width:768px){
+    .navbar .menu-settings{ grid-template-columns:1fr; }
+    .navbar .setting-switch{ justify-content:space-between; }
+  }
+
+  body.dark .navbar .btn-setting,
+  body.dark .navbar .setting-switch{
+    background:hsl(var(--surface));
+    border-color:hsl(var(--border));
+    box-shadow:0 6px 14px hsl(var(--shadow-2));
+  }
+  /* Pokazuj "co będzie po kliknięciu" bez JS */
+#theme-state .next-if-dark { display: none; }
+body.dark #theme-state .next-if-light { display: none; }
+body.dark #theme-state .next-if-dark  { display: inline; }
+/* POWIĘKSZENIE + zawsze widoczna + drobny cień, wyższy z-index */
+.menu-items a.has-badge{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.menu-items a.has-badge .link-label{
+  position: relative;
+  display: inline-block;
+  line-height: 1.1;
+}
+
+/* Badge "NEW" przy pozycji Aktualizacje — zawsze widoczna */
+.menu-items a[data-target="updates.html"]{
+  position: relative;
+  display: inline-flex;        /* żeby badge liczyła się od tekstu */
+  align-items: center;
+}
+
+/* Uwaga: używamy ::before, bo ::after masz na underline animacji */
+.menu-items a[data-target="updates.html"]::before{
+  content: "";
+  position: absolute;
+  top: -0.60em;                /* powyżej prawego górnego rogu napisu */
+  right: -0.85em;
+  width: 1.35em;               /* POWIĘKSZONA */
+  height: 1.35em;
+  background: no-repeat center / contain;
+  /* ŚCIEŻKA DO SVG:
+     - jeśli to wrzucasz do GLOBALNEGO style/style.css -> ../img/icons/badge-new.svg
+     - jeśli do <style> w dokumencie/partialu -> img/icons/badge-new.svg */
+  background-image: url("../img/icons/badge-new.svg");
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+  transform: translateZ(0);
+}
+
+/* Mobile drobne doszlifowanie */
+@media (max-width: 768px){
+  .menu-items a[data-target="updates.html"]::before{
+    top: -0.52em;
+    right: -0.72em;
+    width: 1.28em;
+    height: 1.28em;
+  }
+}
+
+
+</style>
+
+<!-- ===== JS: hamburger + i18n (PL/EN) + pamięć języka/motywu + ODWRÓCONY label (pokazuj co się stanie po kliknięciu) ===== -->
+<script>
+(function(){
+  // ===== CONFIG (PL/EN) =====
+  const dict = {
+    pl: { nextLight: "Jasny", nextDark: "Ciemny" },
+    en: { nextLight: "Light", nextDark: "Dark" }
+  };
+
+  // czekamy na DOM (gdyby skrypt był w <head>)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once:true });
+  } else {
+    init();
+  }
+
+  function init(){
+    const langBtn     = document.getElementById('lang-toggle');
+    const themeChk    = document.getElementById('theme-toggle');
+    const themeState  = document.getElementById('theme-state');
+    const settingRow  = document.querySelector('.setting-switch');
+
+    // jeśli czegokolwiek brakuje, próbujemy później
+    if (!themeState || !themeChk) {
+      setTimeout(init, 100);
+      return;
+    }
+
+    // 1) zbij i18n na tym elemencie, aby nic go nie nadpisywało
+    themeState.removeAttribute('data-i18n');
+    themeState.removeAttribute('data-i18n-attr');
+
+    // 2) helpery
+    const getLang = () => (localStorage.getItem('lang') || langBtn?.getAttribute('data-lang') || 'pl').toLowerCase();
+    const getDict = () => dict[getLang()] || dict.pl;
+
+    // Ustaw label = NASTĘPNY stan (co się stanie po kliknięciu), oraz checkbox
+    function syncFromBody(){
+      const isDark = document.body.classList.contains('dark');
+      // pokazywany tekst = tryb, na który PRZEŁĄCZY klik
+      themeState.textContent = isDark ? getDict().nextLight : getDict().nextDark;
+      if (themeChk) themeChk.checked = isDark;
+    }
+
+    // Ustaw tryb i zapisz
+    function setTheme(nextMode){
+      const wantDark = nextMode === 'dark';
+      document.body.classList.toggle('dark', wantDark);
+      try { localStorage.setItem('theme', nextMode); } catch(e){}
+      syncFromBody();
+    }
+
+    // 3) INIT — preferencje: localStorage → klasa na body → prefers-color-scheme
+    let initial = localStorage.getItem('theme');
+    if (!initial) {
+      initial = document.body.classList.contains('dark')
+        ? 'dark'
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
+    document.body.classList.toggle('dark', initial === 'dark');
+    syncFromBody();
+
+    // 4) LISTENERY
+    // checkbox
+    themeChk.addEventListener('change', () => {
+      setTheme(themeChk.checked ? 'dark' : 'light');
+    });
+
+    // klik w CAŁY wiersz (poza samym input/slider)
+    settingRow?.addEventListener('click', (e) => {
+      if (e.target.closest('input, .slider')) return;
+      const nextIsDark = !document.body.classList.contains('dark');
+      setTheme(nextIsDark ? 'dark' : 'light');
+    });
+
+    // jeśli inny skrypt zmieni klasę na <body> → zsynchronizuj
+    new MutationObserver(syncFromBody).observe(document.body, { attributes:true, attributeFilter:['class'] });
+
+    // jeśli i18n/inna biblioteka spróbuje nadpisać tekst — cofamy na nasze
+    new MutationObserver(() => syncFromBody()).observe(themeState, { childList:true, characterData:true, subtree:true });
+
+    // zmiana języka (Twój przycisk / system) → przelicz napisy
+    langBtn?.addEventListener('click', () => setTimeout(syncFromBody, 0));
+    window.addEventListener('languagechange', () => setTimeout(syncFromBody, 0));
+
+    // 5) „bezpiecznik”: przez pierwsze 2 sekundy resync co 300ms (po inicjalizacjach innych skryptów),
+    // potem co 5s lekki watchdog (nic nie kosztuje)
+    let t = 0;
+    const fast = setInterval(() => {
+      syncFromBody();
+      t += 300;
+      if (t >= 2000) clearInterval(fast);
+    }, 300);
+    setInterval(syncFromBody, 5000);
+  }
+})();
+</script>
+
 

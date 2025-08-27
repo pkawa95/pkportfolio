@@ -517,3 +517,21 @@ function ensureSparkStyle() {
   `;
   document.head.appendChild(st);
 }
+
+
+// global.js (opcjonalne)
+// Ujednolica stan dropdownów: .open <-> aria-expanded
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.dropbtn');
+  if (!btn) return;
+
+  const dd = btn.closest('.dropdown');
+  if (!dd) return;
+
+  const now = !(btn.getAttribute('aria-expanded') === 'true' || dd.classList.contains('open') || dd.dataset.open === 'true' || dd.hasAttribute('open'));
+
+  btn.setAttribute('aria-expanded', String(now));
+  dd.classList.toggle('open', now);
+  dd.dataset.open = String(now);
+  if (now) dd.setAttribute('open', ''); else dd.removeAttribute('open');
+});

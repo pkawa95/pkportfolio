@@ -249,6 +249,8 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     changelog: {
       label: "Ostatnie aktualizacje",
       lines: [
+    "📅 [2025-08-27] 🛠️ Aktualizacja menu, naprawa wyświetlania paska aktualizacji na wersji mobilnej.",
+    "📅 [2025-08-27] 💬 Dodano obsługę Tidio chat na całości strony.",
     "📅 [2025-08-26] ✨ Odświeżenie UI (Aurora/Glass), pełny dark mode i refaktor CSS.",
     "📅 [2025-08-26] 👀 Poprawiono widoczność i animacje paska aktualizacji.",
     "📅 [2025-08-22] 🆕 Dodano pasek aktualizacji pod menu.",
@@ -257,6 +259,14 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
       ]
     },
 
+  settings_caption: "Ustawienia",
+  language_label: "Język",
+  theme_label: "Tryb",
+  theme_state_light: "Jasny",
+  theme_state_dark: "Ciemny",
+  aria_lang: "Zmień język",
+  aria_theme: "Przełącz motyw" ,
+  menu_update: "Aktualizacje",
   // Nagłówek i opis projektu
   wdcloud_heading: "WD Cloud Dashboard – Pełna Integracja z WebDAV i API chmurowym",
   wdcloud_desc1: "Zaawansowana aplikacja desktopowa pozwalająca użytkownikom na logowanie do kont WD MyCloud, zarządzanie plikami i montowanie WebDAV.",
@@ -400,6 +410,8 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
     changelog: {
       label: "Recent updates",
       lines: [
+    "📅 [2025-08-27] 🛠️ Menu update, fix for update bar display on mobile.",
+    "📅 [2025-08-27] 💬 Added Tidio chat support across the entire site.",
     "📅 [2025-08-26] ✨ Visual refresh (Aurora/Glass), full dark mode and CSS refactor.",
     "📅 [2025-08-26] 👀 Adjusted recent updates visibility and animation",
     "📅 [2025-08-22] 🆕 Added an update bar below the menu.",
@@ -513,8 +525,14 @@ about_story2: `
 <p>&emsp;I hold a <strong>category B driving licence</strong> and own a <strong>car</strong>, which makes me fully <strong>mobile</strong> and ready to work in various locations.</p>
 `,
 
-
-
+settings_caption: "Settings",
+language_label: "Language",
+theme_label:"Theme",
+theme_state_light: "Light",
+theme_state_dark: "Dark",
+aria_lang: "Change language",
+aria_theme: "Toggle theme",
+menu_update: "Updates",
 
 
   about_interests_title : "Interests",

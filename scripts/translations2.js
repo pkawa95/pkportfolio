@@ -11,6 +11,13 @@ const translationsUpdates = {
     updates_twitter_title: "Ostatnie aktualizacje — Piotr Kawa",
     updates_twitter_description: "Lista najnowszych zmian i poprawek na stronie.",
 
+    //2025-08-27b (TIDIO)
+     updates_item_2025_08_27b_date: "2025-08-27",
+  updates_item_2025_08_27b_text: "Dodano obsługę Tidio chat na całości strony",
+  updates_item_2025_08_27b_title: "Integracja Tidio na całej stronie",
+  updates_item_2025_08_27b_desc:
+    "Wdrożyłem lekki widget Tidio na wszystkich podstronach, aby ułatwić szybki kontakt. Skrypt ładuje się asynchronicznie i nie blokuje renderowania, a widget respektuje motyw jasny/ciemny i może być zwinięty w dowolnym momencie. Dzięki temu odwiedzający mogą napisać bez przełączania zakładek, a odpowiedź trafia do nich szybciej.",
+
     // 2025-08-26c (UI refresh + CSS refactor)
     updates_item_2025_08_26c_date: "2025-08-26",
     updates_item_2025_08_26c_text: "Odświeżenie warstwy wizualnej, pełny dark mode, usprawnienia CSS.",
@@ -25,6 +32,14 @@ const translationsUpdates = {
       "<strong>Tokeny kolorów:</strong> zmienne CSS dla jasnego/ciemnego motywu, mniej duplikacji stylów.",
       "<strong>Wydajność & a11y:</strong> wsparcie <code>prefers-reduced-motion</code>, wyższy kontrast, poprawione <code>:focus-visible</code>."
     ],
+
+    // 2025-08-27a (Mobile nav + update bar fix)
+    updates_item_2025_08_27a_date: "2025-08-27",
+    updates_item_2025_08_27a_text: "Aktualizacja menu, naprawa wyświetlania paska aktualizacji na wersji mobilnej",
+    updates_item_2025_08_27a_title: "Usprawnienia nawigacji i pasek aktualizacji (mobile)",
+    updates_item_2025_08_27a_desc:
+    "Dopracowano zachowanie mobilnego menu (lepsza widoczność, spójne stany rozwinięcia) oraz naprawiono rendering paska aktualizacji na małych ekranach. Efekt: bardziej przewidywalna nawigacja i czytelny changelog w trybie mobilnym.",
+    labeldata_in: "tłumaczenie",
 
     // 2025-08-26b
     updates_item_2025_08_26b_date: "2025-08-26",
@@ -107,6 +122,14 @@ const translationsUpdates = {
     roadmap_item_cookies_b2: "<strong>Kontrola:</strong> granularne zgody, opt-in zamiast opt-out.",
     roadmap_item_cookies_b3: "<strong>Cel:</strong> zgodność prawna i lepsze doświadczenie użytkownika.",
 
+     // Menu 
+    menu_logo: "PK Portfolio",
+    menu_home: "Strona główna",
+    menu_projects: "Projekty",
+    menu_about: "O mnie",
+    menu_contact: "Kontakt",
+    menu_update: "Aktualizacje",
+    
     /* Chips */
     chip_plan: "Plan",
     chip_python: "Python",
@@ -121,6 +144,8 @@ const translationsUpdates = {
     changelog: {
       label: "Ostatnie aktualizacje",
       lines: [
+        "📅 [2025-08-27] 🛠️ Aktualizacja menu, naprawa wyświetlania paska aktualizacji na wersji mobilnej.",
+        "📅 [2025-08-27] 💬 Dodano obsługę Tidio chat na całości strony.",
         "📅 [2025-08-26] ✨ Odświeżenie UI (Aurora/Glass), pełny dark mode i refaktor CSS.",
         "📅 [2025-08-26] 👀 Poprawiono widoczność i animacje paska aktualizacji.",
         "📅 [2025-08-22] 🆕 Dodano pasek aktualizacji pod menu.",
@@ -141,6 +166,21 @@ const translationsUpdates = {
     updates_og_description: "See what’s new on the site — full list of changes and improvements.",
     updates_twitter_title: "Latest updates — Piotr Kawa",
     updates_twitter_description: "List of the most recent changes and fixes on the site.",
+
+    //2025-08-27b (TIDIO)
+    updates_item_2025_08_27b_date: "2025-08-27",
+  updates_item_2025_08_27b_text: "Added Tidio chat support across the entire site",
+  updates_item_2025_08_27b_title: "Tidio integration site-wide",
+  updates_item_2025_08_27b_desc:
+    "Implemented a lightweight Tidio widget on all pages to streamline contact. The script loads asynchronously without blocking rendering, the widget respects light/dark mode and can be minimized at any time. Visitors can reach out instantly without switching tabs, and responses arrive faster.",
+
+    // 2025-08-27a (Mobile nav + update bar fix)
+    updates_item_2025_08_27a_date: "2025-08-27",
+    updates_item_2025_08_27a_text: "Menu update, fix for update-bar display on mobile",
+    updates_item_2025_08_27a_title: "Navigation improvements & update bar (mobile)",
+    updates_item_2025_08_27a_desc:
+    "Refined the mobile menu behavior (better visibility, consistent expand/collapse states) and fixed the update bar rendering on small screens. Result: more predictable navigation and a clear changelog on mobile.",
+    labeldata_in: "translation",
 
     // 2025-08-26c (UI refresh + CSS refactor)
     updates_item_2025_08_26c_date: "2025-08-26",
@@ -237,6 +277,14 @@ const translationsUpdates = {
     roadmap_item_cookies_b1: "<strong>Transparency:</strong> clear purpose and retention.",
     roadmap_item_cookies_b2: "<strong>Control:</strong> granular consents, opt-in over opt-out.",
     roadmap_item_cookies_b3: "<strong>Goal:</strong> legal compliance and better user experience.",
+    
+    // Menu 
+    menu_logo: "PK Portfolio",
+    menu_home: "Home",
+    menu_projects: "Projects",
+    menu_about: "About",
+    menu_contact: "Contact",
+    menu_update: "Updates",
 
     /* Chips */
     chip_plan: "Plan",
@@ -252,6 +300,8 @@ const translationsUpdates = {
     changelog: {
       label: "Recent updates",
       lines: [
+        "📅 [2025-08-27] 🛠️ Menu update, fix for update bar display on mobile.",
+        "📅 [2025-08-27] 💬 Added Tidio chat support across the entire site.",
         "📅 [2025-08-26] ✨ Visual refresh (Aurora/Glass), full dark mode and CSS refactor.",
         "📅 [2025-08-26] 👀 Adjusted recent updates visibility and animation.",
         "📅 [2025-08-22] 🆕 Added an update bar below the menu.",

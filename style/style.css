@@ -428,33 +428,49 @@ body.dark .project-icon{ filter: invert(1) brightness(1.2) contrast(1.1); }
 .dropdown-content a:hover .project-icon{ transform:scale(1.15); }
 
 /* ================================
-   MOBILE HAMBURGER DROPDOWN — SOLID
-   (wklej NA KOŃCU swojego CSS)
+   MOBILE HAMBURGER — bez zmian w HTML
    ================================ */
 @media (max-width: 768px){
 
-  /* Lista menu po kliknięciu hamburgera */
+  /* Panel menu — kosmetyka + płynne wejście (gdy system go pokazuje) */
   .menu-items{
-    /* najpierw wsparcie dla starego zestawu zmiennych */
     background: var(--nav-bg) !important;
-    /* a tu nowszy zestaw (Ultra Theme v2) – nadpisze, jeśli jest */
     background: hsl(var(--surface)) !important;
-
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
 
     border-bottom: 1px solid rgba(0,0,0,.08);
-    box-shadow: 0 16px 40px rgba(0,0,0,.18);
-    padding: 12px 20px;
-    gap: 6px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.18);
+    padding: max(12px, env(safe-area-inset-top)) 20px 12px max(20px, env(safe-area-inset-left));
+    gap: 8px;
     z-index: 10001;
+
+    /* Nie wymuszamy display:block – Twój system może dawać display:none.
+       Jeśli jest widoczny, animacje zadziałają. */
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .22s cubic-bezier(.2,.8,.2,1), transform .22s cubic-bezier(.2,.8,.2,1);
+    will-change: opacity, transform;
+
+    max-height: 80vh;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
   body.dark .menu-items{
     border-bottom-color: rgba(255,255,255,.12);
-    box-shadow: 0 18px 44px rgba(0,0,0,.45);
+    box-shadow: 0 22px 44px rgba(0,0,0,.55);
   }
 
-  /* Linki w mobilnym menu – pełna szerokość, solid hover */
+  /* Gdy Twój system dodaje jedną z tych flag – pokaż wejście „z góry” */
+  .menu-items.open,
+  .is-open .menu-items,
+  .menu-items[data-state="open"]{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Linki/przyciski */
   .menu-items a,
   .menu-items .dropbtn,
   .navbar-right a,
@@ -462,42 +478,98 @@ body.dark .project-icon{ filter: invert(1) brightness(1.2) contrast(1.1); }
     color: var(--nav-text);
     color: hsl(var(--fg)); /* v2 */
     width: 100%;
-    padding: 10px 6px;
-    border-radius: 8px;
+    padding: clamp(10px, 2.6vh, 14px) 18px;
+    border-radius: 12px;
+    line-height: 1.15;
+    text-align: left;
+    outline: none;
+    min-height: 44px; /* hit-area */
   }
-  .menu-items a::after{ display: none; } /* bez podkreślenia-animacji pod spodem */
+  .menu-items a::after{ display:none; }
   .menu-items a:hover,
-  .menu-items .dropbtn:hover{
-    background: rgba(0,0,0,.06);
-  }
+  .menu-items .dropbtn:hover{ background: rgba(0,0,0,.06); }
   body.dark .menu-items a:hover,
-  body.dark .menu-items .dropbtn:hover{
-    background: rgba(255,255,255,.06);
+  body.dark .menu-items .dropbtn:hover{ background: rgba(255,255,255,.06); }
+  .menu-items a:focus-visible,
+  .menu-items .dropbtn:focus-visible{
+    outline: 2px solid hsl(var(--fg)/.28);
+    outline-offset: 2px;
+    background: transparent;
   }
 
-  /* Rozwijane pozycje wewnątrz mobilnego menu też jako solid cards */
+  /* Dropdown — bez display:none, sterujemy max-height/opacity/pointer-events */
+  .dropdown{ width: 100%; }
+  .dropdown .dropbtn{
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .dropdown .dropbtn .caret{ transition: transform .22s cubic-bezier(.2,.8,.2,1); }
+
   .dropdown-content{
     position: static !important;
-    display: none;           /* pokazujesz klasą .open jak dotąd */
+    display: block;         /* stale block, ukrycie przez max-height/opacity */
+    pointer-events: none;   /* nieklikalne, gdy zamknięte */
     background: var(--nav-bg) !important;
     background: hsl(var(--surface)) !important;
     border: 1px solid rgba(0,0,0,.08);
     border-radius: 10px;
     padding: 6px 8px;
-    margin: 4px 0 0 0;
+    margin: 6px 0 0 0;
     box-shadow: 0 10px 24px rgba(0,0,0,.16);
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      max-height .22s cubic-bezier(.2,.8,.2,1),
+      opacity .22s cubic-bezier(.2,.8,.2,1),
+      transform .22s cubic-bezier(.2,.8,.2,1);
   }
   body.dark .dropdown-content{
     border-color: rgba(255,255,255,.12);
     box-shadow: 0 12px 30px rgba(0,0,0,.6);
   }
 
-  /* Przyciski dropdownu w mobilnym menu – wyrównanie do lewej, full width */
-  .dropdown .dropbtn{
-    width: 100%;
-    text-align: left;
+  /* —„Stan otwarty”— dopasowania pod różne systemy:
+     1) rodzic .dropdown ma .open
+     2) przycisk ma aria-expanded="true"
+     3) rodzic ma data-open="true" / [open] (np. <details open>) */
+  .dropdown.open .dropdown-content,
+  .dropdown:has(.dropbtn[aria-expanded="true"]) .dropdown-content,
+  .dropdown[data-open="true"] .dropdown-content,
+  .dropdown[open] .dropdown-content{
+    pointer-events: auto;
+    max-height: 60vh;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Rotacja caret w każdym z wariantów „otwarte” */
+  .dropdown.open .dropbtn .caret,
+  .dropdown:has(.dropbtn[aria-expanded="true"]) .dropbtn .caret,
+  .dropdown[data-open="true"] .dropbtn .caret,
+  .dropdown[open] .dropbtn .caret{
+    transform: rotate(180deg);
+  }
+
+  /* Elementy wewnątrz dropdownu */
+  .dropdown-content a,
+  .dropdown-content button{
+    padding: 10px 10px;
+    border-radius: 8px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .menu-items, .dropdown .dropbtn .caret, .dropdown-content{ transition:none !important; }
   }
 }
+
 
 
 /* === DARK MODE: twardy biały tekst wszędzie (bez nagłówków) === */
