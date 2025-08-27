@@ -16,8 +16,7 @@ const translationsUpdates = {
   updates_item_2025_08_27b_text: "Dodano obsługę Tidio chat na całości strony",
   updates_item_2025_08_27b_title: "Integracja Tidio na całej stronie",
   updates_item_2025_08_27b_desc:
-    "Wdrożyłem lekki widget Tidio na wszystkich podstronach, aby ułatwić szybki kontakt. Skrypt ładuje się asynchronicznie i nie blokuje renderowania, a widget respektuje motyw jasny/ciemny i może być zwinięty w dowolnym momencie. Dzięki temu odwiedzający mogą napisać bez przełączania zakładek, a odpowiedź trafia do nich szybciej.",
-
+    "Wdrożyłem lekki widget Tidio na wszystkich podstronach, aby ułatwić szybki kontakt. Skrypt ładuje się asynchronicznie i nie blokuje renderowania; widget respektuje motyw jasny/ciemny i można go w dowolnym momencie zwinąć. Dzięki temu odwiedzający mogą napisać bez przełączania zakładek, a odpowiedź trafia szybciej.",
     // 2025-08-26c (UI refresh + CSS refactor)
     updates_item_2025_08_26c_date: "2025-08-26",
     updates_item_2025_08_26c_text: "Odświeżenie warstwy wizualnej, pełny dark mode, usprawnienia CSS.",
@@ -178,6 +177,12 @@ const translationsUpdates = {
   updates_item_2025_08_27c_b2: "<strong>Media:</strong> optimized photo + proper <code>alt</code>.",
   updates_item_2025_08_27c_b3: "<strong>UX:</strong> clear CTAs and links to social profiles.",
   chip_content: "Content",
+    //2025-08-27b (TIDIO)
+    updates_item_2025_08_27b_date: "2025-08-27",
+  updates_item_2025_08_27b_text: "Added Tidio chat support across the entire site",
+  updates_item_2025_08_27b_title: "Site-wide Tidio integration",
+  updates_item_2025_08_27b_desc:
+    "Deployed a lightweight Tidio widget on all pages to streamline contact. The script loads asynchronously without blocking rendering; the widget respects light/dark mode and can be minimized at any time. Visitors can reach out without switching tabs, and responses arrive faster.",
     // 2025-08-27a (Mobile nav + update bar fix)
     updates_item_2025_08_27a_date: "2025-08-27",
     updates_item_2025_08_27a_text: "Menu update, fix for update-bar display on mobile",
