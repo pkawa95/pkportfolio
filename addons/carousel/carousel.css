@@ -1,16 +1,60 @@
+/* ============== KARUZELA (nowy wygląd – bez zmian przycisków, niebieskich napisów i badge) ============== */
 .my-carousel {
   position: relative;
   width: 100%;
   max-width: 800px;
   margin: 40px auto;
   overflow: hidden;
-  border-radius: 16px;
-  transition: background-color 0.3s ease;
+  border-radius: 20px;                   /* delikatnie nowocześniej */
+  background: hsl(var(--glass));
+  -webkit-backdrop-filter: blur(12px) saturate(1.08);
+  backdrop-filter: blur(12px) saturate(1.08);
+  box-shadow: 0 12px 28px hsl(var(--shadow-1));
+  transition: transform .4s ease, box-shadow .4s ease;
+  z-index: 0;                             /* dla pseudo-elementu ramki */
+  border: 2px solid transparent;          /* miejsce na obrys (::after) */
 }
 
+/* Jedna animowana ramka – gradient „płynie” w obrębie obrysu (element nieruchomy) */
+.my-carousel::after{
+  content:"";
+  position:absolute; inset:0; padding:2px;     /* grubość ramki */
+  border-radius: inherit;
+  pointer-events: none; z-index: 1;
+
+  /* fiolet ↔ niebieski przesuwany po obwodzie */
+  background: linear-gradient(270deg,
+    hsl(220 92% 60%),
+    hsl(285 90% 62%),
+    hsl(220 92% 60%)
+  );
+  background-size: 400% 400%;
+  animation: carouselBorderFlow 10s linear infinite;
+
+  /* pokazujemy tylko obrys (bez zalewania środka) */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.my-carousel:hover{
+  box-shadow:
+    0 18px 44px hsl(var(--shadow-2)),
+    0 0 26px hsl(220 92% 60% / .30),
+    0 0 32px hsl(285 90% 62% / .30);
+}
+
+@keyframes carouselBorderFlow{
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+/* Track i slajdy */
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .carousel-item {
@@ -19,51 +63,50 @@
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
+  border-radius: inherit;                 /* spójne rogi z kontenerem */
 }
 
 .carousel-item img {
   width: 100%;
   height: 400px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: inherit;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
+.carousel-item:hover img { transform: scale(1.05); }
 
-.carousel-item:hover img {
-  transform: scale(1.05);
-}
-
+/* Overlay z opisem – mocniejszy na hover dla lepszej czytelności */
 .carousel-item-content {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  bottom: 0; left: 0; width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.65));
   color: #fff;
   transform: translateY(100%);
-  transition: transform 0.3s ease;
-  padding: 15px;
+  transition: transform 0.4s ease, background 0.4s ease;
+  padding: 16px;
   box-sizing: border-box;
   text-align: center;
 }
 
+/* na hover overlay się przyciemnia */
 .carousel-item:hover .carousel-item-content {
   transform: translateY(0);
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.85));
 }
 
+/* NAPISY i PRZYCISKI – zostawione jak były */
 .carousel-item-content h3 {
   font-size: 1.4rem;
   margin-bottom: 10px;
-  color: var(--accent-color);
+  color: var(--accent-color);    /* NIE ZMIENIAMY */
   font-weight: 700;
 }
-
 .carousel-item-content p {
   font-size: 1rem;
   margin-bottom: 10px;
 }
-
+/* PRZYCISK: bez zmian */
 .carousel-item-content a {
   display: inline-block;
   background-color: var(--accent-color);
@@ -72,13 +115,15 @@
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform .2s ease, box-shadow .2s ease;
 }
-
 .carousel-item-content a:hover {
   background-color: var(--link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
 }
 
+/* Nawigacja – zostawiona jak była */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -92,67 +137,63 @@
   transition: background-color 0.3s ease;
   z-index: 10;
 }
+.carousel-btn:hover { background-color: rgba(0, 0, 0, 0.6); }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
 
-.carousel-btn:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.carousel-btn.prev {
-  left: 10px;
-}
-
-.carousel-btn.next {
-  right: 10px;
-}
-
+/* Dots – gradient fiolet↔niebieski */
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin: 15px 0;
 }
-
 .carousel-dot {
-  width: 12px;
-  height: 12px;
-  background-color: #ccc;
+  width: 12px; height: 12px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background: #ccc;
+  transition: background .3s ease, box-shadow .3s ease, transform .2s ease;
 }
-
+.carousel-dot:hover {
+  background: linear-gradient(135deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  box-shadow:
+    0 0 10px hsl(220 92% 60% / .35),
+    0 0 14px hsl(285 90% 62% / .35);
+  transform: scale(1.1);
+}
 .carousel-dot.active {
-  background-color: var(--accent-color);
+  background: linear-gradient(135deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  box-shadow:
+    0 0 10px hsl(220 92% 60% / .4),
+    0 0 14px hsl(285 90% 62% / .4);
+  transform: scale(1.15);
 }
 
+/* Badge – zostawiamy kolory kategorii bez zmian */
 .carousel-badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 10px; left: 10px;
   padding: 4px 10px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
+  font-size: 0.85rem; font-weight: 600; color: #fff;
   border-radius: 6px;
   z-index: 15;
   background-color: #555;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
-
-.carousel-badge:hover {
-  transform: scale(1.05);
-}
+.carousel-badge:hover { transform: scale(1.05); }
 
 .carousel-heading {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
-  color: var(--accent-color);
+  color: var(--accent-color);   /* NIE ZMIENIAMY */
   font-weight: 700;
 }
 
+/* Kategorie – BEZ ZMIAN */
 .category-hardware { background-color: #007bff; }
 .category-web { background-color: #28a745; }
 .category-desktop { background-color: #6f42c1; }
@@ -160,65 +201,73 @@
 .category-python { background-color: #fd7e14; }
 .category-wpf { background-color: #a200ff; }
 
+/* Animacja wejścia – jak było */
 @keyframes zoomInFade {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
 }
-
 .carousel-heading,
-.my-carousel {
-  opacity: 0;
-  transform: scale(0.9);
-}
+.my-carousel { opacity: 0; transform: scale(0.9); }
+.animate-visible { animation: zoomInFade 0.8s ease forwards; }
+.my-carousel.animate-visible { animation-delay: 0.3s; }
 
-.animate-visible {
-  animation: zoomInFade 0.8s ease forwards;
-}
-
-.my-carousel.animate-visible {
-  animation-delay: 0.3s;
-}
-
+/* RWD */
 @media (max-width: 768px) {
-  .carousel-item-content h3 {
-    font-size: 1rem;
-  }
-
-  .carousel-heading {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-
-  .carousel-item-content p {
-    font-size: 0.85rem;
-  }
-
-  .carousel-btn {
-    padding: 6px 10px;
-  }
-
-  .carousel-item {
-    flex: 0 0 70%;
-    height: 200px;
-  }
-
-  .carousel-item img {
-    height: 200px;
-  }
-
-  .my-carousel {
-    max-width: 90%;
-  }
-
-  .carousel-heading,
-  .my-carousel {
-    animation-duration: 1s;
-  }
+  .carousel-item-content h3 { font-size: 1rem; }
+  .carousel-heading { font-size: 1.5rem; margin-bottom: 15px; text-align: center; }
+  .carousel-item-content p { font-size: 0.85rem; }
+  .carousel-btn { padding: 6px 10px; }
+  .carousel-item { flex: 0 0 70%; height: 200px; }
+  .carousel-item img { height: 200px; }
+  .my-carousel { max-width: 90%; border-radius: 18px; }
 }
+
+/* Preferencje dostępności: bez animacji ramki przy reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .my-carousel::after{ animation: none; }
+}
+
+/* === CAROUSEL DOTS — FIX: bez absolute, zawsze pod karuzelą === */
+.carousel-container {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-bottom: 0 !important; /* nie potrzebujemy już „rezerwy” na kropki */
+}
+
+/* kropki w normalnym flow, nie „wiszą” nad kolejnymi sekcjami */
+.carousel-dots{
+  position: static !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0 20px 0;   /* było 14px – podniesione dla lepszego odstępu */
+  z-index: auto !important;
+}
+
+/* kropki — pewne koła i ładny hover/active (gradient blue↔purple) */
+.carousel-dot{
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  border-radius: 50% !important;    /* wymuszone kółko */
+  border: none;
+  background: var(--dot-bg, #cfcfcf);
+  cursor: pointer;
+  transition: transform .2s ease, background .25s ease, box-shadow .25s ease;
+}
+.carousel-dot:hover{
+  background: linear-gradient(135deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  box-shadow: 0 0 8px hsl(220 92% 60% / .35), 0 0 10px hsl(285 90% 62% / .35);
+  transform: scale(1.1);
+}
+.carousel-dot.active{
+  background: linear-gradient(135deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  box-shadow: 0 0 8px hsl(220 92% 60% / .45), 0 0 10px hsl(285 90% 62% / .45);
+  transform: scale(1.15);
+  opacity: 1;
+}
+

@@ -113,18 +113,18 @@ function initMenuScripts() {
   const dropdownToggle = document.getElementById("dropdown-toggle");
   const dropdownContainer = dropdownToggle?.parentElement;
 
-    menuItems?.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      menuItems.querySelectorAll("a.active").forEach(x => {
-        x.classList.remove("active");
-        x.querySelector(".spark")?.remove();
-      });
-      a.classList.add("active");
-      const s = document.createElement("span");
-      s.className = "spark";
-      a.appendChild(s);
-    });
+menuItems?.querySelectorAll("a").forEach(a => {
+  a.addEventListener("click", () => {
+    // NIE tykamy .active – tym zarządza skrypt „twardych” tras
+    // Tylko kosmetyczna iskierka:
+    ensureSparkStyle();
+    a.querySelector(".spark")?.remove();
+    const s = document.createElement("span");
+    s.className = "spark";
+    a.appendChild(s);
   });
+});
+
 
   menuToggle?.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -152,16 +152,7 @@ function initMenuScripts() {
 }
 
 // 📥 Dynamiczne menu
-function loadMenuAndInit() {
-  fetch("../../menu.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("menu-placeholder").innerHTML = html;
-      initMenuScripts();
-      initThemeToggle();
-      initTranslation();
-    });
-}
+
 
 // ⬇️ Dynamiczne ładowanie stopki
 function loadFooter() {
@@ -194,24 +185,6 @@ function initSeparatorObserver() {
   });
 }
 
-// 🔸 Podświetlenie aktywnego linku menu
-function highlightActiveNavLink() {
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  const navLinks = document.querySelectorAll(".menu-items a");
-
-
-    navLinks.forEach(a => {
-    const href = a.getAttribute("href") || a.getAttribute("data-target");
-    if (isSamePage(href)) {
-      a.classList.add("active");
-      ensureSparkStyle();
-      const s = document.createElement("span");
-      s.className = "spark";
-      a.appendChild(s);
-    }
-  });
-
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   let pathPrefix = '';
@@ -241,6 +214,8 @@ document.addEventListener("DOMContentLoaded", function () {
       initMenuScripts();
       initThemeToggle();
       initTranslation();
+      document.dispatchEvent(new Event('menu:loaded')); // uruchomi setActiveNavLink()
+
     });
 
   // ✅ Ładowanie FOOTER + poprawka ikon
@@ -258,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ Inicjalizacje ogólne
   initScrollObserver();
   initSeparatorObserver();
-  highlightActiveNavLink();
+
 });
 
 
@@ -492,46 +467,3 @@ document.addEventListener('languageChanged', () => {
   document.addEventListener("menu:loaded", init, { once: true });
 })();
 
-
-// ✨ Jednorazowy styl iskierki
-function ensureSparkStyle() {
-  if (document.getElementById("pk-spark-style")) return;
-  const st = document.createElement("style");
-  st.id = "pk-spark-style";
-  st.textContent = `
-    @media (hover:hover){
-      .menu-items a .spark{
-        position:absolute; bottom:-9px; width:10px; height:10px; border-radius:50%; pointer-events:none;
-        background:radial-gradient(circle at 50% 50%, hsl(var(--accent)) 0%, transparent 60%);
-        box-shadow:0 0 8px hsl(var(--accent)/.9), 0 0 16px hsl(var(--accent)/.55), 0 0 24px hsl(var(--accent)/.35);
-        opacity:.9; animation:pk-spark-move 1.8s linear infinite;
-      }
-      @keyframes pk-spark-move{
-        0%{left:6px;opacity:.25}
-        8%{opacity:.95}
-        50%{opacity:.8}
-        100%{left:calc(100% - 14px);opacity:.25}
-      }
-    }
-    @media (max-width:768px){ .menu-items a .spark{ display:none!important; } }
-  `;
-  document.head.appendChild(st);
-}
-
-
-// global.js (opcjonalne)
-// Ujednolica stan dropdownów: .open <-> aria-expanded
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.dropbtn');
-  if (!btn) return;
-
-  const dd = btn.closest('.dropdown');
-  if (!dd) return;
-
-  const now = !(btn.getAttribute('aria-expanded') === 'true' || dd.classList.contains('open') || dd.dataset.open === 'true' || dd.hasAttribute('open'));
-
-  btn.setAttribute('aria-expanded', String(now));
-  dd.classList.toggle('open', now);
-  dd.dataset.open = String(now);
-  if (now) dd.setAttribute('open', ''); else dd.removeAttribute('open');
-});

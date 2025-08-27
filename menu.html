@@ -72,143 +72,252 @@
 
 <!-- ===== Uzupełniające style tylko dla sekcji Ustawienia (kompakt + i18n caption) ===== -->
 <style>
-  .navbar .settings-divider{
-    border:0; height:1px; margin:4px 0 6px;
-    background:linear-gradient(90deg, transparent, hsl(var(--accent)/.45), transparent);
-    opacity:.7;
-  }
-
-  .navbar .menu-settings{
-    display:grid; grid-template-columns:1fr auto; gap:8px;
-    padding:6px 8px; border-radius:10px;
-    background:hsl(var(--glass));
-    -webkit-backdrop-filter:blur(8px) saturate(1.05);
-    backdrop-filter:blur(8px) saturate(1.05);
-    border:1px solid hsl(var(--border));
-    box-shadow:0 4px 10px hsl(var(--shadow-1));
-    position:relative; isolation:isolate;
-  }
-
-  /* tłumaczalny caption zamiast ::before */
-  .navbar .settings-caption{
-    position:absolute; top:-8px; left:10px;
-    font-size:.68rem; font-weight:700;
-    padding:1px 6px; border-radius:999px; color:#fff;
-    background:linear-gradient(120deg, hsl(var(--accent)), hsl(var(--accent-300)));
-    box-shadow:0 3px 8px hsl(var(--accent)/.25);
-  }
-
-  .navbar .btn-setting{
-    display:flex; align-items:center; justify-content:space-between; gap:6px;
-    width:100%; padding:8px 10px; border-radius:10px;
-    border:1px solid hsl(var(--border));
-    background:hsl(var(--surface));
-    box-shadow:0 2px 6px hsl(var(--shadow-1));
-    font-weight:700; font-size:.88rem;
-    cursor:pointer; color:hsl(var(--fg));
-    transition:transform .15s, box-shadow .15s, border-color .15s, background .15s;
-  }
-  .navbar .btn-setting .icon{ font-size:.95rem; }
-  .navbar .btn-setting .label{ opacity:.85; }
-  .navbar .lang-badge{
-    display:inline-flex; align-items:center; justify-content:center;
-    min-width:28px; height:20px; padding:0 6px;
-    border-radius:999px; font-size:.7rem; font-weight:800;
-    background:linear-gradient(145deg, hsl(var(--accent-300)), hsl(var(--accent)));
-    color:#fff;
-  }
-  .navbar .btn-setting:hover{
-    transform:translateY(-1px);
-    box-shadow:0 6px 14px hsl(var(--shadow-2));
-    border-color:hsl(var(--accent)/.4);
-  }
-  .navbar .btn-setting:focus-visible{
-    outline:2px solid hsl(var(--ring)); outline-offset:2px;
-  }
-
-  .navbar .setting-switch{
-    display:flex; align-items:center; gap:6px;
-    padding:6px 8px; border-radius:10px;
-    border:1px solid hsl(var(--border));
-    background:hsl(var(--surface));
-    box-shadow:0 2px 6px hsl(var(--shadow-1));
-    font-size:.88rem;
-    cursor:pointer; /* pozwala kliknąć w cały blok */
-  }
-  .navbar .setting-switch .icon{ font-size:.95rem; }
-  .navbar .setting-switch .label{ font-weight:700; opacity:.85; font-size:.86rem; }
-  .navbar .setting-switch .state{
-    font-size:.75rem; font-weight:700;
-    padding:1px 6px; border-radius:999px; margin-left:4px;
-    background:hsl(var(--accent)/.12); color:hsl(var(--fg));
-  }
-
-  @media (max-width:768px){
-    .navbar .menu-settings{ grid-template-columns:1fr; }
-    .navbar .setting-switch{ justify-content:space-between; }
-  }
-
-  body.dark .navbar .btn-setting,
-  body.dark .navbar .setting-switch{
-    background:hsl(var(--surface));
-    border-color:hsl(var(--border));
-    box-shadow:0 6px 14px hsl(var(--shadow-2));
-  }
-  /* Pokazuj "co będzie po kliknięciu" bez JS */
-#theme-state .next-if-dark { display: none; }
-body.dark #theme-state .next-if-light { display: none; }
-body.dark #theme-state .next-if-dark  { display: inline; }
-/* POWIĘKSZENIE + zawsze widoczna + drobny cień, wyższy z-index */
-.menu-items a.has-badge{
+  /* ============== NAVBAR – PANEL USTAWIEŃ (neo blue↔violet, kompakt) ============== */
+/* Aktywny link w menu */
+.menu-items a.active {
   position: relative;
-  display: inline-flex;
-  align-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow:
+    0 2px 6px hsl(220 92% 60% / .35),
+    0 4px 10px hsl(285 90% 62% / .35);
+  text-shadow: 0 0 6px rgba(0,0,0,.35);
+}
+
+.menu-items a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navbar .settings-divider{
+  border:0;
+  height:1px;
+  margin:4px 0 6px;
+  background:linear-gradient(90deg, transparent, hsl(var(--accent)/.45), transparent);
+  opacity:.7;
+}
+
+.navbar .menu-settings{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:6px; /* było 8px */
+  padding:6px 8px;
+  border-radius:10px;
+  background:hsl(var(--glass));
+  -webkit-backdrop-filter:blur(8px) saturate(1.05);
+  backdrop-filter:blur(8px) saturate(1.05);
+  border:1px solid hsl(var(--border));
+  box-shadow:0 4px 10px hsl(var(--shadow-1));
+  position:relative;
+  isolation:isolate;
+}
+
+/* caption „Ustawienia” — gradient blue↔violet */
+.navbar .settings-caption{
+  position:absolute;
+  top:-8px;
+  left:10px;
+  font-size:.66rem;
+  font-weight:700;
+  padding:1px 6px;
+  border-radius:999px;
+  color:#fff;
+  background:linear-gradient(135deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  box-shadow:0 3px 8px hsl(220 92% 60% / .28);
+}
+
+.navbar .btn-setting{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+  width:100%;
+  padding:7px 9px; /* było 8px 10px */
+  border-radius:10px;
+  border:1px solid hsl(var(--border));
+  background:hsl(var(--surface));
+  box-shadow:0 2px 6px hsl(var(--shadow-1));
+  font-weight:700;
+  font-size:.84rem; /* było .88rem */
+  cursor:pointer;
+  color:hsl(var(--fg));
+  transition:transform .15s, box-shadow .15s, border-color .15s, background .15s;
+}
+.navbar .btn-setting .icon{ font-size:.9rem; }
+.navbar .btn-setting .label{ opacity:.85; font-size:.8rem; }
+
+.navbar .lang-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:26px;
+  height:18px;
+  padding:0 5px;
+  border-radius:999px;
+  font-size:.68rem;
+  font-weight:800;
+  background:linear-gradient(145deg, hsl(var(--accent-300)), hsl(var(--accent)));
+  color:#fff;
+}
+
+.navbar .btn-setting:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px hsl(var(--shadow-2));
+  border-color:hsl(var(--accent)/.4);
+}
+.navbar .btn-setting:focus-visible{
+  outline:2px solid hsl(var(--ring));
+  outline-offset:2px;
+}
+
+/* switch (motyw) — kompakt + gradientowy cień pod KROPKĄ */
+.navbar .setting-switch{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 8px;
+  border-radius:10px;
+  border:1px solid hsl(var(--border));
+  background:hsl(var(--surface));
+  box-shadow:0 2px 6px hsl(var(--shadow-1));
+  font-size:.84rem;
+  cursor:pointer;
+  transition:transform .18s, box-shadow .18s;
+}
+.navbar .setting-switch .icon{ font-size:.9rem; }
+.navbar .setting-switch .label{ font-weight:700; opacity:.85; font-size:.82rem; }
+.navbar .setting-switch .state{
+  font-size:.72rem;
+  font-weight:700;
+  padding:1px 6px;
+  border-radius:999px;
+  margin-left:3px;
+  background:hsl(var(--accent)/.12);
+  color:hsl(var(--fg));
+}
+
+/* ——— Glow pod KROPKĄ (suwakiem) ——— */
+.navbar .setting-switch .slider::before{
+  box-shadow:
+    0 0 6px hsl(220 92% 60% / .22),
+    0 0 8px hsl(285 90% 62% / .22);
+  transition: box-shadow .25s ease;
+}
+.navbar .setting-switch input:checked + .slider::before{
+  box-shadow:
+    0 0 10px hsl(220 92% 60% / .45),
+    0 0 14px hsl(285 90% 62% / .45);
+}
+
+/* subtelny glow na tle suwaka */
+.navbar .setting-switch .slider{
+  transition: box-shadow .25s ease;
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,.12),
+    0 1px 0 rgba(255,255,255,.5);
+}
+.navbar .setting-switch input:checked + .slider{
+  box-shadow:
+    inset 0 2px 6px rgba(0,0,0,.18),
+    0 1px 0 rgba(255,255,255,.35),
+    0 0 10px hsl(220 92% 60% / .22),
+    0 0 12px hsl(285 90% 62% / .22);
+}
+
+@media (max-width:768px){
+  .navbar .menu-settings{ grid-template-columns:1fr; }
+  .navbar .setting-switch{ justify-content:space-between; }
+}
+
+body.dark .navbar .btn-setting,
+body.dark .navbar .setting-switch{
+  background:hsl(var(--surface));
+  border-color:hsl(var(--border));
+  box-shadow:0 6px 14px hsl(var(--shadow-2));
+}
+
+/* Pokazuj "co będzie po kliknięciu" bez JS */
+#theme-state .next-if-dark { display:none; }
+body.dark #theme-state .next-if-light { display:none; }
+body.dark #theme-state .next-if-dark  { display:inline; }
+
+/* Badge „NEW” — absolutna ścieżka */
+.menu-items a.has-badge{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
 }
 .menu-items a.has-badge .link-label{
-  position: relative;
-  display: inline-block;
-  line-height: 1.1;
+  position:relative;
+  display:inline-block;
+  line-height:1.1;
 }
-
-/* Badge "NEW" przy pozycji Aktualizacje — zawsze widoczna */
 .menu-items a[data-target="updates.html"]{
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+  position:relative;
+  display:inline-flex;
+  align-items:center;
 }
-
-/* Uwaga: używamy ::before, bo ::after masz na underline animacji */
 .menu-items a[data-target="updates.html"]::before{
-  content: "";
-  position: absolute;
-  top: -0.60em;                /* powyżej prawego górnego rogu napisu */
-  right: -0.85em;
-  width: 1.35em;               /* POWIĘKSZONA */
-  height: 1.35em;
-  background: no-repeat center / contain;
-  /* ŚCIEŻKA DO SVG:
-     - jeśli to wrzucasz do GLOBALNEGO style/style.css -> ../img/icons/badge-new.svg
-     - jeśli do <style> w dokumencie/partialu -> img/icons/badge-new.svg */
-  background-image: url("../img/icons/badge-new.svg");
-  z-index: 2;
-  pointer-events: none;
-  user-select: none;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
-  transform: translateZ(0);
+  content:"";
+  position:absolute;
+  top:-0.55em;
+  right:-0.8em;
+  width:1.3em;
+  height:1.3em;
+  background:no-repeat center/contain;
+  background-image:url("/img/icons/badge-new.svg"); /* absolutna ścieżka */
+  z-index:2;
+  pointer-events:none;
+  user-select:none;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.18));
 }
 
-/* Mobile drobne doszlifowanie */
-@media (max-width: 768px){
+/* Mobile badge */
+@media (max-width:768px){
   .menu-items a[data-target="updates.html"]::before{
-    top: -0.52em;
-    right: -0.72em;
-    width: 1.28em;
-    height: 1.28em;
+    top:-0.5em;
+    right:-0.7em;
+    width:1.2em;
+    height:1.2em;
   }
 }
 
-
+/* Hover linków w menu — podkreślenie gradientem */
+.menu-items a{
+  position:relative;
+  display:inline-block;
+  padding:6px 4px;
+  font-weight:600;
+  color:hsl(var(--fg));
+  text-decoration:none;
+  transition:color .25s ease;
+}
+.menu-items a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg, hsl(220 92% 60%), hsl(285 90% 62%));
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .3s ease;
+  border-radius:2px;
+}
+.menu-items a:hover{
+  color:hsl(var(--accent));
+  text-shadow:0 0 6px hsl(220 92% 60% / .35),
+              0 0 10px hsl(285 90% 62% / .35);
+}
+.menu-items a:hover::after{
+  transform:scaleX(1);
+  transform-origin:left;
+}
 </style>
+
 
 <!-- ===== JS: hamburger + i18n (PL/EN) + pamięć języka/motywu + ODWRÓCONY label (pokazuj co się stanie po kliknięciu) ===== -->
 <script>
@@ -306,6 +415,20 @@ body.dark #theme-state .next-if-dark  { display: inline; }
     setInterval(syncFromBody, 5000);
   }
 })();
+
+// ===== Aktywny link w menu =====
+(function(){
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  const links = document.querySelectorAll(".menu-items a[data-target]");
+  
+  links.forEach(link => {
+    if (link.getAttribute("data-target") === current) {
+      link.classList.add("active");
+    }
+  });
+})();
+
+
 </script>
 
 
