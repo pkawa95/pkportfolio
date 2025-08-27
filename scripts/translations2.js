@@ -101,16 +101,17 @@ const translationsUpdates = {
     roadmap_item_anim_b1: "<strong>Ruch:</strong> fine-tuning, obsługa <code>prefers-reduced-motion</code>.",
     roadmap_item_anim_b2: "<strong>Kartoteka:</strong> tagi, filtry, małe KPI (gwiazdki, stack, status).",
     roadmap_item_anim_b3: "<strong>Cel:</strong> szybsza nawigacja po projektach i lepszy UX.",
-
-    // Zewnętrzne API do kontaktu
-    roadmap_item_api_eta: "wrzesień 2025",
-    roadmap_item_api_text: "Podłączenie zewnętrznych API do natychmiastowego kontaktu.",
-    roadmap_item_api_title: "Integracje kontaktowe",
-    roadmap_item_api_desc:
-      "Integracja prostych endpointów do natychmiastowego kontaktu (np. webhooki, e-mail gateway). Nacisk na bezpieczeństwo i rate limiting.",
-    roadmap_item_api_b1: "<strong>Bezpieczeństwo:</strong> tokeny, limity, logowanie zdarzeń.",
-    roadmap_item_api_b2: "<strong>Wygoda:</strong> kontakt „1-klik” z fallbackiem.",
-    roadmap_item_api_b3: "<strong>Cel:</strong> szybsza komunikacja i mniejsza ilość kroków.",
+   
+    // Roadmap o mnie
+    updates_item_2025_08_27c_date: "2025-08-27",
+    updates_item_2025_08_27c_text: "Ukończenie sekcji „O mnie”",
+    updates_item_2025_08_27c_title: "Sekcja „O mnie” — finalna wersja",
+    updates_item_2025_08_27c_desc:
+    "Zakończyłem prace nad sekcją „O mnie”: odświeżone bio, klarowna narracja i lepsza struktura treści. Zdjęcie zostało zoptymalizowane pod szybkie ładowanie, a układ jest w pełni responsywny i dostępny (nagłówki, alt-teksty, focus-stany). Dołożyłem szybkie CTA i linki do profili — wszystko spójne z motywem jasnym/ciemnym.",
+    updates_item_2025_08_27c_b1: "<strong>Bio:</strong> zwięzłe, konkretne i łatwe do skanowania.",
+    updates_item_2025_08_27c_b2: "<strong>Media:</strong> zoptymalizowane zdjęcie + poprawne <code>alt</code>.",
+    updates_item_2025_08_27c_b3: "<strong>UX:</strong> wyraźne CTA i linki do profili społecznościowych.",
+    chip_content: "Treść",
 
     // Cookies policy
     roadmap_item_cookies_eta: "wrzesień 2025",
@@ -168,13 +169,15 @@ const translationsUpdates = {
     updates_twitter_title: "Latest updates — Piotr Kawa",
     updates_twitter_description: "List of the most recent changes and fixes on the site.",
 
-    //2025-08-27b (TIDIO)
-    updates_item_2025_08_27b_date: "2025-08-27",
-  updates_item_2025_08_27b_text: "Added Tidio chat support across the entire site",
-  updates_item_2025_08_27b_title: "Tidio integration site-wide",
-  updates_item_2025_08_27b_desc:
-    "Implemented a lightweight Tidio widget on all pages to streamline contact. The script loads asynchronously without blocking rendering, the widget respects light/dark mode and can be minimized at any time. Visitors can reach out instantly without switching tabs, and responses arrive faster.",
-
+    updates_item_2025_08_27c_date: "2025-08-27",
+  updates_item_2025_08_27c_text: "Completed the “About Me” section",
+  updates_item_2025_08_27c_title: "“About Me” — final version",
+  updates_item_2025_08_27c_desc:
+    "Finished the About Me section: refreshed bio, clear narrative and improved content structure. The photo is optimized for fast loading, and the layout is fully responsive and accessible (headings, alt text, focus states). Added quick CTAs and profile links — all consistent with light/dark mode.",
+  updates_item_2025_08_27c_b1: "<strong>Bio:</strong> concise, focused and easy to scan.",
+  updates_item_2025_08_27c_b2: "<strong>Media:</strong> optimized photo + proper <code>alt</code>.",
+  updates_item_2025_08_27c_b3: "<strong>UX:</strong> clear CTAs and links to social profiles.",
+  chip_content: "Content",
     // 2025-08-27a (Mobile nav + update bar fix)
     updates_item_2025_08_27a_date: "2025-08-27",
     updates_item_2025_08_27a_text: "Menu update, fix for update-bar display on mobile",
