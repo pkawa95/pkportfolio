@@ -124,12 +124,13 @@ const translationsUpdates = {
 
      // Menu 
     menu_logo: "PK Portfolio",
-    menu_home: "Strona główna",
-    menu_projects: "Projekty",
-    menu_about: "O mnie",
-    menu_contact: "Kontakt",
+    home: "Strona główna",
+    projects: "Projekty",
+    about: "O mnie",
+    docs: "Dokumenty",
+    contact: "Kontakt",
     menu_update: "Aktualizacje",
-    
+
     /* Chips */
     chip_plan: "Plan",
     chip_python: "Python",
@@ -279,11 +280,11 @@ const translationsUpdates = {
     roadmap_item_cookies_b3: "<strong>Goal:</strong> legal compliance and better user experience.",
     
     // Menu 
-    menu_logo: "PK Portfolio",
-    menu_home: "Home",
-    menu_projects: "Projects",
-    menu_about: "About",
-    menu_contact: "Contact",
+    home: "Home",
+    projects: "Projects",
+    about: "About",
+    docs: "Documents",
+    contact: "Contact",
     menu_update: "Updates",
 
     /* Chips */
