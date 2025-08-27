@@ -103,7 +103,7 @@ const translationsUpdates = {
     roadmap_item_anim_b3: "<strong>Cel:</strong> szybsza nawigacja po projektach i lepszy UX.",
    
     // Roadmap o mnie
-    updates_item_2025_08_27c_date: "2025-08-27",
+    updates_item_2025_08_27c_date: "wrzesień 2025",
     updates_item_2025_08_27c_text: "Ukończenie sekcji „O mnie”",
     updates_item_2025_08_27c_title: "Sekcja „O mnie” — finalna wersja",
     updates_item_2025_08_27c_desc:
@@ -169,7 +169,7 @@ const translationsUpdates = {
     updates_twitter_title: "Latest updates — Piotr Kawa",
     updates_twitter_description: "List of the most recent changes and fixes on the site.",
 
-    updates_item_2025_08_27c_date: "2025-08-27",
+    updates_item_2025_08_27c_date: "September 2025",
   updates_item_2025_08_27c_text: "Completed the “About Me” section",
   updates_item_2025_08_27c_title: "“About Me” — final version",
   updates_item_2025_08_27c_desc:
