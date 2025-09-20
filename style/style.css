@@ -1164,3 +1164,95 @@ body.dark .vline .marquee-track {
     padding-bottom: 52px;
   }
 }
+
+/* --- Styl paska --- */
+  .pfv2-banner{
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%) translateY(16px);
+    opacity: 0;
+    visibility: hidden;
+
+    display: grid;
+    grid-template-columns: auto 28px;
+    gap: 10px;
+
+    width: min(920px, 94vw);
+    padding: 10px;
+    border-radius: 14px;
+
+    background: var(--surface, rgba(20,24,45,.85));
+    -webkit-backdrop-filter: blur(8px) saturate(1.05);
+    backdrop-filter: blur(8px) saturate(1.05);
+    border: 1px solid var(--border, rgba(255,255,255,.14));
+    box-shadow: 0 18px 48px rgba(0,0,0,.45);
+
+    z-index: 9999;
+
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s ease, visibility .35s step-end;
+  }
+  .pfv2-banner.is-visible{
+    transform: translateX(-50%) translateY(0);
+    opacity: 1; visibility: visible;
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s ease, visibility 0s;
+  }
+
+  .pfv2-link{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+    color: var(--fg, #e8ecff);
+  }
+
+  .pfv2-logo{
+    width: 48px; height: 48px; border-radius: 10px;
+    background: rgba(0,0,0,.2);
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  }
+
+  .pfv2-title{
+    display: flex; align-items: center; gap: 8px;
+    font-size: 1rem;
+  }
+  .pfv2-desc{
+    margin: 2px 0 0;
+    font-size: .92rem;
+    color: var(--fg-dim, #b7c0ff);
+  }
+
+  .pfv2-pill{
+    display: inline-flex; align-items: center; gap: .4ch;
+    padding: 2px 8px;
+    font-size: .73rem; font-weight: 800; letter-spacing: .2px;
+    color: #fff; border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent, #6d5dfc), #ff5da2);
+    box-shadow: 0 6px 14px rgba(109,93,252,.35);
+  }
+
+  .pfv2-close{
+    align-self: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(20,24,45,.9);
+    color: #fff; font-weight: 800; line-height: 1;
+    display: grid; place-items: center;
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .pfv2-close:hover{ transform: translateY(-1px); background: rgba(30,35,70,.95); border-color: rgba(126,140,255,.55); }
+  .pfv2-close:focus-visible{ outline: 2px solid #fff8; outline-offset: 2px; }
+
+  /* mniejsze urządzenia */
+  @media (max-width: 560px){
+    .pfv2-logo{ width: 42px; height: 42px; }
+    .pfv2-desc{ font-size: .9rem; }
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .pfv2-banner, .pfv2-close{ transition: none !important; }
+  }
