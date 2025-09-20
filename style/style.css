@@ -1023,3 +1023,144 @@ body.dark .vline .marquee-track {
   /* Tabs — bez fadeIn */
   .tab-panel{ animation: none !important; }
 }
+
+/* ======================
+   WOW PILL – global
+   ====================== */
+.project-card {
+  position: relative;
+}
+
+.wow-pill {
+  --bg1: #5b8cff;
+  --bg2: #9b5bff;
+  --txt: #0b1020;
+  --txt-contrast: #fff;
+  --glow: rgba(120, 150, 255, 0.65);
+
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 5;
+
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  color: var(--txt-contrast);
+
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .2px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+
+  box-shadow:
+    0 6px 18px -6px var(--glow),
+    0 0 0 1px rgba(255,255,255,.08) inset;
+
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none; /* nie zasłania kliknięcia karty */
+
+  transform: translateZ(0);
+  animation: wow-float 4s ease-in-out infinite;
+}
+
+.wow-pill .wow-dot {
+  width: .6rem;
+  height: .6rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,.15),
+    0 0 18px 4px rgba(255,255,255,.45);
+  animation: wow-pulse 1.8s ease-in-out infinite;
+}
+
+.wow-pill .wow-shine {
+  position: relative;
+  overflow: hidden;
+}
+.wow-pill .wow-shine::after {
+  content: "";
+  position: absolute;
+  inset: -40% -200% -40% -200%;
+  background: linear-gradient(120deg,
+      rgba(255,255,255,0) 15%,
+      rgba(255,255,255,.5) 30%,
+      rgba(255,255,255,0) 45%);
+  transform: translateX(-60%);
+  animation: wow-shimmer 3s linear infinite;
+}
+
+/* Hover – lekki podskok i glow */
+.project-card:hover .wow-pill,
+.project-card:focus-within .wow-pill {
+  box-shadow:
+    0 10px 28px -6px var(--glow),
+    0 0 0 1px rgba(255,255,255,.12) inset;
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .wow-pill {
+    --txt: #e6eaff;
+    --glow: rgba(90, 130, 255, 0.7);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .wow-pill, .wow-pill .wow-dot, .wow-pill .wow-shine::after {
+    animation: none !important;
+  }
+}
+
+/* Animacje */
+@keyframes wow-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+@keyframes wow-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.15); opacity: .9; }
+}
+@keyframes wow-shimmer {
+  0%   { transform: translateX(-65%); }
+  100% { transform: translateX(65%); }
+}
+
+/* ======================
+   RESPONSYWNOŚĆ
+   ====================== */
+@media (max-width: 768px){
+  .wow-pill {
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    font-size: .72rem;
+    padding: .35rem .6rem;
+    box-shadow: 0 4px 12px rgba(109,93,252,.24);
+  }
+
+  .project-card .project-card-content {
+    padding-bottom: 58px; /* rezerwacja miejsca na kapsułę */
+  }
+}
+
+@media (max-width: 420px){
+  .wow-pill {
+    font-size: .68rem;
+    padding: .3rem .5rem;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .project-card .project-card-content {
+    padding-bottom: 52px;
+  }
+}
