@@ -467,3 +467,100 @@ document.addEventListener('languageChanged', () => {
   document.addEventListener("menu:loaded", init, { once: true });
 })();
 
+/* ===== pfv2-banner — bezpieczny, realtime i18n + logika pokazywania ===== */
+(function () {
+  const ROOT = document.getElementById('pfv2-banner');
+  if (!ROOT) return;
+
+  // Nie pozwól globalnym tłumaczom dotykać tego subdrzewa
+  ROOT.setAttribute('data-i18n-skip', '');
+
+  // --- Mini słowniki bannera (prosty format z podkreślnikami) ---
+  const DICTS = {
+    pl: {
+      pfv2_banner_region_aria: "Nowość: PiotrFlix v2 dostępny w projektach",
+      pfv2_banner_link_aria:   "Przejdź do projektu PiotrFlix v2",
+      pfv2_banner_logo_alt:    "Logo PiotrFlix",
+      pfv2_banner_title:       "PiotrFlix v2",
+      pfv2_banner_pill:        "Nowość",
+      pfv2_banner_desc:        "PiotrFlix v2 jest już dostępny w sekcji „Projekty”.",
+      pfv2_banner_close_title: "Zamknij",
+      pfv2_banner_close_aria:  "Zamknij powiadomienie"
+    },
+    en: {
+      pfv2_banner_region_aria: "New: PiotrFlix v2 is available in Projects",
+      pfv2_banner_link_aria:   "Go to the PiotrFlix v2 project",
+      pfv2_banner_logo_alt:    "PiotrFlix logo",
+      pfv2_banner_title:       "PiotrFlix v2",
+      pfv2_banner_pill:        "New",
+      pfv2_banner_desc:        "PiotrFlix v2 is now available in the “Projects” section.",
+      pfv2_banner_close_title: "Close",
+      pfv2_banner_close_aria:  "Close notification"
+    }
+  };
+
+  const norm = v => (String(v||'pl').toLowerCase().startsWith('en') ? 'en' : 'pl');
+  const currentLang = () => {
+    try { const ls = localStorage.getItem('lang'); if (ls) return norm(ls); } catch(_){}
+    return norm(document.documentElement.getAttribute('lang') || 'pl');
+  };
+  const t = (key, lang) => (DICTS[lang||currentLang()]?.[key] ?? DICTS.pl[key] ?? '');
+
+  // --- zastosuj tłumaczenia tylko w obrębie ROOT ---
+  function applyI18n(lang){
+    ROOT.setAttribute('aria-label', t('pfv2_banner_region_aria', lang));
+
+    const a = ROOT.querySelector('.pfv2-link');
+    if (a) a.setAttribute('aria-label', t('pfv2_banner_link_aria', lang));
+
+    const logo = ROOT.querySelector('.pfv2-logo');
+    if (logo) logo.setAttribute('alt', t('pfv2_banner_logo_alt', lang));
+
+    const close = ROOT.querySelector('.pfv2-close');
+    if (close){
+      close.setAttribute('title', t('pfv2_banner_close_title', lang));
+      close.setAttribute('aria-label', t('pfv2_banner_close_aria', lang));
+    }
+
+    const setText = (sel, key) => {
+      const el = ROOT.querySelector(sel);
+      if (el) el.textContent = t(key, lang);
+    };
+    setText('[data-i18n="pfv2_banner_title"]', 'pfv2_banner_title');
+    setText('[data-i18n="pfv2_banner_pill"]',  'pfv2_banner_pill');
+    setText('[data-i18n="pfv2_banner_desc"]',  'pfv2_banner_desc');
+  }
+
+  // --- show/hide + pamięć zamknięcia ---
+  const KEY = 'pfv2_banner_hidden';
+  function show(){ ROOT.classList.add('pfv2-show'); }
+  function hide(){ ROOT.classList.remove('pfv2-show'); }
+
+  const closeBtn = ROOT.querySelector('.pfv2-close');
+  closeBtn?.addEventListener('click', () => {
+    try { localStorage.setItem(KEY, '1'); } catch(_){}
+    hide();
+  });
+
+  // init (po małym opóźnieniu żeby wejście było płynne)
+  applyI18n();
+  const hidden = (function(){ try { return localStorage.getItem(KEY) === '1'; } catch(_){ return false; }})();
+  if (!hidden) setTimeout(show, 150);
+
+  // --- realtime nasłuchy na zmianę języka ---
+  document.addEventListener('languageChanged', e => applyI18n(e?.detail?.lang));
+  window.addEventListener('pf:set-lang',      e => applyI18n(e?.detail?.lang));
+  new MutationObserver(() => applyI18n()).observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+  window.addEventListener('storage', e => { if (e.key === 'lang') applyI18n(); });
+
+  // podpinamy się pod globalną funkcję i18n, jeśli istnieje
+  if (!window.__pfv2BannerI18nPatched && typeof window.i18nSetLang === 'function'){
+    const prev = window.i18nSetLang;
+    window.i18nSetLang = function(lang){
+      prev(lang);
+      applyI18n(lang);
+      setTimeout(() => applyI18n(lang), 0);
+    };
+    window.__pfv2BannerI18nPatched = true;
+  }
+})();
