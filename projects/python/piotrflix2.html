@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="title">PiotrFlix v2 — Nowość</title>
+
+  <!-- (opcjonalnie) Twoje globalne style/skrypty -->
+  <link rel="stylesheet" href="../../style/style.css" />
+  <link rel="stylesheet" href="../../style/gallery.css" />
+  <link rel="stylesheet" href="../../style/video.css" />
+  <link rel="stylesheet" href="../../addons/carousel/carousel.css"/>
+  <script defer src="../../scripts/translations.js"></script> 
+  <script defer src="../../scripts/script.js"></script>
+  <script defer src="../../scripts/gallery.js"></script>
+  <script defer src="../../scripts/video.js"></script>
+  <script defer src="../../addons/carousel/carousel.js"></script>
+  <!-- Tidio (jak wcześniej) -->
+  <script src="//code.tidio.co/as3qkvljrw6zqaaciv6exaofcqrwgjgi.js" async></script>
+
+  <!-- 🔥 Strona projektu (dark + light) -->
+  <style>
+/* =========================================================
+   PiotrFlix – MAX mobile-first build (2025)
+   - spójne zmienne, skala przestrzeni i promieni
+   - czytelność na małych ekranach (≤ 360 px)
+   - bez duplikatów; naprawiony modal (jeden wariant close)
+   - bez zmian w HTML
+   ========================================================= */
+
+/* ========== THEME TOKENS & SCALES ========== */
+:root{
+  /* kolorystyka bazowa */
+  --pf-primary-1:#6d5dfc; --pf-primary-2:#9b5bff; --pf-accent:#ff5da2;
+
+  --pf-bg:#0b1020; --pf-bg-soft:rgba(255,255,255,.04);
+  --pf-text:#e8ecff; --pf-text-dim:#b7c0ff;
+  --pf-border:rgba(255,255,255,.10);
+  --pf-card:rgba(255,255,255,.06);
+  --pf-pill:#5b8cff;
+  --pf-outline:rgba(126,140,255,.55);
+
+  /* cienie i szkło */
+  --pf-shadow:0 20px 50px rgba(0,0,0,.35);
+  --pf-glass-blur:8px;
+  --pf-glass-sat:1.15;
+
+  /* skala spacingu / promienie / kontenery */
+  --space-1: 6px;  --space-2:10px; --space-3:14px; --space-4:18px;
+  --space-5: 24px; --space-6:32px; --space-7:42px;
+
+  --radius-sm:12px; --radius-md:16px; --radius-lg:20px; --radius-xl:24px;
+
+  /* typografia fluid */
+  --fs-300: clamp(13px, 3.2vw, 14px);
+  --fs-400: clamp(14px, 3.4vw, 16px);
+  --fs-500: clamp(16px, 3.6vw, 18px);
+  --fs-600: clamp(20px, 4.8vw, 24px);
+  --fs-700: clamp(26px, 6vw, 34px);
+  --fs-800: clamp(30px, 7vw, 46px);
+
+  /* bezpieczne marginesy (notch) */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+}
+
+html[data-theme="light"]{
+  --pf-bg:#f7f8ff; --pf-bg-soft:rgba(0,0,0,.03);
+  --pf-text:#0c1130; --pf-text-dim:#3a4470;
+  --pf-border:rgba(0,0,0,.12);
+  --pf-card:rgba(0,0,0,.04);
+  --pf-pill:#6a62ff;
+  --pf-outline:rgba(106,98,255,.55);
+  --pf-shadow:0 10px 28px rgba(0,0,0,.08);
+}
+
+/* ========== BASE ========== */
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--pf-bg);
+  color:var(--pf-text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+  font-size: var(--fs-400);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  text-rendering: optimizeLegibility;
+}
+
+.pf-bg-ornament{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(157,133,255,.15), transparent 40%) no-repeat,
+    radial-gradient(900px 500px at 100% 20%, rgba(255,93,162,.14), transparent 55%) no-repeat;
+  background-color:var(--pf-bg);
+  will-change:transform;
+}
+
+.pf-wrap{
+  max-width:1180px;
+  margin-inline:auto;
+  padding: clamp(var(--space-2), 3vw, var(--space-6));
+}
+
+.pf-panel{
+  background:var(--pf-card);
+  border:1px solid var(--pf-border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--pf-shadow);
+  backdrop-filter: saturate(var(--pf-glass-sat)) blur(var(--pf-glass-blur));
+}
+.pf-panel--ghost{ background:transparent; border:none; box-shadow:none; backdrop-filter:none; }
+
+/* ========== HERO ========== */
+.pf-hero{
+  position:relative;
+  display:grid;
+  gap: clamp(var(--space-2), 3vw, var(--space-5));
+  grid-template-columns: 1fr;            /* mobile-first */
+  align-items:center;
+  padding: clamp(var(--space-3), 2.5vw, var(--space-4));
+  margin-top: var(--space-2);
+  text-align:center;                      /* mobile: center */
+}
+@media (min-width: 980px){
+  .pf-hero{ grid-template-columns: 1.1fr .9fr; text-align: initial; }
+}
+
+.pf-hero .logo{
+  max-width: min(520px, 82vw);
+  width:100%;
+  margin-inline:auto;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.45));
+}
+
+.pf-hero h1{
+  font-size: var(--fs-800);
+  line-height:1.06;
+  margin: 0 0 var(--space-2);
+}
+.pf-hero p{
+  color:var(--pf-text-dim);
+  font-size: var(--fs-500);
+  margin:0 0 var(--space-3);
+  max-width: 68ch;
+  margin-inline:auto;
+}
+
+.pf-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px; justify-content:center}
+@media (min-width:980px){ .pf-chips{ justify-content:flex-start } }
+
+.chip{
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.9rem;
+  color:var(--pf-text-dim);
+  background:var(--pf-bg-soft);
+  border:1px solid var(--pf-border);
+}
+
+/* CTA */
+.pf-actions{
+  display:flex; gap:12px; flex-wrap:wrap;
+  margin:12px 0 2px;
+  justify-content:center;
+}
+@media (min-width:980px){ .pf-actions{ justify-content:flex-start } }
+
+.pf-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  min-height: 44px;                       /* tap target */
+  padding:10px 16px;
+  border-radius:var(--radius-sm);
+  font-weight:800; text-decoration:none;
+  border:1px solid transparent;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
+  will-change:transform;
+  touch-action: manipulation;
+}
+.pf-btn:active{ transform: translateY(1px) scale(.995); }
+
+.pf-btn.primary{
+  background:linear-gradient(135deg,var(--pf-primary-1),var(--pf-primary-2));
+  color:#fff; box-shadow:0 12px 26px rgba(109,93,252,.28);
+}
+.pf-btn.primary:hover{ transform:translateY(-2px); box-shadow:0 16px 38px rgba(109,93,252,.35) }
+.pf-btn.ghost{
+  background:rgba(255,255,255,.06); color:var(--pf-text);
+  border-color:rgba(255,255,255,.12)
+}
+.pf-btn.ghost:hover{ background:rgba(255,255,255,.10); transform:translateY(-2px) }
+
+/* hero badge (kapsuła) – na mobile nie nachodzi na krawędzie */
+.wow-pill{
+  position:absolute; inset-block-start:-16px; inset-inline-end: max(16px, calc(var(--safe-right) + 8px));
+  z-index:5;
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.55rem .95rem; border-radius:999px; color:#fff; font-weight:900;
+  background:linear-gradient(135deg, var(--pf-pill), var(--pf-primary-2));
+  box-shadow:0 10px 26px rgba(88,120,255,.35), 0 0 0 1px rgba(255,255,255,.12) inset;
+  font-size:.9rem; letter-spacing:.2px; user-select:none; white-space:nowrap;
+}
+.wow-pill .dot{
+  inline-size:.58rem; block-size:.58rem; border-radius:50%; background:#fff;
+  box-shadow:0 0 0 6px rgba(255,255,255,.15), 0 0 18px 4px rgba(255,255,255,.45);
+}
+@media (max-width:980px){
+  .wow-pill{ inset-block-start:-12px; inset-inline-end:max(12px, calc(var(--safe-right) + 6px)); }
+}
+@media (max-width:560px){
+  .wow-pill{ inset-block-start:-10px; font-size:.82rem; padding:.45rem .8rem; }
+}
+
+/* ========== SECTION / STRIP (karuzele kart) ========== */
+.pf-section{ margin: var(--space-4) 0; padding: clamp(var(--space-2), 2.2vw, var(--space-4)); }
+.pf-section h2{ margin:0 0 var(--space-2); font-size: var(--fs-600); }
+
+.strip-wrap{ position:relative }
+
+.strip{
+  display:grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);  /* ciaśniej na mobile */
+  gap:14px;
+  overflow-x:auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding:10px 2px 14px;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width:480px){
+  .strip{ grid-auto-columns: minmax(260px, 1fr); }
+}
+.strip::-webkit-scrollbar{ height:10px }
+.strip::-webkit-scrollbar-thumb{ background:var(--pf-border); border-radius:999px }
+
+.card{
+  scroll-snap-align: start;
+  border:1.5px solid var(--pf-border);
+  border-radius:var(--radius-md);
+  padding:14px;
+  background:color-mix(in oklab, var(--pf-card) 92%, transparent);
+  display:flex; flex-direction:column; gap:10px; min-block-size: 184px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  position:relative; isolation:isolate;
+}
+html[data-theme="light"] .card{ background:rgba(0,0,0,.02) }
+
+.card::before{
+  content:""; position:absolute; inset:-1px; border-radius:inherit;
+  pointer-events:none; opacity:0; transition:opacity .2s ease;
+  box-shadow:0 0 0 2px var(--pf-outline), 0 18px 42px rgba(109,93,252,.18);
+  z-index:-1;
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: var(--pf-outline);
+  background: var(--pf-card);
+}
+.card:hover::before{ opacity:1 }
+
+.card h3{ margin:0 0 6px; font-size:1.04rem; font-weight:800; letter-spacing:.1px }
+.card p{ margin:0; color:var(--pf-text-dim); line-height:1.65 }
+.thumb{
+  aspect-ratio:16/9; inline-size:100%; border-radius:12px; overflow:hidden;
+  background:var(--pf-bg-soft); border:1px solid var(--pf-border);
+  display:grid; place-items:center;
+}
+.thumb svg{ inline-size:64px; block-size:64px; opacity:.9 }
+
+.strip-nav{
+  position:absolute; inset-block:0; inset-inline:-4px; pointer-events:none;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.strip-nav button{
+  pointer-events:auto; border:none; border-radius:12px; padding:10px 12px;
+  background:linear-gradient(135deg, var(--pf-primary-1), var(--pf-primary-2)); color:#fff;
+  box-shadow:0 10px 24px rgba(109,93,252,.3); cursor:pointer; opacity:.95;
+  min-height:44px;
+}
+.strip-nav button:hover{ opacity:1 }
+
+/* ========== FEATURE BLOCKS ========== */
+.pf-features{ display:grid; gap:14px }
+.pf-feature{
+  border:1px dashed var(--pf-border);
+  border-radius:14px; padding:14px;
+  background:var(--pf-bg-soft);
+}
+.pf-feature h3{ margin:0 0 6px; font-size:1.02rem; font-weight:800 }
+.pf-feature p{ margin:0; color:var(--pf-text-dim) }
+
+/* ========== TIMELINE LUXE (akordeon 1-otwarty) ========== */
+:root{
+  --tl-track: linear-gradient(180deg, rgba(109,93,252,.55), rgba(155,91,255,.35) 45%, rgba(255,93,162,.35));
+  --tl-track-border: rgba(255,255,255,.18);
+  --tl-card-bg: color-mix(in oklab, var(--pf-card) 90%, transparent);
+  --tl-card-border: var(--pf-border);
+  --tl-glow: 0 18px 42px rgba(109,93,252,.18);
+  --tl-focus: 0 0 0 2px rgba(255,255,255,.22), 0 0 0 6px var(--pf-outline);
+  --tl-gap: 16px;
+  --tl-radius: 16px;
+  --tl-title: 1.02rem;
+}
+html[data-theme="light"]{ --tl-track-border: rgba(0,0,0,.10); --tl-glow: 0 18px 42px rgba(109,93,252,.12) }
+
+.timeline{
+  margin:10px 0 0; padding:0 0 0 22px; list-style:none; position:relative;
+  container-type:inline-size;
+}
+.timeline.luxe::before{
+  content:""; position:absolute; left:10px; top:0; bottom:0; inline-size:2px;
+  background:var(--tl-track); border-radius:999px;
+  box-shadow:0 0 0 1px var(--tl-track-border) inset, 0 0 22px 2px rgba(109,93,252,.22), 0 12px 32px -6px rgba(0,0,0,.25);
+  opacity:.9; pointer-events:none;
+}
+.tl-node{ position:relative; padding-left:0; margin:0 0 clamp(12px, 2.2vw, 18px) }
+.tl-head{
+  all:unset; display:grid; grid-template-columns:30px 1fr auto; align-items:center; gap:10px;
+  inline-size:100%; padding:10px 12px; border-radius:12px; cursor:pointer; position:relative;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.tl-head:hover{ background:var(--pf-bg-soft); transform:translateY(-1px) }
+.tl-head:focus-visible{ outline:none; box-shadow: var(--tl-focus) }
+
+.tl-month{ font-weight:900; letter-spacing:.2px }
+.tl-status{
+  justify-self:end; font-size:.78rem; font-weight:900; padding:6px 10px;
+  border-radius:999px; border:1px solid var(--pf-border); background:var(--pf-bg-soft); color:var(--pf-text-dim);
+}
+.tl-dot{
+  position:relative; inline-size:14px; block-size:14px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #fff2 45%, transparent 55%),
+              linear-gradient(135deg, var(--pf-primary-1), var(--pf-primary-2));
+  border:2px solid #fff3;
+  box-shadow:0 0 0 6px rgba(109,93,252,.18), 0 10px 24px rgba(109,93,252,.35);
+  transform: translateX(-23px);
+}
+html[data-theme="light"] .tl-dot{ border-color:#0002 }
+
+@keyframes tl-pulse{
+  0%,100%{ box-shadow: 0 0 0 6px rgba(109,93,252,.18), 0 10px 24px rgba(109,93,252,.35) }
+  50%{     box-shadow: 0 0 0 10px rgba(109,93,252,.10), 0 12px 30px rgba(109,93,252,.40) }
+}
+.tl-node[data-status="planned"]  .tl-status{ background: linear-gradient(135deg,#23283f, transparent), var(--pf-bg-soft) }
+.tl-node[data-status="planned"]  .tl-dot{ animation: tl-pulse 2.2s ease-in-out infinite }
+.tl-node[data-status="progress"] .tl-status{ background: linear-gradient(135deg,#234,#2b2f55); color:#cfe3ff; border-color: rgba(126,140,255,.35) }
+.tl-node[data-status="progress"] .tl-dot{ box-shadow: 0 0 0 8px rgba(91,140,255,.22), 0 12px 28px rgba(91,140,255,.45) }
+.tl-node[data-status="done"]     .tl-status{ background: linear-gradient(135deg,#1f3b2b,#1b2b22); color:#d6ffe6; border-color: rgba(86,214,165,.35) }
+.tl-node[data-status="done"]     .tl-dot{ background: linear-gradient(135deg,#4fe0a8,#28c07c) }
+
+.tl-body{
+  grid-column: 2 / -1;
+  margin-inline-start: 30px;
+  max-height: 0; overflow: clip; opacity: 0; transform: translateY(-4px);
+  transition: max-height .45s cubic-bezier(.2,.7,.2,1), opacity .25s ease, transform .25s ease;
+}
+.tl-node.is-open .tl-body{ max-height: 640px; opacity:1; transform:translateY(0) }
+
+.tl-card{
+  background: var(--tl-card-bg);
+  border: 1px solid var(--tl-card-border);
+  border-radius: var(--tl-radius);
+  padding: 14px; margin: 8px 0 2px;
+  box-shadow: var(--pf-shadow);
+  position: relative; isolation: isolate;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.tl-card::before{
+  content:""; position:absolute; inset:-1px; border-radius: inherit;
+  box-shadow: 0 0 0 2px var(--pf-outline), var(--tl-glow);
+  opacity: 0; transition: opacity .2s ease; pointer-events:none;
+}
+.tl-card:hover{ transform: translateY(-2px); background: var(--pf-card); border-color: var(--pf-outline) }
+.tl-card:hover::before{ opacity: 1 }
+
+.tl-title{ margin:0 0 6px; font-size: var(--tl-title); font-weight:900 }
+.tl-desc{ margin:0; color:var(--pf-text-dim); line-height:1.65 }
+
+.tl-head[aria-expanded]::after{
+  content:""; justify-self:end; inline-size:10px; block-size:10px;
+  border-inline-end:2px solid currentColor; border-block-end:2px solid currentColor;
+  transform: rotate(45deg); opacity:.6; transition: transform .25s ease, opacity .2s ease;
+}
+.tl-head[aria-expanded="true"]::after{ transform: rotate(-135deg); opacity:.9 }
+
+@media (max-width:780px){
+  .timeline{ padding-left: 20px }
+  .tl-head{ grid-template-columns:30px 1fr 16px; padding:10px }
+  .tl-body{ margin-inline-start: 26px }
+  .tl-card{ padding:12px }
+}
+html[data-theme="light"] .tl-status{ background: rgba(0,0,0,.04); color: var(--pf-text-dim) }
+
+@media (prefers-reduced-motion: reduce){
+  .tl-head, .tl-body, .tl-card, .tl-dot{ transition:none !important; animation:none !important }
+}
+.tl-node.is-open .tl-dot::after{
+  content:""; position:absolute; inset-inline-start:50%; inset-block-start:50%;
+  inline-size:2px; block-size:24px; transform: translate(-50%, 4px);
+  background: linear-gradient(180deg, #fff6, transparent);
+  filter: blur(.2px); border-radius:2px; pointer-events:none;
+}
+
+/* ========== MODAL (kompakt + X zawsze widoczny) ========== */
+.pf-modal{
+  position:fixed; inset:0;
+  z-index: 2147483646;
+  display:none;
+}
+.pf-modal[aria-hidden="false"]{ display:block; }
+
+.pf-modal__backdrop{
+  position:absolute; inset:0;
+  background:rgba(7,10,22,.72);
+  backdrop-filter: blur(6px) saturate(1.1);
+  animation:modalFade .18s ease;
+  z-index:0;
+}
+
+/* siatka dialogu – odstęp od headera + safe-area */
+.pf-modal__dialog{
+  position:absolute; inset:0;
+  display:grid; justify-items:center; align-items:start;
+  padding: calc(var(--pf-header-h,72px) + var(--safe-top) + 16px) clamp(12px, 4vw, 24px) clamp(12px, 4vw, 24px);
+  z-index:1;
+}
+
+/* karta modala */
+.pf-modal__figure{
+  inline-size:min(920px, 92vw);
+  max-block-size: 78vh;
+  border:1px solid color-mix(in oklab, var(--pf-border) 85%, transparent);
+  border-radius:18px;
+  background:color-mix(in oklab, var(--pf-card) 95%, #000 5%);
+  box-shadow:0 18px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04) inset;
+  overflow:hidden;
+  transform:translateY(6px) scale(.985);
+  animation:modalPop .22s ease forwards;
+
+  display:grid; grid-template-rows:minmax(0,1fr) auto;
+  position:relative; z-index:1;
+}
+.pf-modal__figure img{
+  inline-size:100%; block-size:100%; object-fit:contain; display:block;
+  background:var(--pf-bg-soft);
+  border-block-end:1px solid var(--pf-border);
+}
+.pf-modal__meta{
+  padding:12px 14px; text-align:center;
+}
+.pf-modal__meta strong{ display:block; font-size:1.06rem; margin-bottom:6px }
+.pf-modal__meta p{
+  margin:0 auto; color:var(--pf-text-dim); line-height:1.6; max-inline-size:64ch;
+}
+
+/* PRZYCISK ZAMKNIĘCIA – fixed (zawsze nad nagłówkiem) */
+.pf-modal__close{
+  position:fixed;
+  inset-block-start: calc(var(--pf-header-h,72px) + var(--safe-top) + 8px);
+  inset-inline-end: clamp(8px, 4vw, 24px);
+  z-index: 2147483647;
+  inline-size:40px; block-size:40px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(20,24,45,.95);
+  color:#fff; font-size:22px; line-height:1; font-weight:800;
+  display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 10px 26px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06) inset;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease, opacity .15s ease;
+  touch-action: manipulation;
+}
+.pf-modal__close:hover{
+  transform: translateY(-1px);
+  background:rgba(30,35,70,.95);
+  border-color:rgba(126,140,255,.55);
+}
+.pf-modal__close:active{ transform: translateY(0) scale(.98) }
+.pf-modal__close:focus-visible{
+  outline:none; box-shadow:0 0 0 2px #fff8, 0 0 0 6px var(--pf-outline);
+}
+
+@keyframes modalPop{ to{ transform:translateY(0) scale(1) } }
+@keyframes modalFade{ from{ opacity:0 } to{ opacity:1 } }
+
+@media (max-width:640px){
+  .pf-modal__dialog{
+    padding: calc(var(--pf-header-h,64px) + var(--safe-top) + 12px) 12px 12px;
+  }
+  .pf-modal__figure{
+    inline-size:min(96vw, 560px);
+    max-block-size: 82vh;
+  }
+  .pf-modal__meta{ padding:10px 12px }
+}
+
+/* blokowanie scrolla dokumentu, gdy modal otwarty */
+body.pf-modal-open{ overflow:hidden }
+
+/* ========== ACCESSIBILITY & PREFS ========== */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important }
+}
+
+/* wyższy kontrast focus w light */
+html[data-theme="light"] *:focus-visible{
+  outline:2px solid color-mix(in oklab, var(--pf-primary-1) 70%, #fff);
+  outline-offset:2px;
+}
+
+/* ========== MISC SMALL DEVICES TWEAKS (≤ 360 px) ========== */
+@media (max-width:360px){
+  .pf-wrap{ padding: max(10px, var(--safe-left)) max(10px, var(--safe-right)) }
+  .pf-hero p{ font-size: var(--fs-400) }
+  .pf-btn{ padding:8px 14px; min-height:42px }
+  .card{ padding:12px }
+  .wow-pill{ font-size:.78rem; padding:.38rem .66rem }
+}
+/* ===========================================
+   MODAL – LIGHT THEME CONTRAST FIX
+   (wstaw NA KOŃCU Twojego CSS)
+   =========================================== */
+
+html[data-theme="light"] .pf-modal__backdrop{
+  /* ciemniejszy film, żeby treść w karcie była wyraźniejsza */
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px) saturate(1.05);
+}
+
+html[data-theme="light"] .pf-modal__figure{
+  /* pełne, nieprzezroczyste tło + wyraźniejszy border */
+  background: #ffffff;
+  color: var(--pf-text); /* ciemny tekst z light theme tokenów */
+  border: 1px solid rgba(0,0,0,.14);
+  box-shadow:
+    0 14px 44px rgba(0,0,0,.22),
+    0 0 0 1px rgba(0,0,0,.04) inset;
+}
+
+html[data-theme="light"] .pf-modal__figure img{
+  background: #f4f6ff;                    /* delikatne, jasne tło pod obrazem */
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+html[data-theme="light"] .pf-modal__meta{
+  color: var(--pf-text);                   /* bazowy kolor tekstu */
+}
+html[data-theme="light"] .pf-modal__meta strong{
+  color: var(--pf-text);                   /* nagłówek: pełny kontrast */
+}
+html[data-theme="light"] .pf-modal__meta p{
+  color: var(--pf-text-dim);               /* opis: nieco spokojniejszy */
+}
+
+/* Przycisk zamknięcia (X) – jasna wersja */
+html[data-theme="light"] .pf-modal__close{
+  background: rgba(255,255,255,.98);
+  color: var(--pf-text);
+  border: 1px solid rgba(0,0,0,.22);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.12),
+    0 0 0 1px rgba(0,0,0,.04) inset;
+}
+html[data-theme="light"] .pf-modal__close:hover{
+  background: #fff;
+  border-color: color-mix(in oklab, var(--pf-primary-1) 38%, rgba(0,0,0,.22));
+}
+html[data-theme="light"] .pf-modal__close:focus-visible{
+  /* wyraźny focus bez „przepalania” jasnego tła */
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--pf-primary-1) 70%, #fff),
+    0 0 0 6px color-mix(in oklab, var(--pf-primary-1) 30%, transparent);
+}
+
+/* Drobne dopieszczenie scrollbarów w karcie (jeśli treść przewijalna) */
+html[data-theme="light"] .pf-modal__figure{
+  scrollbar-color: rgba(0,0,0,.35) transparent; /* Firefox */
+}
+html[data-theme="light"] .pf-modal__figure::-webkit-scrollbar-thumb{
+  background: rgba(0,0,0,.22);
+}
+html[data-theme="light"] .pf-modal__figure::-webkit-scrollbar{
+  width: 10px; height: 10px;
+}
+/* ===========================================
+   TIMELINE CAPSULES – LIGHT THEME FIX
+   =========================================== */
+
+html[data-theme="light"] .tl-status{
+  background: #ffffff;
+  color: var(--pf-text);
+  border: 1px solid rgba(0,0,0,.18);
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
+
+/* Status: planned */
+html[data-theme="light"] .tl-node[data-status="planned"] .tl-status{
+  background: linear-gradient(135deg, #fafafa, #f0f2ff);
+  color: var(--pf-text-dim);
+  border-color: rgba(0,0,0,.15);
+}
+html[data-theme="light"] .tl-node[data-status="planned"] .tl-dot{
+  background: linear-gradient(135deg, var(--pf-primary-1), var(--pf-primary-2));
+  border: 2px solid rgba(0,0,0,.12);
+  box-shadow: 0 0 0 6px rgba(109,93,252,.15), 0 8px 20px rgba(109,93,252,.25);
+}
+
+/* Status: in progress */
+html[data-theme="light"] .tl-node[data-status="progress"] .tl-status{
+  background: linear-gradient(135deg, #eaf0ff, #dde6ff);
+  color: #1d2a55;
+  border-color: rgba(0,0,0,.15);
+}
+html[data-theme="light"] .tl-node[data-status="progress"] .tl-dot{
+  background: linear-gradient(135deg, var(--pf-primary-1), var(--pf-primary-2));
+  border: 2px solid rgba(0,0,0,.12);
+  box-shadow: 0 0 0 8px rgba(91,140,255,.20), 0 10px 24px rgba(91,140,255,.35);
+}
+
+/* Status: done */
+html[data-theme="light"] .tl-node[data-status="done"] .tl-status{
+  background: linear-gradient(135deg, #e9fff4, #d4fbe6);
+  color: #0d4b2f;
+  border-color: rgba(0,0,0,.12);
+}
+html[data-theme="light"] .tl-node[data-status="done"] .tl-dot{
+  background: linear-gradient(135deg, #4fe0a8, #28c07c);
+  border: 2px solid rgba(0,0,0,.1);
+  box-shadow: 0 0 0 6px rgba(40,192,124,.25), 0 8px 20px rgba(40,192,124,.35);
+}
+
+/* ==============================
+   MODAL – MOBILE COMPACT TWEAKS
+   ============================== */
+@media (max-width: 640px){
+  .pf-modal__dialog{
+    padding:
+      calc(var(--pf-header-h, 56px) + env(safe-area-inset-top,0px) + 8px)
+      10px 10px;
+  }
+
+  .pf-modal__figure{
+    width: min(90vw, 460px);   /* węższy niż dotychczas */
+    max-height: 70vh;          /* nie zasłania całego ekranu */
+    border-radius: 14px;       /* mniejsze zaokrąglenia */
+  }
+
+  .pf-modal__meta{
+    padding: 8px 10px;
+    font-size: .9rem;
+  }
+
+  .pf-modal__meta strong{
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .pf-modal__close{
+    width: 32px; height: 32px;
+    font-size: 18px;
+    top: 8px; right: 8px;
+  }
+}
+
+@media (max-width: 400px){
+  .pf-modal__figure{
+    width: 92vw;
+    max-height: 66vh;
+  }
+  .pf-modal__meta{ font-size: .85rem; }
+}
+/* =========================================
+   HERO – MOBILE REFINEMENT
+   ========================================= */
+
+/* bezpieczne łamanie długich słów w tytułach/opisach */
+.pf-hero h1,
+.pf-hero p { overflow-wrap:anywhere; word-break:break-word; }
+
+/* tablet / małe laptopy */
+@media (max-width: 980px){
+  .pf-hero{
+    padding: 14px 12px;
+    row-gap: 14px;
+  }
+  .pf-hero .logo{
+    max-width: min(64vw, 380px);
+  }
+  .pf-hero h1{
+    font-size: clamp(22px, 7vw, 30px);
+    margin-bottom: 8px;
+    line-height: 1.12;
+  }
+  .pf-hero p{
+    font-size: var(--fs-400);
+    margin-bottom: 12px;
+    max-width: 64ch;
+  }
+
+  /* CTA: pół-szerokości na rząd, ładne centrowanie */
+  .pf-actions{ gap: 10px; }
+  .pf-actions .pf-btn{
+    flex: 1 1 48%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  /* chipsy: ciaśniej i czytelniej */
+  .pf-chips{ gap: 8px; }
+  .chip{ padding: 5px 9px; font-size: .85rem; }
+}
+
+/* telefony */
+@media (max-width: 560px){
+  .pf-hero{
+    padding: 12px 12px;
+  }
+  .pf-hero .logo{
+    max-width: min(58vw, 300px);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
+  }
+
+  /* kapsułka: dokowanie do dołu hero + rezerwacja miejsca */
+  .wow-pill{
+    top: auto;
+    right: max(10px, calc(var(--safe-right) + 6px));
+    bottom: 10px;
+    left: auto;
+    font-size: .8rem;
+    padding: .42rem .7rem;
+    box-shadow: 0 6px 16px rgba(88,120,255,.28), 0 0 0 1px rgba(255,255,255,.12) inset;
+  }
+  .pf-hero{ padding-bottom: 64px; } /* miejsce na kapsułkę */
+
+  /* CTA: pełna szerokość na bardzo wąskich */
+  .pf-actions .pf-btn{ flex: 1 1 100%; }
+}
+
+/* bardzo wąskie (stare iPhone SE, 320–360px) */
+@media (max-width: 380px){
+  .pf-hero .logo{ max-width: min(56vw, 260px); }
+  .wow-pill{
+    bottom: 8px; right: max(8px, calc(var(--safe-right) + 4px));
+    font-size: .76rem; padding: .36rem .6rem;
+  }
+  .pf-hero{ padding-bottom: 58px; }
+  .chip{ font-size: .82rem; padding: 4px 8px; }
+}
+
+/* jeżeli nie masz wrappera, który „trzyma” miejsce na kapsułkę */
+@supports selector(:has(*)){
+  @media (max-width: 560px){
+    .pf-hero:has(.wow-pill){ padding-bottom: 64px; }
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- warstwa tła bez powielania -->
+  <div class="pf-bg-ornament" aria-hidden="true"></div>
+
+  <!-- placeholdery -->
+  <div id="menu-placeholder"></div>
+
+<main class="pf-wrap">
+  <!-- HERO -->
+  <section class="pf-panel pf-hero hidden-on-load fade-zoom" aria-label="Sekcja startowa PiotrFlix">
+    <img src="../../img/logo/piotrflixfull.png" alt="PiotrFlix Logo" class="logo" />
+
+    <!-- top-right badge -->
+    <span class="wow-pill"
+          aria-label="Nowa wersja aplikacji dostępna"
+          data-i18n="badge.newVersion"
+          data-i18n-attr="aria-label">
+      <span class="dot" aria-hidden="true"></span>
+      Nowa wersja dostępna
+    </span>
+
+    <div>
+      <h1 data-i18n="hero.title">PiotrFlix v2 — zupełnie nowy rozdział</h1>
+      <p data-i18n="hero.lead1">
+        Nowy onboarding, przeprojektowany interfejs i pełne GUI zamiast trybu konsolowego.
+        Do tego <strong>cast na wybrane urządzenie do TV</strong> (bez Chromecasta),
+        szybsze wyszukiwanie i solidny silnik metadanych TMDb.
+      </p>
+      <p data-i18n="hero.lead2">
+        <strong>GUI desktop = funkcjonalnie identyczne z aplikacją mobilną</strong>
+        (biblioteka, cast, kolejki, tagi, TMDb, cleanup, offline).
+      </p>
+
+      <div class="pf-actions" aria-label="Akcje główne">
+        <a class="pf-btn primary"
+           href="https://github.com/pkawa95/PiotrFlix/releases"
+           target="_blank"
+           rel="noopener"
+           aria-label="Pobierz PiotrFlix v1.0.7"
+           data-i18n="cta.download">Pobierz v1.0.7</a>
+        <a class="pf-btn ghost"
+           href="https://github.com/pkawa95/PiotrFlix"
+           target="_blank"
+           rel="noopener"
+           aria-label="Zobacz repozytorium PiotrFlix na GitHub"
+           data-i18n="cta.repo">Zobacz repozytorium</a>
+      </div>
+
+      <div class="pf-chips" aria-label="Informacje o wersji">
+        <span class="chip" data-i18n="chip.version">Wersja: v1.0.7</span>
+        <span class="chip" data-i18n="chip.platforms">Windows / macOS / Linux</span>
+        <span class="chip" data-i18n="chip.license">Licencja: MIT</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- POWER FUNKCJE + MODAL (drop-in) -->
+<section class="pf-panel pf-panel--ghost pf-section hidden-on-load fade-zoom"
+         aria-label="Power funkcje"
+         data-i18n-aria-label="power.sectionAria">
+  <h2 data-i18n="power.title">Power funkcje</h2>
+  <div class="strip-wrap">
+    <div class="strip" id="powerStrip"
+         aria-label="Przewijana lista funkcji"
+         data-i18n-aria-label="power.ariaList">
+
+      <!-- Cast na TV -->
+      <article class="card"
+               data-modal-img="../../img/power/cast.png"
+               data-modal-title="Cast na TV (wybrane urządzenie)"
+               data-modal-desc="Wybierz urządzenie z PLEX i odtwarzaj z resume. Stabilnie i bez Chromecasta."
+               aria-label="Cast na TV — karta funkcji"
+               data-i18n-aria-label="power.cast.cardAria"
+               data-i18n-modal-title="power.cast.modal.title"
+               data-i18n-modal-desc="power.cast.modal.desc">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z" stroke="currentColor" stroke-width="1.5"/><path d="M7 20h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 data-i18n="power.cast.title">Cast na TV (wybrane urządzenie)</h3>
+        <p data-i18n="power.cast.desc">Wybierz urządzenie i startujemy z resume + pojedynczym seekiem. Stabilne, bez cofania widza i <em>bez Chromecasta</em>.</p>
+      </article>
+
+      <!-- Losowanie filmu -->
+      <article class="card"
+               data-modal-img="../../img/power/losuj.png"
+               data-modal-title="Losuj film"
+               data-modal-desc="Jednym kliknięciem losujemy tytuł z filtrami: gatunek, czas trwania, ocena."
+               aria-label="Losowanie filmu — karta funkcji"
+               data-i18n-aria-label="power.random.cardAria"
+               data-i18n-modal-title="power.random.modal.title"
+               data-i18n-modal-desc="power.random.modal.desc">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="16" cy="16" r="1.4" fill="currentColor"/></svg>
+        </div>
+        <h3 data-i18n="power.random.title">Losuj film 🎲</h3>
+        <p data-i18n="power.random.desc">Nie możesz się zdecydować? Jednym kliknięciem losujemy tytuł z biblioteki — z filtrami po tagach, czasie trwania i ocenie.</p>
+      </article>
+
+      <!-- Cleanup -->
+      <article class="card"
+               data-modal-img="../../img/power/cleanup.png"
+               data-modal-title="Cleanup po 7 dniach"
+               data-modal-desc="Autokasowanie obejrzanych pozycji oraz porządkowanie katalogów sezonów."
+               aria-label="Cleanup po 7 dniach — karta funkcji"
+               data-i18n-aria-label="power.cleanup.cardAria"
+               data-i18n-modal-title="power.cleanup.modal.title"
+               data-i18n-modal-desc="power.cleanup.modal.desc">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 17c3-2 8-2 11 0M14 7l7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 8l3-3 3 3-3 3-3-3Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3 data-i18n="power.cleanup.title">Cleanup po 7 dniach</h3>
+        <p data-i18n="power.cleanup.desc">Autokasowanie obejrzanych pozycji (100%) razem z plakatem i wpisem z cache. Sprzątamy katalogi sezonów.</p>
+      </article>
+
+      <!-- TMDb -->
+      <article class="card"
+               data-modal-img="../../img/power/gatunki.png"
+               data-modal-title="TMDb — plakaty i tagi"
+               data-modal-desc="Automatyczne metadane (opis, ocena, gatunki) i lokalny cache."
+               aria-label="TMDb — karta funkcji"
+               data-i18n-aria-label="power.tmdb.cardAria"
+               data-i18n-modal-title="power.tmdb.modal.title"
+               data-i18n-modal-desc="power.tmdb.modal.desc">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.5 1.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.8l6.5-.9L12 3Z" stroke="currentColor" stroke-width="1.3"/></svg>
+        </div>
+        <h3 data-i18n="power.tmdb.title">TMDb — plakaty i tagi</h3>
+        <p data-i18n="power.tmdb.desc">Automatyczne metadane (opis, ocena, gatunki), lokalny cache i backfill gatunków z jednego endpointu.</p>
+      </article>
+
+      <!-- Tagi -->
+      <article class="card"
+               data-modal-img="../../img/power/kolekcje.png"
+               data-modal-title="Tagi & kolekcje"
+               data-modal-desc="Porządkuj bibliotekę po własnych tagach i kolekcjach."
+               aria-label="Tagi i kolekcje — karta funkcji"
+               data-i18n-aria-label="power.tags.cardAria"
+               data-i18n-modal-title="power.tags.modal.title"
+               data-i18n-modal-desc="power.tags.modal.desc">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M10 3h6l4 4-8 8-6-6 4-6Z" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="7" r="1" fill="currentColor"/></svg>
+        </div>
+        <h3 data-i18n="power.tags.title">Tagi & kolekcje</h3>
+        <p data-i18n="power.tags.desc">Porządkuj bibliotekę po własnych tagach i kolekcjach. Wyszukiwanie pełnotekstowe po tytułach i obsadzie.</p>
+      </article>
+
+      <!-- Offline -->
+      <article class="card"
+               data-modal-img="../../img/power/offline.png"
+               data-modal-title="Tryb offline (PWA)"
+               data-modal-desc="Service Worker i cache zasobów — wygodny podgląd biblioteki bez sieci."
+               aria-label="Tryb offline — karta funkcji"
+               data-i18n-aria-label="power.offline.cardAria"
+               data-i18n-modal-title="power.offline.modal.title"
+               data-i18n-modal-desc="power.offline.modal.desc">
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18M7 17a4 4 0 0 1 0-8 6 6 0 0 1 11.3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 data-i18n="power.offline.title">Tryb offline (PWA)</h3>
+        <p data-i18n="power.offline.desc">Service Worker, strona offline i cache zasobów — komfortowy podgląd biblioteki bez sieci.</p>
+      </article>
+    </div>
+
+    <div class="strip-nav" aria-hidden="true">
+      <button type="button" data-dir="-1"
+              aria-label="Przewiń w lewo"
+              data-i18n-aria-label="power.prev">‹</button>
+      <button type="button" data-dir="1"
+              aria-label="Przewiń w prawo"
+              data-i18n-aria-label="power.next">›</button>
+    </div>
+  </div>
+</section>
+
+
+  <!-- TECH -->
+  <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Architektura">
+    <h2 data-i18n="tech.title">Architektura</h2>
+    <p data-i18n="tech.desc">Aplikacja w Pythonie 3.x, GUI w PyQt6 (MVVM), lokalny indeks w SQLite + FTS, TMDb z cache i rate-limitem, cast z pojedynczym seekiem na starcie.</p>
+    <div class="code">
+      <pre><code data-i18n="tech.code"># przykładowy endpoint: losowanie filmu</code>
+<code>@app.get("/random/movie")
+def pick_random_movie():
+    items = [m for m in available_cache.get_films() if m.get("progress",0) &lt; 100]
+    import random
+    return {"pick": random.choice(items) if items else None}</code>
+</code></pre>
+    </div>
+  </section>
+
+  <!-- KONKRETNY OPIS FUNKCJI -->
+  <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Funkcje PiotrFlix v2">
+    <h2 data-i18n="features.title">Co dokładnie wchodzi w skład v2?</h2>
+    <div class="pf-features">
+      <div class="pf-feature">
+        <h3 data-i18n="features.randomByGenre.title">Losowanie filmu na podstawie gatunku</h3>
+        <p data-i18n="features.randomByGenre.desc">Wybierz jeden lub wiele gatunków (z labeli gatunkowych), a PiotrFlix wylosuje tytuł spełniający kryteria. Dodatkowe filtry: minimalna ocena, czas trwania, rok produkcji.</p>
+      </div>
+      <div class="pf-feature">
+        <h3 data-i18n="features.castPlex.title">Cast na PLEX z wyborem urządzenia</h3>
+        <p data-i18n="features.castPlex.desc">Po zalogowaniu do PLEX wybierasz docelowe urządzenie dostępne w sieci/konta i rozpoczynasz odtwarzanie z resume. Działa bez Chromecasta.</p>
+      </div>
+      <div class="pf-feature">
+        <h3 data-i18n="features.castPlayer.title">Wbudowany player do casta</h3>
+        <p data-i18n="features.castPlayer.desc">Podczas castu widzisz tytuł, okładkę, czas i pasek postępu. Masz przyciski: pauza/wznów, stop, przewijanie (seek). Stan synchronizuje się z urządzeniem docelowym.</p>
+      </div>
+      <div class="pf-feature">
+        <h3 data-i18n="features.libtorrent.title">Wbudowany libtorrent (bez Deluge)</h3>
+        <p data-i18n="features.libtorrent.desc">Dodajesz torrenty bez zewnętrznego klienta. Dostępne: limit prędkości, automatyczna pauza po zakończeniu, monitoring postępu i integracja z biblioteką (metadane z TMDb).</p>
+      </div>
+      <div class="pf-feature">
+        <h3 data-i18n="features.livesearch.title">Livesearch w „Dostępne”</h3>
+        <p data-i18n="features.livesearch.desc">Filtrowanie w locie po tytule, obsadzie, gatunkach i tagach. Wyniki aktualizują się natychmiast dzięki lokalnemu indeksowi FTS.</p>
+      </div>
+      <div class="pf-feature">
+        <h3 data-i18n="features.autocleanup.title">Automatyczne usuwanie plików po 7 dniach</h3>
+        <p data-i18n="features.autocleanup.desc">Filmy: po oznaczeniu jako obejrzane kasują się po 7 dniach (plik + cache). Seriale: kasujemy dopiero, gdy obejrzane są wszystkie odcinki wszystkich sezonów danej serii.</p>
+      </div>
+      <div class="pf-feature">
+        <h3 data-i18n="features.genreLabels.title">Labele gatunków filmowych</h3>
+        <p data-i18n="features.genreLabels.desc">Czytelne etykiety gatunków (np. „Sci-Fi”, „Kryminalny”) do filtrowania, losowania i przeglądania. Spójne między desktopem i mobile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE ROZWOJU (LUXE) -->
+  <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Plan rozwoju">
+    <h2 data-i18n="timeline.title">Plan rozwoju</h2>
+
+    <ol class="timeline luxe" id="pfTimeline" role="list" aria-label="Oś czasu działań">
+      <!-- Październik -->
+      <li class="tl-node" data-status="planned">
+        <button class="tl-head" type="button" aria-expanded="true" aria-label="Październik, planowane">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <span class="tl-month" data-i18n="timeline.oct.month">Październik</span>
+          <span class="tl-status" data-i18n="timeline.badge.planned">Planowane</span>
+        </button>
+        <div class="tl-body">
+          <article class="tl-card">
+            <h3 class="tl-title" data-i18n="timeline.oct.title">Player w aplikacji mobilnej</h3>
+            <p class="tl-desc" data-i18n="timeline.oct.desc">Dodanie playera wewnątrz aplikacji mobilnej</p>
+          </article>
+        </div>
+      </li>
+
+      <!-- Listopad -->
+      <li class="tl-node" data-status="planned">
+        <button class="tl-head" type="button" aria-expanded="false" aria-label="Listopad, planowane">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <span class="tl-month" data-i18n="timeline.nov.month">Listopad</span>
+          <span class="tl-status" data-i18n="timeline.badge.planned">Planowane</span>
+        </button>
+        <div class="tl-body">
+          <article class="tl-card">
+            <h3 class="tl-title" data-i18n="timeline.nov.title">Konta użytkowników</h3>
+            <p class="tl-desc" data-i18n="timeline.nov.desc">Dodać możliwość tworzenia kont użytkowników</p>
+          </article>
+        </div>
+      </li>
+
+      <!-- Grudzień -->
+      <li class="tl-node" data-status="planned">
+        <button class="tl-head" type="button" aria-expanded="false" aria-label="Grudzień, planowane">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <span class="tl-month" data-i18n="timeline.dec.month">Grudzień</span>
+          <span class="tl-status" data-i18n="timeline.badge.planned">Planowane</span>
+        </button>
+        <div class="tl-body">
+          <article class="tl-card">
+            <h3 class="tl-title" data-i18n="timeline.dec.title">Sterowanie komputerem</h3>
+            <p class="tl-desc" data-i18n="timeline.dec.desc">Dodać sterowanie komputerem</p>
+          </article>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- SCREENY DESKTOP -->
+  <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Zrzuty ekranu (Desktop)">
+    <h2 data-i18n="screens.desktop.title">Zrzuty ekranu (Desktop)</h2>
+    <div class="gallery carousel-container" data-carousel aria-label="Karuzela zrzutów ekranu Desktop">
+      <button class="carousel-button left" type="button" aria-label="Poprzednie" data-carousel-prev data-i18n="carousel.prev" data-i18n-attr="aria-label">‹</button>
+      <div class="carousel">
+        <img src="../../img/piotrflix2/desktop1.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/desktop2.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/desktop3.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/desktop4.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/desktop5.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/desktop6.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/desktop7.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
+
+      </div>
+      <button class="carousel-button right" type="button" aria-label="Następne" data-carousel-next data-i18n="carousel.next" data-i18n-attr="aria-label">›</button>
+      <div class="carousel-dots" aria-label="Paginacja karuzeli" data-i18n="carousel.dots" data-i18n-attr="aria-label"></div>
+    </div>
+  </section>
+
+  <!-- SCREENY MOBILE -->
+  <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Zrzuty ekranu (Mobile)">
+    <h2 data-i18n="screens.mobile.title">Zrzuty ekranu (Mobile)</h2>
+    <div class="gallery carousel-container" data-carousel aria-label="Karuzela zrzutów ekranu Mobile">
+      <button class="carousel-button left" type="button" aria-label="Poprzednie" data-carousel-prev data-i18n="carousel.prev" data-i18n-attr="aria-label">‹</button>
+      <div class="carousel">
+        <img src="../../img/piotrflix2/IMG_7490.PNG" alt="Mobile 1" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7491.PNG" alt="Mobile 2" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7492.PNG" alt="Mobile 3" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7493.PNG" alt="Mobile 4" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7494.PNG" alt="Mobile 5" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7495.PNG" alt="Mobile 6" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7496.PNG" alt="Mobile 7" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7497.PNG" alt="Mobile 8" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7498.PNG" alt="Mobile 9" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7499.PNG" alt="Mobile 10" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7500.PNG" alt="Mobile 11" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7501.PNG" alt="Mobile 12" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7502.PNG" alt="Mobile 13" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7503.PNG" alt="Mobile 14" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7504.PNG" alt="Mobile 15" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+        <img src="../../img/piotrflix2/IMG_7505.PNG" alt="Mobile 16" onclick="openLightbox(this)" data-i18n="screens.mobile.alt1" data-i18n-attr="alt">
+      </div>
+      <button class="carousel-button right" type="button" aria-label="Następne" data-carousel-next data-i18n="carousel.next" data-i18n-attr="aria-label">›</button>
+      <div class="carousel-dots" aria-label="Paginacja karuzeli" data-i18n="carousel.dots" data-i18n-attr="aria-label"></div>
+    </div>
+  </section>
+
+<!-- WIDEO DEMO (YouTube — dopasowane do szerokości kafla) -->
+<section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Szybki przegląd wideo">
+  <h2 data-i18n="video.title">Szybki przegląd wideo</h2>
+
+  <style>
+    /* tylko dla tej sekcji */
+    .pf-video {
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;        /* responsywny prostokąt */
+      max-height: 58vh;            /* żeby nie było zbyt wysokie */
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--pf-bg-soft);
+      border: 1px solid var(--pf-border);
+      box-shadow: var(--pf-shadow);
+      margin: 0;                   /* zero negatywnych marginesów = nic nie "wyłazi" */
+    }
+    .pf-video iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    @media (max-width: 520px){
+      .pf-video{ max-height: 42vh; border-radius: 10px; }
+    }
+
+    /* ============================
+   CODE BLOCKS – MOBILE SAFE
+   ============================ */
+
+/* kontener nie może rozszerzać rodzica */
+.pf-panel .code { min-width: 0; }
+
+/* pre – ładne pudełko + scroll gdy trzeba (desktop) */
+.code pre{
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--pf-bg-soft);
+  border: 1px solid var(--pf-border);
+  border-radius: 12px;
+  font: 500 13.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  color: var(--pf-text);
+  max-width: 100%;
+  overflow: auto;              /* h-scroll jeśli trzeba */
+  -webkit-overflow-scrolling: touch;
+  tab-size: 2;
+}
+
+/* w Twoim HTML jest kilka <code> wewnątrz jednego <pre> – ustawiamy je blokowo */
+.code pre > code{
+  display: block;
+  white-space: pre;            /* bazowo nie zawijaj (desktop) */
+}
+
+/* ✨ mobilne zawijanie długich linii/ciągów, bez rozsadzania layoutu */
+@media (max-width: 720px){
+  .code pre{
+    overflow-x: auto;          /* nadal można przewinąć, gdy ktoś woli */
+    /* włącz miękkie zawijanie */
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;   /* łamie długie tokeny/ścieżki/URL-e */
+  }
+  .code pre > code{
+    white-space: inherit;      /* dziedziczy pre-wrap na mobile */
+  }
+}
+
+/* małe dopieszczanie – cienie krawędzi przy poziomym scrollu */
+.code pre{
+  mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+}
+
+/* gdyby cokolwiek absolutne w środku próbowało „wylać się” */
+.pf-section .code { overflow: clip; }
+
+/* ==== POWER STRIP: wejście kart + mobile snap & maska ==== */
+
+/* startowo: niewidoczne, minimalny shift (bez LCP jank) */
+#powerStrip .card{
+  opacity: 0;
+  transform: translateY(8px) scale(.995);
+  transition:
+    opacity .38s ease,
+    transform .42s cubic-bezier(.2,.7,.2,1),
+    box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  will-change: transform, opacity;
+}
+#powerStrip .card.is-inview{
+  opacity: 1;
+  transform: none;
+}
+
+/* lekka maska krawędzi – podpowiada, że można przewijać */
+.strip{
+  mask-image: linear-gradient(to right,
+      transparent 0,
+      #000 12px,
+      #000 calc(100% - 12px),
+      transparent 100%);
+}
+
+/* mobilne centrowanie kart i stabilny snap */
+@media (max-width: 720px){
+  .strip{
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 12px;      /* żeby pierwszy/ostatni nie „przyklejał się” do krawędzi */
+    grid-auto-columns: minmax(78vw, 1fr); /* większe, czytelne karty na telefonie */
+  }
+  #powerStrip .card{
+    scroll-snap-align: center;        /* karta ląduje na środku */
+    /* delikatny stagger tylko na mobile (nth-child bez JS) */
+    transition-delay: calc(var(--stagger, 0) * 40ms);
+  }
+}
+
+/* redukcja animacji, jeśli user nie chce ruchu */
+@media (prefers-reduced-motion: reduce){
+  #powerStrip .card{ transition: none !important; transform: none !important; opacity: 1 !important; }
+}
+
+  </style>
+
+  <div class="pf-video">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/_s3JNVRtDL4?rel=0&modestbranding=1&color=white"
+      title="Podgląd wideo"
+      data-i18n="video.aria"
+      data-i18n-attr="title,aria-label"
+      aria-label="Podgląd wideo"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <noscript>
+    <p>
+      <a href="https://www.youtube.com/watch?v=_s3JNVRtDL4" target="_blank" rel="noopener">
+        Obejrzyj wideo na YouTube
+      </a>
+    </p>
+  </noscript>
+</section>
+
+
+  <!-- 🔄 Karuzela innych projektów -->
+  <div class="section-separator animate" aria-hidden="true"></div>
+  <div id="carousel-placeholder" aria-label="Miejsce na karuzelę innych projektów"></div>
+
+  <!-- Floating GitHub -->
+  <a href="https://github.com/pkawa95/PiotrFlix"
+     target="_blank"
+     class="github-floating-button hidden-on-load fade-zoom"
+     rel="noopener"
+     aria-label="Repozytorium PiotrFlix na GitHub"
+     data-i18n="floating.github"
+     data-i18n-attr="aria-label">
+    <img src="../../img/icons/github.svg" alt="GitHub" />
+    <span>PiotrFlix</span>
+  </a>
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+    <img id="lightbox-img" src="" alt="Screenshot powiększony" />
+    <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+    <div id="lightbox-counter" class="lightbox-counter"></div>
+  </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<!-- Modal Power Funkcje -->
+<div id="pfModal" class="pf-modal" aria-hidden="true" aria-label="Okno modalne — podgląd funkcji">
+  <div class="pf-modal__backdrop" data-close></div>
+  <div class="pf-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pfModalTitle">
+    <figure class="pf-modal__figure">
+      <button class="pf-modal__close"
+              type="button"
+              aria-label="Zamknij okno"
+              data-i18n="modal.close"
+              data-i18n-attr="aria-label">×</button>
+      <img id="pfModalImg" alt="" loading="lazy">
+      <figcaption class="pf-modal__meta">
+        <strong id="pfModalTitle"></strong>
+        <p id="pfModalDesc"></p>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+  <script>
+
+    (function(){
+  const strip = document.getElementById('powerStrip');
+  const modal = document.getElementById('pfModal');
+  if (!strip || !modal) return;
+
+  const img = modal.querySelector('#pfModalImg');
+  const ttl = modal.querySelector('#pfModalTitle');
+  const dsc = modal.querySelector('#pfModalDesc');
+  const closeBtn = modal.querySelector('.pf-modal__close');
+
+  const shorten = (t, n=150) => (t || '').replace(/\s+/g,' ').trim().slice(0, n) + ((t||'').length>n ? '…' : '');
+
+  function openModal(fromCard){
+    const src = fromCard.dataset.modalImg || '';
+    const title = fromCard.dataset.modalTitle || fromCard.querySelector('h3')?.textContent || '';
+    const desc = fromCard.dataset.modalDesc || fromCard.querySelector('p')?.textContent || '';
+
+    img.src = src;
+    img.alt = title;
+    ttl.textContent = title;
+    dsc.textContent = shorten(desc, 180);
+
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('pf-modal-open');
+    closeBtn.focus({preventScroll:true});
+  }
+  function closeModal(){
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('pf-modal-open');
+    img.removeAttribute('src');
+  }
+
+  // delegacja klików na karty (nie koliduje z drag-scrollem)
+  let dragging = false, downX = 0;
+  strip.addEventListener('mousedown', e => { dragging = false; downX = e.pageX; }, {passive:true});
+  strip.addEventListener('mousemove', e => { if (Math.abs(e.pageX - downX) > 6) dragging = true; }, {passive:true});
+  strip.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (!card || dragging) return;
+    // tylko gdy karta ma obraz
+    if (card.dataset.modalImg) openModal(card);
+  });
+
+  // zamykanie: X, backdrop, ESC
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) closeModal(); });
+  window.addEventListener('keydown', (e) => { if (modal.getAttribute('aria-hidden')==='false' && e.key === 'Escape') closeModal(); });
+})();
+    // ⛔️ Brak lokalnego przełącznika motywu.
+    // Motyw jest brany z atrybutu data-theme na <html>, który ustawia globalne menu.
+
+    // power strip arrows + drag scroll
+    (function(){
+      const strip=document.getElementById("powerStrip");
+      const wrap=strip.closest(".strip-wrap");
+      wrap.querySelectorAll("[data-dir]").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          const dir=Number(btn.dataset.dir)||1;
+          strip.scrollBy({left:dir*strip.clientWidth*0.9, behavior:"smooth"});
+        });
+      });
+      let isDown=false,startX,scrollLeft;
+      strip.addEventListener("mousedown",(e)=>{isDown=true;startX=e.pageX;scrollLeft=strip.scrollLeft;});
+      strip.addEventListener("mouseleave",()=>isDown=false);
+      strip.addEventListener("mouseup",()=>isDown=false);
+      strip.addEventListener("mousemove",(e)=>{if(!isDown)return; e.preventDefault(); strip.scrollLeft=scrollLeft-(e.pageX-startX);});
+    })();
+
+    // 🎉 lekkie konfetti na hover kapsułki
+    (function(){
+      function fireConfettiAt(x, y, particles = 16, dur = 700) {
+        const burst = document.createElement('div');
+        burst.style.position = 'absolute';
+        burst.style.left = (x - 8) + 'px';
+        burst.style.top  = (y - 8) + 'px';
+        burst.style.pointerEvents = 'none';
+        burst.innerHTML = `
+          <svg width="1" height="1" viewBox="0 0 1 1" style="overflow: visible">
+            ${Array.from({length: particles}).map((_,i)=>{
+              const ang = (i/particles)*Math.PI*2, r = 28 + Math.random()*24;
+              const cx = Math.cos(ang)*r, cy = Math.sin(ang)*r;
+              return `<circle cx="0" cy="0" r="${2+Math.random()*2}"
+                       fill="hsl(${Math.floor(Math.random()*360)},90%,60%)">
+                         <animate attributeName="cx" to="${cx}" dur="${dur}ms" fill="freeze"/>
+                         <animate attributeName="cy" to="${cy}" dur="${dur}ms" fill="freeze"/>
+                         <animate attributeName="opacity" to="0" dur="${dur}ms" fill="freeze"/>
+                     </circle>`;
+            }).join('')}
+          </svg>`;
+        document.body.appendChild(burst);
+        setTimeout(()=>burst.remove(), dur + 80);
+      }
+      const pill = document.querySelector('.wow-pill');
+      if (pill) {
+        let last = 0;
+        pill.addEventListener('mouseenter', () => {
+          const now = Date.now();
+          if (now - last < 1200) return;
+          last = now;
+          const rect = pill.getBoundingClientRect();
+          fireConfettiAt(rect.left + rect.width/2, rect.top + rect.height/2);
+        }, {passive:true});
+      }
+    })();
+
+/* Timeline interakcje: hover (desktop), click (mobile/keyboard), tylko jeden otwarty */
+(function(){
+  const tl = document.getElementById('pfTimeline');
+  if (!tl) return;
+
+  const nodes = Array.from(tl.querySelectorAll('.tl-node'));
+  const openOne = (el) => {
+    nodes.forEach(n => {
+      const head = n.querySelector('.tl-head');
+      const isTarget = n === el;
+      n.classList.toggle('is-open', isTarget);
+      head?.setAttribute('aria-expanded', String(isTarget));
+    });
+  };
+
+  // Domyślnie otwieramy pierwszy
+  openOne(nodes[0]);
+
+  // Desktop: hover otwiera, leave nie zamyka od razu (żeby łatwo zjechać do karty)
+  nodes.forEach(n => {
+    const head = n.querySelector('.tl-head');
+
+    n.addEventListener('mouseenter', () => openOne(n));
+    // kliknięcie/Enter/Space – też przełącza
+    head.addEventListener('click', () => {
+      const isNowOpen = n.classList.contains('is-open');
+      openOne(isNowOpen ? n : n); // zawsze trzymamy „jeden otwarty” dla czytelności
+    });
+    head.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); head.click(); }
+    });
+  });
+
+  // mały „auto-scroll” aktywnego elementu przy otwarciu (gdy poza viewportem)
+  const ensureVisible = (el) => {
+    const rect = el.getBoundingClientRect();
+    const pad = 90;
+    if (rect.top < pad || rect.bottom > (window.innerHeight - pad)) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+  tl.addEventListener('mouseenter', (e) => {
+    const node = e.target.closest?.('.tl-node');
+    if (node) ensureVisible(node);
+  }, { passive:true });
+})();
+
+    /* === BRIDGE: body.dark ↔ html[data-theme] (bez migotania) === */
+(function(){
+  // 1) Ustal stan początkowy z localStorage (albo prefers-color-scheme)
+  var saved = (function(){ try { return localStorage.getItem('theme'); } catch(e){ return null; } })();
+  if (!saved) {
+    saved = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  // Jeśli menu już wcześniej dodało klasę — zaufaj klasie
+  var hasDarkClass = document.body && document.body.classList.contains('dark');
+  var mode = hasDarkClass ? 'dark' : saved;
+
+  // 2) Ustaw atrybut na <html> zanim przeglądarka zacznie malować
+  document.documentElement.setAttribute('data-theme', mode);
+
+  // 3) Na wszelki wypadek odtwórz zgodność w obie strony (gdy wchodzisz bez body.dark)
+  if (document.body) {
+    document.body.classList.toggle('dark', mode === 'dark');
+  } else {
+    // jeśli <body> jeszcze nie istnieje, poczekaj na DOM i wtedy dosynchronizuj
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.toggle('dark', mode === 'dark');
+    }, {once:true});
+  }
+
+  // 4) Obserwuj zmiany klasy na <body> (gdy użytkownik kliknie w menu)
+  var sync = function(){
+    var dark = document.body.classList.contains('dark');
+    var t = dark ? 'dark' : 'light';
+    if (document.documentElement.getAttribute('data-theme') !== t) {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+    try { localStorage.setItem('theme', t); } catch(e){}
+  };
+  new MutationObserver(sync).observe(document.documentElement, { attributes:true, attributeFilter:['class'] });
+  new MutationObserver(sync).observe(document.body, { attributes:true, attributeFilter:['class'] });
+
+  // 5) „Bezpiecznik”: krótki resync po inicjalizacjach innych skryptów
+  var n=0, fast = setInterval(function(){ sync(); if (++n>8) clearInterval(fast); }, 250);
+})();
+
+(function(){
+  const strip = document.getElementById('powerStrip');
+  const nav   = strip?.closest('.strip-wrap')?.querySelectorAll('[data-dir]') || [];
+  if(!strip) return;
+
+  /* --- 1) Wejście kart na scroll (IO) --- */
+  const cards = [...strip.querySelectorAll('.card')];
+  // mobilny „stagger” przez zmienną CSS (bez reflowów)
+  cards.forEach((c,i)=> c.style.setProperty('--stagger', i % 8));
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('is-inview');
+        io.unobserve(e.target);
+      }
+    });
+  }, {root: strip, rootMargin: '4% 8%', threshold: 0.15});
+  cards.forEach(c=> io.observe(c));
+
+  /* --- 2) Dociąganie do najbliższej karty po scrollu --- */
+  let snapTimer;
+  const snapToNearest = () => {
+    const children = [...strip.children];
+    const mid = strip.scrollLeft + strip.clientWidth/2;
+    let best = null, bestDist = 1e9;
+
+    children.forEach(el=>{
+      const rect = el.getBoundingClientRect();
+      const left = rect.left + strip.scrollLeft - strip.getBoundingClientRect().left;
+      const center = left + rect.width/2;
+      const dist = Math.abs(center - mid);
+      if (dist < bestDist){ bestDist = dist; best = el; }
+    });
+    if (best){
+      const rect = best.getBoundingClientRect();
+      const left = rect.left + strip.scrollLeft - strip.getBoundingClientRect().left;
+      const target = left - (strip.clientWidth - rect.width)/2;
+      strip.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    }
+  };
+
+  const onScrollEnd = () => {
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(snapToNearest, 90); // krótki bezwład przed dociągnięciem
+  };
+  strip.addEventListener('scroll', onScrollEnd, {passive:true});
+  window.addEventListener('resize', ()=> snapToNearest(), {passive:true});
+
+  /* --- 3) Strzałki: przewijanie o ~90% szerokości + auto-ukrywanie --- */
+  const updateArrows = () => {
+    const atStart = strip.scrollLeft <= 2;
+    const atEnd   = Math.ceil(strip.scrollLeft + strip.clientWidth) >= strip.scrollWidth - 2;
+    nav.forEach(btn=>{
+      if(btn.dataset.dir === '-1') btn.style.visibility = atStart ? 'hidden' : 'visible';
+      if(btn.dataset.dir === '1')  btn.style.visibility = atEnd   ? 'hidden' : 'visible';
+    });
+  };
+  updateArrows();
+  strip.addEventListener('scroll', ()=> updateArrows(), {passive:true});
+  window.addEventListener('resize', ()=> updateArrows(), {passive:true});
+
+  nav.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const dir = Number(btn.dataset.dir) || 1;
+      strip.scrollBy({ left: dir * strip.clientWidth * 0.9, behavior: 'smooth' });
+      // po kliknięciu też dociągnij do „slotu”
+      setTimeout(snapToNearest, 260);
+    });
+  });
+
+  /* --- 4) Gesty: płynny h-scroll bez pionowego „złapania” --- */
+  strip.style.touchAction = 'pan-x'; // pozwól palcem tylko w poziomie na tym pasku
+})();
+  </script>
+
+
+</body>
+</html>

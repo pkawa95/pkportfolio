@@ -249,6 +249,7 @@ philips_tags: "#Python #PyQt6 #Philips #API #GUI #IoT #Automation",
     changelog: {
       label: "Ostatnie aktualizacje",
       lines: [
+    "📅 [2025-09-20] ✨ Nowy projekt dodany do sekcji Python!",
     "📅 [2025-08-27] 🛠️ Aktualizacja menu, naprawa wyświetlania paska aktualizacji na wersji mobilnej.",
     "📅 [2025-08-27] 💬 Dodano obsługę Tidio chat na całości strony.",
     "📅 [2025-08-26] ✨ Odświeżenie UI (Aurora/Glass), pełny dark mode i refaktor CSS.",
@@ -398,7 +399,160 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
     comingsoon_h1: "🔧 Zawartość w trakcie przygotowania",
     comingsoon_p: "Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>Zapraszam do odwiedzin w najbliższym czasie!",
     comingsoon_back: "← Powrót do strony głównej",
+
+    //PiotrFlix v2.0
+  piotrflix_title2: "PiotrFlix v2",
+  piotrflix_desc2: "Nowa, odświeżona wersja aplikacji PiotrFlix wprowadza przejrzysty proces onboardingu, całkowicie przeprojektowany interfejs użytkownika oraz pełne środowisko graficzne zamiast konsolowego widoku w wersji PC. Aplikacja oferuje nowoczesne GUI, intuicyjną obsługę, możliwość przesyłania treści na ekran telewizora (cast to TV) oraz dalszą integrację z TMDB API dla automatycznego pobierania metadanych i plakatów. PiotrFlix v2 to wygodne i kompleksowe narzędzie do zarządzania biblioteką filmów i seriali.",
+  piotrflix_tags2: "#Python #PyQt6 #TMDB #GUI #DesktopApp #CastToTV #Onboarding #UX #MediaManager",
+   pfv2_card_link_aria: "Przejdź do projektu PiotrFlix v2",
+    pfv2_card_pill_aria: "Nowa wersja aplikacji już dostępna",
+    pfv2_card_pill_text: "Nowa wersja aplikacji już dostępna",
+    pfv2_card_logo_alt:  "Logo PiotrFlix",
+    pfv2_card_title:     "PiotrFlix v2",
+    pfv2_card_desc:
+      "Nowa, odświeżona wersja PiotrFlix wprowadza przejrzysty onboarding, całkowicie przeprojektowany interfejs i pełne GUI zamiast trybu konsolowego na PC. Do tego cast na wybrane urządzenie do TV, szybsze wyszukiwanie i lepsze metadane TMDb.",
+    pfv2_card_tags:
+      "#Python #PyQt6 #TMDb #GUI #DesktopApp #CastToTV #Onboarding #UX #MediaManager",
+    pfv2_card_list: [
+      "Pełne GUI w PyQt6 (MVVM)",
+      "Cast na wybrane urządzenie (bez Chromecasta)",
+      "Szybkie wyszukiwanie (FTS + lokalny indeks)",
+      "TMDb: plakaty, opisy, gatunki",
+      "Tagi, kolejki, cleanup po 7 dniach",
+      "Tryb offline (PWA) – przegląd biblioteki"
+    ],
+  "badge.newVersion": "Nowa wersja aplikacji dostępna",
+
+    "hero.title": "PiotrFlix v2 — zupełnie nowy rozdział",
+    "hero.lead1": "Nowy onboarding, przeprojektowany interfejs i pełne GUI zamiast trybu konsolowego. Do tego <strong>cast na wybrane urządzenie do TV</strong> (bez Chromecasta), szybsze wyszukiwanie i solidny silnik metadanych TMDb.",
+    "hero.lead2": "<strong>GUI desktop = funkcjonalnie identyczne z aplikacją mobilną</strong> (biblioteka, cast, kolejki, tagi, TMDb, cleanup, offline).",
+
+    "cta.download": "Pobierz v1.0.7",
+    "cta.repo": "Zobacz repozytorium",
+    "chip.version": "Wersja: v1.0.7",
+    "chip.platforms": "Windows / macOS / Linux",
+    "chip.license": "Licencja: MIT",
+
+    "power.sectionAria": "Power funkcje",
+    "power.title": "Power funkcje",
+    "power.ariaList": "Przewijana lista funkcji",
+    "power.prev": "Przewiń w lewo",
+    "power.next": "Przewiń w prawo",
+
+    "power.cast.cardAria": "Cast na TV — karta funkcji",
+    "power.cast.title": "Cast na TV (wybrane urządzenie)",
+    "power.cast.desc": "Wybierz urządzenie i startujemy z resume + pojedynczym seekiem. Stabilne, bez cofania widza i bez Chromecasta.",
+    "power.cast.modal.title": "Cast na TV (wybrane urządzenie)",
+    "power.cast.modal.desc": "Wybierz urządzenie z PLEX i odtwarzaj z resume. Stabilnie i bez Chromecasta.",
+
+    "power.random.cardAria": "Losowanie filmu — karta funkcji",
+    "power.random.title": "Losuj film 🎲",
+    "power.random.desc": "Nie możesz się zdecydować? Jednym kliknięciem losujemy tytuł z biblioteki — z filtrami po tagach, czasie trwania i ocenie.",
+    "power.random.modal.title": "Losuj film",
+    "power.random.modal.desc": "Jednym kliknięciem losujemy tytuł z filtrami: gatunek, czas trwania, ocena.",
+
+    "power.cleanup.cardAria": "Cleanup po 7 dniach — karta funkcji",
+    "power.cleanup.title": "Cleanup po 7 dniach",
+    "power.cleanup.desc": "Autokasowanie obejrzanych pozycji (100%) razem z plakatem i wpisem z cache. Sprzątamy katalogi sezonów.",
+    "power.cleanup.modal.title": "Cleanup po 7 dniach",
+    "power.cleanup.modal.desc": "Autokasowanie obejrzanych pozycji oraz porządkowanie katalogów sezonów.",
+
+    "power.tmdb.cardAria": "TMDb — karta funkcji",
+    "power.tmdb.title": "TMDb — plakaty i tagi",
+    "power.tmdb.desc": "Automatyczne metadane (opis, ocena, gatunki), lokalny cache i backfill gatunków z jednego endpointu.",
+    "power.tmdb.modal.title": "TMDb — plakaty i tagi",
+    "power.tmdb.modal.desc": "Automatyczne metadane (opis, ocena, gatunki) i lokalny cache.",
+
+    "power.tags.cardAria": "Tagi i kolekcje — karta funkcji",
+    "power.tags.title": "Tagi & kolekcje",
+    "power.tags.desc": "Porządkuj bibliotekę po własnych tagach i kolekcjach. Wyszukiwanie pełnotekstowe po tytułach i obsadzie.",
+    "power.tags.modal.title": "Tagi & kolekcje",
+    "power.tags.modal.desc": "Porządkuj bibliotekę po własnych tagach i kolekcjach.",
+
+    "power.offline.cardAria": "Tryb offline — karta funkcji",
+    "power.offline.title": "Tryb offline (PWA)",
+    "power.offline.desc": "Service Worker, strona offline i cache zasobów — komfortowy podgląd biblioteki bez sieci.",
+    "power.offline.modal.title": "Tryb offline (PWA)",
+    "power.offline.modal.desc": "Service Worker i cache zasobów — wygodny podgląd biblioteki bez sieci.",
+
+    "tech.title": "Architektura",
+    "tech.desc": "Aplikacja w Pythonie 3.x, GUI w PyQt6 (MVVM), lokalny indeks w SQLite + FTS, TMDb z cache i rate-limitem, cast z pojedynczym seekiem na starcie.",
+    "tech.code": "# przykładowy endpoint: losowanie filmu",
+    "features.title": "Co dokładnie wchodzi w skład v2?",
+    "features.randomByGenre.title": "Losowanie filmu na podstawie gatunku",
+    "features.randomByGenre.desc": "Wybierz jeden lub wiele gatunków (z labeli gatunkowych), a PiotrFlix wylosuje tytuł spełniający kryteria. Dodatkowe filtry: minimalna ocena, czas trwania, rok produkcji.",
+    "features.castPlex.title": "Cast na PLEX z wyborem urządzenia",
+    "features.castPlex.desc": "Po zalogowaniu do PLEX wybierasz docelowe urządzenie dostępne w sieci/konta i rozpoczynasz odtwarzanie z resume. Działa bez Chromecasta.",
+    "features.castPlayer.title": "Wbudowany player do casta",
+    "features.castPlayer.desc": "Podczas castu widzisz tytuł, okładkę, czas i pasek postępu. Masz przyciski: pauza/wznów, stop, przewijanie (seek). Stan synchronizuje się z urządzeniem docelowym.",
+    "features.libtorrent.title": "Wbudowany libtorrent (bez Deluge)",
+    "features.libtorrent.desc": "Dodajesz torrenty bez zewnętrznego klienta. Dostępne: limit prędkości, automatyczna pauza po zakończeniu, monitoring postępu i integracja z biblioteką (metadane z TMDb).",
+    "features.livesearch.title": "Livesearch w „Dostępne”",
+    "features.livesearch.desc": "Filtrowanie w locie po tytule, obsadzie, gatunkach i tagach. Wyniki aktualizują się natychmiast dzięki lokalnemu indeksowi FTS.",
+    "features.autocleanup.title": "Automatyczne usuwanie plików po 7 dniach",
+    "features.autocleanup.desc": "Filmy: po oznaczeniu jako obejrzane kasują się po 7 dniach (plik + cache). Seriale: kasujemy dopiero, gdy obejrzane są wszystkie odcinki wszystkich sezonów danej serii.",
+    "features.genreLabels.title": "Labele gatunków filmowych",
+    "features.genreLabels.desc": "Czytelne etykiety gatunków (np. „Sci-Fi”, „Kryminalny”) do filtrowania, losowania i przeglądania. Spójne między desktopem i mobile.",
+
+    "timeline.title": "Plan rozwoju",
+    "timeline.badge.planned": "Planowane",
+    "timeline.oct.month": "Październik",
+    "timeline.oct.title": "Player w aplikacji mobilnej",
+    "timeline.oct.desc": "Dodanie playera wewnątrz aplikacji mobilnej",
+    "timeline.nov.month": "Listopad",
+    "timeline.nov.title": "Konta użytkowników",
+    "timeline.nov.desc": "Dodać możliwość tworzenia kont użytkowników",
+    "timeline.dec.month": "Grudzień",
+    "timeline.dec.title": "Sterowanie komputerem",
+    "timeline.dec.desc": "Dodać sterowanie komputerem",
+
+    "screens.desktop.title": "Zrzuty ekranu (Desktop)",
+    "screens.desktop.alt1": "Widok 1",
+    "screens.desktop.alt2": "Widok 2",
+    "screens.desktop.alt3": "Widok 3",
+    "screens.mobile.title": "Zrzuty ekranu (Mobile)",
+    "screens.mobile.alt1": "Mobile 1",
+    "screens.mobile.alt2": "Mobile 2",
+    "screens.mobile.alt3": "Mobile 3",
+
+    "video.title": "Szybki przegląd wideo",
+    "video.aria": "Podgląd wideo",
+    "video.unsupported": "Twoja przeglądarka nie wspiera tagu wideo.",
+    "video.fullscreen": "Przełącz tryb pełnoekranowy",
+
+    "floating.github": "Repozytorium PiotrFlix na GitHub",
+    "pfv2.banner.pill": "Nowość",
+    "pfv2.banner.title": "PiotrFlix v2",
+    "pfv2.banner.desc": "Nowy PiotrFlix v2 już dostępny w sekcji „Projekty”.",
+    "pfv2.banner.linkAria": "Przejdź do projektu PiotrFlix v2",
+    "pfv2.banner.closeAria": "Zamknij pasek informacyjny",
+    "pfv2.banner.logoAlt": "Logo PiotrFlix",
+
+     pfv2_card_link_aria: "Przejdź do projektu PiotrFlix v2",
+    pfv2_card_pill_aria: "Nowa wersja aplikacji już dostępna",
+    pfv2_card_pill_text: "Nowa wersja aplikacji już dostępna",
+    pfv2_card_logo_alt:  "Logo PiotrFlix",
+    pfv2_card_title:     "PiotrFlix v2",
+    pfv2_card_desc:
+      "Nowa, odświeżona wersja PiotrFlix wprowadza przejrzysty onboarding, całkowicie przeprojektowany interfejs i pełne GUI zamiast trybu konsolowego na PC. Do tego cast na wybrane urządzenie do TV, szybsze wyszukiwanie i lepsze metadane TMDb.",
+    pfv2_card_tags:
+      "#Python #PyQt6 #TMDb #GUI #DesktopApp #CastToTV #Onboarding #UX #MediaManager",
+    pfv2_card_list: [
+      "Pełne GUI w PyQt6 (MVVM)",
+      "Cast na wybrane urządzenie (bez Chromecasta)",
+      "Szybkie wyszukiwanie (FTS + lokalny indeks)",
+      "TMDb: plakaty, opisy, gatunki",
+      "Tagi, kolejki, cleanup po 7 dniach",
+      "Tryb offline (PWA) – przegląd biblioteki"
+    ],
+    
+
+
   },
+
+
+  
+
 
   en: {
     title: "Piotr Kawa - Portfolio",
@@ -410,6 +564,7 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
     changelog: {
       label: "Recent updates",
       lines: [
+    "📅 [2025-09-20] ✨ New project added to Python",
     "📅 [2025-08-27] 🛠️ Menu update, fix for update bar display on mobile.",
     "📅 [2025-08-27] 💬 Added Tidio chat support across the entire site.",
     "📅 [2025-08-26] ✨ Visual refresh (Aurora/Glass), full dark mode and CSS refactor.",
@@ -736,8 +891,29 @@ about_interests_title: "Interests",
       "Extend to allow direct movie playback in app",
       "Implement resource monitoring and push notifications",
     ],
-
+    // PiotrFlix v2.0
+  piotrflix_title2: "PiotrFlix v2",
+  piotrflix_desc2: "The new and refreshed version of PiotrFlix introduces a streamlined onboarding flow, a completely redesigned user interface, and a full graphical environment, replacing the console-based view in the PC edition. The application now features a modern GUI, intuitive navigation, the ability to cast content directly to your TV, and continued integration with the TMDB API for automatic metadata and poster retrieval. PiotrFlix v2 is a convenient and comprehensive tool for managing your movie and TV show library.",
+  piotrflix_tags2: "#Python #PyQt6 #TMDB #GUI #DesktopApp #CastToTV #Onboarding #UX #MediaManager",
   carousel_project_WD_desc: "An application for managing WD MyCloud cloud storage with WebDAV support.",
+      pfv2_card_link_aria: "Go to the PiotrFlix v2 project",
+    pfv2_card_pill_aria: "A new app version is available",
+    pfv2_card_pill_text: "A new app version is available",
+    pfv2_card_logo_alt:  "PiotrFlix logo",
+    pfv2_card_title:     "PiotrFlix v2",
+    pfv2_card_desc:
+      "The refreshed PiotrFlix introduces a clear onboarding, a fully redesigned UI and a full desktop GUI instead of console mode. Plus: casting to a selected TV device, faster search, and improved TMDb metadata.",
+    pfv2_card_tags:
+      "#Python #PyQt6 #TMDb #GUI #DesktopApp #CastToTV #Onboarding #UX #MediaManager",
+    pfv2_card_list: [
+      "Full GUI in PyQt6 (MVVM)",
+      "Cast to a selected device (no Chromecast)",
+      "Fast search (FTS + local index)",
+      "TMDb: posters, overviews, genres",
+      "Tags, queues, 7-day cleanup",
+      "Offline mode (PWA) – library preview"
+    ],
+  
     // TITLE & MENU
   wdcloud_title: "WD Cloud Dashboard – Advanced WebDAV Integration Platform",
   menu_logo: "PK Portfolio",
@@ -745,6 +921,113 @@ about_interests_title: "Interests",
   menu_projects: "Projects",
   menu_about: "About Me",
   menu_contact: "Contact",
+   "badge.newVersion": "New app version available",
+
+    "hero.title": "PiotrFlix v2 — a brand-new chapter",
+    "hero.lead1": "New onboarding, redesigned UI, and a full GUI instead of console mode. Plus <strong>casting to a selected TV device</strong> (no Chromecast), faster search, and a solid TMDb metadata engine.",
+    "hero.lead2": "<strong>Desktop GUI is functionally identical to the mobile app</strong> (library, cast, queues, tags, TMDb, cleanup, offline).",
+
+    "cta.download": "Download v1.0.7",
+    "cta.repo": "View repository",
+    "chip.version": "Version: v1.0.7",
+    "chip.platforms": "Windows / macOS / Linux",
+    "chip.license": "License: MIT",
+
+    "power.sectionAria": "Power features",
+    "power.title": "Power features",
+    "power.ariaList": "Scrollable list of features",
+    "power.prev": "Scroll left",
+    "power.next": "Scroll right",
+
+    "power.cast.cardAria": "Cast to TV — feature card",
+    "power.cast.title": "Cast to TV (selected device)",
+    "power.cast.desc": "Pick a device and start with resume + a single initial seek. Stable playback with no viewer rewind — no Chromecast required.",
+    "power.cast.modal.title": "Cast to TV (selected device)",
+    "power.cast.modal.desc": "Choose a PLEX device and play with resume. Stable and Chromecast-free.",
+
+    "power.random.cardAria": "Random movie — feature card",
+    "power.random.title": "Pick a random movie 🎲",
+    "power.random.desc": "Can’t decide? One click picks a title from your library — with filters for tags, duration, and rating.",
+    "power.random.modal.title": "Random movie",
+    "power.random.modal.desc": "One click to pick a title with filters: genre, duration, rating.",
+
+    "power.cleanup.cardAria": "Cleanup after 7 days — feature card",
+    "power.cleanup.title": "Cleanup after 7 days",
+    "power.cleanup.desc": "Auto-delete watched items (100%) along with the poster and cache entry. We also tidy season folders.",
+    "power.cleanup.modal.title": "Cleanup after 7 days",
+    "power.cleanup.modal.desc": "Auto-delete watched items and clean up season folders.",
+
+    "power.tmdb.cardAria": "TMDb — feature card",
+    "power.tmdb.title": "TMDb — posters & tags",
+    "power.tmdb.desc": "Automatic metadata (overview, rating, genres), local cache, and single-endpoint genre backfill.",
+    "power.tmdb.modal.title": "TMDb — posters & tags",
+    "power.tmdb.modal.desc": "Automatic metadata (overview, rating, genres) and local cache.",
+
+    "power.tags.cardAria": "Tags & collections — feature card",
+    "power.tags.title": "Tags & collections",
+    "power.tags.desc": "Organize your library with custom tags and collections. Full-text search across titles and cast.",
+    "power.tags.modal.title": "Tags & collections",
+    "power.tags.modal.desc": "Organize your library using custom tags and collections.",
+
+    "power.offline.cardAria": "Offline mode — feature card",
+    "power.offline.title": "Offline mode (PWA)",
+    "power.offline.desc": "Service Worker, offline page and asset cache — comfortably browse your library without a connection.",
+    "power.offline.modal.title": "Offline mode (PWA)",
+    "power.offline.modal.desc": "Service Worker and asset cache — convenient library preview without network.",
+
+    "tech.title": "Architecture",
+    "tech.desc": "App in Python 3.x, GUI in PyQt6 (MVVM), local SQLite + FTS index, TMDb with cache and rate limit, cast with a single initial seek.",
+    "tech.code": "# sample endpoint: pick a random movie",
+
+    "features.title": "What exactly ships in v2?",
+    "features.randomByGenre.title": "Random movie by genre",
+    "features.randomByGenre.desc": "Choose one or more genres; extra filters: minimum rating, duration, year.",
+    "features.castPlex.title": "Cast on PLEX with device selection",
+    "features.castPlex.desc": "After signing into PLEX, choose a target device and start with resume. No Chromecast needed.",
+    "features.castPlayer.title": "Built-in cast player",
+    "features.castPlayer.desc": "See title, cover, time and progress; pause/resume, stop, seek; state synced with the target device.",
+    "features.libtorrent.title": "Built-in libtorrent (no Deluge)",
+    "features.libtorrent.desc": "Add torrents without an external client; speed limits, auto-pause on finish, progress monitor, TMDb integration.",
+    "features.livesearch.title": "Live search in “Available”",
+    "features.livesearch.desc": "On-the-fly filtering by title, cast, genres and tags thanks to local FTS.",
+    "features.autocleanup.title": "Auto-delete files after 7 days",
+    "features.autocleanup.desc": "Movies: deleted 7 days after being marked watched; TV: when all seasons/episodes are completed.",
+    "features.genreLabels.title": "Movie genre labels",
+    "features.genreLabels.desc": "Consistent genre badges for filtering, random pick and browsing (desktop & mobile).",
+
+    "timeline.title": "Roadmap",
+    "timeline.badge.planned": "Planned",
+    "timeline.oct.month": "October",
+    "timeline.oct.title": "In-app player on mobile",
+    "timeline.oct.desc": "Add an embedded player inside the mobile app",
+    "timeline.nov.month": "November",
+    "timeline.nov.title": "User accounts",
+    "timeline.nov.desc": "Add the ability to create user accounts",
+    "timeline.dec.month": "December",
+    "timeline.dec.title": "Computer control",
+    "timeline.dec.desc": "Add computer remote control",
+
+    "screens.desktop.title": "Screenshots (Desktop)",
+    "screens.desktop.alt1": "View 1",
+    "screens.desktop.alt2": "View 2",
+    "screens.desktop.alt3": "View 3",
+    "screens.mobile.title": "Screenshots (Mobile)",
+    "screens.mobile.alt1": "Mobile 1",
+    "screens.mobile.alt2": "Mobile 2",
+    "screens.mobile.alt3": "Mobile 3",
+
+    "video.title": "Quick video overview",
+    "video.aria": "Video preview",
+    "video.unsupported": "Your browser does not support the video tag.",
+    "video.fullscreen": "Toggle fullscreen",
+
+    "floating.github": "PiotrFlix repository on GitHub",
+        "pfv2.banner.pill": "New",
+    "pfv2.banner.title": "PiotrFlix v2",
+    "pfv2.banner.desc": "PiotrFlix v2 is now available in the “Projects” section.",
+    "pfv2.banner.linkAria": "Go to the PiotrFlix v2 project",
+    "pfv2.banner.closeAria": "Dismiss info bar",
+    "pfv2.banner.logoAlt": "PiotrFlix logo",
 
   // HEADER & INTRO
   wdcloud_heading: "WD Cloud Dashboard – Full Integration with WebDAV and Cloud API",
@@ -788,8 +1071,11 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
     "Remote user/device management",
     "Light/Dark UI themes toggle",
       ],
-    } 
+    } ,
+
+
   }
+
 
 
 
@@ -808,5 +1094,113 @@ window.translations = {
 
 const langChangeEvent = new Event('languageChanged');
 document.dispatchEvent(langChangeEvent);
+
+/* pfv2-banner.safe-i18n.js — realtime, izolowany i18n dla bannera */
+(function () {
+  const ROOT = document.getElementById('pfv2-banner');
+  if (!ROOT) return;
+
+  // Upewnij się, że globalny i18n nie grzebie w tym subdrzewie
+  ROOT.setAttribute('data-i18n-skip', '');
+
+  // Minimalny słownik tylko dla bannera
+  const DICTS = {
+    pl: {
+      "newbar.regionAria": "Nowość: PiotrFlix v2 dostępny w projektach",
+      "newbar.linkAria":   "Przejdź do projektu PiotrFlix v2",
+      "newbar.logoAlt":    "Logo PiotrFlix",
+      "newbar.title":      "PiotrFlix v2",
+      "newbar.pill":       "Nowość",
+      "newbar.desc":       "Nowy PiotrFlix v2 już dostępny w sekcji „Projekty”.",
+      "newbar.closeTitle": "Zamknij",
+      "newbar.closeAria":  "Zamknij powiadomienie"
+    },
+    en: {
+      "newbar.regionAria": "New: PiotrFlix v2 is available in Projects",
+      "newbar.linkAria":   "Go to the PiotrFlix v2 project",
+      "newbar.logoAlt":    "PiotrFlix logo",
+      "newbar.title":      "PiotrFlix v2",
+      "newbar.pill":       "New",
+      "newbar.desc":       "PiotrFlix v2 is now available in the “Projects” section.",
+      "newbar.closeTitle": "Close",
+      "newbar.closeAria":  "Close notification"
+    }
+  };
+
+  const norm = (x) => (x || 'pl').toLowerCase().startsWith('en') ? 'en' : 'pl';
+  function currentLang() {
+    try {
+      const ls = localStorage.getItem('lang');
+      if (ls) return norm(ls);
+    } catch (_) {}
+    return norm(document.documentElement.getAttribute('lang') || 'pl');
+  }
+  function t(key, lang) {
+    const L = lang || currentLang();
+    return (DICTS[L] && DICTS[L][key]) || (DICTS.pl && DICTS.pl[key]) || '';
+  }
+
+  function apply(lang) {
+    // atrybuty
+    ROOT.setAttribute('aria-label', t('newbar.regionAria', lang));
+
+    const link = ROOT.querySelector('.pfv2-link');
+    if (link) link.setAttribute('aria-label', t('newbar.linkAria', lang));
+
+    const logo = ROOT.querySelector('.pfv2-logo');
+    if (logo) logo.setAttribute('alt', t('newbar.logoAlt', lang));
+
+    const close = ROOT.querySelector('.pfv2-close');
+    if (close) {
+      close.setAttribute('title', t('newbar.closeTitle', lang));
+      close.setAttribute('aria-label', t('newbar.closeAria', lang));
+    }
+
+    // teksty
+    const title = ROOT.querySelector('[data-i18n="newbar.title"]');
+    if (title) title.textContent = t('newbar.title', lang);
+
+    const pill = ROOT.querySelector('[data-i18n="newbar.pill"]');
+    if (pill) pill.textContent = t('newbar.pill', lang);
+
+    const desc = ROOT.querySelector('[data-i18n="newbar.desc"]');
+    if (desc) desc.textContent = t('newbar.desc', lang);
+  }
+
+  // init
+  apply();
+
+  // ——— Realtime triggery ———
+  // 1) Wasz globalny event
+  document.addEventListener('languageChanged', (e) => apply(e?.detail?.lang));
+
+  // 2) Alternatywny custom event
+  window.addEventListener('pf:set-lang', (e) => apply(e?.detail?.lang));
+
+  // 3) Klik w przycisk języka (jeśli istnieje)
+  const langBtn = document.getElementById('lang-toggle');
+  if (langBtn) langBtn.addEventListener('click', () => setTimeout(() => apply(), 0));
+
+  // 4) Zmiana <html lang="..">
+  new MutationObserver(() => apply()).observe(document.documentElement, {
+    attributes: true, attributeFilter: ['lang']
+  });
+
+  // 5) Zmiany localStorage (inne karty)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'lang') apply();
+  });
+
+  // 6) Podłącz się do window.i18nSetLang (jeśli jest)
+  if (!window.__pfv2BannerI18nPatched && typeof window.i18nSetLang === 'function') {
+    const prev = window.i18nSetLang;
+    window.i18nSetLang = function(lang) {
+      prev(lang);
+      apply(lang); // natychmiast
+      setTimeout(() => apply(lang), 0); // i po mikro-ticku (gdy global coś przepisał)
+    };
+    window.__pfv2BannerI18nPatched = true;
+  }
+})();
 
 

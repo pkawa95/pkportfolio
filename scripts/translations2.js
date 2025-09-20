@@ -11,22 +11,16 @@ const translationsUpdates = {
     updates_twitter_title: "Ostatnie aktualizacje — Piotr Kawa",
     updates_twitter_description: "Lista najnowszych zmian i poprawek na stronie.",
 
-     // 2025-09-01a — przebudowa nawigacji
-    updates_item_2025_09_01a_date: "wrzesień 2025",
-    updates_item_2025_09_01a_text: "Przebudowa menu (desktop/mobile), boczny panel i aktywne linki",
-    updates_item_2025_09_01a_title: "Przebudowa nawigacji + boczny panel (drawer)",
-    updates_item_2025_09_01a_desc:
-      "Zmodernizowałem nawigację na desktopie i mobile: menu przeniosłem do bocznego, wysuwanego panelu z podświetlaniem aktywnych linków. Usunąłem zbędny CSS i scaliłem logikę w jeden lekki plik menu (HTML+JS+CSS). Animacje są płynniejsze, mniej obciążają przeglądarkę i respektują prefers-reduced-motion.",
-    updates_item_2025_09_01a_b1:
-      "<strong>Menu:</strong> boczny panel (drawer) na desktop/mobile z <em>focus-trap</em>, zamykaniem <kbd>ESC</kbd> i poprawnym ARIA.",
-    updates_item_2025_09_01a_b2:
-      "<strong>Aktywne linki:</strong> automatyczne podświetlanie wg trasy i <em>scrollspy</em> sekcji.",
-    updates_item_2025_09_01a_b3:
-      "<strong>CSS:</strong> purge nieużywanych reguł, mniej duplikacji, porządek w tokenach kolorów.",
-    updates_item_2025_09_01a_b4:
-      "<strong>Bundle:</strong> jeden plik menu (HTML+JS+CSS) z <em>lazy-load</em> tam, gdzie ma sens.",
-    updates_item_2025_09_01a_b5:
-      "<strong>Animacje:</strong> lżejsze, stabilne 60&nbsp;fps; krótsze krzywe i mniejszy <em>repaint</em>.",
+    // 2025-09-20 (PiotrFlix 2.0 + repo refresh)
+    updates_item_2025_09_20_date: "20.09.2025",
+  updates_item_2025_09_20_text: "Dodano nowy projekt w sekcji Python — „PiotrFlix 2.0” i zaktualizowano repozytorium GitHub",
+  updates_item_2025_09_20_title: "PiotrFlix 2.0 — nowy projekt + odświeżone repo",
+  updates_item_2025_09_20_desc: "Dodałem „PiotrFlix 2.0” do sekcji Python — całkowicie przebudowana wersja z lepszym GUI, integracją TMDb i szybkim wyszukiwaniem. Repozytorium na GitHub otrzymało nowe README, tagi i porządek w wydaniach, żeby łatwiej było wystartować.",
+  updates_item_2025_09_20_tag_python: "Python",
+  updates_item_2025_09_20_tag_release: "Wydanie",
+  updates_item_2025_09_20_tag_repo: "GitHub",
+  updates_item_2025_09_20_tag_pf: "PiotrFlix 2.0",
+
 
     //2025-08-27b (TIDIO)
      updates_item_2025_08_27b_date: "2025-08-27",
@@ -162,6 +156,7 @@ const translationsUpdates = {
     changelog: {
       label: "Ostatnie aktualizacje",
       lines: [
+        "📅 [2025-09-20] ✨ Nowy projekt dodany do sekcji Python!",
         "📅 [2025-08-27] 🛠️ Aktualizacja menu, naprawa wyświetlania paska aktualizacji na wersji mobilnej.",
         "📅 [2025-08-27] 💬 Dodano obsługę Tidio chat na całości strony.",
         "📅 [2025-08-26] ✨ Odświeżenie UI (Aurora/Glass), pełny dark mode i refaktor CSS.",
@@ -194,26 +189,18 @@ const translationsUpdates = {
   updates_item_2025_08_27c_b2: "<strong>Media:</strong> optimized photo + proper <code>alt</code>.",
   updates_item_2025_08_27c_b3: "<strong>UX:</strong> clear CTAs and links to social profiles.",
   chip_content: "Content",
-  
-  // 2025-09-01a — navigation overhaul
-    updates_item_2025_09_01a_date: "September 2025",
-    updates_item_2025_09_01a_text: "Navigation rebuild (desktop/mobile), side drawer & active links",
-    updates_item_2025_09_01a_title: "Navigation overhaul + side drawer",
-    updates_item_2025_09_01a_desc:
-      "I modernized navigation across desktop and mobile: moved the menu into a side, slide-out drawer with active-link highlighting. Purged unused CSS and merged logic into a single lightweight menu file (HTML+JS+CSS). Animations are smoother, lighter on the browser and respect prefers-reduced-motion.",
-    updates_item_2025_09_01a_b1:
-      "<strong>Menu:</strong> side drawer on desktop/mobile with a <em>focus trap</em>, <kbd>ESC</kbd> to close and proper ARIA.",
-    updates_item_2025_09_01a_b2:
-      "<strong>Active links:</strong> automatic highlighting based on route and section <em>scrollspy</em>.",
-    updates_item_2025_09_01a_b3:
-      "<strong>CSS:</strong> purge of unused rules, less duplication, tidy color tokens.",
-    updates_item_2025_09_01a_b4:
-      "<strong>Bundle:</strong> a single menu file (HTML+JS+CSS) with <em>lazy-load</em> where it makes sense.",
-    updates_item_2025_09_01a_b5:
-      "<strong>Animations:</strong> lighter, stable 60&nbsp;fps; shorter easing and reduced repaint.",
 
-  
-  //2025-08-27b (TIDIO)
+  // 2025-09-20 (PiotrFlix 2.0 + repo refresh)
+  updates_item_2025_09_20_date: "2025-09-20",
+  updates_item_2025_09_20_text: "Added a new project to the Python section — “PiotrFlix 2.0” and updated the GitHub repository",
+  updates_item_2025_09_20_title: "PiotrFlix 2.0 — new project + refreshed repo",
+  updates_item_2025_09_20_desc: "Added “PiotrFlix 2.0” to the Python section — a rebuilt release with a better GUI, TMDb integration and faster search. The GitHub repository now has an updated README, tags and cleaned-up releases to make onboarding easier.",
+  updates_item_2025_09_20_tag_python: "Python",
+  updates_item_2025_09_20_tag_release: "Release",
+  updates_item_2025_09_20_tag_repo: "GitHub",
+  updates_item_2025_09_20_tag_pf: "PiotrFlix 2.0",
+
+    //2025-08-27b (TIDIO)
     updates_item_2025_08_27b_date: "2025-08-27",
   updates_item_2025_08_27b_text: "Added Tidio chat support across the entire site",
   updates_item_2025_08_27b_title: "Site-wide Tidio integration",
@@ -345,6 +332,7 @@ const translationsUpdates = {
     changelog: {
       label: "Recent updates",
       lines: [
+        "📅 [2025-09-20] ✨ New project added to Python",
         "📅 [2025-08-27] 🛠️ Menu update, fix for update bar display on mobile.",
         "📅 [2025-08-27] 💬 Added Tidio chat support across the entire site.",
         "📅 [2025-08-26] ✨ Visual refresh (Aurora/Glass), full dark mode and CSS refactor.",
