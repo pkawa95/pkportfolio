@@ -399,6 +399,8 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
     comingsoon_h1: "🔧 Zawartość w trakcie przygotowania",
     comingsoon_p: "Ta sekcja jest jeszcze w budowie. Już wkrótce pojawią się tutaj nowe treści.<br>Zapraszam do odwiedzin w najbliższym czasie!",
     comingsoon_back: "← Powrót do strony głównej",
+    cta_download: "Pobierz {version}",
+    chip_version: "Wersja: {version}",
 
     //PiotrFlix v2.0
   piotrflix_title2: "PiotrFlix v2",
@@ -427,7 +429,7 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
     "hero.lead1": "Nowy onboarding, przeprojektowany interfejs i pełne GUI zamiast trybu konsolowego. Do tego <strong>cast na wybrane urządzenie do TV</strong> (bez Chromecasta), szybsze wyszukiwanie i solidny silnik metadanych TMDb.",
     "hero.lead2": "<strong>GUI desktop = funkcjonalnie identyczne z aplikacją mobilną</strong> (biblioteka, cast, kolejki, tagi, TMDb, cleanup, offline).",
 
-    "cta.download": "Pobierz v1.0.7",
+    "cta.download": "Pobierz PiotrFlix v2",
     "cta.repo": "Zobacz repozytorium",
     "chip.version": "Wersja: v1.0.7",
     "chip.platforms": "Windows / macOS / Linux",
@@ -546,6 +548,72 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
       "Tryb offline (PWA) – przegląd biblioteki"
     ],
     
+      auto_cache_card_title: "Lokalny cache w %APPDATA%",
+  auto_cache_card_aria: "Lokalny cache — karta funkcji",
+  auto_cache_card_modalTitle: "Lokalny cache w %APPDATA%",
+  auto_cache_card_modalDesc: "Postępy oglądania i plakaty w bezpiecznym cache. Automatyczne czyszczenie nieużywanych plików.",
+  auto_cache_card_desc: "Postępy oglądania, plakaty i metadane w cache — z autoczyszczeniem przy usuwaniu pozycji.",
+
+  auto_watchdog_card_title: "Watchdog w tle",
+  auto_watchdog_card_aria: "Watchdog — karta funkcji",
+  auto_watchdog_card_modalTitle: "Watchdog w tle",
+  auto_watchdog_card_modalDesc: "Monitoruje katalogi biblioteki: wykrywa dodania/usunięcia filmów i seriali w czasie rzeczywistym.",
+  auto_watchdog_card_desc: "Ciągły monitoring biblioteki i stanów plików — aplikacja ma pełną kontrolę nad danymi.",
+
+  auto_onboarding_card_title: "Onboarding krok-po-kroku",
+  auto_onboarding_card_aria: "Onboarding — karta funkcji",
+  auto_onboarding_card_modalTitle: "Onboarding krok-po-kroku",
+  auto_onboarding_card_modalDesc: "Przejrzysty kreator konfiguracji: ścieżki, konto PLEX, źródła TMDb, katalogi i test połączeń.",
+  auto_onboarding_card_desc: "Prosty kreator instalacyjny prowadzi przez całą konfigurację.",
+
+  auto_plex_card_title: "PLEX: progres oglądania",
+  auto_plex_card_aria: "PLEX progres — karta funkcji",
+  auto_plex_card_modalTitle: "PLEX: progres oglądania",
+  auto_plex_card_modalDesc: "Pobieramy z API PLEX postęp oglądania i pokazujemy go w sekcji „Dostępne”.",
+  auto_plex_card_desc: "Synchronizacja postępów z PLEX i pasek progresu w „Dostępne”.",
+
+  auto_realtime_card_title: "Autentyczne media (RT)",
+  auto_realtime_card_aria: "Autentyczne media — karta funkcji",
+  auto_realtime_card_modalTitle: "Autentyczne media (RT)",
+  auto_realtime_card_modalDesc: "Wszystkie zrzuty i klipy pochodzą z prawdziwego działania aplikacji. Działania na filmach wykonywane są w czasie rzeczywistym.",
+  auto_realtime_card_desc: "Screeny i wideo są z realnej aplikacji, akcje wykonywane na żywo.",
+
+  legal_notice_title: "Oświadczenie prawne",
+  legal_notice_body: "PiotrFlix może pobierać torrenty z serwisów takich jak The Pirate Bay (TPB) czy YTS wyłącznie w celach demonstracyjnych i edukacyjnych. Autorzy nie hostują żadnych treści, nie zachęcają do naruszania praw autorskich i nie wspierają piractwa. Korzystaj wyłącznie z materiałów, do których masz prawo (domena publiczna, własne kopie zapasowe, licencje). Odpowiedzialność za sposób użycia aplikacji spoczywa na użytkowniku.",
+  legal_notice_emphasis: "Szanuj prawo. Używaj legalnych źródeł.",
+  legal_notice_small: "Zgodność z lokalnym prawem może się różnić w zależności od jurysdykcji — sprawdź przepisy w swoim kraju.",
+
+  
+
+  /* ——— Sekcja „Automatyzacja i cache” ——— */
+  auto_section_title: "Automatyzacja i cache",
+
+  auto_cache_title: "%APPDATA%: cache postępów i plakatów",
+  auto_cache_desc: "Postępy oglądania, miniatury i metadane zapisujemy lokalnie w %APPDATA%/PiotrFlix. Podczas usuwania pozycji cache sprząta zbędne pliki, a przy dodawaniu — dociąga brakujące plakaty.",
+
+  auto_watchdog_title: "Watchdog katalogów",
+  auto_watchdog_desc: "Proces w tle nasłuchuje zmian w bibliotekach (dodanie/usunięcie/zmiana). Interfejs odświeża listy w czasie rzeczywistym — aplikacja zachowuje pełną spójność danych.",
+
+  auto_onboarding_title: "Onboarding — zero zagubienia",
+  auto_onboarding_desc: "Kreator przeprowadza przez ścieżki bibliotek, logowanie PLEX, klucz TMDb i test połączeń. Konfiguracja kończy się walidacją i zapisem profilu.",
+
+  auto_plex_title: "PLEX API: progres w „Dostępne”",
+  auto_plex_desc: "Pobieramy poziom obejrzenia z API PLEX i pokazujemy pasek postępu bezpośrednio na kafelkach. Postęp synchronizuje się w tle.",
+
+  auto_realtime_title: "Autentyczne obrazy i wideo",
+  auto_realtime_desc: "Wszystkie zrzuty ekranu i klipy pochodzą z działającej aplikacji. Operacje (cast, cleanup, tagi) nagrywamy w czasie rzeczywistym.",
+  onbshots_title: "Zrzuty Ekranu Onboarding (Desktop)",
+  onbshots_lead: "Aplikacja prowadzi przez cały proces instalacji. Wyświetla jasne komunikaty, automatycznie skanuje sieć w poszukiwaniu serwera Plex oraz pobiera token dostępu do konta Plex. Użytkownik wybiera katalogi z Filmami i Serialami – lokalne oraz sieciowe. Dzięki obsłudze zasobów SMB/NAS możesz korzystać nie tylko z dysku lokalnego, ale też folderów w sieci lokalnej.",
+  onbshots_alt1: "Ekran powitalny kreatora",
+  onbshots_alt2: "Wykrywanie serwera Plex w sieci",
+  onbshots_alt3: "Wybór katalogów filmów i seriali",
+  onbshots_alt4: "Podsumowanie i walidacja konfiguracji",
+  onbshots_cap1: "Start kreatora: szybkie sprawdzenie środowiska i pierwsze ustawienia.",
+  onbshots_cap2: "Automatyczny skan sieci i wykrywanie serwera Plex, wraz z pobraniem tokenu.",
+  onbshots_cap3: "Wybór lokalnych i sieciowych katalogów: Filmy oraz Seriale.",
+  onbshots_cap4: "Podsumowanie ustawień, testy połączeń i finalizacja instalacji.",
+  onbshots_badge: "Nowość",
+
 
 
   },
@@ -921,13 +989,77 @@ about_interests_title: "Interests",
   menu_projects: "Projects",
   menu_about: "About Me",
   menu_contact: "Contact",
+
+    auto_cache_card_title: "Local cache in %APPDATA%",
+  auto_cache_card_aria: "Local cache — feature card",
+  auto_cache_card_modalTitle: "Local cache in %APPDATA%",
+  auto_cache_card_modalDesc: "Playback progress and posters stored safely in cache. Unused files are auto-cleaned.",
+  auto_cache_card_desc: "Progress, posters and metadata cached — with auto-cleanup when items are removed.",
+
+  auto_watchdog_card_title: "Background watchdog",
+  auto_watchdog_card_aria: "Watchdog — feature card",
+  auto_watchdog_card_modalTitle: "Background watchdog",
+  auto_watchdog_card_modalDesc: "Monitors library folders: detects added/removed movies and shows in real time.",
+  auto_watchdog_card_desc: "Continuous monitoring of the library and file states — full control over data.",
+
+  auto_onboarding_card_title: "Step-by-step onboarding",
+  auto_onboarding_card_aria: "Onboarding — feature card",
+  auto_onboarding_card_modalTitle: "Step-by-step onboarding",
+  auto_onboarding_card_modalDesc: "Clear setup wizard: paths, PLEX account, TMDb keys, folders and connection tests.",
+  auto_onboarding_card_desc: "A simple installer wizard guides you through the entire configuration.",
+
+  auto_plex_card_title: "PLEX: watch progress",
+  auto_plex_card_aria: "PLEX progress — feature card",
+  auto_plex_card_modalTitle: "PLEX: watch progress",
+  auto_plex_card_modalDesc: "We fetch progress from the PLEX API and display it in the \"Available\" section.",
+  auto_plex_card_desc: "Sync progress from PLEX and show a progress bar in \"Available\".",
+
+  auto_realtime_card_title: "Authentic media (RT)",
+  auto_realtime_card_aria: "Authentic media — feature card",
+  auto_realtime_card_modalTitle: "Authentic media (RT)",
+  auto_realtime_card_modalDesc: "All screenshots and clips come from the real app. Actions on titles happen in real time.",
+  auto_realtime_card_desc: "Screens and videos are from the actual app; actions are performed live.",
+
+  /* ——— Section “Automation & cache” ——— */
+  auto_section_title: "Automation & cache",
+
+  auto_cache_title: "%APPDATA%: progress & poster cache",
+  auto_cache_desc: "We store progress, thumbnails and metadata locally in %APPDATA%/PiotrFlix. On delete we clean redundant files; on add we fetch missing posters.",
+
+  auto_watchdog_title: "Folder watchdog",
+  auto_watchdog_desc: "A background process listens for library changes (add/remove/modify). The UI refreshes in real time to keep data consistent.",
+
+  auto_onboarding_title: "Onboarding — zero confusion",
+  auto_onboarding_desc: "The wizard covers library paths, PLEX login, TMDb key and connection tests. It ends with validation and profile save.",
+
+  auto_plex_title: "PLEX API: progress in \"Available\"",
+  auto_plex_desc: "We pull the watched percentage from the PLEX API and show a progress bar right on the tiles. It stays in sync in the background.",
+
+  auto_realtime_title: "Authentic images & video",
+  auto_realtime_desc: "Every screenshot and clip is captured from the running app. Operations (cast, cleanup, tags) are recorded in real time.",
+  legal_notice_title: "Legal Notice",
+  legal_notice_body: "PiotrFlix may retrieve torrents from services such as The Pirate Bay (TPB) and YTS for demonstration and educational purposes only. The authors do not host any content, do not encourage copyright infringement, and do not support piracy. Use only content you are legally entitled to (public-domain works, your own backups, licensed media). You are solely responsible for how you use the application.",
+  legal_notice_emphasis: "Respect the law. Use legal sources.",
+  legal_notice_small: "Compliance may vary by jurisdiction — check the laws in your country.",
+  onbshots_title: "Onboarding Screenshots (Desktop)",
+  onbshots_lead: "The app guides you through the entire setup. It shows clear prompts, automatically scans the network to find your Plex server and fetches the Plex access token. You choose your Movies and TV Shows folders — both local and network locations. With SMB/NAS support you can work not only with local drives but also with shared folders on your LAN.",
+  onbshots_alt1: "Welcome screen of the wizard",
+  onbshots_alt2: "Discovering Plex server on the network",
+  onbshots_alt3: "Selecting movie and TV show directories",
+  onbshots_alt4: "Summary and configuration validation",
+  onbshots_cap1: "Wizard start: environment check and first-time settings.",
+  onbshots_cap2: "Automatic network scan, Plex server discovery and token retrieval.",
+  onbshots_cap3: "Choose local and network folders: Movies and TV Shows.",
+  onbshots_cap4: "Settings summary, connection tests and finalization.",
+  onbshots_badge: "New",
+
    "badge.newVersion": "New app version available",
 
     "hero.title": "PiotrFlix v2 — a brand-new chapter",
     "hero.lead1": "New onboarding, redesigned UI, and a full GUI instead of console mode. Plus <strong>casting to a selected TV device</strong> (no Chromecast), faster search, and a solid TMDb metadata engine.",
     "hero.lead2": "<strong>Desktop GUI is functionally identical to the mobile app</strong> (library, cast, queues, tags, TMDb, cleanup, offline).",
 
-    "cta.download": "Download v1.0.7",
+    "cta.download": "Download PiotrFlix v2",
     "cta.repo": "View repository",
     "chip.version": "Version: v1.0.7",
     "chip.platforms": "Windows / macOS / Linux",
@@ -1060,6 +1192,8 @@ app = WsgiDAVApp({ "provider_mapping": {"/": provider}, ... })`,
   // VIDEO DEMO
   wdcloud_video_title: "Video Demo – Full Flow of Login and Drive Mounting",
   wdcloud_video_fallback: "Your browser does not support the video tag.",
+  cta_download: "Download {version}",
+  chip_version: "Version: {version}",
 
   // FUTURE PLANS
   wdcloud_future_title: "Future Plans",
@@ -1203,4 +1337,281 @@ document.dispatchEvent(langChangeEvent);
   }
 })();
 
+(function(){
+// ===== i18n (lokalne, z placeholderem {version} i kompatybilnością z %s) =====
+  const I18N = {
+    pl: {
+      cta_download: "Pobierz {version}",
+      cta_download_latest: "Pobierz najnowszą",
+      cta_repo: "Zobacz repozytorium",
+      chip_version: "Wersja: {version}"
+    },
+    en: {
+      cta_download: "Download {version}",
+      cta_download_latest: "Download latest",
+      cta_repo: "View repository",
+      chip_version: "Version: {version}"
+    }
+  };
+  const getLang = () => (document.documentElement.getAttribute('lang') || 'pl').slice(0,2);
 
+  // uniwersalna podmiana {version} / %s
+  const format = (template, vars) => {
+    let s = template || "";
+    if (vars?.version != null) {
+      s = s.replaceAll("{version}", vars.version)
+           .replace(/%s/g, vars.version);
+    }
+    return s;
+  };
+
+  // ===== GitHub Releases (cache w sessionStorage na 30 min) =====
+  const OWNER = "pkawa95";
+  const REPO  = "PiotrFlix";
+  const CACHE_KEY = "pf_latest_release_v1";
+  const CACHE_TTL_MS = 30*60*1000;
+
+  const byOS = (assets=[]) => {
+    const ua = navigator.userAgent || "";
+    const isWin  = /Windows/i.test(ua);
+    const isMac  = /Mac OS|Macintosh/i.test(ua);
+    const isLin  = /Linux|X11/i.test(ua) && !/Android/i.test(ua);
+
+    const pick = (exts) => assets.find(a => exts.some(ext => a.name?.toLowerCase().endsWith(ext)));
+
+    if (isWin) return pick(['.exe','.msi']) || null;
+    if (isMac) return pick(['.dmg','.pkg','.zip']) || null;
+    if (isLin) return pick(['.AppImage','.deb','.rpm','.tar.gz']) || null;
+    return null;
+  };
+
+  async function getLatestRelease(){
+    try{
+      const cached = sessionStorage.getItem(CACHE_KEY);
+      if (cached){
+        const {ts, data} = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL_MS) return data;
+      }
+    }catch(e){}
+
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`, {
+      headers:{'Accept':'application/vnd.github+json'}
+    });
+    if (!res.ok) throw new Error('GitHub API '+res.status);
+    const data = await res.json();
+
+    try{ sessionStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), data})); }catch(e){}
+    return data;
+  }
+
+  // ===== Render przycisku z tłumaczeniem =====
+function renderUI({version='latest', href=null} = {}){
+  const lang = I18N[getLang()] ? getLang() : 'en';
+  const btn  = document.getElementById('downloadBtn');
+  const repo = document.getElementById('repoBtn');
+  const chip = document.getElementById('verChip');
+
+  if (btn){
+    if (href) btn.href = href;
+
+    // jeśli wersja == latest i brak numeru -> użyj specjalnego klucza
+    const key = (version && version !== 'latest') ? 'cta_download' : 'cta_download_latest';
+
+    // tutaj wymuszamy podmianę placeholdera
+    let txt = I18N[lang][key] || "";
+    txt = txt.replace("{version}", version).replace("%s", version);
+
+    btn.textContent = txt;
+    btn.setAttribute('aria-label', txt);
+  }
+
+  if (repo){
+    repo.textContent = I18N[lang].cta_repo;
+  }
+
+  if (chip){
+    let chipTxt = I18N[lang].chip_version || "";
+    chipTxt = chipTxt.replace("{version}", version).replace("%s", version);
+    chip.textContent = chipTxt;
+  }
+}
+
+  async function hydrate(){
+    // stan początkowy – zanim przyjdzie API
+    renderUI({ version: '…' });
+
+    try{
+      const rel = await getLatestRelease();
+      const version = rel.tag_name || rel.name || 'latest';
+      const asset = byOS(rel.assets || []) || null;
+      renderUI({ version, href: asset ? asset.browser_download_url : (rel.html_url || undefined) });
+    }catch(e){
+      console.warn('Release fetch failed:', e);
+      renderUI({ version: 'latest' });
+    }
+  }
+
+  // start
+  hydrate();
+
+  // re-render przy zmianie języka (gdy Twój przełącznik modyfikuje <html lang="…">)
+  new MutationObserver(muts=>{
+    if (muts.some(m => m.attributeName === 'lang')){
+      // odczytaj aktualny stan (wersję linku/zawartość)
+      const btn = document.getElementById('downloadBtn');
+      const currentVer = (btn?.textContent?.match(/v[\w.\-]+/i) || [null])[0] || 'latest';
+      renderUI({ version: currentVer, href: btn?.href });
+    }
+  }).observe(document.documentElement, {attributes:true});
+})();
+
+
+(function () {
+  const REPO = "pkawa95/PiotrFlix";
+  const dlBtn = document.getElementById("dlBtn");
+  if (!dlBtn) return;
+
+  // proste formatowanie {token}
+  function formatTemplate(str, vars) {
+    return String(str).replace(/\{(\w+)\}/g, (_, k) => (vars && vars[k] != null ? vars[k] : ""));
+  }
+
+  // odśwież etykiety wg tłumaczeń + zmiennych
+  function applyI18nTo(el, key, vars) {
+    // jeżeli masz globalny system (np. window.applyTranslations) — spróbuj go użyć
+    if (typeof window.applyTranslations === "function") {
+      // przekaż zmienne do atrybutu, aby Twój system mógł je wziąć
+      el.setAttribute("data-i18n-vars", JSON.stringify(vars || {}));
+      window.applyTranslations(el);
+      return;
+    }
+
+    // fallback: użyj globalnego obiektu translations + lang z <html lang="...">
+    const lang = document.documentElement.lang || "pl";
+    const dict = (window.translations && window.translations[lang]) || {};
+    const template = dict[key] || el.textContent || "";
+    const labelTemplate = dict[key] || el.getAttribute("aria-label") || template;
+
+    el.textContent = formatTemplate(template, vars);
+    el.setAttribute("aria-label", formatTemplate(labelTemplate, vars));
+  }
+
+  // pobierz najnowsze wydanie z GitHub
+  async function fetchLatest() {
+    // spróbuj „latest”, a gdy nie wyjdzie — weź pierwsze z listy
+    const urls = [
+      `https://api.github.com/repos/${REPO}/releases/latest`,
+      `https://api.github.com/repos/${REPO}/releases`
+    ];
+    for (const url of urls) {
+      try {
+        const r = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
+        if (!r.ok) continue;
+        const data = await r.json();
+        if (Array.isArray(data) && data.length) return data[0]; // /releases
+        if (data && data.tag_name) return data;                // /releases/latest
+      } catch (_) {}
+    }
+    return null;
+  }
+
+  (async () => {
+    const rel = await fetchLatest();
+
+    // domyślne wartości (gdy API nie odpowie)
+    let tag = "v1.0.0";
+    let url = `https://github.com/${REPO}/releases`;
+
+    if (rel) {
+      tag = rel.tag_name || tag;
+      // spróbuj konkretnych assetów; jeśli brak — link do release
+      const asset = (rel.assets || []).find(a =>
+        /windows|win|exe|msi|dmg|mac|linux|AppImage|deb/i.test(a.name || "")
+      );
+      url = (asset && asset.browser_download_url) || rel.html_url || url;
+    }
+
+    // ustaw href + wstaw {version} do tłumaczeń
+    dlBtn.href = url;
+    const vars = { version: tag };
+    applyI18nTo(dlBtn, "cta_download", vars);
+
+    // Podpowiedź dla screenreaderów, jeśli chcesz bardziej opisowo:
+    // dlBtn.setAttribute("aria-label", dlBtn.getAttribute("aria-label") + " — " + url);
+  })();
+})();
+
+(function () {
+  const REPO = "pkawa95/PiotrFlix";
+  const dlBtn = document.querySelector("[data-i18n='cta.download']");
+  const verChip = document.querySelector("[data-i18n='chip.version']");
+
+  function formatTemplate(str, vars) {
+    return String(str).replace(/\{(\w+)\}/g, (_, k) =>
+      vars && vars[k] != null ? vars[k] : ""
+    );
+  }
+
+  function applyI18nTo(el, key, vars) {
+    if (!el) return;
+
+    // jeśli masz globalny loader (np. applyTranslations), korzystamy z niego
+    if (typeof window.applyTranslations === "function") {
+      el.setAttribute("data-i18n-vars", JSON.stringify(vars || {}));
+      window.applyTranslations(el);
+      return;
+    }
+
+    // fallback — bez systemu
+    const lang = document.documentElement.lang || "pl";
+    const dict = (window.translations && window.translations[lang]) || {};
+    const template = dict[key] || el.textContent || "";
+    const out = formatTemplate(template, vars);
+
+    el.textContent = out;
+    if (el.tagName === "A") el.setAttribute("aria-label", out);
+  }
+
+  async function fetchLatest() {
+    const urls = [
+      `https://api.github.com/repos/${REPO}/releases/latest`,
+      `https://api.github.com/repos/${REPO}/releases`
+    ];
+    for (const url of urls) {
+      try {
+        const r = await fetch(url, {
+          headers: { Accept: "application/vnd.github+json" }
+        });
+        if (!r.ok) continue;
+        const data = await r.json();
+        if (Array.isArray(data) && data.length) return data[0];
+        if (data && data.tag_name) return data;
+      } catch (_) {}
+    }
+    return null;
+  }
+
+  (async () => {
+    const rel = await fetchLatest();
+    let tag = "v1.0.0";
+    let url = `https://github.com/${REPO}/releases`;
+
+    if (rel) {
+      tag = rel.tag_name || tag;
+      const asset = (rel.assets || []).find(a =>
+        /windows|win|exe|msi|dmg|mac|linux|AppImage|deb/i.test(a.name || "")
+      );
+      url = (asset && asset.browser_download_url) || rel.html_url || url;
+    }
+
+    const vars = { version: tag };
+
+    if (dlBtn) {
+      dlBtn.href = url;
+      applyI18nTo(dlBtn, "cta.download", vars);
+    }
+    if (verChip) {
+      applyI18nTo(verChip, "chip.version", vars);
+    }
+  })();
+})();

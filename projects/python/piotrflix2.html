@@ -756,6 +756,241 @@ html[data-theme="light"] .tl-node[data-status="done"] .tl-dot{
   }
 }
 
+/* =========================================================
+   PF – VISUAL LIFT (kontrast, separatory, różnicowanie kart)
+   ========================================================= */
+
+/* 1) Sekcyjne nagłówki: gradientowa linia + sublabel (opcjonalnie .meta-pill) */
+.pf-section h2{
+  position: relative;
+  letter-spacing:.2px;
+}
+.pf-section h2::after{
+  content:"";
+  position:absolute; left:0; bottom:-6px;
+  width:72px; height:3px; border-radius:99px;
+  background:linear-gradient(90deg,var(--pf-primary-1),var(--pf-primary-2),var(--pf-accent));
+  opacity:.85;
+}
+.meta-pill{
+  display:inline-flex; align-items:center; gap:.4ch;
+  margin-left:.6rem; padding:.25rem .55rem;
+  font: 800 .72rem/1 var(--font,inherit);
+  border-radius:999px;
+  background: color-mix(in oklab, var(--pf-card) 88%, transparent);
+  border:1px solid var(--pf-border);
+  color: var(--pf-text-dim);
+}
+
+/* 2) Karty w pasku: delikatne zróżnicowanie tła + lekka ramka przy focus */
+.strip .card{
+  background: color-mix(in oklab, var(--pf-card) 94%, transparent);
+}
+.strip .card:nth-child(2n){
+  background: color-mix(in oklab, var(--pf-card) 88%, transparent);
+}
+.strip .card:focus-within{
+  box-shadow: 0 0 0 2px var(--pf-outline), var(--pf-shadow);
+  border-color: color-mix(in oklab, var(--pf-outline) 65%, var(--pf-border));
+}
+
+/* 3) Badge na karcie (opcjonalnie dodaj atrybut data-badge="Nowe") */
+.card[data-badge]::after{
+  content: attr(data-badge);
+  position:absolute; top:10px; right:10px;
+  padding:.28rem .5rem; border-radius:999px;
+  font: 900 .7rem/1 system-ui, sans-serif;
+  color:#fff;
+  background:linear-gradient(135deg,var(--pf-primary-1),var(--pf-primary-2));
+  box-shadow:0 6px 18px rgba(109,93,252,.35);
+  opacity:.95;
+}
+
+/* 4) Mini „hero” w kartach – thumb z delikatnym hotspotem */
+.thumb{
+  position: relative;
+  overflow: hidden;
+}
+.thumb::after{
+  content:""; position:absolute; inset:-30%;
+  background: radial-gradient(80% 60% at 30% 20%, rgba(255,255,255,.06), transparent 60%);
+  pointer-events:none;
+}
+
+/* 5) Feature boksy: kolorowy pasek po lewej + lepszy kontrast nagłówka */
+.pf-feature{
+  position: relative;
+  border-style: solid;
+  border-width:1px;
+  border-color: color-mix(in oklab, var(--pf-border) 90%, transparent);
+  background: color-mix(in oklab, var(--pf-bg-soft) 96%, transparent);
+}
+.pf-feature::before{
+  content:""; position:absolute; inset-block:0; inset-inline-start:0;
+  width:6px; border-radius:12px 0 0 12px;
+  background: linear-gradient(180deg, var(--pf-primary-1), var(--pf-primary-2) 50%, var(--pf-accent));
+  opacity:.85;
+}
+.pf-feature h3{
+  font-weight:900; letter-spacing:.15px;
+  color: var(--pf-text);
+}
+
+/* 6) „Wierszowane” pf-features – lekka siatka na desktopie */
+@media (min-width: 980px){
+  .pf-features{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 7) Pasek przewijania karuzeli – subtelne cienie na krawędziach (wskazuje scroll) */
+.strip-wrap::before,
+.strip-wrap::after{
+  content:""; position:absolute; top:0; bottom:0; width:28px; pointer-events:none; z-index:2;
+}
+.strip-wrap::before{
+  left:-2px;
+  background: linear-gradient(90deg, rgba(0,0,0,.28), transparent);
+}
+.strip-wrap::after{
+  right:-2px;
+  background: linear-gradient(270deg, rgba(0,0,0,.28), transparent);
+}
+html[data-theme="light"] .strip-wrap::before{
+  background: linear-gradient(90deg, rgba(0,0,0,.08), transparent);
+}
+html[data-theme="light"] .strip-wrap::after{
+  background: linear-gradient(270deg, rgba(0,0,0,.08), transparent);
+}
+
+/* 8) „Primary” karta (dodaj .card--primary gdy chcesz coś mocniej wyróżnić) */
+.card--primary{
+  background: linear-gradient(180deg,
+              color-mix(in oklab, var(--pf-primary-2) 12%, transparent),
+              color-mix(in oklab, var(--pf-card) 92%, transparent));
+  border-color: color-mix(in oklab, var(--pf-primary-1) 45%, var(--pf-border));
+  box-shadow: 0 14px 36px rgba(109,93,252,.25);
+}
+.card--primary:hover{ transform: translateY(-3px) }
+
+/* 9) Separator sekcji do szybkiego wstawienia (<div class="pf-divider"></div>) */
+.pf-divider{
+  height:1px; margin: 18px 0;
+  background: linear-gradient(90deg, transparent, var(--pf-border), transparent);
+  border-radius: 1px;
+}
+
+/* 10) Mikro-typografia w opisach kart – minimalnie większy interline + czytelność */
+.card p,
+.pf-feature p{
+  line-height:1.7;
+  color: color-mix(in oklab, var(--pf-text-dim) 94%, transparent);
+}
+
+/* 11) Lepszy focus dla klikalnych obszarów w kartach */
+.card a:focus-visible,
+.card button:focus-visible{
+  outline:2px solid color-mix(in oklab, var(--pf-primary-1) 70%, #fff);
+  outline-offset:2px; border-radius:10px;
+}
+
+/* 12) Light theme – kontrast podbity dla nowych elementów */
+html[data-theme="light"] .pf-feature{
+  background:#fff;
+  border-color: rgba(0,0,0,.12);
+}
+html[data-theme="light"] .pf-section h2::after{
+  opacity:.9;
+}
+html[data-theme="light"] .card--primary{
+  box-shadow: 0 12px 28px rgba(109,93,252,.18);
+}
+
+/* 13) Prefer-reduced-motion – bez animowanych hoverów */
+@media (prefers-reduced-motion: reduce){
+  .card--primary,
+  .card:hover{ transform:none !important; }
+}
+/* ============================
+   LEGAL NOTICE – PROMINENT BOX
+   ============================ */
+.pf-legal{
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 14px;
+  padding: 16px 16px 16px 14px;
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--pf-card) 94%, transparent), color-mix(in oklab, var(--pf-card) 86%, transparent));
+  border: 1.5px solid color-mix(in oklab, var(--pf-border) 85%, transparent);
+  box-shadow: 0 14px 36px rgba(0,0,0,.24);
+  overflow: hidden;
+}
+
+.pf-legal::before{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(60% 80% at -10% -10%, rgba(109,93,252,.25), transparent 60%),
+              radial-gradient(80% 80% at 110% 0%, rgba(255,93,162,.18), transparent 55%);
+  pointer-events:none;
+  opacity:.6;
+}
+
+.legal-icon{
+  inline-size:56px; block-size:56px;
+  border-radius:14px;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, var(--pf-primary-1), var(--pf-primary-2));
+  color:#fff;
+  box-shadow: 0 10px 24px rgba(109,93,252,.35);
+}
+.legal-icon svg{ width:28px; height:28px }
+
+.legal-content h2{
+  margin: 0 0 6px;
+  font-size: clamp(18px, 3.8vw, 20px);
+  line-height:1.2; letter-spacing:.2px;
+}
+.legal-content p{
+  margin: 0;
+  color: var(--pf-text);
+}
+
+.legal-em-wrap{
+  display:flex;
+  justify-content:center;
+  margin-top:14px;
+}
+
+/* Ważna kapsułka – callout */
+.legal-em{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:.95rem;
+  letter-spacing:.3px;
+  color:#fff;
+  background:linear-gradient(135deg,#FF512F,#DD2476);
+  box-shadow:0 0 14px rgba(255,70,50,.65),0 8px 22px rgba(220,40,40,.45);
+  text-align:center;
+}
+
+.legal-small{
+  margin-top:10px;
+  font-size:.9rem;
+  color: color-mix(in oklab, var(--pf-text-dim) 92%, transparent);
+}
+
+/* Light theme tweaks */
+html[data-theme="light"] .pf-legal{
+  background:#fff;
+  border-color: rgba(0,0,0,.12);
+  box-shadow: 0 12px 28px rgba(0,0,0,.08);
+}
+
+
   </style>
 </head>
 <body>
@@ -792,19 +1027,22 @@ html[data-theme="light"] .tl-node[data-status="done"] .tl-dot{
       </p>
 
       <div class="pf-actions" aria-label="Akcje główne">
-        <a class="pf-btn primary"
-           href="https://github.com/pkawa95/PiotrFlix/releases"
-           target="_blank"
-           rel="noopener"
-           aria-label="Pobierz PiotrFlix v1.0.7"
-           data-i18n="cta.download">Pobierz v1.0.7</a>
-        <a class="pf-btn ghost"
-           href="https://github.com/pkawa95/PiotrFlix"
-           target="_blank"
-           rel="noopener"
-           aria-label="Zobacz repozytorium PiotrFlix na GitHub"
-           data-i18n="cta.repo">Zobacz repozytorium</a>
-      </div>
+  <a id="downloadBtn"
+     class="pf-btn primary"
+     href="https://github.com/pkawa95/PiotrFlix/releases"
+     target="_blank"
+     rel="noopener"
+     aria-label="Pobierz PiotrFlix"
+     data-i18n="cta.download">
+     Pobierz
+  </a>
+  <a class="pf-btn ghost"
+     href="https://github.com/pkawa95/PiotrFlix"
+     target="_blank"
+     rel="noopener"
+     aria-label="Zobacz repozytorium PiotrFlix na GitHub"
+     data-i18n="cta.repo">Zobacz repozytorium</a>
+</div>
 
       <div class="pf-chips" aria-label="Informacje o wersji">
         <span class="chip" data-i18n="chip.version">Wersja: v1.0.7</span>
@@ -919,7 +1157,84 @@ html[data-theme="light"] .tl-node[data-status="done"] .tl-dot{
         <h3 data-i18n="power.offline.title">Tryb offline (PWA)</h3>
         <p data-i18n="power.offline.desc">Service Worker, strona offline i cache zasobów — komfortowy podgląd biblioteki bez sieci.</p>
       </article>
-    </div>
+
+<!-- Local Cache w %APPDATA% -->
+<article class="card"
+         data-modal-img="/img/power/cache.PNG"
+         data-modal-title="Lokalny cache w %APPDATA%"
+         data-modal-desc="Postępy oglądania i plakaty w bezpiecznym cache. Automatyczne czyszczenie nieużywanych plików."
+         aria-label="Lokalny cache — karta funkcji"
+         data-i18n-aria-label="auto_cache_card_aria"
+         data-i18n-modal-title="auto_cache_card_modalTitle"
+         data-i18n-modal-desc="auto_cache_card_modalDesc">
+  <div class="thumb" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M4 7h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M4 7l3-3h10l3 3" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <h3 data-i18n="auto_cache_card_title">Lokalny cache w %APPDATA%</h3>
+  <p data-i18n="auto_cache_card_desc">Postępy oglądania, plakaty i metadane w cache — z autoczyszczeniem przy usuwaniu pozycji.</p>
+</article>
+
+<!-- Watchdog w tle -->
+<article class="card"
+         data-modal-img="/img/power/watchdog.PNG"
+         data-modal-title="Watchdog w tle"
+         data-modal-desc="Monitoruje katalogi biblioteki: wykrywa dodania/usunięcia filmów i seriali w czasie rzeczywistym."
+         aria-label="Watchdog — karta funkcji"
+         data-i18n-aria-label="auto_watchdog_card_aria"
+         data-i18n-modal-title="auto_watchdog_card_modalTitle"
+         data-i18n-modal-desc="auto_watchdog_card_modalDesc">
+  <div class="thumb" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h3 data-i18n="auto_watchdog_card_title">Watchdog w tle</h3>
+  <p data-i18n="auto_watchdog_card_desc">Ciągły monitoring biblioteki i stanów plików — aplikacja ma pełną kontrolę nad danymi.</p>
+</article>
+
+<!-- Onboarding krok-po-kroku -->
+<article class="card"
+         data-modal-img="/img/power/onboarding4.PNG"
+         data-modal-title="Onboarding krok-po-kroku"
+         data-modal-desc="Przejrzysty kreator konfiguracji: ścieżki, konto PLEX, źródła TMDb, katalogi i test połączeń."
+         aria-label="Onboarding — karta funkcji"
+         data-i18n-aria-label="auto_onboarding_card_aria"
+         data-i18n-modal-title="auto_onboarding_card_modalTitle"
+         data-i18n-modal-desc="auto_onboarding_card_modalDesc">
+  <div class="thumb" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M6 7h12M6 12h12M6 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h3 data-i18n="auto_onboarding_card_title">Onboarding krok-po-kroku</h3>
+  <p data-i18n="auto_onboarding_card_desc">Prosty kreator instalacyjny prowadzi przez całą konfigurację.</p>
+</article>
+
+<!-- PLEX: progres oglądania -->
+<article class="card"
+         data-modal-img="/img/piotrflix2/IMG_7499.PNG"
+         data-modal-title="PLEX: progres oglądania"
+         data-modal-desc="Pobieramy z API PLEX postęp oglądania i pokazujemy go w sekcji „Dostępne”."
+         aria-label="PLEX progres — karta funkcji"
+         data-i18n-aria-label="auto_plex_card_aria"
+         data-i18n-modal-title="auto_plex_card_modalTitle"
+         data-i18n-modal-desc="auto_plex_card_modalDesc">
+  <div class="thumb" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M12 12V6a6 6 0 1 1-6 6h6Z" fill="currentColor"/>
+    </svg>
+  </div>
+  <h3 data-i18n="auto_plex_card_title">PLEX: progres oglądania</h3>
+  <p data-i18n="auto_plex_card_desc">Synchronizacja postępów z PLEX i pasek progresu w „Dostępne”.</p>
+</article>
+
+
+    
 
     <div class="strip-nav" aria-hidden="true">
       <button type="button" data-dir="-1"
@@ -930,7 +1245,48 @@ html[data-theme="light"] .tl-node[data-status="done"] .tl-dot{
               data-i18n-aria-label="power.next">›</button>
     </div>
   </div>
+
+  
 </section>
+
+<section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Oświadczenie prawne">
+  <div class="pf-legal" role="note" aria-label="Oświadczenie prawne">
+    
+    <!-- Ikona -->
+    <div class="legal-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 3l7 3v6c0 4.5-3 8.5-7 9-4-0.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8.5 12.2l2.2 2.2 4.8-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Treść -->
+    <div class="legal-content">
+      <h2 data-i18n="legal_notice_title">Oświadczenie prawne</h2>
+      <p data-i18n="legal_notice_body">
+        PiotrFlix może pobierać torrenty z serwisów takich jak The Pirate Bay (TPB) czy YTS wyłącznie w celach demonstracyjnych i edukacyjnych.
+        Autorzy nie hostują żadnych treści, nie zachęcają do naruszania praw autorskich i nie wspierają piractwa. 
+        Korzystaj wyłącznie z materiałów, do których masz prawo (domena publiczna, własne kopie zapasowe, licencje).
+        Odpowiedzialność za sposób użycia aplikacji spoczywa na użytkowniku.
+      </p>
+
+      <!-- Drobny tekst -->
+      <p class="legal-small" data-i18n="legal_notice_small">
+        Zgodność z lokalnym prawem może się różnić w zależności od jurysdykcji — sprawdź przepisy w swoim kraju.
+      </p>
+
+      <!-- Kapsuła wyróżniająca na dole -->
+      <div class="legal-em-wrap">
+        <span class="legal-em" data-i18n="legal_notice_emphasis">
+          Szanuj prawo. Używaj legalnych źródeł.
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 
   <!-- TECH -->
@@ -947,6 +1303,34 @@ def pick_random_movie():
 </code></pre>
     </div>
   </section>
+
+  <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Automatyzacja i cache">
+  <h2 data-i18n="auto_section_title">Automatyzacja i cache</h2>
+  <div class="pf-features">
+    <div class="pf-feature">
+      <h3 data-i18n="auto_cache_title">%APPDATA%: cache postępów i plakatów</h3>
+      <p data-i18n="auto_cache_desc">Postępy oglądania, miniatury i metadane zapisujemy lokalnie w <code>%APPDATA%/PiotrFlix</code>. Podczas usuwania pozycji cache sprząta zbędne pliki, a przy dodawaniu — dociąga brakujące plakaty.</p>
+    </div>
+    <div class="pf-feature">
+      <h3 data-i18n="auto_watchdog_title">Watchdog katalogów</h3>
+      <p data-i18n="auto_watchdog_desc">Proces w tle nasłuchuje zmian w bibliotekach (dodanie/usunięcie/zmiana). Interfejs odświeża listy w czasie rzeczywistym — aplikacja zachowuje pełną spójność danych.</p>
+    </div>
+    <div class="pf-feature">
+      <h3 data-i18n="auto_onboarding_title">Onboarding — zero zagubienia</h3>
+      <p data-i18n="auto_onboarding_desc">Kreator przeprowadza przez ścieżki bibliotek, logowanie PLEX, klucz TMDb i test połączeń. Konfiguracja kończy się walidacją i zapisem profilu.</p>
+    </div>
+    <div class="pf-feature">
+      <h3 data-i18n="auto_plex_title">PLEX API: progres w „Dostępne”</h3>
+      <p data-i18n="auto_plex_desc">Pobieramy poziom obejrzenia z API PLEX i pokazujemy pasek postępu bezpośrednio na kafelkach. Postęp synchronizuje się w tle.</p>
+    </div>
+    <div class="pf-feature">
+      <h3 data-i18n="auto_realtime_title">Autentyczne obrazy i wideo</h3>
+      <p data-i18n="auto_realtime_desc">Wszystkie zrzuty ekranu i klipy pochodzą z działającej aplikacji. Operacje (cast, cleanup, tagi) nagrywamy w czasie rzeczywistym.</p>
+    </div>
+  </div>
+</section>
+
+
 
   <!-- KONKRETNY OPIS FUNKCJI -->
   <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Funkcje PiotrFlix v2">
@@ -1034,6 +1418,74 @@ def pick_random_movie():
       </li>
     </ol>
   </section>
+  <!-- SCREENY Z ONBOARDING DESKTOP-->
+<!-- ONBOARDING – Zrzuty ekranu (Desktop) -->
+<section class="pf-panel pf-section pf-onb hidden-on-load fade-zoom" aria-label="Zrzuty Ekranu Onboarding (Desktop)">
+  <!-- Pastylka w prawym górnym rogu -->
+  <span class="onb-pill" data-i18n="onbshots_badge">Nowość</span>
+
+  <div class="onb-header">
+    <h2 class="onb-title" data-i18n="onbshots_title">Zrzuty Ekranu Onboarding (Desktop)</h2>
+    <p class="onb-lead" data-i18n="onbshots_lead">
+      Aplikacja prowadzi przez cały proces instalacji. Wyświetla jasne komunikaty, automatycznie skanuje sieć w poszukiwaniu serwera Plex oraz pobiera token dostępu do konta Plex. Użytkownik wybiera katalogi z Filmami i Serialami – lokalne oraz sieciowe. Dzięki obsłudze zasobów SMB/NAS możesz korzystać nie tylko z dysku lokalnego, ale też folderów w sieci lokalnej.
+    </p>
+  </div>
+
+  <div class="gallery carousel-container onb-carousel" data-carousel aria-label="Karuzela zrzutów Onboarding (Desktop)">
+    <button class="carousel-button left onb-arrow" type="button" aria-label="Poprzednie" data-carousel-prev data-i18n="carousel.prev" data-i18n-attr="aria-label">‹</button>
+
+    <div class="carousel onb-track">
+      <!-- Slide 1 -->
+      <figure class="onb-slide">
+        <img src="/img/power/onboarding1.PNG"
+             alt="Ekran powitalny kreatora"
+             onclick="openLightbox(this)"
+             data-i18n="onbshots_alt1" data-i18n-attr="alt">
+        <figcaption class="onb-caption" data-i18n="onbshots_cap1">
+          Start kreatora: szybkie sprawdzenie środowiska i pierwsze ustawienia.
+        </figcaption>
+      </figure>
+
+      <!-- Slide 2 -->
+      <figure class="onb-slide">
+        <img src="/img/power/onboarding2.PNG"
+             alt="Wykrywanie serwera Plex w sieci"
+             onclick="openLightbox(this)"
+             data-i18n="onbshots_alt2" data-i18n-attr="alt">
+        <figcaption class="onb-caption" data-i18n="onbshots_cap2">
+          Automatyczny skan sieci i wykrywanie serwera Plex, wraz z pobraniem tokenu.
+        </figcaption>
+      </figure>
+
+      <!-- Slide 3 -->
+      <figure class="onb-slide">
+        <img src="/img/power/onboarding3.PNG"
+             alt="Wybór katalogów filmów i seriali"
+             onclick="openLightbox(this)"
+             data-i18n="onbshots_alt3" data-i18n-attr="alt">
+        <figcaption class="onb-caption" data-i18n="onbshots_cap3">
+          Wybór lokalnych i sieciowych katalogów: Filmy oraz Seriale.
+        </figcaption>
+      </figure>
+
+      <!-- Slide 4 -->
+      <figure class="onb-slide">
+        <img src="/img/power/onboarding4.PNG"
+             alt="Podsumowanie i walidacja konfiguracji"
+             onclick="openLightbox(this)"
+             data-i18n="onbshots_alt4" data-i18n-attr="alt">
+        <figcaption class="onb-caption" data-i18n="onbshots_cap4">
+          Podsumowanie ustawień, testy połączeń i finalizacja instalacji.
+        </figcaption>
+      </figure>
+    </div>
+
+    <button class="carousel-button right onb-arrow" type="button" aria-label="Następne" data-carousel-next data-i18n="carousel.next" data-i18n-attr="aria-label">›</button>
+    <div class="carousel-dots onb-dots" aria-label="Paginacja karuzeli" data-i18n="carousel.dots" data-i18n-attr="aria-label"></div>
+  </div>
+</section>
+
+
 
   <!-- SCREENY DESKTOP -->
   <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Zrzuty ekranu (Desktop)">
@@ -1048,7 +1500,6 @@ def pick_random_movie():
         <img src="/img/piotrflix2/desktop5.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
         <img src="/img/piotrflix2/desktop6.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
         <img src="/img/piotrflix2/desktop7.png" alt="Widok 1" onclick="openLightbox(this)" data-i18n="screens.desktop.alt1" data-i18n-attr="alt">
-
       </div>
       <button class="carousel-button right" type="button" aria-label="Następne" data-carousel-next data-i18n="carousel.next" data-i18n-attr="aria-label">›</button>
       <div class="carousel-dots" aria-label="Paginacja karuzeli" data-i18n="carousel.dots" data-i18n-attr="aria-label"></div>
@@ -1204,6 +1655,157 @@ def pick_random_movie():
 /* redukcja animacji, jeśli user nie chce ruchu */
 @media (prefers-reduced-motion: reduce){
   #powerStrip .card{ transition: none !important; transform: none !important; opacity: 1 !important; }
+}
+
+/* ==============================
+   ONBOARDING SHOTS – LOOK & FEEL
+   ============================== */
+.pf-onb{
+  position: relative;
+  overflow: clip;
+}
+.pf-onb::before{
+  content:"";
+  position:absolute; inset:-20%;
+  background:
+    radial-gradient(800px 320px at 10% 0%, rgba(255,110,64,.10), transparent 50%),
+    radial-gradient(640px 280px at 90% 20%, rgba(221,36,118,.10), transparent 55%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.pf-onb .onb-title{
+  margin: 0 0 8px;
+  font-size: var(--fs-600);
+  letter-spacing:.2px;
+}
+
+/* poprawka: tekst na całą szerokość */
+.pf-onb .onb-lead{
+  margin: 0 0 16px;
+  color: var(--pf-text-dim);
+  line-height: 1.7;
+  text-align: justify;
+  max-width: none; /* usuwa ograniczenie szerokości */
+}
+
+/* kontener karuzeli */
+.onb-carousel{
+  position: relative;
+  z-index:1;
+  border: 1px solid var(--pf-border);
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--pf-card) 92%, transparent);
+  box-shadow: var(--pf-shadow);
+  overflow: hidden;
+}
+
+/* tor przewijania – płynne wejście */
+.onb-track{
+  padding: 12px 6px 18px;
+  scroll-snap-type: x mandatory;
+  mask-image: linear-gradient(to right, transparent 0, #000 10px, #000 calc(100% - 10px), transparent 100%);
+}
+.onb-track .onb-slide{
+  position: relative;
+  scroll-snap-align: center;
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  transform: translateY(8px) scale(.985);
+  opacity: 0;
+  animation: onb-in .6s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.onb-track .onb-slide:nth-child(1){ animation-delay:.05s }
+.onb-track .onb-slide:nth-child(2){ animation-delay:.12s }
+.onb-track .onb-slide:nth-child(3){ animation-delay:.19s }
+.onb-track .onb-slide:nth-child(4){ animation-delay:.26s }
+
+@keyframes onb-in{
+  to{ transform:none; opacity:1 }
+}
+
+.onb-slide img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border: 1px solid var(--pf-border);
+  background: var(--pf-bg-soft);
+  transition: transform .35s ease, filter .35s ease;
+}
+.onb-slide:hover img{
+  transform: scale(1.015);
+  filter: saturate(1.05);
+}
+
+/* podpis */
+.onb-caption{
+  position:absolute;
+  left:10px; right:10px; bottom:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:700;
+  font-size:.95rem;
+  color:#fff;
+  background: linear-gradient(180deg, rgba(14,18,36,.35), rgba(14,18,36,.65));
+  border:1px solid rgba(255,255,255,.20);
+  backdrop-filter: blur(8px) saturate(1.2);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  line-height:1.4;
+}
+
+/* strzałki */
+.onb-arrow{
+  background: linear-gradient(135deg, var(--pf-primary-1), var(--pf-primary-2));
+  color:#fff;
+  border:none;
+  border-radius: 12px;
+  min-height:44px;
+  padding: 10px 12px;
+  box-shadow: 0 12px 28px rgba(109,93,252,.35);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.onb-arrow:hover{ transform: translateY(-2px); box-shadow: 0 16px 36px rgba(109,93,252,.42); }
+
+/* kropki */
+.onb-dots button[aria-current="true"]{
+  box-shadow: 0 0 0 6px rgba(109,93,252,.18);
+}
+
+/* małe ekrany */
+@media (max-width: 720px){
+  .onb-caption{ font-size: .9rem; padding: 8px 10px; }
+  .pf-onb .onb-lead{ font-size: var(--fs-400); }
+}
+
+/* ==============================
+   ONBOARDING SHOTS – HEADER & BADGE
+   ============================== */
+.onb-header{
+  margin-bottom: 18px;
+}
+.onb-title{
+  margin: 0 0 8px;
+  font-size: var(--fs-600);
+  letter-spacing:.2px;
+}
+
+/* Pastylka "Nowość" */
+.onb-pill{
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: .8rem;
+  letter-spacing: .3px;
+  color: #fff;
+  background: linear-gradient(135deg, #FF512F, #DD2476);
+  box-shadow: 0 0 12px rgba(255,70,50,.65), 0 6px 18px rgba(220,40,40,.45);
+  z-index: 5;
 }
 
   </style>
@@ -1545,6 +2147,8 @@ def pick_random_movie():
   /* --- 4) Gesty: płynny h-scroll bez pionowego „złapania” --- */
   strip.style.touchAction = 'pan-x'; // pozwól palcem tylko w poziomie na tym pasku
 })();
+
+
   </script>
 
 
