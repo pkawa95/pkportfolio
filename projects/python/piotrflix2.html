@@ -1486,6 +1486,77 @@ def pick_random_movie():
 </section>
 
 
+<section class="pf-panel pf-section pf-platforms hidden-on-load fade-zoom" aria-label="Platformy testowe">
+  <div class="platforms-head">
+    <h2 class="platforms-title" data-i18n="platforms_title">Platformy testowe</h2>
+    <p class="platforms-lead" data-i18n="platforms_lead">
+      Poniższe konfiguracje zostały użyte do testów stabilności, wydajności oraz zgodności sterowników i bibliotek multimedialnych.
+    </p>
+  </div>
+
+  <div class="platforms-grid">
+    <!-- Desktop PC -->
+    <article class="platform-card">
+      <div class="plat-top">
+        <div class="plat-ico" aria-hidden="true">
+          <!-- animowane SVG – „desktop + GPU puls” -->
+          <svg viewBox="0 0 64 64" class="ico-desktop" role="img" aria-label="Desktop icon">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="10" width="52" height="34" rx="4"/>
+              <rect x="12" y="16" width="40" height="22" rx="2"/>
+              <path d="M18 50h28M24 50l-2 6m20-6 2 6" />
+              <!-- gpu pulse -->
+              <circle cx="46" cy="27" r="6" class="pulse"/>
+              <path d="M44 27h4M46 25v4" />
+            </g>
+          </svg>
+        </div>
+        <div class="plat-head">
+          <h3 data-i18n="platforms_desktop_title">Desktop PC</h3>
+          <span class="plat-badge" data-i18n="platforms_os_badge">Windows 11 64-bit</span>
+        </div>
+      </div>
+
+      <ul class="plat-specs">
+        <li><strong data-i18n="platforms_spec_ram">Pamięć</strong> HyperX 32 GB DDR4 3600 MHz</li>
+        <li><strong data-i18n="platforms_spec_cpu">Procesor</strong> Intel® Core™ i9-9900K</li>
+        <li><strong data-i18n="platforms_spec_gpu">Karta graficzna</strong> NVIDIA GeForce RTX 3080</li>
+        <li><strong data-i18n="platforms_spec_storage">Dysk</strong> Samsung 970 EVO 1 TB NVMe</li>
+        <li><strong data-i18n="platforms_spec_mobo">Płyta główna</strong> MSI MPG Z390 Gaming Pro Carbon</li>
+      </ul>
+    </article>
+
+    <!-- Laptop -->
+    <article class="platform-card">
+      <div class="plat-top">
+        <div class="plat-ico" aria-hidden="true">
+          <!-- animowane SVG – „laptop + scan line” -->
+          <svg viewBox="0 0 64 64" class="ico-laptop" role="img" aria-label="Laptop icon">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="10" y="14" width="44" height="26" rx="3"/>
+              <path d="M6 46h52l-3 6H9l-3-6Z"/>
+              <!-- scan line -->
+              <path class="scan" d="M14 26H50"/>
+            </g>
+          </svg>
+        </div>
+        <div class="plat-head">
+          <h3 data-i18n="platforms_laptop_title">Laptop</h3>
+          <span class="plat-badge" data-i18n="platforms_os_badge">Windows 11 64-bit</span>
+        </div>
+      </div>
+
+      <ul class="plat-specs">
+        <li><strong data-i18n="platforms_spec_cpu">Procesor</strong> Intel® Core™ i7-10870H</li>
+        <li><strong data-i18n="platforms_spec_model">Model</strong> ASUSTeK Computer Inc. G512LV</li>
+        <li><strong data-i18n="platforms_spec_ram">Pamięć</strong> 16 GB RAM</li>
+        <li><strong data-i18n="platforms_spec_gpu">Karta graficzna</strong> NVIDIA GeForce RTX 2060</li>
+        <li><strong data-i18n="platforms_spec_storage">Dysk</strong> Intel SSDPEKNW518GB</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
 
   <!-- SCREENY DESKTOP -->
   <section class="pf-panel pf-section hidden-on-load fade-zoom" aria-label="Zrzuty ekranu (Desktop)">
@@ -1808,6 +1879,118 @@ def pick_random_movie():
   z-index: 5;
 }
 
+/* ==============================
+   PLATFORMS – layout & glow
+   ============================== */
+.pf-platforms{
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(106,98,255,.10), transparent 50%),
+    radial-gradient(900px 600px at 110% 20%, rgba(255,93,162,.08), transparent 60%),
+    var(--pf-card);
+  border: 1px solid var(--pf-border);
+}
+
+.platforms-head{ margin-bottom: 14px; }
+.platforms-title{ margin: 0 0 6px; font-size: var(--fs-600); letter-spacing: .2px; }
+.platforms-lead{ margin: 0; color: var(--pf-text-dim); line-height: 1.7; max-width: 88ch; }
+
+.platforms-grid{
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  margin-top: 12px;
+}
+@media (min-width: 860px){
+  .platforms-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+.platform-card{
+  position: relative;
+  border: 1px solid var(--pf-border);
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--pf-card) 92%, transparent);
+  padding: 14px;
+  box-shadow: var(--pf-shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+  overflow: hidden;
+  isolation: isolate;
+}
+.platform-card::before{
+  content:"";
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+  box-shadow: 0 0 0 2px var(--pf-outline), 0 18px 42px rgba(109,93,252,.18);
+}
+.platform-card:hover{
+  transform: translateY(-2px);
+  border-color: var(--pf-outline);
+  background: var(--pf-card);
+}
+.platform-card:hover::before{ opacity: 1; }
+
+.plat-top{ display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 12px; margin-bottom: 10px; }
+.plat-ico{
+  inline-size: 56px; block-size: 56px;
+  display:grid; place-items:center;
+  border-radius: 14px;
+  border: 1px solid var(--pf-border);
+  background: var(--pf-bg-soft);
+}
+.plat-ico svg{ width: 36px; height: 36px; opacity:.95; }
+
+.plat-head h3{ margin:0; font-size: 1.05rem; font-weight: 900; letter-spacing:.2px; }
+.plat-badge{
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: 6px 10px; margin-top: 6px;
+  border-radius: 999px; font-weight: 900; font-size: .82rem; color:#fff;
+  background: linear-gradient(135deg, #6d5dfc, #9b5bff);
+  box-shadow: 0 10px 24px rgba(109,93,252,.30);
+}
+
+/* spec list */
+.plat-specs{ margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.plat-specs li{
+  padding: 10px 12px;
+  border: 1px dashed var(--pf-border);
+  border-radius: 12px;
+  background: var(--pf-bg-soft);
+  line-height: 1.6;
+}
+.plat-specs strong{ display:inline-block; min-width: 9.5em; font-weight: 900; color: var(--pf-text); }
+
+/* SVG animations */
+.ico-desktop .pulse{
+  stroke: none; fill: currentColor; opacity:.22;
+  transform-origin: 46px 27px;
+  animation: gpuPulse 2.2s ease-in-out infinite;
+}
+@keyframes gpuPulse{
+  0%,100%{ transform: scale(1); opacity:.22 }
+  50%{ transform: scale(1.18); opacity:.36 }
+}
+.ico-laptop .scan{
+  animation: scanMove 2.4s ease-in-out infinite;
+}
+@keyframes scanMove{
+  0%{ stroke-dasharray: 0 120; stroke-dashoffset: 0; opacity:.0 }
+  15%{ opacity: .85 }
+  50%{ stroke-dasharray: 120 0; stroke-dashoffset: 0; opacity: .85 }
+  85%{ opacity:.0 }
+  100%{ stroke-dasharray: 0 120; stroke-dashoffset: 0; opacity:.0 }
+}
+
+/* small screens tweaks */
+@media (max-width: 560px){
+  .plat-ico{ inline-size: 50px; block-size: 50px; }
+  .plat-ico svg{ width: 32px; height: 32px; }
+  .plat-specs strong{ min-width: 8.6em; }
+}
+
   </style>
 
   <div class="pf-video">
@@ -1832,6 +2015,8 @@ def pick_random_movie():
     </p>
   </noscript>
 </section>
+
+
 
 
   <!-- 🔄 Karuzela innych projektów -->

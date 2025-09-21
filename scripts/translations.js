@@ -614,6 +614,18 @@ technologie IoT, integracje z API, a także fotografię, drony i nowoczesne rozw
   onbshots_cap4: "Podsumowanie ustawień, testy połączeń i finalizacja instalacji.",
   onbshots_badge: "Nowość",
 
+  platforms_title: "Platformy testowe",
+  platforms_lead: "Poniższe konfiguracje zostały użyte do testów stabilności, wydajności oraz zgodności sterowników i bibliotek multimedialnych.",
+  platforms_desktop_title: "Desktop PC",
+  platforms_laptop_title: "Laptop",
+  platforms_os_badge: "Windows 11 64-bit",
+  platforms_spec_ram: "Pamięć",
+  platforms_spec_cpu: "Procesor",
+  platforms_spec_gpu: "Karta graficzna",
+  platforms_spec_storage: "Dysk",
+  platforms_spec_mobo: "Płyta główna",
+  platforms_spec_model: "Model",
+
 
 
   },
@@ -1052,6 +1064,18 @@ about_interests_title: "Interests",
   onbshots_cap3: "Choose local and network folders: Movies and TV Shows.",
   onbshots_cap4: "Settings summary, connection tests and finalization.",
   onbshots_badge: "New",
+  platforms_title: "Test Platforms",
+  platforms_lead: "The following configurations were used to test stability, performance, and compatibility of drivers and media libraries.",
+  platforms_desktop_title: "Desktop PC",
+  platforms_laptop_title: "Laptop",
+  platforms_os_badge: "Windows 11 64-bit",
+  platforms_spec_ram: "Memory",
+  platforms_spec_cpu: "Processor",
+  platforms_spec_gpu: "Graphics card",
+  platforms_spec_storage: "Storage",
+  platforms_spec_mobo: "Motherboard",
+  platforms_spec_model: "Model",
+
 
    "badge.newVersion": "New app version available",
 
